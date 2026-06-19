@@ -76,30 +76,139 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Open lightbox for pacotes flyer buttons
-    document.querySelectorAll('.btn-open-flyer').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const imgPath = btn.getAttribute('data-target');
-            lightboxImg.src = imgPath;
-            lightboxImg.alt = "Detalhes do Pacote";
-            
-            lightboxImg.style.display = 'block';
-            lightboxVideoContainer.style.display = 'none';
-            lightbox.style.display = 'flex';
+    // Package Details Modal Content Database
+    const packageDetails = {
+        premium: {
+            tag: "Operação Premium (Trios)",
+            title: "Pacote Eldorado Premium",
+            body: `
+                <div class="modal-info-grid">
+                    <div class="modal-info-item">
+                        <i class="fa-solid fa-tags"></i>
+                        <div>
+                            <h4>Valor da Diária</h4>
+                            <p class="text-gold" style="font-size: 1.5rem; font-weight: 700; margin: 5px 0 0 0;">R$ 730,00 <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 400;">/ Trio</span></p>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">Valor total diário para o grupo de 3 pescadores (tanque cheio incluso).</p>
+                        </div>
+                    </div>
+                    <div class="modal-info-item">
+                        <i class="fa-solid fa-ship"></i>
+                        <div>
+                            <h4>Pescaria com Guia Profissional</h4>
+                            <p>Operação liderada pelo guia especializado <strong>Thiago Witeck</strong>, com mais de 5 anos de experiência e conhecimento profundo dos melhores pontos de pesca do Lago Foz do Areia.</p>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">Equipamentos de segurança completos e barcos modernos de alto padrão.</p>
+                        </div>
+                    </div>
+                    <div class="modal-info-item">
+                        <i class="fa-solid fa-house-chimney"></i>
+                        <div>
+                            <h4>Hospedagem de Alto Padrão</h4>
+                            <p>Estadia no Rancho Eldorado, localizado estrategicamente de frente para o lago.</p>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">Estrutura completa com suítes climatizadas, internet Starlink, chuveiro quente e ótima gastronomia local (pensão completa inteiramente inclusa).</p>
+                        </div>
+                    </div>
+                    <div class="modal-info-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div>
+                            <h4>Regras da Operação</h4>
+                            <p>Pesca 100% esportiva (pesque e solte do Dourado) para garantir a preservação das espécies e a sustentabilidade do lago.</p>
+                        </div>
+                    </div>
+                </div>
+            `
+        },
+        standard: {
+            tag: "Operação Standard (Duplas ou Trios)",
+            title: "Pacote Eldorado Standard",
+            body: `
+                <div class="modal-info-grid">
+                    <div class="modal-info-item">
+                        <i class="fa-solid fa-tags"></i>
+                        <div>
+                            <h4>Valor da Diária</h4>
+                            <p class="text-gold" style="font-size: 1.5rem; font-weight: 700; margin: 5px 0 0 0;">R$ 730,00 <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 400;">/ Dupla</span></p>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">Valor total diário para a dupla de pescadores (tanque cheio incluso).</p>
+                        </div>
+                    </div>
+                    <div class="modal-info-item">
+                        <i class="fa-solid fa-ship"></i>
+                        <div>
+                            <h4>Guias e Embarcações</h4>
+                            <p>Pescaria esportiva no Lago Foz do Areia com equipe profissional de guias de pesca especializados, focando no Dourado e na Piapara.</p>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">Inclui barco completo com motor elétrico e combustível da diária.</p>
+                        </div>
+                    </div>
+                    <div class="modal-info-item">
+                        <i class="fa-solid fa-house-chimney"></i>
+                        <div>
+                            <h4>Hospedagem & Rancho</h4>
+                            <p>Hospedagem aconchegante no Rancho Eldorado, garantindo excelente custo-benefício.</p>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">Acomodações limpas e equipadas com chuveiro quente e internet Starlink de alta velocidade para os pescadores.</p>
+                        </div>
+                    </div>
+                    <div class="modal-info-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div>
+                            <h4>Preservação Ambiental</h4>
+                            <p>Prática ativa do pesque e solte. Todo peixe capturado é medido, fotografado e devolvido à água com segurança.</p>
+                        </div>
+                    </div>
+                </div>
+            `
+        }
+    };
+
+    const detailsModal = document.getElementById('details-modal');
+    const detailsModalTag = document.getElementById('details-modal-tag');
+    const detailsModalTitle = document.getElementById('details-modal-title');
+    const detailsModalBody = document.getElementById('details-modal-body');
+    const detailsCloseBtn = document.getElementById('details-close-btn');
+
+    // Open Details Modal function
+    const openDetailsModal = (packageKey) => {
+        const details = packageDetails[packageKey];
+        if (details) {
+            detailsModalTag.textContent = details.tag;
+            detailsModalTitle.textContent = details.title;
+            detailsModalBody.innerHTML = details.body;
+            detailsModal.style.display = 'flex';
+        }
+    };
+
+    // Add listeners to package buttons & flyer images
+    document.querySelectorAll('.btn-open-flyer, .flyer-img').forEach(element => {
+        element.addEventListener('click', () => {
+            const packageKey = element.getAttribute('data-package');
+            if (packageKey) {
+                openDetailsModal(packageKey);
+            }
         });
     });
 
-    // Open lightbox for flyer images directly
-    document.querySelectorAll('.flyer-img').forEach(img => {
-        img.addEventListener('click', () => {
-            lightboxImg.src = img.src;
-            lightboxImg.alt = img.alt;
-            
-            lightboxImg.style.display = 'block';
-            lightboxVideoContainer.style.display = 'none';
-            lightbox.style.display = 'flex';
+    // Close Details Modal function
+    const closeDetailsModal = () => {
+        if (detailsModal) {
+            detailsModal.style.display = 'none';
+        }
+        if (detailsModalTag) detailsModalTag.textContent = '';
+        if (detailsModalTitle) detailsModalTitle.textContent = '';
+        if (detailsModalBody) detailsModalBody.innerHTML = '';
+    };
+
+    if (detailsCloseBtn) {
+        detailsCloseBtn.addEventListener('click', closeDetailsModal);
+    }
+
+    // Close on outside click
+    if (detailsModal) {
+        detailsModal.addEventListener('click', (e) => {
+            if (e.target === detailsModal) {
+                closeDetailsModal();
+            }
         });
-    });
+    }
+
+    // Close on Escape key (lightbox keydown listener will also handle it)
 
     // Open lightbox for videos
     document.querySelectorAll('.video-card').forEach(card => {
@@ -131,8 +240,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close with Escape key
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lightbox.style.display === 'flex') {
-            closeLightbox();
+        if (e.key === 'Escape') {
+            if (lightbox.style.display === 'flex') {
+                closeLightbox();
+            }
+            if (detailsModal && detailsModal.style.display === 'flex') {
+                closeDetailsModal();
+            }
         }
     });
 

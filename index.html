@@ -217,19 +217,19 @@
 
             <div class="grid grid-2 pacotes-flyers">
                 <div class="flyer-card" id="flyer-1">
-                    <img src="assets/images/pacote_banner_trio.png" alt="Panfleto descritivo do Pacote Premium" class="flyer-img">
+                    <img src="assets/images/pacote_banner_trio.png" alt="Panfleto descritivo do Pacote Premium" class="flyer-img" data-package="premium">
                     <div class="flyer-content">
                         <h3>Pacote Eldorado Premium</h3>
                         <p>A experiência de pesca definitiva para trios. Inclui guia profissional, hospedagem de alto padrão e pensão completa.</p>
-                        <button class="btn btn-gold btn-block btn-open-flyer" data-target="assets/images/pacote_banner_trio.png">Visualizar Detalhes</button>
+                        <button class="btn btn-gold btn-block btn-open-flyer" data-package="premium">Visualizar Detalhes</button>
                     </div>
                 </div>
                 <div class="flyer-card" id="flyer-2">
-                    <img src="assets/images/pacote_banner_2.jpg" alt="Panfleto descritivo do Pacote 2" class="flyer-img">
+                    <img src="assets/images/pacote_banner_2.jpg" alt="Panfleto descritivo do Pacote 2" class="flyer-img" data-package="standard">
                     <div class="flyer-content">
                         <h3>Pacote Eldorado Standard</h3>
                         <p>Focado na esportividade, ideal para duplas ou trios que buscam excelente custo-benefício.</p>
-                        <button class="btn btn-gold btn-block btn-open-flyer" data-target="assets/images/pacote_banner_2.jpg">Visualizar Detalhes</button>
+                        <button class="btn btn-gold btn-block btn-open-flyer" data-package="standard">Visualizar Detalhes</button>
                     </div>
                 </div>
             </div>
@@ -400,6 +400,28 @@
             <img class="lightbox-img" id="lightbox-img" src="" alt="">
             <div class="lightbox-video-container" id="lightbox-video-container">
                 <iframe id="lightbox-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Package Details Modal -->
+    <div id="details-modal" class="lightbox-modal">
+        <span class="lightbox-close" id="details-close-btn">&times;</span>
+        <div class="details-modal-wrapper">
+            <div class="details-modal-content glass-card">
+                <div class="details-header">
+                    <span class="details-tag" id="details-modal-tag">Pacote Premium</span>
+                    <h3 class="details-title" id="details-modal-title">Pacote Eldorado Premium</h3>
+                    <div class="section-divider" style="margin: 15px 0 25px 0; background: linear-gradient(90deg, var(--primary-gold), transparent);"></div>
+                </div>
+                <div class="details-body" id="details-modal-body">
+                    <!-- Dynamic details inserted by JS -->
+                </div>
+                <div class="details-footer">
+                    <a href="https://wa.me/554299162340" target="_blank" class="btn btn-gold btn-block" id="btn-whatsapp-modal-reservar">
+                        <i class="fa-brands fa-whatsapp"></i> Reservar via WhatsApp
+                    </a>
+                </div>
             </div>
         </div>
     </div>
