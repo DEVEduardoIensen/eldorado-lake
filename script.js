@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <i class="fa-solid fa-tags"></i>
                         <div>
                             <h4>Valor da Diária</h4>
-                            <p class="text-gold" style="font-size: 1.5rem; font-weight: 700; margin: 5px 0 0 0;">R$ 730,00 <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 400;">/ Trio</span></p>
+                            <p class="text-gold" style="font-size: 1.5rem; font-weight: 700; margin: 5px 0 0 0;">R$ 900,00 <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 400;">/ Trio</span></p>
                             <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">Valor total diário para o grupo de 3 pescadores (tanque cheio incluso).</p>
                         </div>
                     </div>
