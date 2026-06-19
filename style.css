@@ -1587,6 +1587,10 @@ footer {
     .contato-form-wrapper {
         display: none !important;
     }
+
+    .contato-section .section-desc {
+        display: none;
+    }
 }
 
 @media (max-width: 576px) {

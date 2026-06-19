@@ -10,7 +10,7 @@ O projeto foi reformulado seguindo uma proposta visual sofisticada e moderna com
 *   **Luxo & Sofisticação**: Fundo ultra-escuro (Deep Black/Navy) combinado com gradientes dourados metálicos e detalhes translúcidos (*Glassmorphism*).
 *   **Tipografia Nobre**: Uso das fontes Google Fonts **Outfit** (para títulos marcantes e dinâmicos) e **Inter** (para um corpo de texto limpo e legível).
 *   **Micro-animações**: Transições suaves e efeitos dinâmicos de hover em cards, botões e imagens.
-*   **Lightbox Unificado**: Modais flutuantes interativos para visualização em alta definição dos panfletos dos pacotes de pesca e reprodução direta de vídeos.
+*   **Lightbox & Modal de Detalhes**: Modais flutuantes interativos para visualização direta de vídeos e detalhamento dos pacotes em texto estruturado sem carregar imagens estáticas.
 
 ---
 
@@ -18,9 +18,9 @@ O projeto foi reformulado seguindo uma proposta visual sofisticada e moderna com
 
 1.  **Apresentação da Operação**: Destaque para a pesca 100% esportiva (prática do pesque e solte) com guias especializados no Lago Foz do Areia.
 2.  **Infraestrutura do Rancho**: Cards detalhados sobre as suítes confortáveis, culinária típica regional e deck panorâmico.
-3.  **Pacotes de Pesca**: Exibição dos panfletos descritivos para os pacotes **Premium** (para 3 pessoas/trios) e **Standard**.
+3.  **Pacotes de Pesca**: Exibição responsiva e interativa em 3D dos planos de pesca (Premium e Standard) destacando as inclusões e preços diretamente na página.
 4.  **Galeria de Ação**: Integração nativa com vídeos do YouTube de Thiago Witeck e Reels do Instagram (Dicas e técnicas).
-5.  **Formulário de Contato Inteligente**: Sistema de validação integrado que direciona os dados inseridos diretamente para o WhatsApp de reservas da operação.
+5.  **Formulário de Contato Inteligente**: Sistema de validação integrado que direciona os dados inseridos diretamente para o WhatsApp de reservas da operação (ocultado em celulares para otimizar os canais de contato direto).
 
 ---
 
