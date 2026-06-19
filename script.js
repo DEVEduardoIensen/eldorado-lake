@@ -63,25 +63,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxIframe = document.getElementById('lightbox-iframe');
     const closeBtn = document.getElementById('lightbox-close-btn');
 
-    // Open lightbox for gallery images
-    document.querySelectorAll('.gallery-item').forEach(item => {
-        item.addEventListener('click', () => {
-            const videoSrc = item.getAttribute('data-video-src');
-            if (videoSrc) {
-                lightboxIframe.src = videoSrc;
-                
-                lightboxImg.style.display = 'none';
-                lightboxVideoContainer.style.display = 'block';
-                lightbox.style.display = 'flex';
-            } else {
-                const img = item.querySelector('img');
-                lightboxImg.src = img.src;
-                lightboxImg.alt = img.alt;
-                
-                lightboxImg.style.display = 'block';
-                lightboxVideoContainer.style.display = 'none';
-                lightbox.style.display = 'flex';
-            }
+    // Open lightbox for carousel slides (enlarge images)
+    document.querySelectorAll('.carousel-slide').forEach(slide => {
+        slide.addEventListener('click', () => {
+            const img = slide.querySelector('img');
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            
+            lightboxImg.style.display = 'block';
+            lightboxVideoContainer.style.display = 'none';
+            lightbox.style.display = 'flex';
         });
     });
 
@@ -144,6 +135,102 @@ document.addEventListener('DOMContentLoaded', () => {
             closeLightbox();
         }
     });
+
+    // 4. Rancho Carousel Auto-play & Controls
+    const carouselTrack = document.querySelector('.carousel-track');
+    const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
+    const indicators = Array.from(document.querySelectorAll('.carousel-indicators .indicator'));
+    
+    let currentIndex = 0;
+    let autoPlayInterval;
+    const intervalTime = 4000; // 4 seconds
+    
+    const updateCarousel = (index) => {
+        if (index < 0) {
+            index = slides.length - 1;
+        } else if (index >= slides.length) {
+            index = 0;
+        }
+        
+        currentIndex = index;
+        
+        // Move the carousel track
+        if (carouselTrack) {
+            carouselTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+        
+        // Update active slide class
+        slides.forEach((slide, i) => {
+            if (i === currentIndex) {
+                slide.classList.add('active');
+            } else {
+                slide.classList.remove('active');
+            }
+        });
+        
+        // Update indicators
+        indicators.forEach((indicator, i) => {
+            if (i === currentIndex) {
+                indicator.classList.add('active');
+            } else {
+                indicator.classList.remove('active');
+            }
+        });
+    };
+    
+    const nextSlide = () => {
+        updateCarousel(currentIndex + 1);
+    };
+    
+    const prevSlide = () => {
+        updateCarousel(currentIndex - 1);
+    };
+    
+    const startAutoPlay = () => {
+        stopAutoPlay();
+        autoPlayInterval = setInterval(nextSlide, intervalTime);
+    };
+    
+    const stopAutoPlay = () => {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+        }
+    };
+    
+    if (nextBtn && prevBtn) {
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // prevent opening lightbox when clicking button
+            nextSlide();
+            startAutoPlay(); // reset autoplay timer
+        });
+        
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // prevent opening lightbox when clicking button
+            prevSlide();
+            startAutoPlay(); // reset autoplay timer
+        });
+    }
+    
+    indicators.forEach((indicator, i) => {
+        indicator.addEventListener('click', (e) => {
+            e.stopPropagation(); // prevent opening lightbox when clicking dot
+            updateCarousel(i);
+            startAutoPlay(); // reset autoplay timer
+        });
+    });
+    
+    const carouselContainer = document.getElementById('rancho-carousel');
+    if (carouselContainer) {
+        carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+        carouselContainer.addEventListener('mouseleave', startAutoPlay);
+    }
+    
+    // Start auto-play initially if carousel exists
+    if (slides.length > 0) {
+        startAutoPlay();
+    }
 
     // 4. Contact Form Validation & Redirection
     const contactForm = document.getElementById('contact-form');

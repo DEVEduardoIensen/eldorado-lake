@@ -125,35 +125,78 @@
                 <p class="section-desc">Após um dia emocionante na água, desfrute de todo o aconchego e gastronomia que nossa pousada exclusiva oferece.</p>
             </div>
 
-            <div class="grid grid-3 card-grid">
-                <div class="card glass-card">
-                    <div class="card-icon"><i class="fa-solid fa-bed"></i></div>
-                    <h3 class="card-title">Quartos Confortáveis</h3>
-                    <p class="card-text">Quartos equipados com ar-condicionado, camas premium e banheiro privativo para um descanso revigorante.</p>
-                </div>
-                <div class="card glass-card">
-                    <div class="card-icon"><i class="fa-solid fa-utensils"></i></div>
-                    <h3 class="card-title">Gastronomia Regional</h3>
-                    <p class="card-text">Refeições completas inclusas, com o melhor da culinária típica para repor as energias com muito sabor.</p>
-                </div>
-                <div class="card glass-card">
-                    <div class="card-icon"><i class="fa-solid fa-mountain-sun"></i></div>
-                    <h3 class="card-title">Deck Panorâmico</h3>
-                    <p class="card-text">Área de lazer com vista privilegiada para o lago, perfeita para compartilhar as histórias de pesca do dia.</p>
-                </div>
-            </div>
-
-            <div class="rancho-gallery">
-                <div class="gallery-item" id="gallery-item-1">
-                    <img src="assets/images/rancho_1.jpg" alt="Vista da área externa do Rancho Eldorado" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <span>Ampliar<i class="fa-solid fa-expand"></i></span>
+            <div class="rancho-carousel-wrapper">
+                <div class="carousel-container" id="rancho-carousel">
+                    <div class="carousel-track">
+                        <!-- Carousel Slides -->
+                        <div class="carousel-slide active" data-index="0">
+                            <img src="assets/images/WhatsApp Image 2026-06-19 at 09.41.40.jpeg" alt="Estrutura do Rancho 1" class="carousel-img">
+                            <div class="carousel-overlay">
+                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                            </div>
+                        </div>
+                        <div class="carousel-slide" data-index="1">
+                            <img src="assets/images/WhatsApp Image 2026-06-19 at 09.41.40 (1).jpeg" alt="Estrutura do Rancho 2" class="carousel-img">
+                            <div class="carousel-overlay">
+                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                            </div>
+                        </div>
+                        <div class="carousel-slide" data-index="2">
+                            <img src="assets/images/WhatsApp Image 2026-06-19 at 09.41.40 (2).jpeg" alt="Estrutura do Rancho 3" class="carousel-img">
+                            <div class="carousel-overlay">
+                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                            </div>
+                        </div>
+                        <div class="carousel-slide" data-index="3">
+                            <img src="assets/images/WhatsApp Image 2026-06-19 at 09.41.40 (3).jpeg" alt="Estrutura do Rancho 4" class="carousel-img">
+                            <div class="carousel-overlay">
+                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                            </div>
+                        </div>
+                        <div class="carousel-slide" data-index="4">
+                            <img src="assets/images/WhatsApp Image 2026-06-19 at 09.41.40 (4).jpeg" alt="Estrutura do Rancho 5" class="carousel-img">
+                            <div class="carousel-overlay">
+                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                            </div>
+                        </div>
+                        <div class="carousel-slide" data-index="5">
+                            <img src="assets/images/WhatsApp Image 2026-06-19 at 09.41.41.jpeg" alt="Estrutura do Rancho 6" class="carousel-img">
+                            <div class="carousel-overlay">
+                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                            </div>
+                        </div>
+                        <div class="carousel-slide" data-index="6">
+                            <img src="assets/images/WhatsApp Image 2026-06-19 at 09.41.41 (1).jpeg" alt="Estrutura do Rancho 7" class="carousel-img">
+                            <div class="carousel-overlay">
+                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                            </div>
+                        </div>
+                        <div class="carousel-slide" data-index="7">
+                            <img src="assets/images/WhatsApp Image 2026-06-19 at 09.41.41 (2).jpeg" alt="Estrutura do Rancho 8" class="carousel-img">
+                            <div class="carousel-overlay">
+                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="gallery-item" id="gallery-item-2" data-video-src="https://www.instagram.com/reel/DSm_5_EjhbI/embed/">
-                    <img src="assets/images/rancho_2.jpg" alt="Interior aconchegante da pousada" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <span>Assistir Vídeo <i class="fa-solid fa-play"></i></span>
+                    
+                    <!-- Carousel Controls -->
+                    <button class="carousel-btn prev-btn" id="carousel-prev" aria-label="Anterior">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next-btn" id="carousel-next" aria-label="Próximo">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    
+                    <!-- Carousel Indicators -->
+                    <div class="carousel-indicators">
+                        <span class="indicator active" data-slide="0"></span>
+                        <span class="indicator" data-slide="1"></span>
+                        <span class="indicator" data-slide="2"></span>
+                        <span class="indicator" data-slide="3"></span>
+                        <span class="indicator" data-slide="4"></span>
+                        <span class="indicator" data-slide="5"></span>
+                        <span class="indicator" data-slide="6"></span>
+                        <span class="indicator" data-slide="7"></span>
                     </div>
                 </div>
             </div>
