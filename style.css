@@ -1591,6 +1591,10 @@ footer {
     .contato-section .section-desc {
         display: none;
     }
+
+    .footer-logo {
+        display: none;
+    }
 }
 
 @media (max-width: 576px) {
