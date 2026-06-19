@@ -63,8 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxIframe = document.getElementById('lightbox-iframe');
     const closeBtn = document.getElementById('lightbox-close-btn');
 
-    // Open lightbox for carousel slides (enlarge images)
-    document.querySelectorAll('.carousel-slide').forEach(slide => {
+    // Open lightbox for carousel and gallery slides (enlarge images)
+    document.querySelectorAll('.carousel-slide, .gallery-slide').forEach(slide => {
         slide.addEventListener('click', () => {
             const img = slide.querySelector('img');
             lightboxImg.src = img.src;
@@ -380,4 +380,93 @@ document.addEventListener('DOMContentLoaded', () => {
             formFeedback.style.display = 'none';
         }, 1500);
     });
+
+    // 5. Gallery Carousel Behavior (Multi-item sliding marquee)
+    const galleryTrack = document.querySelector('.gallery-track');
+    const gallerySlides = Array.from(document.querySelectorAll('.gallery-slide'));
+    const galleryPrevBtn = document.getElementById('gallery-prev');
+    const galleryNextBtn = document.getElementById('gallery-next');
+    
+    if (galleryTrack && gallerySlides.length > 0) {
+        let galleryIndex = 0;
+        let galleryAutoPlayInterval;
+        
+        // Helper to check how many items are visible in viewport
+        const getVisibleItemsCount = () => {
+            const width = window.innerWidth;
+            if (width > 992) return 4;
+            if (width > 768) return 3;
+            if (width > 480) return 2;
+            return 1;
+        };
+        
+        const updateGallery = (index) => {
+            const visibleItems = getVisibleItemsCount();
+            const maxIndex = gallerySlides.length - visibleItems;
+            
+            if (index < 0) {
+                index = maxIndex;
+            } else if (index > maxIndex) {
+                index = 0;
+            }
+            
+            galleryIndex = index;
+            
+            // Calculate translate percentage
+            const slideWidth = gallerySlides[0].getBoundingClientRect().width;
+            const gap = 20; // Matches CSS gap
+            const amountToMove = galleryIndex * (slideWidth + gap);
+            
+            galleryTrack.style.transform = `translateX(-${amountToMove}px)`;
+        };
+        
+        const nextGallerySlide = () => {
+            updateGallery(galleryIndex + 1);
+        };
+        
+        const prevGallerySlide = () => {
+            updateGallery(galleryIndex - 1);
+        };
+        
+        const startGalleryAutoPlay = () => {
+            stopGalleryAutoPlay();
+            galleryAutoPlayInterval = setInterval(nextGallerySlide, 4000);
+        };
+        
+        const stopGalleryAutoPlay = () => {
+            if (galleryAutoPlayInterval) {
+                clearInterval(galleryAutoPlayInterval);
+            }
+        };
+        
+        if (galleryNextBtn && galleryPrevBtn) {
+            galleryNextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                nextGallerySlide();
+                startGalleryAutoPlay();
+            });
+            
+            galleryPrevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                prevGallerySlide();
+                startGalleryAutoPlay();
+            });
+        }
+        
+        // Pause auto-play on hover
+        const galleryCarouselContainer = document.getElementById('gallery-carousel');
+        if (galleryCarouselContainer) {
+            galleryCarouselContainer.addEventListener('mouseenter', stopGalleryAutoPlay);
+            galleryCarouselContainer.addEventListener('mouseleave', startGalleryAutoPlay);
+        }
+        
+        // Handle window resize to recalculate positions correctly
+        window.addEventListener('resize', () => {
+            updateGallery(galleryIndex);
+        });
+        
+        // Initial setup
+        startGalleryAutoPlay();
+        updateGallery(0);
+    }
 });

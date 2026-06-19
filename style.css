@@ -1247,6 +1247,8 @@ footer {
 
 .footer-links ul {
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .footer-links ul li {
@@ -1769,4 +1771,263 @@ footer {
     .package-card-header h3 {
         font-size: 1.5rem;
     }
+}
+
+/* ==========================================
+   Galeria Carousel Section
+   ========================================== */
+.galeria-section {
+    background-color: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.galeria-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    margin-top: 40px;
+    padding: 0 60px; /* Space for navigation arrows */
+}
+
+.galeria-carousel {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.gallery-track {
+    display: flex;
+    gap: 20px;
+    transition: transform var(--transition-smooth);
+    will-change: transform;
+}
+
+.gallery-slide {
+    position: relative;
+    flex: 0 0 calc(25% - 15px); /* 4 items visible on desktop */
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid var(--border-light);
+    box-shadow: var(--glass-shadow);
+    transition: var(--transition-smooth);
+}
+
+.gallery-slide:hover {
+    border-color: var(--primary-gold);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(229, 193, 88, 0.15);
+}
+
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--transition-smooth);
+}
+
+.gallery-slide:hover .gallery-img {
+    transform: scale(1.05);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(6, 10, 19, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition-fast);
+}
+
+.gallery-slide:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay span {
+    font-family: var(--font-heading);
+    color: var(--primary-gold);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border-gold);
+    padding: 10px 20px;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    background: rgba(6, 10, 19, 0.6);
+    transition: var(--transition-fast);
+}
+
+.gallery-overlay span:hover {
+    background: var(--primary-gold);
+    color: #060a13;
+}
+
+/* Gallery Navigation Buttons positioning adjustment */
+.galeria-carousel-wrapper .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.galeria-carousel-wrapper .prev-btn {
+    left: 0;
+}
+
+.galeria-carousel-wrapper .next-btn {
+    right: 0;
+}
+
+/* Responsive adjustments for Gallery */
+@media (max-width: 992px) {
+    .gallery-slide {
+        flex: 0 0 calc(33.333% - 13.33px); /* 3 items visible */
+    }
+    .galeria-carousel-wrapper {
+        padding: 0 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-slide {
+        flex: 0 0 calc(50% - 10px); /* 2 items visible */
+    }
+    .galeria-carousel-wrapper {
+        padding: 0 45px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-slide {
+        flex: 0 0 100%; /* 1 item visible */
+    }
+    .galeria-carousel-wrapper {
+        padding: 0 40px;
+    }
+}
+
+/* ==========================================
+   Responsive Helpers & Footer Layout Tweaks
+   ========================================== */
+.hide-on-desktop {
+    display: none !important;
+}
+.hide-on-mobile {
+    display: block !important;
+}
+
+@media (max-width: 991px) {
+    .hide-on-desktop {
+        display: block !important;
+    }
+    .hide-on-mobile {
+        display: none !important;
+    }
+    
+    /* Make mobile partners span full width in footer grid */
+    .footer-container .partners-logos.hide-on-desktop {
+        grid-column: span 2;
+        margin-top: 20px;
+        border-top: 1px solid var(--border-light);
+        padding-top: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Fix contact section bottom empty space on mobile */
+    .info-item:last-child {
+        margin-bottom: 0 !important;
+    }
+    .contato-info {
+        margin-bottom: 0 !important;
+    }
+    .contato-section.section-padding {
+        padding-bottom: 0 !important;
+    }
+    footer {
+        padding-top: 30px !important;
+    }
+    
+    /* Footer layout and spacing optimizations on mobile/tablet */
+    .footer-container {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+        margin-bottom: 30px !important;
+    }
+    .footer-brand {
+        grid-column: span 1 !important;
+        margin-bottom: 0 !important;
+        text-align: center;
+    }
+    .footer-container .partners-logos.hide-on-desktop {
+        grid-column: span 1 !important;
+        margin-top: 0 !important;
+        border-top: 1px solid var(--border-light);
+        padding-top: 20px;
+    }
+    .footer-links {
+        text-align: center;
+    }
+    .footer-links h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .footer-links ul {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-rows: repeat(3, auto);
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px 50px;
+        max-width: 280px;
+        margin: 0 auto;
+        text-align: left;
+    }
+    .footer-social {
+        text-align: center;
+    }
+    .footer-social h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .social-icons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-container {
+        margin-bottom: 20px !important; /* Reduced bottom space */
+    }
+    .footer-bottom {
+        padding-top: 20px !important; /* Reduced bottom divider space */
+    }
+}
+
+/* Style tweaks for partners in footer */
+.footer-social .partners-logos {
+    margin-top: 30px;
+    border-top: 1px solid var(--border-light);
+    padding-top: 20px;
+}
+
+.footer-partners h4 {
+    margin-bottom: 12px !important;
+    font-size: 0.8rem !important;
+}
+
+.footer-partners .logos-flex {
+    gap: 8px;
+}
+
+.footer-partners .partner-tag {
+    padding: 6px 12px;
+    font-size: 0.75rem;
 }
