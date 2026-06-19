@@ -276,6 +276,10 @@ body {
     gap: 32px;
 }
 
+.mobile-only-nav-btn {
+    display: none;
+}
+
 .nav-link {
     font-family: var(--font-heading);
     font-weight: 500;
@@ -330,6 +334,18 @@ body {
     background-color: var(--text-light);
     border-radius: 2px;
     transition: var(--transition-fast);
+}
+
+.mobile-menu-toggle.open .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-menu-toggle.open .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.open .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
 }
 
 /* Hero Section */
@@ -1226,13 +1242,20 @@ footer {
     }
     
     .nav-links {
-        display: none;
+        display: flex;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-15px);
+        transition: opacity var(--transition-fast), transform var(--transition-smooth), visibility var(--transition-fast);
+        pointer-events: none;
+        
         flex-direction: column;
         position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
-        background-color: var(--bg-dark);
+        background: rgba(6, 10, 19, 0.98);
+        backdrop-filter: var(--backdrop-blur);
         border-bottom: 1px solid var(--border-light);
         padding: 24px;
         gap: 20px;
@@ -1240,11 +1263,19 @@ footer {
     }
     
     .nav-links.active {
-        display: flex;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+    
+    .mobile-only-nav-btn {
+        display: block;
+        margin-top: 10px;
     }
     
     .header-actions .btn-sm {
-        display: none; /* Hide WhatsApp button in mobile header, already in burger and page content */
+        display: none; /* Hide WhatsApp button in mobile header, already in mobile drawer and page content */
     }
     
     .sobre-image-wrapper {
@@ -1274,5 +1305,68 @@ footer {
     
     .hero-subtitle {
         font-size: 1.1rem;
+    }
+    
+    .contato-info {
+        padding-right: 0;
+        margin-bottom: 40px;
+    }
+    
+    .lightbox-close {
+        top: 15px;
+        right: 20px;
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .section-padding {
+        padding: 60px 0;
+    }
+    
+    .section-header {
+        margin-bottom: 40px;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .glass-card, .packages-cta, .contato-form-wrapper {
+        padding: 24px;
+    }
+    
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+    
+    .footer-brand {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.85rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+    }
+    
+    .carousel-container {
+        height: 300px;
     }
 }
