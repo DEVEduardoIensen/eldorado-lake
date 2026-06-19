@@ -394,9 +394,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Helper to check how many items are visible in viewport
         const getVisibleItemsCount = () => {
             const width = window.innerWidth;
-            if (width > 992) return 4;
-            if (width > 768) return 3;
-            if (width > 480) return 2;
+            if (width > 992) return 3;
+            if (width > 768) return 2;
             return 1;
         };
         

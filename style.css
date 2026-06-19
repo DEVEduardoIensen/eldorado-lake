@@ -1487,7 +1487,7 @@ footer {
         padding: 80px 0;
     }
     
-    .grid-3, .grid-4 {
+    .grid-4 {
         grid-template-columns: repeat(2, 1fr);
     }
     
@@ -1502,13 +1502,8 @@ footer {
     .footer-brand {
         grid-column: span 2;
     }
-}
 
-@media (max-width: 768px) {
-    .grid-2, .grid-3, .grid-4 {
-        grid-template-columns: 1fr;
-    }
-    
+    /* Mobile Menu Toggle & Drawer navigation enabled at 991px */
     .mobile-menu-toggle {
         display: flex;
     }
@@ -1548,6 +1543,12 @@ footer {
     
     .header-actions .btn-sm {
         display: none; /* Hide WhatsApp button in mobile header, already in mobile drawer and page content */
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
     }
     
     .sobre-image-wrapper {
@@ -1804,7 +1805,7 @@ footer {
 
 .gallery-slide {
     position: relative;
-    flex: 0 0 calc(25% - 15px); /* 4 items visible on desktop */
+    flex: 0 0 calc(33.333% - 13.33px); /* 3 items visible on desktop */
     aspect-ratio: 4 / 3;
     border-radius: 16px;
     overflow: hidden;
@@ -1889,7 +1890,7 @@ footer {
 /* Responsive adjustments for Gallery */
 @media (max-width: 992px) {
     .gallery-slide {
-        flex: 0 0 calc(33.333% - 13.33px); /* 3 items visible */
+        flex: 0 0 calc(50% - 10px); /* 2 items visible */
     }
     .galeria-carousel-wrapper {
         padding: 0 50px;
@@ -1898,7 +1899,7 @@ footer {
 
 @media (max-width: 768px) {
     .gallery-slide {
-        flex: 0 0 calc(50% - 10px); /* 2 items visible */
+        flex: 0 0 100%; /* 1 item visible */
     }
     .galeria-carousel-wrapper {
         padding: 0 45px;
