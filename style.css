@@ -492,6 +492,12 @@ body {
     transition: var(--transition-smooth);
 }
 
+#img-dourado-banner {
+    height: 320px;
+    object-fit: cover;
+    width: 100%;
+}
+
 .sobre-image-wrapper:hover img {
     border-color: var(--border-gold);
     transform: scale(1.02);
@@ -731,7 +737,11 @@ body {
 
 /* Pacotes Section */
 .pacotes-flyers {
+    display: flex;
+    justify-content: center;
     gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 40px;
 }
 
 .flyer-card {
@@ -741,6 +751,8 @@ body {
     border: 1px solid var(--border-light);
     box-shadow: var(--glass-shadow);
     transition: var(--transition-smooth);
+    width: 100%;
+    max-width: 400px; /* Constrains card size to make it more compact and elegant */
 }
 
 .flyer-card:hover {
@@ -967,6 +979,10 @@ body {
 }
 
 /* Vídeos Section */
+.videos-section .container {
+    max-width: 1350px; /* Wider container for larger video cards on desktop */
+}
+
 .video-grid {
     gap: 24px;
 }
@@ -987,7 +1003,7 @@ body {
 
 .video-thumbnail {
     position: relative;
-    aspect-ratio: 16/9;
+    aspect-ratio: 16/10; /* Taller aspect ratio for a larger image look */
     overflow: hidden;
 }
 
@@ -1040,19 +1056,19 @@ body {
 }
 
 .video-info {
-    padding: 20px;
+    padding: 24px; /* Increased padding */
 }
 
 .video-info h4 {
     font-family: var(--font-heading);
-    font-size: 1.15rem;
+    font-size: 1.25rem; /* Increased font-size */
     font-weight: 700;
     margin-bottom: 8px;
 }
 
 .video-info p {
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.95rem; /* Increased font-size */
 }
 
 /* Contato Section */
@@ -1636,6 +1652,10 @@ footer {
     
     .carousel-container {
         height: 300px;
+    }
+
+    #img-dourado-banner {
+        height: 240px;
     }
 
     /* Scaling the responsive flyer header overlays for smaller viewports */
