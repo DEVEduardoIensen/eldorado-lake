@@ -1553,8 +1553,21 @@ footer {
     }
     
     .floating-badge {
-        right: 0;
-        bottom: -10px;
+        left: 15px;
+        right: auto;
+        bottom: 15px;
+        padding: 10px 16px;
+        border-radius: 12px;
+    }
+    
+    .floating-badge .number {
+        font-size: 1.35rem;
+    }
+    
+    .floating-badge .text {
+        font-size: 0.65rem;
+        margin-top: 2px;
+        letter-spacing: 0.5px;
     }
     
     .rancho-gallery {
@@ -1565,6 +1578,21 @@ footer {
         height: 280px;
     }
     
+    .hero-section {
+        height: auto;
+        min-height: auto;
+        padding: 120px 0 50px 0;
+        display: block;
+    }
+    
+    .section-padding {
+        padding: 50px 0;
+    }
+
+    .scroll-down {
+        display: none !important;
+    }
+
     .hero-title {
         font-size: 2.25rem;
     }
@@ -1595,11 +1623,55 @@ footer {
     .footer-logo {
         display: none;
     }
+
+    .partners-logos {
+        text-align: center;
+        margin-top: 30px;
+        border-top: 1px solid var(--border-light);
+        padding-top: 20px;
+    }
+
+    .partners-logos h4 {
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--primary-gold);
+        margin-bottom: 15px;
+    }
+
+    .logos-flex {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 20px;
+    }
+
+    .partner-tag {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text-light);
+        background: none;
+        border: none;
+        padding: 0;
+        box-shadow: none;
+        backdrop-filter: none;
+        transition: var(--transition-fast);
+        display: inline-block;
+        min-height: auto;
+    }
+
+    .partner-tag:hover {
+        color: var(--primary-gold);
+    }
 }
 
 @media (max-width: 576px) {
+    .hero-section {
+        padding: 100px 0 40px 0;
+    }
+
     .section-padding {
-        padding: 60px 0;
+        padding: 40px 0;
     }
     
     .section-header {
@@ -1622,10 +1694,45 @@ footer {
     
     .footer-brand {
         grid-column: span 1;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .footer-brand p {
+        margin: 0 auto;
+        max-width: 100%;
+        text-align: center;
+        font-size: 1rem;
+        line-height: 1.6;
+        color: var(--text-muted);
+    }
+
+    .footer-links, .footer-social {
+        text-align: center;
+    }
+
+    .footer-links h4::after, .footer-social h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .social-icons {
+        justify-content: center;
     }
 }
 
 @media (max-width: 480px) {
+    .hero-section {
+        height: auto;
+        min-height: auto;
+        padding: 90px 0 30px 0;
+        display: block;
+    }
+    
+    .scroll-down {
+        display: none !important;
+    }
+
     .hero-title {
         font-size: 1.85rem;
     }
