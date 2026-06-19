@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Add listeners to package buttons & flyer images
-    document.querySelectorAll('.btn-open-flyer, .flyer-img').forEach(element => {
+    document.querySelectorAll('.btn-open-flyer, .responsive-flyer-header').forEach(element => {
         element.addEventListener('click', () => {
             const packageKey = element.getAttribute('data-package');
             if (packageKey) {
