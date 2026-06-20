@@ -395,7 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const getVisibleItemsCount = () => {
             const width = window.innerWidth;
             if (width > 992) return 3;
-            if (width > 768) return 2;
+            if (width > 576) return 2;
             return 1;
         };
         

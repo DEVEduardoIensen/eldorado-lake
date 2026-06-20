@@ -1481,6 +1481,22 @@ footer {
     }
 }
 
+/* ==========================================
+   Responsive Helpers (Root Defaults)
+   ========================================== */
+.hide-on-desktop {
+    display: none !important;
+}
+.hide-on-mobile {
+    display: block !important;
+}
+.show-only-on-desktop {
+    display: block !important;
+}
+.show-only-on-tablet {
+    display: none !important;
+}
+
 /* Media Queries */
 @media (max-width: 991px) {
     .section-padding {
@@ -1491,8 +1507,37 @@ footer {
         grid-template-columns: repeat(2, 1fr);
     }
     
+    .hero-section {
+        height: auto;
+        min-height: auto;
+        max-height: none;
+        padding: 160px 0 100px 0;
+    }
+
+    .scroll-down {
+        display: none !important;
+    }
+    
     .hero-title {
         font-size: 3rem;
+    }
+
+    .nav-links {
+        gap: 20px;
+    }
+    
+    .nav-link {
+        font-size: 0.85rem;
+    }
+
+    .floating-badge {
+        right: 10px;
+        bottom: 10px;
+        padding: 14px 18px;
+    }
+
+    .sobre-image-wrapper {
+        align-self: start;
     }
     
     .footer-container {
@@ -1501,48 +1546,30 @@ footer {
     
     .footer-brand {
         grid-column: span 2;
+        text-align: center;
     }
 
-    /* Mobile Menu Toggle & Drawer navigation enabled at 991px */
-    .mobile-menu-toggle {
-        display: flex;
+    .footer-brand p {
+        max-width: 600px;
+        margin: 0 auto 20px auto;
     }
-    
-    .nav-links {
-        display: flex;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-15px);
-        transition: opacity var(--transition-fast), transform var(--transition-smooth), visibility var(--transition-fast);
-        pointer-events: none;
-        
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: rgba(6, 10, 19, 0.98);
-        backdrop-filter: var(--backdrop-blur);
-        border-bottom: 1px solid var(--border-light);
-        padding: 24px;
-        gap: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+
+    .footer-links {
+        margin-left: auto;
+        margin-right: 35%;
+        width: fit-content;
     }
-    
-    .nav-links.active {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-        pointer-events: auto;
+
+    .video-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
-    
-    .mobile-only-nav-btn {
-        display: block;
-        margin-top: 10px;
+
+    .show-only-on-desktop {
+        display: none !important;
     }
-    
-    .header-actions .btn-sm {
-        display: none; /* Hide WhatsApp button in mobile header, already in mobile drawer and page content */
+
+    .show-only-on-tablet {
+        display: block !important;
     }
 }
 
@@ -1615,16 +1642,14 @@ footer {
         font-size: 2.5rem;
     }
     
-    .contato-form-wrapper {
-        display: none !important;
-    }
-
     .contato-section .section-desc {
         display: none;
     }
 
     .footer-logo {
-        display: none;
+        display: block;
+        margin: 0 auto 24px auto;
+        height: 50px;
     }
 
     .partners-logos {
@@ -1675,6 +1700,10 @@ footer {
 
     .section-padding {
         padding: 40px 0;
+    }
+    
+    .video-grid {
+        grid-template-columns: 1fr;
     }
     
     .section-header {
@@ -1897,16 +1926,7 @@ footer {
     }
 }
 
-@media (max-width: 768px) {
-    .gallery-slide {
-        flex: 0 0 100%; /* 1 item visible */
-    }
-    .galeria-carousel-wrapper {
-        padding: 0 45px;
-    }
-}
-
-@media (max-width: 480px) {
+@media (max-width: 576px) {
     .gallery-slide {
         flex: 0 0 100%; /* 1 item visible */
     }
@@ -1916,29 +1936,60 @@ footer {
 }
 
 /* ==========================================
-   Responsive Helpers & Footer Layout Tweaks
+   Responsive Helpers overrides
    ========================================== */
-.hide-on-desktop {
-    display: none !important;
-}
-.hide-on-mobile {
-    display: block !important;
-}
 
-@media (max-width: 991px) {
+@media (max-width: 768px) {
     .hide-on-desktop {
         display: block !important;
     }
     .hide-on-mobile {
         display: none !important;
     }
+    .show-only-on-tablet {
+        display: none !important;
+    }
+
+    /* Mobile Menu Toggle & Drawer navigation enabled on mobile (<= 768px) */
+    .mobile-menu-toggle {
+        display: flex;
+    }
     
-    /* Make mobile partners span full width in footer grid */
-    .footer-container .partners-logos.hide-on-desktop {
-        grid-column: span 2;
-        margin-top: 20px;
-        border-top: 1px solid var(--border-light);
-        padding-top: 20px;
+    .nav-links {
+        display: flex;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-15px);
+        transition: opacity var(--transition-fast), transform var(--transition-smooth), visibility var(--transition-fast);
+        pointer-events: none;
+        
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(6, 10, 19, 0.98);
+        backdrop-filter: var(--backdrop-blur);
+        border-bottom: 1px solid var(--border-light);
+        padding: 24px;
+        gap: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    
+    .nav-links.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+    
+    .mobile-only-nav-btn {
+        display: block;
+        margin-top: 10px;
+    }
+    
+    .header-actions .btn-sm {
+        display: none; /* Hide WhatsApp button in mobile header, already in mobile drawer */
     }
 }
 
@@ -1976,6 +2027,9 @@ footer {
     }
     .footer-links {
         text-align: center;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: fit-content !important;
     }
     .footer-links h4::after {
         left: 50%;
