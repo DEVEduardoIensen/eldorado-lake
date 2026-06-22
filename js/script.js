@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxVideoContainer = document.getElementById('lightbox-video-container');
     const lightboxIframe = document.getElementById('lightbox-iframe');
+    const lightboxVideo = document.getElementById('lightbox-video');
     const closeBtn = document.getElementById('lightbox-close-btn');
 
     // Open lightbox for carousel and gallery slides (enlarge images)
@@ -214,7 +215,46 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.video-card').forEach(card => {
         card.addEventListener('click', () => {
             const videoSrc = card.getAttribute('data-video-src');
-            lightboxIframe.src = videoSrc;
+            
+            // Check if it's a local video file (e.g. mp4)
+            const isLocalVideo = videoSrc && (videoSrc.endsWith('.mp4') || !videoSrc.includes('//') || videoSrc.startsWith('assets/'));
+            
+            if (isLocalVideo) {
+                // Configure HTML5 video player
+                lightboxIframe.style.display = 'none';
+                lightboxIframe.src = '';
+                
+                lightboxVideo.style.display = 'block';
+                lightboxVideo.src = videoSrc;
+                
+                // Automatically handle aspect ratio when video metadata loads
+                const handleMetadata = () => {
+                    if (lightboxVideo.videoHeight > lightboxVideo.videoWidth) {
+                        lightboxVideoContainer.classList.add('portrait-video');
+                    } else {
+                        lightboxVideoContainer.classList.remove('portrait-video');
+                    }
+                    lightboxVideo.removeEventListener('loadedmetadata', handleMetadata);
+                };
+                lightboxVideo.addEventListener('loadedmetadata', handleMetadata);
+                
+                // Play local video
+                lightboxVideo.play().catch(err => console.log("Video auto-play prevented:", err));
+            } else {
+                // Configure iframe for YouTube / Instagram
+                lightboxVideo.style.display = 'none';
+                lightboxVideo.pause();
+                lightboxVideo.src = '';
+                
+                lightboxIframe.style.display = 'block';
+                lightboxIframe.src = videoSrc;
+                
+                if (videoSrc && videoSrc.includes('instagram.com')) {
+                    lightboxVideoContainer.classList.add('portrait-video');
+                } else {
+                    lightboxVideoContainer.classList.remove('portrait-video');
+                }
+            }
             
             lightboxImg.style.display = 'none';
             lightboxVideoContainer.style.display = 'block';
@@ -226,7 +266,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeLightbox = () => {
         lightbox.style.display = 'none';
         lightboxImg.src = '';
-        lightboxIframe.src = ''; // Stop video playback when closing
+        lightboxIframe.src = '';
+        lightboxIframe.style.display = 'none';
+        
+        lightboxVideo.pause();
+        lightboxVideo.src = '';
+        lightboxVideo.style.display = 'none';
+        
+        lightboxVideoContainer.classList.remove('portrait-video');
     };
 
     closeBtn.addEventListener('click', closeLightbox);
@@ -350,36 +397,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contact-form');
     const formFeedback = document.getElementById('form-feedback');
 
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const name = document.getElementById('form-name').value.trim();
-        const phone = document.getElementById('form-phone').value.trim();
-        const message = document.getElementById('form-message').value.trim();
-        
-        if (!name || !phone || !message) {
-            formFeedback.className = 'form-feedback error';
-            formFeedback.textContent = 'Por favor, preencha todos os campos obrigatórios.';
-            return;
-        }
+    if (contactForm && formFeedback) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('form-name').value.trim();
+            const phone = document.getElementById('form-phone').value.trim();
+            const message = document.getElementById('form-message').value.trim();
+            
+            if (!name || !phone || !message) {
+                formFeedback.className = 'form-feedback error';
+                formFeedback.style.display = 'block';
+                formFeedback.textContent = 'Por favor, preencha todos os campos obrigatórios.';
+                return;
+            }
 
-        // Simulação de sucesso
-        formFeedback.className = 'form-feedback success';
-        formFeedback.textContent = 'Mensagem validada! Redirecionando para o WhatsApp...';
+            // Simulação de sucesso
+            formFeedback.className = 'form-feedback success';
+            formFeedback.style.display = 'block';
+            formFeedback.textContent = 'Mensagem validada! Redirecionando para o WhatsApp...';
 
-        // WhatsApp redirect details
-        // Thiago's actual contact number
-        const targetNumber = "554299162340"; 
-        const formattedMessage = `Olá, meu nome é *${name}* (${phone}).\n\n*Mensagem*:\n${message}`;
-        const whatsappUrl = `https://wa.me/${targetNumber}?text=${encodeURIComponent(formattedMessage)}`;
+            // WhatsApp redirect details
+            // Thiago's actual contact number
+            const targetNumber = "554299162340"; 
+            const formattedMessage = `Olá, meu nome é *${name}* (${phone}).\n\n*Mensagem*:\n${message}`;
+            const whatsappUrl = `https://wa.me/${targetNumber}?text=${encodeURIComponent(formattedMessage)}`;
 
-        // Redirect after a brief delay so they see the success message
-        setTimeout(() => {
-            window.open(whatsappUrl, '_blank');
-            contactForm.reset();
-            formFeedback.style.display = 'none';
-        }, 1500);
-    });
+            // Redirect after a brief delay so they see the success message
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+                contactForm.reset();
+                formFeedback.style.display = 'none';
+                formFeedback.className = 'form-feedback';
+            }, 1500);
+        });
+    }
 
     // 5. Gallery Carousel Behavior (Multi-item sliding marquee)
     const galleryTrack = document.querySelector('.gallery-track');

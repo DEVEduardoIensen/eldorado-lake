@@ -1362,6 +1362,14 @@ footer {
     height: 100%;
 }
 
+.lightbox-video-container.portrait-video {
+    width: 95vw;
+    max-width: 420px;
+    height: 80vh;
+    max-height: 720px;
+    aspect-ratio: auto;
+}
+
 /* Details Modal Styles */
 .details-modal-wrapper {
     width: 95%;
