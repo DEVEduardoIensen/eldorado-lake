@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 0. Fetch Dynamic Prices from Google Sheets (CSV)
     // Insira o link CSV publicado do seu Google Sheets aqui:
-    const GOOGLE_SHEETS_CSV_URL = "COLE_SEU_LINK_CSV_AQUI"; 
+    const GOOGLE_SHEETS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSsiDBa4mhgLZBQvxas6WmeD4f3Kh4QNd3IYciILeZP5wET9gGahlehf_VL4abL_lqL9W_LScUWa1F4/pub?output=csv"; 
     
-    if (GOOGLE_SHEETS_CSV_URL !== "COLE_SEU_LINK_CSV_AQUI") {
+    if (GOOGLE_SHEETS_CSV_URL !== "https://docs.google.com/spreadsheets/d/e/2PACX-1vSsiDBa4mhgLZBQvxas6WmeD4f3Kh4QNd3IYciILeZP5wET9gGahlehf_VL4abL_lqL9W_LScUWa1F4/pub?output=csv") {
         fetch(GOOGLE_SHEETS_CSV_URL)
             .then(response => response.text())
             .then(csvText => {
