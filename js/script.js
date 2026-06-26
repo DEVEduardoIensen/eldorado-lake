@@ -1,5 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
     
+    // 0. Fetch Dynamic Prices from Google Sheets (CSV)
+    // Insira o link CSV publicado do seu Google Sheets aqui:
+    const GOOGLE_SHEETS_CSV_URL = "COLE_SEU_LINK_CSV_AQUI"; 
+    
+    if (GOOGLE_SHEETS_CSV_URL !== "COLE_SEU_LINK_CSV_AQUI") {
+        fetch(GOOGLE_SHEETS_CSV_URL)
+            .then(response => response.text())
+            .then(csvText => {
+                // Parse simple CSV (Format expected: Premium,900 \n Standard,730)
+                const lines = csvText.split('\n');
+                lines.forEach(line => {
+                    const [packageType, price] = line.split(',');
+                    if (!packageType || !price) return;
+                    
+                    const cleanType = packageType.trim().toLowerCase();
+                    const cleanPrice = price.trim();
+                    
+                    if (cleanType.includes('premium')) {
+                        const premiumEl = document.getElementById('price-premium');
+                        if (premiumEl) premiumEl.innerText = cleanPrice;
+                    } else if (cleanType.includes('standard')) {
+                        const standardEl = document.getElementById('price-standard');
+                        if (standardEl) standardEl.innerText = cleanPrice;
+                    }
+                });
+            })
+            .catch(error => console.error('Erro ao buscar preços do Google Sheets:', error));
+    }
     // 1. Dynamic Header Scroll Effect
     const header = document.getElementById('main-header');
     
