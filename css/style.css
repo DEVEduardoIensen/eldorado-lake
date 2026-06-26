@@ -76,9 +76,21 @@ body {
 /* Utility Layouts */
 .container {
     width: 100%;
-    max-width: 1600px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 24px;
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .container {
+        max-width: 1600px;
+    }
 }
 
 .section-padding {
@@ -493,7 +505,8 @@ body {
 }
 
 #img-dourado-banner {
-    height: 320px;
+    height: auto;
+    aspect-ratio: 16 / 10;
     object-fit: cover;
     width: 100%;
 }
@@ -1796,7 +1809,7 @@ footer {
     }
 
     #img-dourado-banner {
-        height: 240px;
+        aspect-ratio: 4 / 3;
     }
 
     /* Scaling 3D package cards on small viewports */
