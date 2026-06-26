@@ -97,15 +97,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div>
                             <h4>Pescaria com Guia Profissional</h4>
                             <p>Operação liderada pelo guia especializado <strong>Thiago Witeck</strong>, com mais de 5 anos de experiência e conhecimento profundo dos melhores pontos de pesca do Lago Foz do Areia.</p>
-                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">Equipamentos de segurança completos e barcos modernos de alto padrão.</p>
+                            
                         </div>
                     </div>
                     <div class="modal-info-item">
                         <i class="fa-solid fa-house-chimney"></i>
                         <div>
-                            <h4>Hospedagem de Alto Padrão</h4>
+                            <h4>Hospedagem de Aconchegante</h4>
                             <p>Estadia no Rancho Eldorado, localizado estrategicamente de frente para o lago.</p>
-                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">Estrutura completa com suítes climatizadas, internet Starlink, chuveiro quente e ótima gastronomia local (pensão completa inteiramente inclusa).</p>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">internet Starlink, chuveiro quente e ótima e cozinha local .</p>
                         </div>
                     </div>
                     <div class="modal-info-item">
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <i class="fa-solid fa-ship"></i>
                         <div>
                             <h4>Guias e Embarcações</h4>
-                            <p>Pescaria esportiva no Lago Foz do Areia com equipe profissional de guias de pesca especializados, focando no Dourado e na Piapara.</p>
+                            <p>Pescaria esportiva no Lago Foz do Areia com equipe profissional de guia de pesca especializado, focando no Dourado e na Piapara.</p>
                             <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">Inclui barco completo com motor elétrico e combustível da diária.</p>
                         </div>
                     </div>
