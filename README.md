@@ -61,9 +61,19 @@ python -m http.server 8000
 ```
 Acesse `http://localhost:8000` no seu navegador.
 
-### Publicado no GitHub Pages
-O projeto está publicado e disponível online em:
-🔗 **[Visualizar Eldorado Lake](https://deveduardoiensen.github.io/eldorado-lake/)**
+### Publicação (Vercel + Hostinger)
+O projeto é otimizado para deploy contínuo via Vercel.
+
+**Passo a passo para Hospedagem:**
+1. Crie uma conta gratuita em [Vercel.com](https://vercel.com).
+2. Clique em **Add New Project** e conecte sua conta do GitHub.
+3. Importe o repositório `eldorado-lake`. Nenhuma configuração extra é necessária (Framework Preset: Other).
+4. Clique em **Deploy**.
+
+**Configurando o Domínio (Hostinger):**
+1. No painel do projeto na Vercel, vá em **Settings > Domains** e adicione seu domínio (ex: `eldoradolake.com.br`).
+2. A Vercel fornecerá os registros de DNS (Geralmente um registro `A` apontando para o IP `76.76.21.21` e um registro `CNAME` apontando para `cname.vercel-dns.com`).
+3. Abra o painel da **Hostinger**, vá em Gerenciar Domínio > Editor de Zona DNS e adicione/atualize os registros conforme instruído pela Vercel.
 
 ---
 
