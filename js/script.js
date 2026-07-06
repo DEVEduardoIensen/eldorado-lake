@@ -1,551 +1,482 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // 0. Fetch Dynamic Prices from Google Sheets (CSV)
-    // Insira o link CSV publicado do seu Google Sheets aqui:
-    const GOOGLE_SHEETS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSsiDBa4mhgLZBQvxas6WmeD4f3Kh4QNd3IYciILeZP5wET9gGahlehf_VL4abL_lqL9W_LScUWa1F4/pub?output=csv"; 
-    
-    if (GOOGLE_SHEETS_CSV_URL && GOOGLE_SHEETS_CSV_URL.startsWith("http")) {
-        fetch(GOOGLE_SHEETS_CSV_URL)
-            .then(response => response.text())
-            .then(csvText => {
-                // Parse simple CSV (Format expected: Premium,900 \n Standard,730)
-                const lines = csvText.split('\n');
-                lines.forEach(line => {
-                    const [packageType, price] = line.split(',');
-                    if (!packageType || !price) return;
-                    
-                    const cleanType = packageType.trim().toLowerCase();
-                    const cleanPrice = price.trim();
-                    
-                    if (cleanType.includes('premium')) {
-                        const premiumEl = document.getElementById('price-premium');
-                        if (premiumEl) premiumEl.innerText = cleanPrice;
-                    } else if (cleanType.includes('standard')) {
-                        const standardEl = document.getElementById('price-standard');
-                        if (standardEl) standardEl.innerText = cleanPrice;
+    // Utility functions
+    const debounce = (func, wait = 20, immediate = true) => {
+        let timeout;
+        return function() {
+            const context = this, args = arguments;
+            const later = function() {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            const callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    };
+
+    const throttle = (func, limit = 50) => {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
+    };
+
+    // Global state
+    let packageData = null;
+
+    // Initialization logic
+    const init = () => {
+        initSheets();
+        initNavigation();
+        initScrollEffects();
+        initModals();
+        initCarousels();
+        initForm();
+    };
+
+    // 1. Fetch Dynamic Prices from Google Sheets (CSV)
+    const initSheets = () => {
+        const GOOGLE_SHEETS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSsiDBa4mhgLZBQvxas6WmeD4f3Kh4QNd3IYciILeZP5wET9gGahlehf_VL4abL_lqL9W_LScUWa1F4/pub?output=csv";
+        
+        if (GOOGLE_SHEETS_CSV_URL && GOOGLE_SHEETS_CSV_URL.startsWith("http")) {
+            if (typeof Papa !== 'undefined') {
+                Papa.parse(GOOGLE_SHEETS_CSV_URL, {
+                    download: true,
+                    header: false,
+                    skipEmptyLines: true,
+                    complete: function(results) {
+                        try {
+                            const premiumEl = document.getElementById('price-premium');
+                            const standardEl = document.getElementById('price-standard');
+
+                            results.data.forEach(row => {
+                                if (row.length < 2) return;
+                                const packageType = row[0].trim().toLowerCase();
+                                const price = row[1].trim();
+                                
+                                if (packageType.includes('premium') && premiumEl) {
+                                    premiumEl.innerText = price;
+                                } else if (packageType.includes('standard') && standardEl) {
+                                    standardEl.innerText = price;
+                                }
+                            });
+                        } catch (err) {
+                            console.error('Erro ao popular preços:', err);
+                        }
+                    },
+                    error: function(error) {
+                        console.error('Erro ao buscar preços via Papa Parse:', error);
                     }
                 });
-            })
-            .catch(error => console.error('Erro ao buscar preços do Google Sheets:', error));
-    }
-    // 1. Dynamic Header Scroll Effect
-    const header = document.getElementById('main-header');
-    
-    const handleScroll = () => {
-        if (window.scrollY > 50) {
-            header.classList.remove('header-transparent');
-            header.classList.add('header-scrolled');
-        } else {
-            header.classList.remove('header-scrolled');
-            header.classList.add('header-transparent');
+            } else {
+                console.error('Papa Parse não carregado.');
+            }
         }
     };
-    
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check on load
 
-    // 2. Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const navbarLinks = document.querySelector('.nav-links');
-    
-    mobileMenuBtn.addEventListener('click', () => {
-        navbarLinks.classList.toggle('active');
-        mobileMenuBtn.classList.toggle('open');
-    });
-
-    // Close mobile menu when a link is clicked
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            navbarLinks.classList.remove('active');
-            mobileMenuBtn.classList.remove('open');
-        });
-    });
-
-    // Active Navigation Link on Scroll
-    const sections = document.querySelectorAll('section');
-    const navItems = document.querySelectorAll('.nav-link');
-
-    window.addEventListener('scroll', () => {
-        let currentSection = '';
+    // 2. Navigation
+    const initNavigation = () => {
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navbarLinks = document.querySelector('.nav-links');
+        const navItems = document.querySelectorAll('.nav-link');
         
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (window.scrollY >= (sectionTop - 150)) {
-                currentSection = section.getAttribute('id');
-            }
-        });
+        if (mobileMenuBtn && navbarLinks) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navbarLinks.classList.toggle('active');
+                mobileMenuBtn.classList.toggle('open');
+            });
 
-        navItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('href') === `#${currentSection}`) {
-                item.classList.add('active');
-            }
-        });
-    });
-
-    // 3. Lightbox / Modal for Images & Videos
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxVideoContainer = document.getElementById('lightbox-video-container');
-    const lightboxIframe = document.getElementById('lightbox-iframe');
-    const lightboxVideo = document.getElementById('lightbox-video');
-    const closeBtn = document.getElementById('lightbox-close-btn');
-
-    // Open lightbox for carousel and gallery slides (enlarge images)
-    document.querySelectorAll('.carousel-slide, .gallery-slide').forEach(slide => {
-        slide.addEventListener('click', () => {
-            const img = slide.querySelector('img');
-            lightboxImg.src = img.src;
-            lightboxImg.alt = img.alt;
-            
-            lightboxImg.style.display = 'block';
-            lightboxVideoContainer.style.display = 'none';
-            lightbox.style.display = 'flex';
-        });
-    });
-
-    // Package Details Modal Content Database
-    const packageDetails = {
-        premium: {
-            tag: "Operação Premium (Trios)",
-            title: "Pacote Eldorado Premium",
-            body: `
-                <div class="modal-info-grid">
-                    <div class="modal-info-item">
-                        <i class="fa-solid fa-tags"></i>
-                        <div>
-                            <h4>Valor da Diária</h4>
-                            <p class="text-gold" style="font-size: 1.5rem; font-weight: 700; margin: 5px 0 0 0;">R$ 900,00 <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 400;">/ Trio</span></p>
-                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">Valor total diário para o grupo de 3 pescadores (tanque cheio incluso).</p>
-                        </div>
-                    </div>
-                    <div class="modal-info-item">
-                        <i class="fa-solid fa-ship"></i>
-                        <div>
-                            <h4>Pescaria com Guia Profissional</h4>
-                            <p>Operação liderada pelo guia especializado <strong>Thiago Witeck</strong>, com mais de 5 anos de experiência e conhecimento profundo dos melhores pontos de pesca do Lago Foz do Areia.</p>
-                            
-                        </div>
-                    </div>
-                    <div class="modal-info-item">
-                        <i class="fa-solid fa-house-chimney"></i>
-                        <div>
-                            <h4>Hospedagem de Aconchegante</h4>
-                            <p>Estadia no Rancho Eldorado, localizado estrategicamente de frente para o lago.</p>
-                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">internet Starlink, chuveiro quente e ótima e cozinha local .</p>
-                        </div>
-                    </div>
-                    <div class="modal-info-item">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <div>
-                            <h4>Regras da Operação</h4>
-                            <p>Pesca 100% esportiva (pesque e solte do Dourado) para garantir a preservação das espécies e a sustentabilidade do lago.</p>
-                        </div>
-                    </div>
-                </div>
-            `
-        },
-        standard: {
-            tag: "Operação Standard (Duplas ou Trios)",
-            title: "Pacote Eldorado Standard",
-            body: `
-                <div class="modal-info-grid">
-                    <div class="modal-info-item">
-                        <i class="fa-solid fa-tags"></i>
-                        <div>
-                            <h4>Valor da Diária</h4>
-                            <p class="text-gold" style="font-size: 1.5rem; font-weight: 700; margin: 5px 0 0 0;">R$ 730,00 <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 400;">/ Dupla</span></p>
-                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">Valor total diário para a dupla de pescadores (tanque cheio incluso).</p>
-                        </div>
-                    </div>
-                    <div class="modal-info-item">
-                        <i class="fa-solid fa-ship"></i>
-                        <div>
-                            <h4>Guias e Embarcações</h4>
-                            <p>Pescaria esportiva no Lago Foz do Areia com equipe profissional de guia de pesca especializado, focando no Dourado e na Piapara.</p>
-                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">Inclui barco completo com motor elétrico e combustível da diária.</p>
-                        </div>
-                    </div>
-                    <div class="modal-info-item">
-                        <i class="fa-solid fa-house-chimney"></i>
-                        <div>
-                            <h4>Hospedagem & Rancho</h4>
-                            <p>Hospedagem aconchegante no Rancho Eldorado, garantindo excelente custo-benefício.</p>
-                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">Acomodações limpas e equipadas com chuveiro quente e internet Starlink de alta velocidade para os pescadores.</p>
-                        </div>
-                    </div>
-                    <div class="modal-info-item">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <div>
-                            <h4>Preservação Ambiental</h4>
-                            <p>Prática ativa do pesque e solte. Todo peixe capturado é medido, fotografado e devolvido à água com segurança.</p>
-                        </div>
-                    </div>
-                </div>
-            `
+            navItems.forEach(link => {
+                link.addEventListener('click', () => {
+                    navbarLinks.classList.remove('active');
+                    mobileMenuBtn.classList.remove('open');
+                });
+            });
         }
     };
 
-    const detailsModal = document.getElementById('details-modal');
-    const detailsModalTag = document.getElementById('details-modal-tag');
-    const detailsModalTitle = document.getElementById('details-modal-title');
-    const detailsModalBody = document.getElementById('details-modal-body');
-    const detailsCloseBtn = document.getElementById('details-close-btn');
+    // 3. Dynamic Scroll Effects (Header & Spy)
+    const initScrollEffects = () => {
+        const header = document.getElementById('main-header');
+        const sections = Array.from(document.querySelectorAll('section'));
+        const navItems = Array.from(document.querySelectorAll('.nav-link'));
+        
+        const handleScroll = throttle(() => {
+            const scrollY = window.scrollY;
+            
+            // Header opacity
+            if (header) {
+                if (scrollY > 50) {
+                    header.classList.remove('header-transparent');
+                    header.classList.add('header-scrolled');
+                } else {
+                    header.classList.remove('header-scrolled');
+                    header.classList.add('header-transparent');
+                }
+            }
 
-    // Open Details Modal function
-    const openDetailsModal = (packageKey) => {
-        const details = packageDetails[packageKey];
-        if (details) {
-            detailsModalTag.textContent = details.tag;
-            detailsModalTitle.textContent = details.title;
-            detailsModalBody.innerHTML = details.body;
-            detailsModal.style.display = 'flex';
-        }
+            // Scroll spy
+            let currentSection = '';
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const section = sections[i];
+                if (scrollY >= (section.offsetTop - 150)) {
+                    currentSection = section.getAttribute('id');
+                    break;
+                }
+            }
+
+            if (currentSection) {
+                navItems.forEach(item => {
+                    if (item.getAttribute('href') === `#${currentSection}`) {
+                        if (!item.classList.contains('active')) item.classList.add('active');
+                    } else {
+                        if (item.classList.contains('active')) item.classList.remove('active');
+                    }
+                });
+            }
+        }, 50); // 50ms limit
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll(); // Initial check
     };
 
-    // Add listeners to package buttons & flyer images
-    document.querySelectorAll('.btn-open-flyer, .package-card-3d').forEach(element => {
-        element.addEventListener('click', () => {
-            const packageKey = element.getAttribute('data-package');
-            if (packageKey) {
-                openDetailsModal(packageKey);
-            }
-        });
-    });
+    // 4. Modals & Lightbox
+    const initModals = () => {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxVideoContainer = document.getElementById('lightbox-video-container');
+        const lightboxIframe = document.getElementById('lightbox-iframe');
+        const lightboxVideo = document.getElementById('lightbox-video');
+        const closeBtn = document.getElementById('lightbox-close-btn');
+        
+        const detailsModal = document.getElementById('details-modal');
+        const detailsModalTag = document.getElementById('details-modal-tag');
+        const detailsModalTitle = document.getElementById('details-modal-title');
+        const detailsModalBody = document.getElementById('details-modal-body');
+        const detailsCloseBtn = document.getElementById('details-close-btn');
 
-    // Close Details Modal function
-    const closeDetailsModal = () => {
-        if (detailsModal) {
-            detailsModal.style.display = 'none';
+        // Fetch Packages Data
+        fetch('data/packages.json')
+            .then(res => {
+                if (!res.ok) throw new Error("HTTP error " + res.status);
+                return res.json();
+            })
+            .then(data => {
+                packageData = data;
+            })
+            .catch(err => console.error("Erro ao carregar dados dos pacotes:", err));
+
+        // Package Details
+        const openDetailsModal = (packageKey) => {
+            if (!detailsModal || !packageData) return;
+            const details = packageData[packageKey];
+            if (details) {
+                if (detailsModalTag) detailsModalTag.textContent = details.tag;
+                if (detailsModalTitle) detailsModalTitle.textContent = details.title;
+                if (detailsModalBody) detailsModalBody.innerHTML = details.body;
+                detailsModal.style.display = 'flex';
+            }
+        };
+
+        const closeDetailsModal = () => {
+            if (detailsModal) detailsModal.style.display = 'none';
+        };
+
+        document.querySelectorAll('.btn-open-flyer, .package-card-3d').forEach(element => {
+            element.addEventListener('click', (e) => {
+                const packageKey = element.getAttribute('data-package');
+                if (packageKey) {
+                    openDetailsModal(packageKey);
+                }
+            });
+        });
+
+        if (detailsCloseBtn) {
+            detailsCloseBtn.addEventListener('click', closeDetailsModal);
+            detailsCloseBtn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') closeDetailsModal();
+            });
         }
-        if (detailsModalTag) detailsModalTag.textContent = '';
-        if (detailsModalTitle) detailsModalTitle.textContent = '';
-        if (detailsModalBody) detailsModalBody.innerHTML = '';
-    };
-
-    if (detailsCloseBtn) {
-        detailsCloseBtn.addEventListener('click', closeDetailsModal);
-    }
-
-    // Close on outside click
-    if (detailsModal) {
-        detailsModal.addEventListener('click', (e) => {
-            if (e.target === detailsModal) {
-                closeDetailsModal();
-            }
+        if (detailsModal) detailsModal.addEventListener('click', (e) => {
+            if (e.target === detailsModal) closeDetailsModal();
         });
-    }
 
-    // Close on Escape key (lightbox keydown listener will also handle it)
+        // Lightbox Images
+        document.querySelectorAll('.carousel-slide, .gallery-slide').forEach(slide => {
+            slide.addEventListener('click', () => {
+                if (!lightbox || !lightboxImg || !lightboxVideoContainer) return;
+                const img = slide.querySelector('img');
+                if (img) {
+                    lightboxImg.src = img.src;
+                    lightboxImg.alt = img.alt;
+                    lightboxImg.style.display = 'block';
+                    lightboxVideoContainer.style.display = 'none';
+                    lightbox.style.display = 'flex';
+                }
+            });
+            slide.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') slide.click();
+            });
+            // Make slides focusable
+            slide.setAttribute('tabindex', '0');
+        });
 
-    // Open lightbox for videos
-    document.querySelectorAll('.video-card').forEach(card => {
-        card.addEventListener('click', () => {
-            const videoSrc = card.getAttribute('data-video-src');
-            
-            // Check if it's a local video file (e.g. mp4)
-            const isLocalVideo = videoSrc && (videoSrc.endsWith('.mp4') || !videoSrc.includes('//') || videoSrc.startsWith('assets/'));
-            
-            if (isLocalVideo) {
-                // Configure HTML5 video player
-                lightboxIframe.style.display = 'none';
-                lightboxIframe.src = '';
+        // Lightbox Videos
+        document.querySelectorAll('.video-card').forEach(card => {
+            card.addEventListener('click', () => {
+                if (!lightbox || !lightboxIframe || !lightboxVideo || !lightboxVideoContainer) return;
+                const videoSrc = card.getAttribute('data-video-src');
+                const isLocalVideo = videoSrc && (videoSrc.endsWith('.mp4') || !videoSrc.includes('//') || videoSrc.startsWith('assets/'));
                 
-                lightboxVideo.style.display = 'block';
-                lightboxVideo.src = videoSrc;
-                
-                // Automatically handle aspect ratio when video metadata loads
-                const handleMetadata = () => {
-                    if (lightboxVideo.videoHeight > lightboxVideo.videoWidth) {
+                if (isLocalVideo) {
+                    lightboxIframe.style.display = 'none';
+                    lightboxIframe.src = '';
+                    lightboxVideo.style.display = 'block';
+                    lightboxVideo.src = videoSrc;
+                    
+                    const handleMetadata = () => {
+                        if (lightboxVideo.videoHeight > lightboxVideo.videoWidth) {
+                            lightboxVideoContainer.classList.add('portrait-video');
+                        } else {
+                            lightboxVideoContainer.classList.remove('portrait-video');
+                        }
+                        lightboxVideo.removeEventListener('loadedmetadata', handleMetadata);
+                    };
+                    lightboxVideo.addEventListener('loadedmetadata', handleMetadata);
+                    lightboxVideo.play().catch(err => console.log("Video auto-play prevented:", err));
+                } else {
+                    lightboxVideo.style.display = 'none';
+                    lightboxVideo.pause();
+                    lightboxVideo.src = '';
+                    lightboxIframe.style.display = 'block';
+                    lightboxIframe.src = videoSrc;
+                    
+                    if (videoSrc && videoSrc.includes('instagram.com')) {
                         lightboxVideoContainer.classList.add('portrait-video');
                     } else {
                         lightboxVideoContainer.classList.remove('portrait-video');
                     }
-                    lightboxVideo.removeEventListener('loadedmetadata', handleMetadata);
-                };
-                lightboxVideo.addEventListener('loadedmetadata', handleMetadata);
+                }
                 
-                // Play local video
-                lightboxVideo.play().catch(err => console.log("Video auto-play prevented:", err));
-            } else {
-                // Configure iframe for YouTube / Instagram
-                lightboxVideo.style.display = 'none';
+                if (lightboxImg) lightboxImg.style.display = 'none';
+                lightboxVideoContainer.style.display = 'block';
+                lightbox.style.display = 'flex';
+            });
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') card.click();
+            });
+            card.setAttribute('tabindex', '0');
+        });
+
+        const closeLightbox = () => {
+            if (lightbox) lightbox.style.display = 'none';
+            if (lightboxImg) lightboxImg.src = '';
+            if (lightboxIframe) {
+                lightboxIframe.src = '';
+                lightboxIframe.style.display = 'none';
+            }
+            if (lightboxVideo) {
                 lightboxVideo.pause();
                 lightboxVideo.src = '';
+                lightboxVideo.style.display = 'none';
+            }
+            if (lightboxVideoContainer) lightboxVideoContainer.classList.remove('portrait-video');
+        };
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeLightbox);
+            closeBtn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') closeLightbox();
+            });
+        }
+        if (lightbox) lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (lightbox && lightbox.style.display === 'flex') closeLightbox();
+                if (detailsModal && detailsModal.style.display === 'flex') closeDetailsModal();
+            }
+        });
+    };
+
+    // 5. Carousels
+    const initCarousels = () => {
+        // Rancho Carousel
+        const carouselTrack = document.querySelector('.carousel-track');
+        const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+        const prevBtn = document.getElementById('carousel-prev');
+        const nextBtn = document.getElementById('carousel-next');
+        const indicators = Array.from(document.querySelectorAll('.carousel-indicators .indicator'));
+        
+        if (carouselTrack && slides.length > 0) {
+            let currentIndex = 0;
+            let autoPlayInterval;
+            const intervalTime = 4000;
+            
+            const updateCarousel = (index) => {
+                if (index < 0) index = slides.length - 1;
+                else if (index >= slides.length) index = 0;
+                currentIndex = index;
                 
-                lightboxIframe.style.display = 'block';
-                lightboxIframe.src = videoSrc;
+                carouselTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
                 
-                if (videoSrc && videoSrc.includes('instagram.com')) {
-                    lightboxVideoContainer.classList.add('portrait-video');
-                } else {
-                    lightboxVideoContainer.classList.remove('portrait-video');
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === currentIndex);
+                });
+                indicators.forEach((indicator, i) => {
+                    indicator.classList.toggle('active', i === currentIndex);
+                });
+            };
+            
+            const nextSlide = () => updateCarousel(currentIndex + 1);
+            const prevSlide = () => updateCarousel(currentIndex - 1);
+            
+            const startAutoPlay = () => {
+                stopAutoPlay();
+                autoPlayInterval = setInterval(nextSlide, intervalTime);
+            };
+            const stopAutoPlay = () => clearInterval(autoPlayInterval);
+            
+            if (nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextSlide(); startAutoPlay(); });
+            if (prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prevSlide(); startAutoPlay(); });
+            
+            indicators.forEach((indicator, i) => {
+                indicator.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    updateCarousel(i);
+                    startAutoPlay();
+                });
+                // Make indicators focusable
+                indicator.setAttribute('tabindex', '0');
+                indicator.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        updateCarousel(i);
+                        startAutoPlay();
+                    }
+                });
+            });
+            
+            const carouselContainer = document.getElementById('rancho-carousel');
+            if (carouselContainer) {
+                carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+                carouselContainer.addEventListener('mouseleave', startAutoPlay);
+                // Also stop autoplay when focused inside for accessibility
+                carouselContainer.addEventListener('focusin', stopAutoPlay);
+                carouselContainer.addEventListener('focusout', startAutoPlay);
+            }
+            
+            startAutoPlay();
+        }
+
+        // Gallery Carousel
+        const galleryTrack = document.querySelector('.gallery-track');
+        const gallerySlides = Array.from(document.querySelectorAll('.gallery-slide'));
+        const galleryPrevBtn = document.getElementById('gallery-prev');
+        const galleryNextBtn = document.getElementById('gallery-next');
+        
+        if (galleryTrack && gallerySlides.length > 0) {
+            let galleryIndex = 0;
+            let galleryAutoPlayInterval;
+            
+            const getVisibleItemsCount = () => {
+                const width = window.innerWidth;
+                if (width > 992) return 3;
+                if (width > 576) return 2;
+                return 1;
+            };
+            
+            const updateGallery = (index) => {
+                const maxIndex = gallerySlides.length - getVisibleItemsCount();
+                if (index < 0) index = maxIndex;
+                else if (index > maxIndex) index = 0;
+                
+                galleryIndex = index;
+                const slideWidth = gallerySlides[0].getBoundingClientRect().width;
+                const gap = 20;
+                const amountToMove = galleryIndex * (slideWidth + gap);
+                galleryTrack.style.transform = `translateX(-${amountToMove}px)`;
+            };
+            
+            const nextGallerySlide = () => updateGallery(galleryIndex + 1);
+            const prevGallerySlide = () => updateGallery(galleryIndex - 1);
+            
+            const startGalleryAutoPlay = () => {
+                stopGalleryAutoPlay();
+                galleryAutoPlayInterval = setInterval(nextGallerySlide, 4000);
+            };
+            const stopGalleryAutoPlay = () => clearInterval(galleryAutoPlayInterval);
+            
+            if (galleryNextBtn) galleryNextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextGallerySlide(); startGalleryAutoPlay(); });
+            if (galleryPrevBtn) galleryPrevBtn.addEventListener('click', (e) => { e.stopPropagation(); prevGallerySlide(); startGalleryAutoPlay(); });
+            
+            const galleryCarouselContainer = document.getElementById('gallery-carousel');
+            if (galleryCarouselContainer) {
+                galleryCarouselContainer.addEventListener('mouseenter', stopGalleryAutoPlay);
+                galleryCarouselContainer.addEventListener('mouseleave', startGalleryAutoPlay);
+                galleryCarouselContainer.addEventListener('focusin', stopGalleryAutoPlay);
+                galleryCarouselContainer.addEventListener('focusout', startGalleryAutoPlay);
+            }
+            
+            window.addEventListener('resize', debounce(() => {
+                updateGallery(galleryIndex);
+            }, 100));
+            
+            startGalleryAutoPlay();
+            updateGallery(0);
+        }
+    };
+
+    // 6. Contact Form Validation
+    const initForm = () => {
+        const contactForm = document.getElementById('contact-form');
+        const formFeedback = document.getElementById('form-feedback');
+
+        if (contactForm && formFeedback) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const nameEl = document.getElementById('form-name');
+                const phoneEl = document.getElementById('form-phone');
+                const messageEl = document.getElementById('form-message');
+                
+                const name = nameEl ? nameEl.value.trim() : '';
+                const phone = phoneEl ? phoneEl.value.trim() : '';
+                const message = messageEl ? messageEl.value.trim() : '';
+                
+                if (!name || !phone || !message) {
+                    formFeedback.className = 'form-feedback error';
+                    formFeedback.style.display = 'block';
+                    formFeedback.textContent = 'Por favor, preencha todos os campos obrigatórios.';
+                    return;
                 }
-            }
-            
-            lightboxImg.style.display = 'none';
-            lightboxVideoContainer.style.display = 'block';
-            lightbox.style.display = 'flex';
-        });
-    });
 
-    // Close Lightbox function
-    const closeLightbox = () => {
-        lightbox.style.display = 'none';
-        lightboxImg.src = '';
-        lightboxIframe.src = '';
-        lightboxIframe.style.display = 'none';
-        
-        lightboxVideo.pause();
-        lightboxVideo.src = '';
-        lightboxVideo.style.display = 'none';
-        
-        lightboxVideoContainer.classList.remove('portrait-video');
-    };
-
-    closeBtn.addEventListener('click', closeLightbox);
-    
-    // Close when clicking outside content area
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) {
-            closeLightbox();
-        }
-    });
-
-    // Close with Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            if (lightbox.style.display === 'flex') {
-                closeLightbox();
-            }
-            if (detailsModal && detailsModal.style.display === 'flex') {
-                closeDetailsModal();
-            }
-        }
-    });
-
-    // 4. Rancho Carousel Auto-play & Controls
-    const carouselTrack = document.querySelector('.carousel-track');
-    const slides = Array.from(document.querySelectorAll('.carousel-slide'));
-    const prevBtn = document.getElementById('carousel-prev');
-    const nextBtn = document.getElementById('carousel-next');
-    const indicators = Array.from(document.querySelectorAll('.carousel-indicators .indicator'));
-    
-    let currentIndex = 0;
-    let autoPlayInterval;
-    const intervalTime = 4000; // 4 seconds
-    
-    const updateCarousel = (index) => {
-        if (index < 0) {
-            index = slides.length - 1;
-        } else if (index >= slides.length) {
-            index = 0;
-        }
-        
-        currentIndex = index;
-        
-        // Move the carousel track
-        if (carouselTrack) {
-            carouselTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }
-        
-        // Update active slide class
-        slides.forEach((slide, i) => {
-            if (i === currentIndex) {
-                slide.classList.add('active');
-            } else {
-                slide.classList.remove('active');
-            }
-        });
-        
-        // Update indicators
-        indicators.forEach((indicator, i) => {
-            if (i === currentIndex) {
-                indicator.classList.add('active');
-            } else {
-                indicator.classList.remove('active');
-            }
-        });
-    };
-    
-    const nextSlide = () => {
-        updateCarousel(currentIndex + 1);
-    };
-    
-    const prevSlide = () => {
-        updateCarousel(currentIndex - 1);
-    };
-    
-    const startAutoPlay = () => {
-        stopAutoPlay();
-        autoPlayInterval = setInterval(nextSlide, intervalTime);
-    };
-    
-    const stopAutoPlay = () => {
-        if (autoPlayInterval) {
-            clearInterval(autoPlayInterval);
-        }
-    };
-    
-    if (nextBtn && prevBtn) {
-        nextBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // prevent opening lightbox when clicking button
-            nextSlide();
-            startAutoPlay(); // reset autoplay timer
-        });
-        
-        prevBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // prevent opening lightbox when clicking button
-            prevSlide();
-            startAutoPlay(); // reset autoplay timer
-        });
-    }
-    
-    indicators.forEach((indicator, i) => {
-        indicator.addEventListener('click', (e) => {
-            e.stopPropagation(); // prevent opening lightbox when clicking dot
-            updateCarousel(i);
-            startAutoPlay(); // reset autoplay timer
-        });
-    });
-    
-    const carouselContainer = document.getElementById('rancho-carousel');
-    if (carouselContainer) {
-        carouselContainer.addEventListener('mouseenter', stopAutoPlay);
-        carouselContainer.addEventListener('mouseleave', startAutoPlay);
-    }
-    
-    // Start auto-play initially if carousel exists
-    if (slides.length > 0) {
-        startAutoPlay();
-    }
-
-    // 4. Contact Form Validation & Redirection
-    const contactForm = document.getElementById('contact-form');
-    const formFeedback = document.getElementById('form-feedback');
-
-    if (contactForm && formFeedback) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const name = document.getElementById('form-name').value.trim();
-            const phone = document.getElementById('form-phone').value.trim();
-            const message = document.getElementById('form-message').value.trim();
-            
-            if (!name || !phone || !message) {
-                formFeedback.className = 'form-feedback error';
+                formFeedback.className = 'form-feedback success';
                 formFeedback.style.display = 'block';
-                formFeedback.textContent = 'Por favor, preencha todos os campos obrigatórios.';
-                return;
-            }
+                formFeedback.textContent = 'Mensagem validada! Redirecionando para o WhatsApp...';
 
-            // Simulação de sucesso
-            formFeedback.className = 'form-feedback success';
-            formFeedback.style.display = 'block';
-            formFeedback.textContent = 'Mensagem validada! Redirecionando para o WhatsApp...';
+                const targetNumber = "554299162340"; 
+                const formattedMessage = `Olá, meu nome é *${name}* (${phone}).\n\n*Mensagem*:\n${message}`;
+                const whatsappUrl = `https://wa.me/${targetNumber}?text=${encodeURIComponent(formattedMessage)}`;
 
-            // WhatsApp redirect details
-            // Thiago's actual contact number
-            const targetNumber = "554299162340"; 
-            const formattedMessage = `Olá, meu nome é *${name}* (${phone}).\n\n*Mensagem*:\n${message}`;
-            const whatsappUrl = `https://wa.me/${targetNumber}?text=${encodeURIComponent(formattedMessage)}`;
-
-            // Redirect after a brief delay so they see the success message
-            setTimeout(() => {
-                window.open(whatsappUrl, '_blank');
-                contactForm.reset();
-                formFeedback.style.display = 'none';
-                formFeedback.className = 'form-feedback';
-            }, 1500);
-        });
-    }
-
-    // 5. Gallery Carousel Behavior (Multi-item sliding marquee)
-    const galleryTrack = document.querySelector('.gallery-track');
-    const gallerySlides = Array.from(document.querySelectorAll('.gallery-slide'));
-    const galleryPrevBtn = document.getElementById('gallery-prev');
-    const galleryNextBtn = document.getElementById('gallery-next');
-    
-    if (galleryTrack && gallerySlides.length > 0) {
-        let galleryIndex = 0;
-        let galleryAutoPlayInterval;
-        
-        // Helper to check how many items are visible in viewport
-        const getVisibleItemsCount = () => {
-            const width = window.innerWidth;
-            if (width > 992) return 3;
-            if (width > 576) return 2;
-            return 1;
-        };
-        
-        const updateGallery = (index) => {
-            const visibleItems = getVisibleItemsCount();
-            const maxIndex = gallerySlides.length - visibleItems;
-            
-            if (index < 0) {
-                index = maxIndex;
-            } else if (index > maxIndex) {
-                index = 0;
-            }
-            
-            galleryIndex = index;
-            
-            // Calculate translate percentage
-            const slideWidth = gallerySlides[0].getBoundingClientRect().width;
-            const gap = 20; // Matches CSS gap
-            const amountToMove = galleryIndex * (slideWidth + gap);
-            
-            galleryTrack.style.transform = `translateX(-${amountToMove}px)`;
-        };
-        
-        const nextGallerySlide = () => {
-            updateGallery(galleryIndex + 1);
-        };
-        
-        const prevGallerySlide = () => {
-            updateGallery(galleryIndex - 1);
-        };
-        
-        const startGalleryAutoPlay = () => {
-            stopGalleryAutoPlay();
-            galleryAutoPlayInterval = setInterval(nextGallerySlide, 4000);
-        };
-        
-        const stopGalleryAutoPlay = () => {
-            if (galleryAutoPlayInterval) {
-                clearInterval(galleryAutoPlayInterval);
-            }
-        };
-        
-        if (galleryNextBtn && galleryPrevBtn) {
-            galleryNextBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                nextGallerySlide();
-                startGalleryAutoPlay();
-            });
-            
-            galleryPrevBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                prevGallerySlide();
-                startGalleryAutoPlay();
+                setTimeout(() => {
+                    window.open(whatsappUrl, '_blank');
+                    contactForm.reset();
+                    formFeedback.style.display = 'none';
+                    formFeedback.className = 'form-feedback';
+                }, 1500);
             });
         }
-        
-        // Pause auto-play on hover
-        const galleryCarouselContainer = document.getElementById('gallery-carousel');
-        if (galleryCarouselContainer) {
-            galleryCarouselContainer.addEventListener('mouseenter', stopGalleryAutoPlay);
-            galleryCarouselContainer.addEventListener('mouseleave', startGalleryAutoPlay);
-        }
-        
-        // Handle window resize to recalculate positions correctly
-        window.addEventListener('resize', () => {
-            updateGallery(galleryIndex);
-        });
-        
-        // Initial setup
-        startGalleryAutoPlay();
-        updateGallery(0);
-    }
+    };
+
+    // Bootstrap app
+    init();
 });

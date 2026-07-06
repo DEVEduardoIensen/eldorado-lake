@@ -109,7 +109,7 @@
                     </ul>
                 </div>
                 <div class="sobre-image-wrapper">
-                    <img src="assets/images/dourado_banner.webp" alt="Pescador exibindo um grande Dourado dourado" class="img-responsive rounded shadow" id="img-dourado-banner">
+                    <img src="assets/images/dourado_banner.webp" alt="Pescador exibindo um grande Dourado dourado" class="img-responsive rounded shadow" id="img-dourado-banner" loading="lazy">
                     <div class="floating-badge">
                         <span class="number">100%</span>
                         <span class="text">Esportivo</span>
@@ -247,7 +247,7 @@
                         </ul>
                     </div>
                     <div class="package-card-footer">
-                        <button class="btn btn-gold btn-block btn-open-flyer" data-package="premium">Visualizar Detalhes</button>
+                        <button class="btn btn-gold btn-block btn-open-flyer" data-package="premium" aria-label="Visualizar Detalhes do Pacote Premium">Visualizar Detalhes</button>
                     </div>
                 </div>
 
@@ -281,7 +281,7 @@
                     </div>
                     
                     <div class="package-card-footer">
-                        <button class="btn btn-gold btn-block btn-open-flyer" data-package="standard">Visualizar Detalhes</button>
+                        <button class="btn btn-gold btn-block btn-open-flyer" data-package="standard" aria-label="Visualizar Detalhes do Pacote Standard">Visualizar Detalhes</button>
                     </div>
                 </div>
             </div>
@@ -745,7 +745,7 @@
 
     <!-- Lightbox / Modal for Images & Videos -->
     <div id="lightbox" class="lightbox-modal">
-        <span class="lightbox-close" id="lightbox-close-btn">&times;</span>
+        <span class="lightbox-close" id="lightbox-close-btn" role="button" aria-label="Fechar Lightbox" tabindex="0">&times;</span>
         <div class="lightbox-content-wrapper">
             <img class="lightbox-img" id="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
             <div class="lightbox-video-container" id="lightbox-video-container">
@@ -757,7 +757,7 @@
 
     <!-- Package Details Modal -->
     <div id="details-modal" class="lightbox-modal">
-        <span class="lightbox-close" id="details-close-btn">&times;</span>
+        <span class="lightbox-close" id="details-close-btn" role="button" aria-label="Fechar Detalhes" tabindex="0">&times;</span>
         <div class="details-modal-wrapper">
             <div class="details-modal-content glass-card">
                 <div class="details-header">
@@ -777,6 +777,9 @@
         </div>
     </div>
 
+    <!-- Papa Parse for robust CSV parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    
     <!-- Custom JavaScript -->
     <script src="js/script.js?v=2.1"></script>
 </body>
