@@ -280,7 +280,6 @@ body {
     height: 80px;
     width: auto;
     object-fit: contain;
-    mix-blend-mode: screen;
     transition: transform var(--transition-smooth), opacity var(--transition-smooth), background-color var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth), color var(--transition-smooth);
 }
 
