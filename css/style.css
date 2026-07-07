@@ -90,6 +90,20 @@ body {
 }
 
 /* Utility Layouts */
+.desktop-only { display: inline-block; }
+.mobile-only { display: none !important; }
+
+.pirate-font {
+    font-family: 'Pirata One', serif;
+    font-size: 4.5rem;
+    line-height: 1.05;
+    letter-spacing: 2px;
+    color: var(--primary-gold);
+    text-shadow: 0 4px 20px rgba(0,0,0,0.8), 0 2px 5px rgba(229,193,88,0.5);
+    text-transform: none;
+    font-weight: normal;
+}
+
 .container {
     width: 100%;
     max-width: 1200px;
@@ -2118,9 +2132,18 @@ footer {
         }
     
         .hero-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
             line-height: 1.15;
             margin-bottom: 20px;
+        }
+        
+        .desktop-only { display: none !important; }
+        .mobile-only { display: inline-block !important; }
+        
+        .pirate-font {
+            font-size: 4rem; /* Giant impact on mobile */
+            line-height: 1.1;
+            padding: 0 10px;
         }
         
         .hero-subtitle {
