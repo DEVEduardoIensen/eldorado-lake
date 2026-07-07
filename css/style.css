@@ -2236,3 +2236,78 @@ footer {
             max-width: 1600px;
         }
 }
+
+/* VALORIZAÇÃO HERO E NAVBAR PARA TABLET (iPad, etc) */
+@media (min-width: 769px) and (max-width: 1199px) {
+    /* Navbar Super Profissional e Destacada */
+    #main-header {
+        padding: 25px 0 !important;
+    }
+    .header-container {
+        padding: 0 30px !important;
+    }
+    #navbar {
+        margin: 0 auto;
+    }
+    #main-header .nav-links {
+        gap: 30px !important;
+        background: rgba(10, 15, 25, 0.7) !important;
+        backdrop-filter: blur(15px) !important;
+        -webkit-backdrop-filter: blur(15px) !important;
+        padding: 14px 40px !important;
+        border-radius: 50px !important;
+        border: 1px solid rgba(229, 193, 88, 0.3) !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    }
+    #main-header .nav-link {
+        font-size: 1.1rem !important;
+        font-weight: 600 !important;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.8) !important;
+        letter-spacing: 0.5px !important;
+    }
+    #main-header .header-actions .btn {
+        padding: 14px 30px !important;
+        font-size: 1.1rem !important;
+        box-shadow: 0 6px 20px rgba(229, 193, 88, 0.4) !important;
+    }
+    #logo-img {
+        height: 75px !important;
+        filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6)) !important;
+    }
+    
+    /* Títulos Hero Super Valorizados */
+    .hero-content {
+        margin: 60px auto 0 auto !important;
+        padding: 0 20px;
+    }
+    .hero-title {
+        font-size: 3.5rem !important;
+        margin-bottom: 25px !important;
+        text-shadow: 0 5px 15px rgba(0,0,0,0.8) !important;
+    }
+    .pirate-font {
+        font-size: 8.5rem !important;
+        line-height: 1.05 !important;
+        background: linear-gradient(135deg, #fff3c4 0%, #e5c158 50%, #b89120 100%) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+        color: transparent !important;
+        text-shadow: 0 25px 50px rgba(0,0,0,0.9), 0 5px 15px rgba(229,193,88,0.5) !important;
+        transform: scale(1.05) !important;
+        display: inline-block !important;
+        padding: 0 20px !important;
+        margin-bottom: 20px !important;
+    }
+    .hero-subtitle {
+        font-size: 1.55rem !important;
+        max-width: 90% !important;
+        text-shadow: 0 4px 10px rgba(0,0,0,0.9) !important;
+        color: rgba(255, 255, 255, 0.95) !important;
+        line-height: 1.6 !important;
+        margin-bottom: 50px !important;
+    }
+    .hero-buttons .btn {
+        padding: 20px 45px !important;
+        font-size: 1.25rem !important;
+    }
+}
