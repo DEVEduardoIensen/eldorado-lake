@@ -2251,13 +2251,6 @@ footer {
     }
     #main-header .nav-links {
         gap: 30px !important;
-        background: rgba(10, 15, 25, 0.7) !important;
-        backdrop-filter: blur(15px) !important;
-        -webkit-backdrop-filter: blur(15px) !important;
-        padding: 14px 40px !important;
-        border-radius: 50px !important;
-        border: 1px solid rgba(229, 193, 88, 0.3) !important;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
     }
     #main-header .nav-link {
         font-size: 1.1rem !important;
