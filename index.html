@@ -29,8 +29,8 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css?v=2.5">
-    
-    
+    <!-- Preload Hero Video for faster LCP -->
+    <link rel="preload" as="video" href="assets/videos/hero_video.mp4" type="video/mp4">
 </head>
 <body id="home">
 
@@ -67,7 +67,7 @@
 
     <!-- Hero Section -->
     <section class="hero-section" id="hero">
-        <video class="hero-video" autoplay loop muted playsinline>
+        <video class="hero-video" autoplay loop muted playsinline poster="assets/images/hero_bg.webp">
             <source src="assets/videos/hero_video.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
