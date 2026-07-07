@@ -2045,7 +2045,7 @@ footer {
         align-items: center;
         text-align: center;
         width: 100%;
-        margin-top: 30px;
+        margin: 30px auto 0 auto;
     }
     
     .hero-title {
