@@ -2304,3 +2304,112 @@ footer {
         font-size: 1.25rem !important;
     }
 }
+
+/* FIX: Dispositivos móveis em modo paisagem (landscape) com altura muito baixa */
+@media (max-height: 600px) and (orientation: landscape) {
+    /* Header/Navbar ajustes para não ocupar muito espaço */
+    #main-header {
+        padding: 10px 0 !important;
+    }
+    #logo-img {
+        height: 50px !important;
+    }
+    #main-header .nav-links {
+        gap: 15px !important;
+    }
+    #main-header .nav-link {
+        font-size: 0.9rem !important;
+    }
+    #main-header .header-actions .btn {
+        padding: 8px 16px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* Hero section - permitir scroll se necessário e dar espaço em cima */
+    .hero-section {
+        min-height: 100vh !important;
+        height: auto !important;
+        padding-top: 80px !important;
+        padding-bottom: 40px !important;
+    }
+    
+    .hero-content {
+        margin: 20px auto 0 auto !important;
+    }
+    
+    /* Reduzir os títulos absurdamente grandes */
+    .hero-title {
+        font-size: 2rem !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .pirate-font {
+        font-size: 3.5rem !important;
+        line-height: 1.1 !important;
+        transform: scale(1) !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .hero-buttons {
+        gap: 15px !important;
+    }
+    
+    .hero-buttons .btn {
+        padding: 12px 24px !important;
+        font-size: 1rem !important;
+    }
+
+    /* Ajustar botão flutuante se houver */
+    .scroll-down {
+        display: none !important;
+    }
+}
+
+/* Enable hamburger menu on tablets and landscape mobiles (up to 1199px) */
+@media (max-width: 1199px) {
+    .mobile-menu-toggle {
+        display: flex !important;
+    }
+    
+    .nav-links {
+        display: flex !important;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-15px);
+        transition: opacity var(--transition-fast), transform var(--transition-smooth), visibility var(--transition-fast);
+        pointer-events: none;
+        flex-direction: column !important;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(6, 10, 19, 0.98);
+        @supports (backdrop-filter: blur(1px)) { backdrop-filter: var(--backdrop-blur); }
+        border-bottom: 1px solid var(--border-light);
+        padding: 24px;
+        gap: 20px !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    
+    .nav-links.active {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+        pointer-events: auto !important;
+    }
+    
+    .mobile-only-nav-btn {
+        display: block !important;
+        margin-top: 10px;
+    }
+    
+    .header-actions .btn-sm {
+        display: none !important; /* Hide WhatsApp button in header on tablet/mobile */
+    }
+}
