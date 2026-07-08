@@ -39,6 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
         initModals();
         initCarousels();
         initForm();
+        initTabs();
+        initParallax();
     };
 
     // 1. Fetch Dynamic Prices from Google Sheets (CSV)
@@ -474,6 +476,44 @@ document.addEventListener('DOMContentLoaded', () => {
                     formFeedback.className = 'form-feedback';
                 }, 1500);
             });
+        }
+    };
+
+    const initTabs = () => {
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.getAttribute('data-tab');
+                
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                const targetEl = document.getElementById('tab-' + targetTab);
+                if(targetEl) targetEl.classList.add('active');
+            });
+        });
+    };
+
+    const initParallax = () => {
+        const parallaxContainer = document.querySelector('.parallax-container');
+        const parallaxImg = document.querySelector('.parallax-img');
+        const parallaxBadge = document.querySelector('.parallax-badge');
+        
+        if (parallaxContainer && parallaxImg && parallaxBadge) {
+            window.addEventListener('scroll', () => {
+                const rect = parallaxContainer.getBoundingClientRect();
+                const viewHeight = window.innerHeight;
+                
+                if (rect.top <= viewHeight && rect.bottom >= 0) {
+                    const scrollDistance = (viewHeight - rect.top) - (viewHeight / 2);
+                    
+                    parallaxImg.style.transform = `translateY(${scrollDistance * 0.05}px)`;
+                    parallaxBadge.style.transform = `translateY(${scrollDistance * 0.15}px)`;
+                }
+            }, { passive: true });
         }
     };
 

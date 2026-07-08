@@ -101,22 +101,54 @@
                 <div class="section-divider"></div>
             </div>
             
-            <div class="grid grid-2">
+            <div class="grid grid-2 align-items-center">
                 <div class="sobre-content">
-                    <h3>Uma experiência inesquecível de pesca esportiva</h3>
-                    <p>O Lago Foz do Areia é reconhecido nacionalmente pela força e abundância de seus Dourados. Nossa operação oferece guias locais experientes que conhecem os melhores pontos de pesca, garantindo que você tenha as melhores chances de fisgar o cobiçado "Rei do Rio".</p>
-                    <p>Toda a nossa estrutura é pensada para proporcionar conforto, segurança e esportividade, respeitando o meio ambiente através da prática do pesque e solte.</p>
-                    
-                    <ul class="features-list">
-                        <li><i class="fa-solid fa-circle-check text-gold"></i> Guias profissionais de pesca</li>
-                        <li><i class="fa-solid fa-circle-check text-gold"></i> Barcos modernos e equipados</li>
-                        <li><i class="fa-solid fa-circle-check text-gold"></i> Equipamentos de segurança completos</li>
-                        <li><i class="fa-solid fa-circle-check text-gold"></i> Preservação ambiental ativa</li>
-                    </ul>
+                    <div class="tabs-container">
+                        <div class="tabs-header">
+                            <button class="tab-btn active" data-tab="pesca"><i class="fa-solid fa-fish"></i> A Pesca</button>
+                            <button class="tab-btn" data-tab="estrutura"><i class="fa-solid fa-house-chimney"></i> Estrutura</button>
+                            <button class="tab-btn" data-tab="guias"><i class="fa-solid fa-user-tie"></i> Guias</button>
+                            <button class="tab-btn" data-tab="preservacao"><i class="fa-solid fa-leaf"></i> Preservação</button>
+                        </div>
+                        <div class="tabs-body">
+                            <div class="tab-content active" id="tab-pesca">
+                                <h3>O cobiçado Rei do Rio</h3>
+                                <p>O Lago Foz do Areia é reconhecido nacionalmente pela força e abundância de seus Dourados. Prepare-se para batalhas épicas com saltos espetaculares, onde a técnica e a adrenalina se encontram.</p>
+                                <ul class="features-list mt-3">
+                                    <li><i class="fa-solid fa-check text-gold"></i> Pontos de pesca exclusivos</li>
+                                    <li><i class="fa-solid fa-check text-gold"></i> Técnicas variadas (iscas artificiais e naturais)</li>
+                                </ul>
+                            </div>
+                            <div class="tab-content" id="tab-estrutura">
+                                <h3>Conforto e Segurança</h3>
+                                <p>Toda a nossa estrutura é pensada para proporcionar o máximo de conforto. Desde barcos modernos e seguros até nosso rancho aconchegante para descanso após um dia intenso.</p>
+                                <ul class="features-list mt-3">
+                                    <li><i class="fa-solid fa-check text-gold"></i> Barcos equipados com motor elétrico</li>
+                                    <li><i class="fa-solid fa-check text-gold"></i> Equipamentos de salvatagem completos</li>
+                                </ul>
+                            </div>
+                            <div class="tab-content" id="tab-guias">
+                                <h3>Conhecimento Local</h3>
+                                <p>Nossa operação é liderada pelo guia Thiago Witeck, um profundo conhecedor da região, garantindo que você esteja no lugar certo, na hora certa, utilizando a isca correta.</p>
+                                <ul class="features-list mt-3">
+                                    <li><i class="fa-solid fa-check text-gold"></i> Mais de 5 anos de experiência no lago</li>
+                                    <li><i class="fa-solid fa-check text-gold"></i> Instrução para todos os níveis de pescadores</li>
+                                </ul>
+                            </div>
+                            <div class="tab-content" id="tab-preservacao">
+                                <h3>Pesque e Solte</h3>
+                                <p>O futuro da pesca esportiva depende de nós. Praticamos e incentivamos o pesque e solte de 100% dos Dourados, manuseando os peixes com extremo cuidado para o retorno saudável à água.</p>
+                                <ul class="features-list mt-3">
+                                    <li><i class="fa-solid fa-check text-gold"></i> Manuseio rápido e seguro</li>
+                                    <li><i class="fa-solid fa-check text-gold"></i> Consciência ecológica</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="sobre-image-wrapper">
-                    <img src="assets/images/dourado_banner.webp" alt="Pescador exibindo um grande Dourado dourado" class="img-responsive rounded shadow" id="img-dourado-banner" loading="lazy">
-                    <div class="floating-badge">
+                <div class="sobre-image-wrapper parallax-container">
+                    <img src="assets/images/dourado_banner.webp" alt="Pescador exibindo um grande Dourado dourado" class="img-responsive rounded shadow parallax-img" id="img-dourado-banner" loading="lazy">
+                    <div class="floating-badge parallax-badge">
                         <span class="number">100%</span>
                         <span class="text">Esportivo</span>
                     </div>
@@ -292,9 +324,13 @@
                 </div>
             </div>
             
-            <div class="packages-cta text-center">
-                <p>Precisa de um pacote personalizado para grupos ou datas especiais?</p>
-                <a href="https://wa.me/554299162340" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Montar Pacote Sob Medida</a>
+            <div class="packages-cta-full text-center">
+                <div class="cta-overlay"></div>
+                <div class="cta-content">
+                    <h3 class="cta-title">Precisa de um pacote personalizado?</h3>
+                    <p class="cta-desc">Grupos maiores, eventos corporativos ou datas especiais? Montamos a operação perfeita para a sua necessidade.</p>
+                    <a href="https://wa.me/554299162340?text=Ol%C3%A1%21%20Gostaria%20de%20montar%20um%20pacote%20personalizado%20para%20a%20Eldorado%20Lake." target="_blank" class="btn btn-whatsapp-pulse"><i class="fa-brands fa-whatsapp"></i> Montar Pacote Sob Medida</a>
+                </div>
             </div>
         </div>
     </section>
