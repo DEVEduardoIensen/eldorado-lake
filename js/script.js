@@ -39,8 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         initModals();
         initCarousels();
         initForm();
-        initTabs();
-        initParallax();
+        initGSAPAnimations();
     };
 
     // 1. Fetch Dynamic Prices from Google Sheets (CSV)
@@ -479,42 +478,99 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const initTabs = () => {
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
+    const initGSAPAnimations = () => {
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+        gsap.registerPlugin(ScrollTrigger);
 
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const targetTab = btn.getAttribute('data-tab');
+        // Text reveal scrub
+        const revealTexts = document.querySelectorAll('.gsap-reveal-text');
+        revealTexts.forEach(text => {
+            gsap.fromTo(text, 
+                { opacity: 0.2, y: 20 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    scrollTrigger: {
+                        trigger: text,
+                        start: "top 85%",
+                        end: "top 60%",
+                        scrub: 1
+                    }
+                }
+            );
+        });
+
+        // Title reveal
+        gsap.fromTo('.gsap-reveal-title',
+            { opacity: 0, rotationX: -90, y: 50 },
+            { 
+                opacity: 1, rotationX: 0, y: 0, 
+                duration: 1.5, 
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: '.gsap-reveal-title',
+                    start: "top 80%"
+                }
+            }
+        );
+
+        // Image Mask Reveal and Parallax
+        const imgMask = document.querySelector('.image-mask-inner');
+        if (imgMask) {
+            gsap.fromTo(imgMask, 
+                { height: "0%" },
+                {
+                    height: "100%",
+                    duration: 1.5,
+                    ease: "power3.inOut",
+                    scrollTrigger: {
+                        trigger: '.lando-sobre-image',
+                        start: "top 80%"
+                    }
+                }
+            );
+        }
+
+        const parallaxImg = document.querySelector('.gsap-parallax-img');
+        if (parallaxImg) {
+            gsap.to(parallaxImg, {
+                yPercent: 20,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: '.lando-sobre-image',
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+        }
+
+        // Magnetic Button
+        const magneticElements = document.querySelectorAll('[data-magnetic]');
+        magneticElements.forEach(el => {
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
                 
-                tabBtns.forEach(b => b.classList.remove('active'));
-                tabContents.forEach(c => c.classList.remove('active'));
-                
-                btn.classList.add('active');
-                const targetEl = document.getElementById('tab-' + targetTab);
-                if(targetEl) targetEl.classList.add('active');
+                gsap.to(el, {
+                    x: x * 0.4,
+                    y: y * 0.4,
+                    duration: 0.5,
+                    ease: "power2.out"
+                });
+            });
+
+            el.addEventListener('mouseleave', () => {
+                gsap.to(el, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "elastic.out(1, 0.3)"
+                });
             });
         });
-    };
-
-    const initParallax = () => {
-        const parallaxContainer = document.querySelector('.parallax-container');
-        const parallaxImg = document.querySelector('.parallax-img');
-        const parallaxBadge = document.querySelector('.parallax-badge');
-        
-        if (parallaxContainer && parallaxImg && parallaxBadge) {
-            window.addEventListener('scroll', () => {
-                const rect = parallaxContainer.getBoundingClientRect();
-                const viewHeight = window.innerHeight;
-                
-                if (rect.top <= viewHeight && rect.bottom >= 0) {
-                    const scrollDistance = (viewHeight - rect.top) - (viewHeight / 2);
-                    
-                    parallaxImg.style.transform = `translateY(${scrollDistance * 0.05}px)`;
-                    parallaxBadge.style.transform = `translateY(${scrollDistance * 0.15}px)`;
-                }
-            }, { passive: true });
-        }
     };
 
     // Bootstrap app
