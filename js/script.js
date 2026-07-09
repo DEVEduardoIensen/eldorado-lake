@@ -515,36 +515,40 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         );
 
-        // Image Mask Reveal and Parallax
-        const imgMask = document.querySelector('.image-mask-inner');
-        if (imgMask) {
-            gsap.fromTo(imgMask, 
-                { height: "0%" },
+        // Bento Cards Stagger Reveal
+        const bentoCards = document.querySelectorAll('.gsap-bento-card');
+        if (bentoCards.length > 0) {
+            gsap.fromTo(bentoCards, 
+                { opacity: 0, y: 100 },
                 {
-                    height: "100%",
-                    duration: 1.5,
-                    ease: "power3.inOut",
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    stagger: 0.15,
+                    ease: "power3.out",
                     scrollTrigger: {
-                        trigger: '.lando-sobre-image',
-                        start: "top 80%"
+                        trigger: '.bento-grid',
+                        start: "top 75%"
                     }
                 }
             );
         }
 
-        const parallaxImg = document.querySelector('.gsap-parallax-img');
-        if (parallaxImg) {
-            gsap.to(parallaxImg, {
-                yPercent: 20,
-                ease: "none",
+        // Counter Animation
+        const counters = document.querySelectorAll('.stat-counter .counter');
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            gsap.to(counter, {
+                innerHTML: target,
+                duration: 2,
+                snap: { innerHTML: 1 },
+                ease: "power2.out",
                 scrollTrigger: {
-                    trigger: '.lando-sobre-image',
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: true
+                    trigger: counter,
+                    start: "top 85%"
                 }
             });
-        }
+        });
 
         // Magnetic Button
         const magneticElements = document.querySelectorAll('[data-magnetic]');
