@@ -482,73 +482,63 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
         gsap.registerPlugin(ScrollTrigger);
 
-        // Text reveal scrub
-        const revealTexts = document.querySelectorAll('.gsap-reveal-text');
-        revealTexts.forEach(text => {
-            gsap.fromTo(text, 
-                { opacity: 0.2, y: 20 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                    scrollTrigger: {
-                        trigger: text,
-                        start: "top 85%",
-                        end: "top 60%",
-                        scrub: 1
-                    }
+        // Narrative Text Reveal Scrub (Background Clip)
+        const scrubTexts = document.querySelectorAll('.gsap-scrub-text');
+        scrubTexts.forEach(text => {
+            gsap.to(text, {
+                backgroundPosition: "0% 0",
+                ease: "none",
+                scrollTrigger: {
+                    trigger: text,
+                    start: "top 80%",
+                    end: "bottom 50%",
+                    scrub: 0.5
                 }
-            );
+            });
         });
 
-        // Title reveal
-        gsap.fromTo('.gsap-reveal-title',
+        // Narrative Title Reveal
+        gsap.fromTo('.narrative-title',
             { opacity: 0, rotationX: -90, y: 50 },
             { 
                 opacity: 1, rotationX: 0, y: 0, 
                 duration: 1.5, 
                 ease: "power3.out",
                 scrollTrigger: {
-                    trigger: '.gsap-reveal-title',
+                    trigger: '.narrative-title',
                     start: "top 80%"
                 }
             }
         );
 
-        // Bento Cards Stagger Reveal
-        const bentoCards = document.querySelectorAll('.gsap-bento-card');
-        if (bentoCards.length > 0) {
-            gsap.fromTo(bentoCards, 
-                { opacity: 0, y: 100 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                    stagger: 0.15,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: '.bento-grid',
-                        start: "top 75%"
-                    }
-                }
-            );
-        }
-
-        // Counter Animation
-        const counters = document.querySelectorAll('.stat-counter .counter');
-        counters.forEach(counter => {
-            const target = parseInt(counter.getAttribute('data-target'));
-            gsap.to(counter, {
-                innerHTML: target,
-                duration: 2,
-                snap: { innerHTML: 1 },
-                ease: "power2.out",
+        // Moodboard Parallax Overlap
+        const moodImgUp = document.querySelector('.gsap-parallax-up');
+        if (moodImgUp) {
+            gsap.to(moodImgUp, {
+                y: -50,
+                ease: "none",
                 scrollTrigger: {
-                    trigger: counter,
-                    start: "top 85%"
+                    trigger: '.moodboard',
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
                 }
             });
-        });
+        }
+
+        const moodImgDown = document.querySelector('.gsap-parallax-down');
+        if (moodImgDown) {
+            gsap.to(moodImgDown, {
+                y: 50,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: '.moodboard',
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+        }
 
         // Magnetic Button
         const magneticElements = document.querySelectorAll('[data-magnetic]');
