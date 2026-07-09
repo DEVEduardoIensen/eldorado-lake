@@ -621,17 +621,7 @@ document.addEventListener('DOMContentLoaded', () => {
             container.appendChild(particle);
         }
 
-        // Hide particles when hero is in full view
-        const heroSection = document.getElementById('hero');
-        if (heroSection) {
-            const heroObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    container.style.opacity = entry.intersectionRatio > 0.85 ? '0' : '1';
-                    container.style.transition = 'opacity 0.8s ease';
-                });
-            }, { threshold: [0, 0.5, 0.85, 1] });
-            heroObserver.observe(heroSection);
-        }
+
     };
 
     // Bootstrap app
