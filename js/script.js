@@ -591,49 +591,50 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ==========================================
-    // SOBRE SECTION - FLOATING PARTICLES
+    // GLOBAL FLOATING PARTICLES (snow upward)
     // ==========================================
-    const initSobreParticles = () => {
-        const container = document.getElementById('sobre-particles');
+    const initGlobalParticles = () => {
+        const container = document.getElementById('global-particles');
         if (!container) return;
-        
-        const particleCount = 40;
+
+        const particleCount = 90;
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
-            const size = Math.random() * 3 + 1;
+            particle.className = 'global-particle';
+            const size = Math.random() * 3.5 + 1.5;
             const left = Math.random() * 100;
-            const delay = Math.random() * 8;
-            const duration = Math.random() * 6 + 8;
-            const opacity = Math.random() * 0.3 + 0.1;
+            const delay = Math.random() * 12;
+            const duration = Math.random() * 8 + 10;
+            const opacity = Math.random() * 0.35 + 0.18;
+            const drift = (Math.random() - 0.5) * 60;
             
             particle.style.cssText = `
-                position: absolute;
                 width: ${size}px;
                 height: ${size}px;
-                background: rgba(229, 193, 88, ${opacity});
-                border-radius: 50%;
+                background: rgba(229, 193, 88, ${opacity + 0.15});
                 left: ${left}%;
                 bottom: -10px;
-                animation: sobreParticleFloat ${duration}s linear ${delay}s infinite;
-                pointer-events: none;
+                --p-opacity: ${opacity};
+                --p-drift: ${drift}px;
+                animation: globalParticleRise ${duration}s linear ${delay}s infinite;
             `;
             container.appendChild(particle);
         }
-    };
 
-    // Add particle keyframes dynamically
-    const particleStyle = document.createElement('style');
-    particleStyle.textContent = `
-        @keyframes sobreParticleFloat {
-            0% { transform: translateY(0) translateX(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100vh) translateX(${Math.random() > 0.5 ? '' : '-'}30px); opacity: 0; }
+        // Hide particles when hero is in full view
+        const heroSection = document.getElementById('hero');
+        if (heroSection) {
+            const heroObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    container.style.opacity = entry.intersectionRatio > 0.85 ? '0' : '1';
+                    container.style.transition = 'opacity 0.8s ease';
+                });
+            }, { threshold: [0, 0.5, 0.85, 1] });
+            heroObserver.observe(heroSection);
         }
-    `;
-    document.head.appendChild(particleStyle);
+    };
 
     // Bootstrap app
     init();
-    initSobreParticles();
+    initGlobalParticles();
 });

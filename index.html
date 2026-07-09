@@ -28,7 +28,7 @@
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css?v=3.0">
+    <link rel="stylesheet" href="css/style.css?v=4.0">
     <!-- Preload Hero Video for faster LCP -->
     <link rel="preload" as="video" href="assets/videos/hero_video.mp4" type="video/mp4">
 </head>
@@ -92,10 +92,11 @@
         </div>
     </section>
 
+    <!-- Global Floating Particles (covers everything except hero) -->
+    <div class="global-particles" id="global-particles" aria-hidden="true"></div>
+
     <!-- Sobre / A Operação Section - EPIC REDESIGN -->
     <section class="sobre-epic" id="sobre">
-        <!-- Animated background particles -->
-        <div class="sobre-particles" id="sobre-particles"></div>
         <div class="sobre-glow-orb sobre-glow-orb-1"></div>
         <div class="sobre-glow-orb sobre-glow-orb-2"></div>
 
@@ -117,14 +118,14 @@
                     <div class="sobre-stat-icon"><i class="fa-solid fa-water"></i></div>
                     <span class="sobre-stat-number" data-target="167">0</span>
                     <span class="sobre-stat-unit">km²</span>
-                    <span class="sobre-stat-label">de Lago Exclusivo</span>
+                    <span class="sobre-stat-label">de Lago</span>
                 </div>
                 <div class="sobre-stat-divider"></div>
                 <div class="sobre-stat-item">
                     <div class="sobre-stat-icon"><i class="fa-solid fa-fish-fins"></i></div>
-                    <span class="sobre-stat-number" data-target="30">0</span>
-                    <span class="sobre-stat-unit">kg+</span>
-                    <span class="sobre-stat-label">Recordes Registrados</span>
+                    <span class="sobre-stat-number" data-target="98">0</span>
+                    <span class="sobre-stat-unit">cm</span>
+                    <span class="sobre-stat-label">Maior Dourado Registrado</span>
                 </div>
                 <div class="sobre-stat-divider"></div>
                 <div class="sobre-stat-item">
@@ -161,8 +162,8 @@
                     <div class="sobre-card-icon">
                         <i class="fa-solid fa-ship"></i>
                     </div>
-                    <h3 class="sobre-card-title">Frota de Elite</h3>
-                    <p class="sobre-card-text">Barcos <strong>100% equipados</strong> com motores potentes, sonares de última geração, iscas premium e tudo que você precisa pra batalhar com o Rei do Rio.</p>
+                    <h3 class="sobre-card-title">Embarcação de Elite</h3>
+                    <p class="sobre-card-text">Embarcação <strong>100% equipada</strong> com motores potentes, iscas premium e tudo que você precisa pra batalhar com o Rei do Rio.</p>
                     <div class="sobre-card-tag"><i class="fa-solid fa-gear"></i> Equipamento Premium</div>
                 </div>
 
@@ -370,22 +371,53 @@
                 </div>
             </div>
             
-            <div class="lando-cta-section">
-                <div class="marquee-bg">
-                    <div class="marquee-track">
-                        <span>PACOTE SOB MEDIDA</span><span class="outline">CUSTOM PACKAGE</span>
-                        <span>PACOTE SOB MEDIDA</span><span class="outline">CUSTOM PACKAGE</span>
-                        <span>PACOTE SOB MEDIDA</span><span class="outline">CUSTOM PACKAGE</span>
-                        <span>PACOTE SOB MEDIDA</span><span class="outline">CUSTOM PACKAGE</span>
+            <div class="custom-cta-epic">
+                <!-- Decorative Elements -->
+                <div class="cta-corner cta-corner-tl"></div>
+                <div class="cta-corner cta-corner-tr"></div>
+                <div class="cta-corner cta-corner-bl"></div>
+                <div class="cta-corner cta-corner-br"></div>
+                <div class="cta-glow-accent"></div>
+
+                <div class="cta-inner">
+                    <span class="cta-eyebrow"><i class="fa-solid fa-wand-magic-sparkles"></i> EXPERIÊNCIA SOB MEDIDA</span>
+                    
+                    <h3 class="cta-epic-title">
+                        <span class="cta-title-small">Monte seu</span>
+                        <span class="cta-title-big text-gradient-gold">Pacote dos Sonhos</span>
+                    </h3>
+                    
+                    <p class="cta-epic-desc">Grupos maiores ou aquela pescaria épica com os amigos. <strong>Nós montamos a operação perfeita</strong> — do barco à hospedagem.</p>
+                    
+                    <!-- Feature Chips -->
+                    <div class="cta-chips">
+                        <div class="cta-chip">
+                            <i class="fa-solid fa-users"></i>
+                            <span>Grupos de qualquer tamanho</span>
+                        </div>
+                        <div class="cta-chip">
+                            <i class="fa-solid fa-calendar-check"></i>
+                            <span>Datas flexíveis</span>
+                        </div>
+                        <div class="cta-chip">
+                            <i class="fa-solid fa-utensils"></i>
+                            <span>Cardápio personalizado</span>
+                        </div>
+                        <div class="cta-chip">
+                            <i class="fa-solid fa-gem"></i>
+                            <span>Opção All Inclusive</span>
+                        </div>
                     </div>
-                </div>
-                <div class="cta-magnetic-content text-center">
-                    <h3 class="cta-mega-title gsap-reveal-text">PRECISA DE UM PACOTE<br>PERSONALIZADO?</h3>
-                    <p class="cta-subtitle gsap-reveal-text">Grupos maiores, eventos corporativos ou datas especiais. Montamos a operação perfeita para a sua necessidade.</p>
-                    <div class="magnetic-wrap" data-magnetic>
-                        <a href="https://wa.me/554299162340?text=Ol%C3%A1%21%20Gostaria%20de%20montar%20um%20pacote%20personalizado%20para%20a%20Eldorado%20Lake." target="_blank" class="btn-magnetic-whatsapp">
-                            <span class="btn-text"><i class="fa-brands fa-whatsapp"></i> MONTAR AGORA</span>
+
+                    <!-- Epic CTA Button -->
+                    <div class="cta-button-wrap">
+                        <a href="https://wa.me/554299162340?text=Ol%C3%A1%21%20Gostaria%20de%20montar%20um%20pacote%20personalizado%20para%20a%20Eldorado%20Lake." target="_blank" class="cta-epic-btn" id="btn-custom-package">
+                            <span class="cta-btn-pulse"></span>
+                            <i class="fa-brands fa-whatsapp"></i>
+                            <span class="cta-btn-label">Montar Meu Pacote</span>
+                            <i class="fa-solid fa-arrow-right cta-btn-arrow"></i>
                         </a>
+                        <span class="cta-btn-hint">Resposta em até 2 horas</span>
                     </div>
                 </div>
             </div>
@@ -884,6 +916,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     
     <!-- Custom JavaScript -->
-    <script src="js/script.js?v=3.0"></script>
+    <script src="js/script.js?v=4.0"></script>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/554299162340" target="_blank" class="whatsapp-float" id="whatsapp-float-btn" aria-label="Fale conosco no WhatsApp">
+        <span class="whatsapp-float-pulse"></span>
+        <span class="whatsapp-float-pulse whatsapp-float-pulse-2"></span>
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 </body>
 </html>

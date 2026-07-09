@@ -1563,7 +1563,7 @@ footer {
    Galeria Carousel Section
    ========================================== */
 .galeria-section {
-    background-color: var(--bg-dark);
+    background-color: #060a13;
     position: relative;
     overflow: hidden;
 }
@@ -2418,7 +2418,7 @@ footer {
 /* Main Section */
 .sobre-epic {
     position: relative;
-    background: linear-gradient(180deg, #060a13 0%, #0a1628 40%, #0d1b30 60%, #060a13 100%);
+    background: #060a13;
     padding: 140px 0 120px;
     overflow: hidden;
 }
@@ -2452,16 +2452,7 @@ footer {
     100% { transform: translate(30px, -40px) scale(1.15); }
 }
 
-/* Particles Canvas */
-.sobre-particles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-}
+
 
 /* Section Header */
 .sobre-header {
@@ -2856,95 +2847,361 @@ footer {
     }
 }
 
-/* Lando CTA Section */
-.lando-cta-section {
+/* --- EPIC CTA SECTION REDESIGN --- */
+
+.custom-cta-epic {
     position: relative;
-    background-color: #0a0a0a;
-    min-height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-top: 80px;
+    padding: 60px 48px;
+    background: linear-gradient(145deg, rgba(13, 22, 38, 0.7), rgba(10, 16, 28, 0.9));
+    border: 1px solid rgba(229, 193, 88, 0.12);
+    border-radius: 28px;
     overflow: hidden;
-    padding: 100px 20px;
+    text-align: center;
 }
-.marquee-bg {
+.custom-cta-epic::before {
+    content: '';
     position: absolute;
-    top: 50%;
-    left: 0;
-    width: 200vw;
-    transform: translateY(-50%) rotate(-5deg);
-    opacity: 0.04;
+    inset: -1px;
+    border-radius: 28px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(229, 193, 88, 0.3), transparent 40%, transparent 60%, rgba(229, 193, 88, 0.2));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* Corner Accents */
+.cta-corner {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-color: rgba(229, 193, 88, 0.25);
+    border-style: solid;
+    border-width: 0;
+    z-index: 1;
+}
+.cta-corner-tl { top: 16px; left: 16px; border-top-width: 2px; border-left-width: 2px; border-radius: 4px 0 0 0; }
+.cta-corner-tr { top: 16px; right: 16px; border-top-width: 2px; border-right-width: 2px; border-radius: 0 4px 0 0; }
+.cta-corner-bl { bottom: 16px; left: 16px; border-bottom-width: 2px; border-left-width: 2px; border-radius: 0 0 0 4px; }
+.cta-corner-br { bottom: 16px; right: 16px; border-bottom-width: 2px; border-right-width: 2px; border-radius: 0 0 4px 0; }
+
+/* Glow Accent */
+.cta-glow-accent {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 250px;
+    background: radial-gradient(ellipse, rgba(229, 193, 88, 0.08) 0%, transparent 70%);
     pointer-events: none;
     z-index: 0;
 }
-.marquee-track {
-    display: flex;
-    white-space: nowrap;
-    animation: marquee-scroll 30s linear infinite;
-}
-.marquee-track span {
-    font-family: 'Outfit', sans-serif;
-    font-size: clamp(6rem, 15vw, 12rem);
-    font-weight: 900;
-    padding-right: 40px;
-    color: #fff;
-    text-transform: uppercase;
-}
-.marquee-track span.outline {
-    color: transparent;
-    -webkit-text-stroke: 2px #fff;
-}
-@keyframes marquee-scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
 
-.cta-magnetic-content {
+/* Inner Content */
+.cta-inner {
     position: relative;
     z-index: 2;
-    max-width: 800px;
-}
-.cta-mega-title {
-    font-family: 'Outfit', sans-serif;
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-weight: 800;
-    line-height: 1;
-    color: #fff;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-}
-.cta-subtitle {
-    font-size: 1.3rem;
-    color: #aaa;
-    margin-bottom: 50px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
-.magnetic-wrap {
-    display: inline-block;
-    padding: 30px; /* Buffer for magnetic pull */
-}
-.btn-magnetic-whatsapp {
+/* Eyebrow */
+.cta-eyebrow {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    background-color: #25D366;
-    color: #000;
+    gap: 8px;
+    background: linear-gradient(135deg, rgba(229, 193, 88, 0.12), rgba(229, 193, 88, 0.04));
+    border: 1px solid rgba(229, 193, 88, 0.2);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--primary-gold);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+}
+.cta-eyebrow i {
+    font-size: 0.8rem;
+}
+
+/* Title */
+.cta-epic-title {
+    margin-bottom: 20px;
+}
+.cta-title-small {
+    display: block;
+    font-family: var(--font-body);
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+}
+.cta-title-big {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 800;
-    font-family: 'Outfit', sans-serif;
-    font-size: 1.2rem;
-    padding: 20px 40px;
-    border-radius: 100px;
+    line-height: 1.05;
+    letter-spacing: -2px;
+}
+
+/* Description */
+.cta-epic-desc {
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    line-height: 1.8;
+    color: var(--text-muted);
+    max-width: 550px;
+    margin: 0 auto 32px;
+}
+.cta-epic-desc strong {
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+/* Feature Chips */
+.cta-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+.cta-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+.cta-chip i {
+    color: var(--primary-gold);
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+.cta-chip:hover {
+    border-color: rgba(229, 193, 88, 0.25);
+    color: var(--text-light);
+}
+
+/* CTA Button */
+.cta-button-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+.cta-epic-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 18px 40px;
+    border-radius: 60px;
     text-decoration: none;
-    transition: transform 0.1s ease-out, background-color 0.3s;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.25);
+    letter-spacing: 0.5px;
 }
-.btn-magnetic-whatsapp:hover {
-    background-color: #1ebc59;
+.cta-epic-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(37, 211, 102, 0.35);
 }
-.btn-magnetic-whatsapp i {
-    font-size: 1.5rem;
-    margin-right: 10px;
+.cta-epic-btn i.fa-whatsapp {
+    font-size: 1.4rem;
+}
+.cta-btn-arrow {
+    font-size: 0.85rem;
+    transition: transform 0.3s ease;
+}
+.cta-epic-btn:hover .cta-btn-arrow {
+    transform: translateX(4px);
+}
+
+/* Pulse ring */
+.cta-btn-pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 60px;
+    border: 2px solid rgba(37, 211, 102, 0.5);
+    animation: ctaPulse 2s ease-out infinite;
+    pointer-events: none;
+}
+@keyframes ctaPulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.25); opacity: 0; }
+}
+
+/* Hint */
+.cta-btn-hint {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    opacity: 0.6;
+    letter-spacing: 0.5px;
+}
+
+/* CTA Responsive */
+@media (max-width: 768px) {
+    .custom-cta-epic {
+        margin-top: 48px;
+        padding: 40px 24px;
+        border-radius: 20px;
+    }
+    .cta-corner { width: 24px; height: 24px; }
+    .cta-corner-tl, .cta-corner-tr { top: 10px; }
+    .cta-corner-bl, .cta-corner-br { bottom: 10px; }
+    .cta-corner-tl, .cta-corner-bl { left: 10px; }
+    .cta-corner-tr, .cta-corner-br { right: 10px; }
+    .cta-chips {
+        gap: 8px;
+    }
+    .cta-chip {
+        font-size: 0.75rem;
+        padding: 8px 14px;
+    }
+    .cta-epic-btn {
+        padding: 16px 32px;
+        font-size: 1rem;
+    }
+}
+
+/* ============================================
+   GLOBAL FLOATING PARTICLES
+   ============================================ */
+.global-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+/* Hide particles when hero is in full viewport */
+.hero-section ~ .global-particles {
+    opacity: 1;
+}
+
+/* Global particle dots */
+.global-particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+@keyframes globalParticleRise {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    8% { opacity: var(--p-opacity); }
+    88% { opacity: var(--p-opacity); }
+    100% {
+        transform: translateY(calc(-100vh - 20px)) translateX(var(--p-drift));
+        opacity: 0;
+    }
+}
+
+/* ============================================
+   UNIFIED BLACK BACKGROUNDS FOR ALL SECTIONS
+   ============================================ */
+.rancho-section,
+.pacotes-section,
+.videos-section,
+.contato-section {
+    background-color: #060a13;
+}
+
+/* ============================================
+   FLOATING WHATSAPP BUTTON - EPIC 3D
+   ============================================ */
+.whatsapp-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #25D366, #128C7E);
+    border-radius: 50%;
+    z-index: 999;
+    text-decoration: none;
+    color: #fff;
+    font-size: 2rem;
+    box-shadow:
+        0 6px 20px rgba(37, 211, 102, 0.45),
+        0 12px 40px rgba(0, 0, 0, 0.35),
+        inset 0 2px 4px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.35s ease;
+    animation: whatsappBounce 3s ease-in-out infinite;
+}
+.whatsapp-float:hover {
+    transform: scale(1.12) translateY(-4px);
+    box-shadow:
+        0 10px 30px rgba(37, 211, 102, 0.55),
+        0 20px 50px rgba(0, 0, 0, 0.4),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 6px rgba(0, 0, 0, 0.2);
+}
+.whatsapp-float i {
+    position: relative;
+    z-index: 3;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Pulsing Rings */
+.whatsapp-float-pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2.5px solid rgba(37, 211, 102, 0.5);
+    animation: whatsappPulseRing 2.5s ease-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+.whatsapp-float-pulse-2 {
+    animation-delay: 1.25s;
+}
+@keyframes whatsappPulseRing {
+    0% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.5); opacity: 0.25; }
+    100% { transform: scale(2); opacity: 0; }
+}
+@keyframes whatsappBounce {
+    0%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-8px); }
+    50% { transform: translateY(0); }
+    65% { transform: translateY(-4px); }
+    80% { transform: translateY(0); }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        width: 56px;
+        height: 56px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 1.7rem;
+    }
 }
 
