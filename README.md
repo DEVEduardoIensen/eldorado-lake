@@ -1,57 +1,37 @@
-# 🎣 Eldorado Lake - Pesca Esportiva ao Dourado
+# Eldorado Lake - Official Website
 
-> Um website institucional premium de altíssima performance desenvolvido para a maior operação de pesca esportiva ao Dourado no Lago Foz do Areia (Pinhão, Paraná).
+## Overview
+This repository contains the source code for the official Eldorado Lake website. The project is a high-performance landing page tailored for the sport fishing sector, specifically highlighting operations at Lago Foz do Areia, Paraná.
 
----
+## Technical Architecture
+The application is built using a modern, lightweight, and dependency-free stack to ensure maximum performance, security, and scalability.
 
-## ✨ Design & Identidade Visual
+- **Markup & Styling**: HTML5 and CSS3 (Vanilla). Utilizes CSS Grid and Flexbox for fully responsive layouts across all device viewports.
+- **Interactivity**: Vanilla ES6+ JavaScript. Features modular components including custom lightboxes, intersection observers, scroll-based logic, and dynamic DOM manipulation without the overhead of heavy frameworks.
+- **Assets Optimization**: Full integration of WebP image formatting. Image compression algorithms were applied to maintain visual fidelity while strictly minimizing bandwidth consumption, optimizing for mobile data connections.
+- **Media**: Background video optimized for web delivery (MP4), heavily compressed to guarantee near-instant First Contentful Paint (FCP) and Largest Contentful Paint (LCP).
 
-O projeto foi meticulosamente desenhado seguindo uma proposta visual sofisticada e moderna com a temática **Aquatic Dark & Gold**:
-*   **Luxo & Sofisticação**: Fundo ultra-escuro (Deep Black/Navy) combinado com gradientes dourados metálicos e detalhes translúcidos (*Glassmorphism*).
-*   **Tipografia Nobre**: Uso das fontes Google Fonts **Outfit** (para títulos marcantes e dinâmicos) e **Inter** (para um corpo de texto limpo e legível).
-*   **Imersão Visual**: Vídeo de altíssima definição em background cobrindo 100% da viewport, entregando uma experiência imersiva e cinematográfica (sem barras pretas verticais ou distorções, mantido no aspecto nativo com object-fit cover).
-*   **Micro-animações**: Transições suaves e efeitos dinâmicos de hover em cards, botões e imagens.
-*   **Lightbox & Modal de Detalhes**: Modais flutuantes interativos para visualização direta de vídeos e detalhamento dos pacotes em texto estruturado sem carregar imagens estáticas.
+## Design System
+The visual identity follows a strict "Aquatic Dark & Gold" theme.
+- **Typography**: Primary headings utilize Outfit; body text utilizes Inter.
+- **UI/UX Patterns**: Glassmorphism effects, custom micro-animations, and dynamic hover states designed to increase user retention and conversion rates.
+- **Accessibility**: Includes considerations for reduced motion and responsive font scaling.
 
----
+## Features
+1. **Hero Section**: High-resolution video background with synchronized, performant scroll animations.
+2. **Infrastructure**: Responsive grid displays detailing accommodations and services.
+3. **Packages**: Interactive pricing tiers with clear value propositions.
+4. **Media Gallery**: Integrated YouTube and Instagram embeds, alongside a highly optimized image gallery with a custom modal viewer.
+5. **Contact/Booking**: Direct WhatsApp integration routing for immediate lead capture.
 
-## ⚡ Performance Extrema (Otimização WebP)
+## Deployment Strategy
+This project is configured for seamless deployment on Vercel's Global Edge Network.
+- **Hosting**: Vercel.
+- **Analytics**: Vercel Web Analytics integrated for real-time visitor tracking and insights.
+- **Performance**: Edge caching ensures global delivery times under 50ms.
 
-O código foi otimizado a nível extremo para garantir fluidez impecável em conexões 4G:
-*   **Compressão Híbrida WebP**: O projeto passou por uma migração total para a última geração WebP.
-    *   **Alta Fidelidade (Quality 99)**: Elementos visuais primordiais (background, fotos do rancho e assets-chave) rodam na maior qualidade fotográfica possível, pesando menos que JPEGs não comprimidos.
-    *   **Galeria Ultra-Rápida (Quality 85)**: Para maximizar o carregamento instantâneo, as 43 imagens da galeria sofreram tuning fino para qualidade 85, poupando absurdos **4.8 Megabytes** em dados móveis num único carregamento, resultando em um ganho direto de 2 a 3 segundos na métrica LCP (Largest Contentful Paint).
-*   **Asset Cleanup**: Zero lixo de código. Arquivos originais em JPG, scripts locais (como python tools) e imagens não utilizadas foram purgados do repositório final.
-
----
-
-## 🚀 Funcionalidades
-
-1.  **Apresentação da Operação**: Destaque para a pesca 100% esportiva (prática do pesque e solte) com guias especializados no Lago Foz do Areia.
-2.  **Infraestrutura do Rancho**: Cards detalhados sobre as suítes confortáveis, culinária típica regional e deck panorâmico.
-3.  **Pacotes de Pesca**: Exibição responsiva e interativa em 3D dos planos de pesca (Premium e Standard) destacando as inclusões e preços diretamente na página.
-4.  **Galeria de Ação**: Integração nativa com vídeos do YouTube de Thiago Witeck e Reels do Instagram, e galeria hiper-otimizada.
-5.  **Formulário de Contato Inteligente**: Sistema de validação integrado que direciona os dados inseridos diretamente para o WhatsApp de reservas da operação (ocultado inteligentemente no layout responsivo móvel, priorizando o Floating Action Button do WhatsApp).
-
----
-
-## 🛠️ Tecnologias Utilizadas
-
-Projeto 100% focado em performance pura (*vanilla*), sem overhead de frameworks pesados:
-*   **HTML5** (Semântico e estruturado)
-*   **CSS3** (Variáveis nativas, Flexbox, Grid e Transições fluídas)
-*   **JavaScript (ES6+)** (Manipulação de DOM, Lightbox Modular)
-*   **FontAwesome** (Pacote de ícones SVG otimizados)
-*   **Formatos Otimizados**: Imagens exclusivamente `.webp` e vídeos em `.mp4` com compressão web.
+## Development & Maintenance
+The codebase is structured for easy maintenance. Content updates (text, images, prices) can be performed directly via the repository files. AI-assisted editing is fully supported due to the semantic nature of the HTML structure.
 
 ---
-
-## 🌐 Deploy na Vercel (Hobby Tier)
-
-Este projeto está pronto e foi concebido para rodar no Vercel (Global Edge Network) de forma gratuita (Tier Hobby).
-**Capacidade de Tráfego Estimada:**
-*   A Vercel Hobby fornece **100 GB** de banda por mês.
-*   Considerando a nossa recém-implementada otimização extrema, o peso total da Home Page + Imagens de alta conversão reduziu de forma agressiva. 
-*   **Cálculo**: Se o visitante consome cerca de 10-15MB carregando o vídeo, a cota suporta cerca de **6.500 a 10.000 visitas puras (limpas) por mês**. Considerando o Cache de Navegador (visitors recorrentes custam 0 MB), a capacidade real pode escalar facilmente para **15.000 a 20.000 acessos mensais** totalmente de graça e blindado contra picos.
-
-*Desenvolvido com dedicação para a Eldorado Lake e Thiago Witeck.*
+*Proprietary code developed for Eldorado Lake operations.*
