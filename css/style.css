@@ -2413,108 +2413,446 @@ footer {
         display: none !important; /* Hide WhatsApp button in header on tablet/mobile */
     }
 }
-/* --- ULTRA MODERN LANDO NORRIS STYLE (GSAP) --- */
+/* --- EPIC SOBRE SECTION REDESIGN --- */
 
-/* Narrative Section GSAP */
-.lando-sobre-narrative {
-    background-color: var(--background-dark);
-    padding: 120px 0;
+/* Main Section */
+.sobre-epic {
     position: relative;
+    background: linear-gradient(180deg, #060a13 0%, #0a1628 40%, #0d1b30 60%, #060a13 100%);
+    padding: 140px 0 120px;
     overflow: hidden;
 }
-.narrative-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 5%;
-    display: flex;
-    flex-direction: column;
-    gap: 80px;
+
+/* Animated Glow Orbs */
+.sobre-glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
 }
-@media (min-width: 992px) {
-    .narrative-container {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-    }
+.sobre-glow-orb-1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(229, 193, 88, 0.12) 0%, transparent 70%);
+    top: -100px;
+    right: -150px;
+    animation: sobreOrbFloat 8s ease-in-out infinite alternate;
 }
-.narrative-text-col {
-    flex: 1;
+.sobre-glow-orb-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+    bottom: -50px;
+    left: -100px;
+    animation: sobreOrbFloat 10s ease-in-out infinite alternate-reverse;
+}
+@keyframes sobreOrbFloat {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, -40px) scale(1.15); }
+}
+
+/* Particles Canvas */
+.sobre-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Section Header */
+.sobre-header {
+    position: relative;
     z-index: 2;
-    padding-right: 20px;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 80px;
 }
-.narrative-title {
-    font-family: 'Outfit', sans-serif;
-    font-size: clamp(3rem, 6vw, 6rem);
+.sobre-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, rgba(229, 193, 88, 0.15), rgba(229, 193, 88, 0.05));
+    border: 1px solid rgba(229, 193, 88, 0.3);
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--primary-gold);
+    margin-bottom: 32px;
+    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+.sobre-badge i {
+    font-size: 0.9rem;
+}
+
+/* Mega Title */
+.sobre-mega-title {
+    font-family: var(--font-heading);
     font-weight: 800;
-    line-height: 0.9;
-    margin-bottom: 40px;
-    letter-spacing: -2px;
+    line-height: 0.92;
+    margin-bottom: 36px;
+    letter-spacing: -3px;
 }
-.gsap-scrub-text-wrapper {
-    max-width: 600px;
+.sobre-title-line {
+    display: block;
+    font-size: clamp(3.5rem, 8vw, 7.5rem);
+    color: var(--text-light);
+    opacity: 0;
+    transform: translateY(40px);
 }
-.gsap-scrub-text {
-    font-size: 1.5rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.2);
-    margin-bottom: 20px;
-    background: linear-gradient(to right, #fff 50%, rgba(255,255,255,0.2) 50%);
-    background-size: 200% 100%;
-    background-position: 100% 0;
+.sobre-title-highlight {
+    background: linear-gradient(135deg, var(--primary-gold) 0%, #f5d87a 40%, #e5c158 60%, #cfab44 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    /* This will be scrubbed by GSAP */
+    filter: drop-shadow(0 0 30px rgba(229, 193, 88, 0.3));
+    font-size: clamp(4rem, 10vw, 9rem);
+    letter-spacing: -5px;
 }
 
-.narrative-image-col {
-    flex: 1;
+/* Lead Text */
+.sobre-lead {
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    line-height: 1.8;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(20px);
+}
+.sobre-lead strong {
+    color: var(--primary-gold);
+    font-weight: 600;
+}
+
+/* Stats Bar */
+.sobre-stats-bar {
     position: relative;
-    width: 100%;
-    min-height: 600px;
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 0;
+    background: linear-gradient(135deg, rgba(13, 22, 38, 0.8), rgba(20, 32, 54, 0.6));
+    border: 1px solid rgba(229, 193, 88, 0.15);
+    border-radius: 24px;
+    padding: 40px 32px;
+    margin-bottom: 80px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    opacity: 0;
+    transform: translateY(30px);
 }
-.moodboard {
-    position: relative;
-    width: 100%;
-    height: 100%;
+.sobre-stat-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 0 16px;
 }
-.mood-img {
-    position: absolute;
-    border-radius: 20px;
-    object-fit: cover;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+.sobre-stat-icon {
+    font-size: 1.5rem;
+    color: var(--primary-gold);
+    margin-bottom: 8px;
+    opacity: 0.8;
 }
-.mood-img-1 {
-    width: 60%;
-    height: 450px;
-    top: 0;
-    left: 0;
-    z-index: 2;
+.sobre-stat-number {
+    font-family: var(--font-heading);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    color: var(--text-light);
+    line-height: 1;
+    letter-spacing: -2px;
 }
-.mood-img-2 {
-    width: 65%;
-    height: 380px;
-    bottom: 50px;
-    right: 0;
-    z-index: 1;
+.sobre-stat-unit {
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-weight: 700;
+    color: var(--primary-gold);
+    line-height: 1;
+    margin-top: -4px;
+}
+.sobre-stat-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    text-align: center;
+    margin-top: 4px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.sobre-stat-divider {
+    width: 1px;
+    height: 70px;
+    background: linear-gradient(180deg, transparent, rgba(229, 193, 88, 0.3), transparent);
+    flex-shrink: 0;
 }
 
-@media (max-width: 992px) {
-    .narrative-image-col {
-        min-height: 500px;
+/* Feature Cards Grid */
+.sobre-cards-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 80px;
+}
+
+/* Individual Card */
+.sobre-card {
+    position: relative;
+    background: linear-gradient(145deg, rgba(13, 22, 38, 0.7), rgba(10, 16, 28, 0.9));
+    border: 1px solid rgba(229, 193, 88, 0.1);
+    border-radius: 20px;
+    padding: 36px 28px 28px;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+    opacity: 0;
+    transform: translateY(50px);
+    cursor: default;
+}
+.sobre-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+.sobre-card:hover {
+    border-color: rgba(229, 193, 88, 0.35);
+    transform: translateY(-8px) !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(229, 193, 88, 0.08);
+}
+.sobre-card:hover::before {
+    opacity: 1;
+}
+
+/* Card Glow Effect */
+.sobre-card-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(229, 193, 88, 0.08), transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+.sobre-card:hover .sobre-card-glow {
+    opacity: 1;
+}
+
+/* Card Icon */
+.sobre-card-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(229, 193, 88, 0.15), rgba(229, 193, 88, 0.05));
+    border: 1px solid rgba(229, 193, 88, 0.2);
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    color: var(--primary-gold);
+    transition: transform 0.4s ease, background 0.4s ease;
+}
+.sobre-card:hover .sobre-card-icon {
+    transform: scale(1.1) rotate(-5deg);
+    background: linear-gradient(135deg, rgba(229, 193, 88, 0.25), rgba(229, 193, 88, 0.1));
+}
+
+/* Card Title */
+.sobre-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+/* Card Text */
+.sobre-card-text {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+.sobre-card-text strong {
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+/* Card Tag */
+.sobre-card-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(229, 193, 88, 0.08);
+    border: 1px solid rgba(229, 193, 88, 0.15);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary-gold);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* Epic Quote */
+.sobre-epic-quote {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 48px 40px;
+    background: linear-gradient(135deg, rgba(229, 193, 88, 0.04), rgba(229, 193, 88, 0.02));
+    border: 1px solid rgba(229, 193, 88, 0.1);
+    border-radius: 24px;
+    opacity: 0;
+    transform: translateY(20px);
+}
+.sobre-quote-marks {
+    font-size: 2.5rem;
+    color: var(--primary-gold);
+    opacity: 0.4;
+    margin-bottom: 16px;
+}
+.sobre-quote-text {
+    font-family: var(--font-body);
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    font-style: italic;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 20px;
+}
+.sobre-quote-text em {
+    color: var(--primary-gold);
+    font-style: italic;
+}
+.sobre-quote-text strong {
+    color: var(--primary-gold);
+}
+.sobre-quote-author {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.sobre-quote-name {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-light);
+}
+.sobre-quote-role {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* ============================================
+   SOBRE SECTION RESPONSIVE
+   ============================================ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .sobre-epic {
+        padding: 100px 0 80px;
     }
-    .mood-img-1 {
-        height: 350px;
+    .sobre-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
-    .mood-img-2 {
-        height: 280px;
-        bottom: 0;
+    .sobre-header {
+        margin-bottom: 60px;
     }
-    .gsap-scrub-text {
-        font-size: 1.25rem;
+    .sobre-stats-bar {
+        padding: 32px 20px;
+        margin-bottom: 60px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .sobre-epic {
+        padding: 80px 0 60px;
+    }
+    .sobre-header {
+        margin-bottom: 48px;
+    }
+    .sobre-mega-title {
+        letter-spacing: -2px;
+    }
+    .sobre-title-highlight {
+        letter-spacing: -3px;
+    }
+    .sobre-stats-bar {
+        flex-wrap: wrap;
+        gap: 24px;
+        padding: 28px 20px;
+        margin-bottom: 48px;
+        border-radius: 18px;
+    }
+    .sobre-stat-item {
+        flex: 0 0 calc(50% - 12px);
+        padding: 8px 0;
+    }
+    .sobre-stat-divider {
+        display: none;
+    }
+    .sobre-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-bottom: 48px;
+    }
+    .sobre-card {
+        padding: 28px 22px 22px;
+    }
+    .sobre-epic-quote {
+        padding: 32px 24px;
+    }
+    .sobre-glow-orb-1 {
+        width: 300px;
+        height: 300px;
+    }
+    .sobre-glow-orb-2 {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 400px) {
+    .sobre-badge {
+        font-size: 0.65rem;
+        padding: 8px 16px;
+        letter-spacing: 1.5px;
+    }
+    .sobre-stat-number {
+        font-size: 2rem;
+    }
+    .sobre-stat-unit {
+        font-size: 0.9rem;
     }
 }
 

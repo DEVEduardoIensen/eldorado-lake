@@ -28,7 +28,7 @@
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css?v=2.5">
+    <link rel="stylesheet" href="css/style.css?v=3.0">
     <!-- Preload Hero Video for faster LCP -->
     <link rel="preload" as="video" href="assets/videos/hero_video.mp4" type="video/mp4">
 </head>
@@ -92,22 +92,112 @@
         </div>
     </section>
 
-    <!-- Sobre / A Operação Section - NARRATIVE GSAP -->
-    <section class="lando-sobre-narrative" id="sobre">
-        <div class="narrative-container">
-            <div class="narrative-text-col">
-                <h2 class="narrative-title text-gradient-gold">SOBRE A<br>OPERAÇÃO</h2>
-                <div class="gsap-scrub-text-wrapper">
-                    <p class="gsap-scrub-text">O Lago Foz do Areia é reconhecido nacionalmente pela força e abundância de seus Dourados. Nossa operação oferece guias locais experientes que conhecem os melhores pontos de pesca, garantindo que você tenha as melhores chances de fisgar o cobiçado Rei do Rio.</p>
-                    <br>
-                    <p class="gsap-scrub-text">Toda a nossa estrutura é pensada para proporcionar conforto, segurança e esportividade, respeitando o meio ambiente através da prática rigorosa do pesque e solte de 100% dos Dourados. Embarcações equipadas e um atendimento focado na sua melhor experiência.</p>
+    <!-- Sobre / A Operação Section - EPIC REDESIGN -->
+    <section class="sobre-epic" id="sobre">
+        <!-- Animated background particles -->
+        <div class="sobre-particles" id="sobre-particles"></div>
+        <div class="sobre-glow-orb sobre-glow-orb-1"></div>
+        <div class="sobre-glow-orb sobre-glow-orb-2"></div>
+
+        <div class="container">
+            <!-- Section Header - Dramatic -->
+            <div class="sobre-header">
+                <span class="sobre-badge"><i class="fa-solid fa-crown"></i> A MAIOR OPERAÇÃO DO PARANÁ</span>
+                <h2 class="sobre-mega-title">
+                    <span class="sobre-title-line sobre-anim-line">ONDE O</span>
+                    <span class="sobre-title-line sobre-title-highlight sobre-anim-line">DOURADO</span>
+                    <span class="sobre-title-line sobre-anim-line">É REI.</span>
+                </h2>
+                <p class="sobre-lead sobre-anim-fade">O Lago Foz do Areia não é apenas um destino — é o <strong>epicentro da pesca esportiva ao Dourado</strong> no Brasil. Águas profundas, correntezas poderosas e o peixe mais cobiçado do continente te esperam.</p>
+            </div>
+
+            <!-- Epic Stats Counter Bar -->
+            <div class="sobre-stats-bar sobre-anim-fade">
+                <div class="sobre-stat-item">
+                    <div class="sobre-stat-icon"><i class="fa-solid fa-water"></i></div>
+                    <span class="sobre-stat-number" data-target="167">0</span>
+                    <span class="sobre-stat-unit">km²</span>
+                    <span class="sobre-stat-label">de Lago Exclusivo</span>
+                </div>
+                <div class="sobre-stat-divider"></div>
+                <div class="sobre-stat-item">
+                    <div class="sobre-stat-icon"><i class="fa-solid fa-fish-fins"></i></div>
+                    <span class="sobre-stat-number" data-target="30">0</span>
+                    <span class="sobre-stat-unit">kg+</span>
+                    <span class="sobre-stat-label">Recordes Registrados</span>
+                </div>
+                <div class="sobre-stat-divider"></div>
+                <div class="sobre-stat-item">
+                    <div class="sobre-stat-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <span class="sobre-stat-number" data-target="100">0</span>
+                    <span class="sobre-stat-unit">%</span>
+                    <span class="sobre-stat-label">Pesque & Solte</span>
+                </div>
+                <div class="sobre-stat-divider"></div>
+                <div class="sobre-stat-item">
+                    <div class="sobre-stat-icon"><i class="fa-solid fa-star"></i></div>
+                    <span class="sobre-stat-number" data-target="8">0</span>
+                    <span class="sobre-stat-unit">anos</span>
+                    <span class="sobre-stat-label">de Experiência</span>
                 </div>
             </div>
-            
-            <div class="narrative-image-col">
-                <div class="moodboard">
-                    <img src="assets/images/hero_bg.webp" alt="Estrutura e Pesca" class="mood-img mood-img-1 gsap-parallax-up" loading="lazy">
-                    <img src="assets/images/dourado_banner.webp" alt="Dourado" class="mood-img mood-img-2 gsap-parallax-down" loading="lazy">
+
+            <!-- Feature Cards Grid -->
+            <div class="sobre-cards-grid">
+                <!-- Card 1 -->
+                <div class="sobre-card sobre-anim-card" data-tilt>
+                    <div class="sobre-card-glow"></div>
+                    <div class="sobre-card-icon">
+                        <i class="fa-solid fa-location-crosshairs"></i>
+                    </div>
+                    <h3 class="sobre-card-title">Pontos Secretos</h3>
+                    <p class="sobre-card-text">Nossos guias conhecem <strong>cada curva, cada barranco</strong> e cada ponto quente do lago. Anos de experiência mapeando os melhores spots onde os gigantes se escondem.</p>
+                    <div class="sobre-card-tag"><i class="fa-solid fa-map-pin"></i> +50 Pontos Mapeados</div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="sobre-card sobre-anim-card" data-tilt>
+                    <div class="sobre-card-glow"></div>
+                    <div class="sobre-card-icon">
+                        <i class="fa-solid fa-ship"></i>
+                    </div>
+                    <h3 class="sobre-card-title">Frota de Elite</h3>
+                    <p class="sobre-card-text">Barcos <strong>100% equipados</strong> com motores potentes, sonares de última geração, iscas premium e tudo que você precisa pra batalhar com o Rei do Rio.</p>
+                    <div class="sobre-card-tag"><i class="fa-solid fa-gear"></i> Equipamento Premium</div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="sobre-card sobre-anim-card" data-tilt>
+                    <div class="sobre-card-glow"></div>
+                    <div class="sobre-card-icon">
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                    </div>
+                    <h3 class="sobre-card-title">100% Pesque & Solte</h3>
+                    <p class="sobre-card-text">Nosso compromisso é <strong>inegociável</strong>: cada Dourado fisgado retorna ao lago. Praticamos a pesca esportiva com respeito total ao ecossistema.</p>
+                    <div class="sobre-card-tag"><i class="fa-solid fa-leaf"></i> Sustentabilidade</div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="sobre-card sobre-anim-card" data-tilt>
+                    <div class="sobre-card-glow"></div>
+                    <div class="sobre-card-icon">
+                        <i class="fa-solid fa-bolt-lightning"></i>
+                    </div>
+                    <h3 class="sobre-card-title">Adrenalina Pura</h3>
+                    <p class="sobre-card-text">Sinta a explosão de um Dourado de <strong>+20kg</strong> atacando sua isca. Saltos acrobáticos, corridas brutais e a briga mais intensa da pesca continental.</p>
+                    <div class="sobre-card-tag"><i class="fa-solid fa-fire"></i> Emoção Extrema</div>
+                </div>
+            </div>
+
+            <!-- Epic Quote / Testimony -->
+            <div class="sobre-epic-quote sobre-anim-fade">
+                <div class="sobre-quote-marks"><i class="fa-solid fa-quote-left"></i></div>
+                <blockquote class="sobre-quote-text">
+                    "Você não pesca o Dourado — você <em>duela</em> com ele. E quando ele salta brilhando ao sol, você entende por que ele é chamado de <strong>Rei do Rio</strong>."
+                </blockquote>
+                <div class="sobre-quote-author">
+                    <span class="sobre-quote-name">— Equipe Eldorado Lake</span>
+                    <span class="sobre-quote-role">8 anos na água</span>
                 </div>
             </div>
         </div>

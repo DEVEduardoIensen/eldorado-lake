@@ -482,63 +482,86 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
         gsap.registerPlugin(ScrollTrigger);
 
-        // Narrative Text Reveal Scrub (Background Clip)
-        const scrubTexts = document.querySelectorAll('.gsap-scrub-text');
-        scrubTexts.forEach(text => {
-            gsap.to(text, {
-                backgroundPosition: "0% 0",
-                ease: "none",
+        // ==========================================
+        // EPIC SOBRE SECTION ANIMATIONS
+        // ==========================================
+
+        // Title Lines Stagger Reveal
+        const sobreTitleLines = document.querySelectorAll('.sobre-anim-line');
+        if (sobreTitleLines.length) {
+            gsap.to(sobreTitleLines, {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                stagger: 0.2,
+                ease: "power3.out",
                 scrollTrigger: {
-                    trigger: text,
-                    start: "top 80%",
-                    end: "bottom 50%",
-                    scrub: 0.5
+                    trigger: '.sobre-header',
+                    start: "top 80%"
+                }
+            });
+        }
+
+        // Fade-in elements
+        const sobreFades = document.querySelectorAll('.sobre-anim-fade');
+        sobreFades.forEach(el => {
+            gsap.to(el, {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%"
                 }
             });
         });
 
-        // Narrative Title Reveal
-        gsap.fromTo('.narrative-title',
-            { opacity: 0, rotationX: -90, y: 50 },
-            { 
-                opacity: 1, rotationX: 0, y: 0, 
-                duration: 1.5, 
+        // Cards stagger reveal
+        const sobreCards = document.querySelectorAll('.sobre-anim-card');
+        if (sobreCards.length) {
+            gsap.to(sobreCards, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.15,
                 ease: "power3.out",
                 scrollTrigger: {
-                    trigger: '.narrative-title',
+                    trigger: '.sobre-cards-grid',
                     start: "top 80%"
                 }
-            }
-        );
-
-        // Moodboard Parallax Overlap
-        const moodImgUp = document.querySelector('.gsap-parallax-up');
-        if (moodImgUp) {
-            gsap.to(moodImgUp, {
-                y: -50,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: '.moodboard',
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: true
-                }
             });
         }
 
-        const moodImgDown = document.querySelector('.gsap-parallax-down');
-        if (moodImgDown) {
-            gsap.to(moodImgDown, {
-                y: 50,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: '.moodboard',
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: true
+        // Animated Counter
+        const statNumbers = document.querySelectorAll('.sobre-stat-number');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.dataset.target);
+                    const duration = 2000;
+                    const start = performance.now();
+                    
+                    const animate = (now) => {
+                        const elapsed = now - start;
+                        const progress = Math.min(elapsed / duration, 1);
+                        // Ease out cubic
+                        const eased = 1 - Math.pow(1 - progress, 3);
+                        el.textContent = Math.floor(target * eased);
+                        if (progress < 1) {
+                            requestAnimationFrame(animate);
+                        } else {
+                            el.textContent = target;
+                        }
+                    };
+                    requestAnimationFrame(animate);
+                    counterObserver.unobserve(el);
                 }
             });
-        }
+        }, { threshold: 0.5 });
+        
+        statNumbers.forEach(num => counterObserver.observe(num));
 
         // Magnetic Button
         const magneticElements = document.querySelectorAll('[data-magnetic]');
@@ -567,6 +590,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    // ==========================================
+    // SOBRE SECTION - FLOATING PARTICLES
+    // ==========================================
+    const initSobreParticles = () => {
+        const container = document.getElementById('sobre-particles');
+        if (!container) return;
+        
+        const particleCount = 40;
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            const size = Math.random() * 3 + 1;
+            const left = Math.random() * 100;
+            const delay = Math.random() * 8;
+            const duration = Math.random() * 6 + 8;
+            const opacity = Math.random() * 0.3 + 0.1;
+            
+            particle.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                background: rgba(229, 193, 88, ${opacity});
+                border-radius: 50%;
+                left: ${left}%;
+                bottom: -10px;
+                animation: sobreParticleFloat ${duration}s linear ${delay}s infinite;
+                pointer-events: none;
+            `;
+            container.appendChild(particle);
+        }
+    };
+
+    // Add particle keyframes dynamically
+    const particleStyle = document.createElement('style');
+    particleStyle.textContent = `
+        @keyframes sobreParticleFloat {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(${Math.random() > 0.5 ? '' : '-'}30px); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(particleStyle);
+
     // Bootstrap app
     init();
+    initSobreParticles();
 });
