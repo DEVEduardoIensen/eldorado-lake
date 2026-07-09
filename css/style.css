@@ -113,7 +113,7 @@ body {
 
 
 .section-padding {
-    padding: 100px 0;
+    padding: 80px 0;
 }
 
 .text-center {
@@ -1703,7 +1703,7 @@ footer {
 
 @media (max-width: 991px) {
     .section-padding {
-            padding: 80px 0;
+            padding: 65px 0;
         }
         
         .grid-4 {
@@ -1846,7 +1846,7 @@ footer {
         }
         
         .section-padding {
-            padding: 50px 0;
+            padding: 45px 0;
         }
     
         .scroll-down {
@@ -2085,7 +2085,7 @@ footer {
         }
     
         .section-padding {
-            padding: 40px 0;
+            padding: 35px 0;
         }
         
         .video-grid {
@@ -2419,7 +2419,7 @@ footer {
 .sobre-epic {
     position: relative;
     background: #060a13;
-    padding: 140px 0 120px;
+    padding: 110px 0 90px;
     overflow: hidden;
 }
 
@@ -2768,7 +2768,7 @@ footer {
 /* Tablet */
 @media (max-width: 1024px) {
     .sobre-epic {
-        padding: 100px 0 80px;
+        padding: 80px 0 65px;
     }
     .sobre-cards-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -2786,7 +2786,7 @@ footer {
 /* Mobile */
 @media (max-width: 768px) {
     .sobre-epic {
-        padding: 80px 0 60px;
+        padding: 60px 0 45px;
     }
     .sobre-header {
         margin-bottom: 48px;
@@ -2851,10 +2851,10 @@ footer {
 
 .custom-cta-epic {
     position: relative;
-    margin-top: 80px;
+    margin-top: 60px;
     padding: 60px 48px;
     background: linear-gradient(145deg, rgba(13, 22, 38, 0.7), rgba(10, 16, 28, 0.9));
-    border: 1px solid rgba(229, 193, 88, 0.12);
+    border: none;
     border-radius: 28px;
     overflow: hidden;
     text-align: center;
@@ -3152,7 +3152,6 @@ footer {
         inset 0 2px 4px rgba(255, 255, 255, 0.25),
         inset 0 -2px 6px rgba(0, 0, 0, 0.2);
     transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.35s ease;
-    animation: whatsappBounce 3s ease-in-out infinite;
 }
 .whatsapp-float:hover {
     transform: scale(1.12) translateY(-4px);
@@ -3166,32 +3165,6 @@ footer {
     position: relative;
     z-index: 3;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-}
-
-/* Pulsing Rings */
-.whatsapp-float-pulse {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    border: 2.5px solid rgba(37, 211, 102, 0.5);
-    animation: whatsappPulseRing 2.5s ease-out infinite;
-    pointer-events: none;
-    z-index: 1;
-}
-.whatsapp-float-pulse-2 {
-    animation-delay: 1.25s;
-}
-@keyframes whatsappPulseRing {
-    0% { transform: scale(1); opacity: 0.7; }
-    50% { transform: scale(1.5); opacity: 0.25; }
-    100% { transform: scale(2); opacity: 0; }
-}
-@keyframes whatsappBounce {
-    0%, 100% { transform: translateY(0); }
-    30% { transform: translateY(-8px); }
-    50% { transform: translateY(0); }
-    65% { transform: translateY(-4px); }
-    80% { transform: translateY(0); }
 }
 
 /* Mobile adjustments */

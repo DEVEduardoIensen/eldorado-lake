@@ -17,8 +17,7 @@ Após realizar QUALQUER alteração visual ou estrutural, você DEVE executar os
 2. Instrua o subagente a forçar a limpeza de cache (hard refresh) para garantir que as alterações enviadas no último `git push` estejam ativas.
 3. Instrua o subagente a redimensionar a janela e validar o layout especificamente nos seguintes perfis de tela:
    - iPhone 13 (mobile)
-   - Samsung Galaxy A23 (mobile longo)
-   - Notebook Padrão (desktop comum)
-   - Monitor Ultrawide (desktop grande)
+
+   - Monitor(desktop grande)
 4. Analise as evidências (screenshots) geradas pelo subagente.
 5. Se o layout estiver quebrado, desalinhado ou não profissional em qualquer um desses dispositivos, você deve corrigir o código localmente, commitar, fazer o push e acionar o subagente novamente para re-testar, resolvendo o problema de forma autônoma.
