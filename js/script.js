@@ -621,7 +621,18 @@ document.addEventListener('DOMContentLoaded', () => {
             container.appendChild(particle);
         }
 
-
+        // Hide particles when hero is in view using simple scroll logic (more reliable on mobile)
+        const checkScroll = () => {
+            if (window.scrollY < window.innerHeight * 0.4) {
+                container.style.opacity = '0';
+            } else {
+                container.style.opacity = '1';
+            }
+        };
+        
+        container.style.transition = 'opacity 0.6s ease';
+        window.addEventListener('scroll', checkScroll, { passive: true });
+        checkScroll();
     };
 
     // Bootstrap app
