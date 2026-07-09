@@ -2488,7 +2488,7 @@ footer {
 .sobre-mega-title {
     font-family: var(--font-heading);
     font-weight: 800;
-    line-height: 0.92;
+    line-height: 1.05;
     margin-bottom: 36px;
     letter-spacing: -3px;
 }
@@ -3131,22 +3131,24 @@ footer {
 /* ============================================
    SPECIFIC SECTION SPACING ADJUSTMENTS
    ============================================ */
-.sobre-epic {
-    padding-bottom: 30px !important;
-}
-.rancho-section {
-    padding-top: 30px !important;
-}
+@media (min-width: 769px) {
+    .sobre-epic {
+        padding-bottom: 30px !important;
+    }
+    .rancho-section {
+        padding-top: 30px !important;
+    }
 
-.pacotes-section {
-    padding-bottom: 30px !important;
-}
-.videos-section {
-    padding-top: 30px !important;
-    padding-bottom: 30px !important;
-}
-.galeria-section {
-    padding-top: 30px !important;
+    .pacotes-section {
+        padding-bottom: 30px !important;
+    }
+    .videos-section {
+        padding-top: 30px !important;
+        padding-bottom: 30px !important;
+    }
+    .galeria-section {
+        padding-top: 30px !important;
+    }
 }
 
 
