@@ -3128,5 +3128,26 @@ footer {
     background-color: #060a13;
 }
 
+/* ============================================
+   SPECIFIC SECTION SPACING ADJUSTMENTS
+   ============================================ */
+.sobre-epic {
+    padding-bottom: 30px !important;
+}
+.rancho-section {
+    padding-top: 30px !important;
+}
+
+.pacotes-section {
+    padding-bottom: 30px !important;
+}
+.videos-section {
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+}
+.galeria-section {
+    padding-top: 30px !important;
+}
+
 
 
