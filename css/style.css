@@ -3171,31 +3171,15 @@ footer {
 .ml-banner-wrapper {
     position: relative;
     width: 100%;
-    max-width: 320px;
-    margin-bottom: 10px;
-}
-
-.ml-banner-img {
-    display: block;
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 12px;
-}
-
-/* ============================================
-   MERCADO LIVRE BANNER (FOOTER)
-   ============================================ */
-.ml-banner-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto 15px auto;
+    max-width: 220px;
+    margin: -50px auto 15px auto;
+    z-index: 5;
 }
 
 @media (min-width: 768px) {
     .ml-banner-wrapper {
-        max-width: 420px;
+        max-width: 300px;
+        margin: -110px auto 10px auto;
     }
 }
 
@@ -3205,6 +3189,46 @@ footer {
     height: auto;
     object-fit: contain;
     border-radius: 12px;
+}
+
+/* Speech Bubble styling */
+.ml-speech-bubble {
+    position: absolute;
+    top: -24px;
+    left: 55%;
+    transform: translateX(-50%);
+    background: #ffe600; /* Mercado Livre Yellow */
+    color: #03050a;
+    padding: 6px 14px;
+    border-radius: 14px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+    pointer-events: none;
+    animation: mlBubbleFloat 3s ease-in-out infinite;
+}
+
+.ml-speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 45%;
+    border-width: 6px 6px 0;
+    border-style: solid;
+    border-color: #ffe600 transparent;
+    display: block;
+    width: 0;
+}
+
+@keyframes mlBubbleFloat {
+    0%, 100% {
+        transform: translate(-50%, 0);
+    }
+    50% {
+        transform: translate(-50%, -6px);
+    }
 }
 
 /* Premium Button */
