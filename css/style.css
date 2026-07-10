@@ -3093,10 +3093,10 @@ footer {
 }
 
 /* Ensure specific media elements stay ABOVE the particles layer */
-.carousel-slide,
-.video-card,
-.gallery-slide,
-.package-card-3d,
+.rancho-carousel-wrapper,
+.video-grid,
+.galeria-carousel-wrapper,
+.packages-grid,
 .contato-map-wrapper {
     position: relative;
     z-index: 2;
