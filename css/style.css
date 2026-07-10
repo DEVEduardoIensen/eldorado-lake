@@ -3159,3 +3159,101 @@ footer {
         padding-top: 30px !important;
     }
 }
+
+/* ============================================
+   MERCADO LIVRE BANNER (FOOTER)
+   ============================================ */
+.ml-banner-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 10px;
+}
+
+.ml-banner-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* ============================================
+   MERCADO LIVRE BANNER (FOOTER)
+   ============================================ */
+.ml-banner-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 15px auto;
+}
+
+@media (min-width: 768px) {
+    .ml-banner-wrapper {
+        max-width: 420px;
+    }
+}
+
+.ml-banner-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+/* Premium Button */
+.ml-btn-container {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.ml-premium-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #FFE600 0%, #FFD100 100%);
+    color: #2D3277; /* Classic ML Blue */
+    font-weight: 800;
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    padding: 14px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(255, 230, 0, 0.2);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.ml-premium-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg);
+    animation: mlShine 4s infinite;
+}
+
+@keyframes mlShine {
+    0% { left: -100%; }
+    20% { left: 200%; }
+    100% { left: 200%; }
+}
+
+.ml-premium-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(255, 230, 0, 0.4);
+    color: #1a1e50;
+}
+
+.ml-btn-icon {
+    font-size: 1.2rem;
+}
