@@ -1188,9 +1188,55 @@ body {
     font-weight: 500;
 }
 
-/* Contato Form */
-.contato-form-wrapper {
+/* Contato Map */
+.contato-map-wrapper {
     @supports (backdrop-filter: blur(1px)) { backdrop-filter: var(--backdrop-blur); }
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.map-header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 6px;
+}
+
+.map-header h3 i {
+    color: var(--primary-gold);
+    margin-right: 8px;
+}
+
+.map-header p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.map-container {
+    width: 100%;
+    height: 350px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.map-container iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.map-directions-btn {
+    margin-top: 8px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .contact-form .form-group {
@@ -2092,7 +2138,7 @@ footer {
             font-size: 2rem;
         }
         
-        .glass-card, .packages-cta, .contato-form-wrapper {
+        .glass-card, .packages-cta, .contato-map-wrapper {
             padding: 24px;
         }
         
@@ -3042,8 +3088,20 @@ footer {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 1;
+    z-index: 0;
     overflow: hidden;
+}
+
+/* Ensure all content sections stack above the particles layer */
+.sobre-epic,
+.rancho-section,
+.pacotes-section,
+.videos-section,
+.galeria-section,
+.contato-section,
+footer {
+    position: relative;
+    z-index: 1;
 }
 /* Hide particles when hero is in full viewport */
 .hero-section ~ .global-particles {
