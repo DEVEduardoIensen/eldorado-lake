@@ -3172,14 +3172,14 @@ footer {
     position: relative;
     width: 100%;
     max-width: 220px;
-    margin: -50px auto 15px auto;
+    margin: 10px auto 15px auto;
     z-index: 5;
 }
 
 @media (min-width: 768px) {
     .ml-banner-wrapper {
         max-width: 300px;
-        margin: -110px auto 10px auto;
+        margin: 15px auto 10px auto;
     }
 }
 
@@ -3194,7 +3194,7 @@ footer {
 /* Speech Bubble styling */
 .ml-speech-bubble {
     position: absolute;
-    top: -24px;
+    top: 22%;
     left: 55%;
     transform: translateX(-50%);
     background: #ffe600; /* Mercado Livre Yellow */
