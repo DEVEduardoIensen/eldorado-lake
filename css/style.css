@@ -3088,20 +3088,18 @@ footer {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
     overflow: hidden;
 }
 
-/* Ensure all content sections stack above the particles layer */
-.sobre-epic,
-.rancho-section,
-.pacotes-section,
-.videos-section,
-.galeria-section,
-.contato-section,
-footer {
+/* Ensure specific media elements stay ABOVE the particles layer */
+.carousel-slide,
+.video-card,
+.gallery-slide,
+.package-card-3d,
+.contato-map-wrapper {
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 /* Hide particles when hero is in full viewport */
 .hero-section ~ .global-particles {
