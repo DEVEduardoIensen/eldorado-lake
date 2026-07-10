@@ -2744,6 +2744,11 @@ footer {
     color: var(--primary-gold);
     letter-spacing: 0.5px;
     text-transform: uppercase;
+    line-height: 1;
+}
+
+.sobre-card-tag i {
+    transform: translateY(-1px); /* Slight bump to align perfectly with uppercase text */
 }
 
 /* Epic Quote */
