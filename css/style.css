@@ -3197,12 +3197,6 @@ footer {
     .ml-banner-wrapper {
         max-width: 420px;
     }
-    
-    .ml-banner-img {
-        aspect-ratio: 16 / 9;
-        object-fit: cover;
-        object-position: center 20%; /* Keep the speech bubble visible */
-    }
 }
 
 .ml-banner-img {
