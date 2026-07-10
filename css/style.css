@@ -3194,7 +3194,7 @@ footer {
 /* Speech Bubble styling */
 .ml-speech-bubble {
     position: absolute;
-    top: 10%;
+    top: -30px;
     left: 55%;
     transform: translateX(-50%);
     background: #ffe600; /* Mercado Livre Yellow */
