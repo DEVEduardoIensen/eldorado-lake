@@ -3172,14 +3172,14 @@ footer {
     position: relative;
     width: 100%;
     max-width: 220px;
-    margin: 10px auto 15px auto;
+    margin: 35px auto 15px auto;
     z-index: 5;
 }
 
 @media (min-width: 768px) {
     .ml-banner-wrapper {
         max-width: 300px;
-        margin: 15px auto 10px auto;
+        margin: 45px auto 10px auto;
     }
 }
 
