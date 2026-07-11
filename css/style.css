@@ -179,45 +179,60 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 12px;
     font-family: var(--font-heading);
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 14px 28px;
-    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 16px 28px;
+    border-radius: 12px;
     cursor: pointer;
-    transition: transform var(--transition-smooth), opacity var(--transition-smooth), background-color var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth), color var(--transition-smooth);
     text-decoration: none;
-    border: 1px solid transparent;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border: 1px solid rgba(229, 193, 88, 0.35);
+    background: linear-gradient(145deg, rgba(15, 20, 35, 0.95), rgba(8, 12, 24, 0.98));
+    color: #e5c158;
+    box-shadow:
+        0 0 20px rgba(229, 193, 88, 0.08),
+        0 4px 20px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(229, 193, 88, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(229, 193, 88, 0) 0%,
+        rgba(229, 193, 88, 0.3) 50%,
+        rgba(229, 193, 88, 0) 100%
+    );
+    transform: skewX(-25deg);
+    animation: premiumShine 6s infinite;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    border-color: rgba(229, 193, 88, 0.8);
+    box-shadow:
+        0 0 30px rgba(229, 193, 88, 0.15),
+        0 8px 25px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(229, 193, 88, 0.2);
+    color: #ffd700;
 }
 
 .btn-sm {
-    padding: 10px 18px;
-    font-size: 0.9rem;
-}
-
-.btn-gold {
-    background-color: var(--primary-gold);
-    color: #060a13;
-    box-shadow: 0 4px 15px rgba(229, 193, 88, 0.3);
-}
-
-.btn-gold:hover {
-    background-color: var(--primary-gold-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(229, 193, 88, 0.4);
-}
-
-.btn-outline {
-    background-color: transparent;
-    color: var(--text-light);
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-.btn-outline:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    border-color: var(--primary-gold);
-    transform: translateY(-2px);
+    padding: 12px 20px;
+    font-size: 0.85rem;
 }
 
 .btn-whatsapp {
@@ -457,24 +472,6 @@ body {
     animation: fadeInUp 1.4s ease;
 }
 
-.btn-glow {
-    box-shadow: 0 0 20px rgba(229, 193, 88, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.2);
-}
-
-.btn-glow:hover {
-    box-shadow: 0 0 30px rgba(229, 193, 88, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.3);
-}
-
-.btn-glass {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.btn-glass:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.4);
-}
 
 .scroll-down {
     position: absolute;
