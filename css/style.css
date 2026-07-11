@@ -519,6 +519,18 @@ body {
     animation: fadeInUp 1.2s ease;
 }
 
+@media (max-width: 1600px) {
+    .hero-title {
+        font-size: 4.2rem;
+        margin-bottom: 24px;
+    }
+    .hero-subtitle {
+        font-size: 1.25rem;
+        margin-bottom: 35px;
+        max-width: 700px;
+    }
+}
+
 .hero-buttons {
     display: flex;
     gap: 20px;
