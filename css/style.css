@@ -3135,6 +3135,7 @@ footer {
     padding: 16px 28px;
     border-radius: 12px;
     text-decoration: none;
+    cursor: pointer;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     border: 1px solid rgba(229, 193, 88, 0.35);
