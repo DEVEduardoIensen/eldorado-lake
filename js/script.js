@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Utility functions
+
     const debounce = (func, wait = 20, immediate = true) => {
         let timeout;
         return function() {
@@ -28,10 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
-    // Global state
     let packageData = null;
 
-    // Initialization logic
     const init = () => {
         initSheets();
         initNavigation();
@@ -42,10 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
         initGSAPAnimations();
     };
 
-    // 1. Fetch Dynamic Prices from Google Sheets (CSV)
     const initSheets = () => {
         const GOOGLE_SHEETS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSsiDBa4mhgLZBQvxas6WmeD4f3Kh4QNd3IYciILeZP5wET9gGahlehf_VL4abL_lqL9W_LScUWa1F4/pub?output=csv";
-        
+
         if (GOOGLE_SHEETS_CSV_URL && GOOGLE_SHEETS_CSV_URL.startsWith("http")) {
             if (typeof Papa !== 'undefined') {
                 Papa.parse(GOOGLE_SHEETS_CSV_URL, {
@@ -61,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 if (row.length < 2) return;
                                 const packageType = row[0].trim().toLowerCase();
                                 const price = row[1].trim();
-                                
+
                                 if (packageType.includes('premium') && premiumEl) {
                                     premiumEl.innerText = price;
                                 } else if (packageType.includes('standard') && standardEl) {
@@ -82,12 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // 2. Navigation
     const initNavigation = () => {
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const navbarLinks = document.querySelector('.nav-links');
         const navItems = document.querySelectorAll('.nav-link');
-        
+
         if (mobileMenuBtn && navbarLinks) {
             mobileMenuBtn.addEventListener('click', () => {
                 navbarLinks.classList.toggle('active');
@@ -103,16 +99,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // 3. Dynamic Scroll Effects (Header & Spy)
     const initScrollEffects = () => {
         const header = document.getElementById('main-header');
         const sections = Array.from(document.querySelectorAll('section'));
         const navItems = Array.from(document.querySelectorAll('.nav-link'));
-        
+
         const handleScroll = throttle(() => {
             const scrollY = window.scrollY;
-            
-            // Header opacity
+
             if (header) {
                 if (scrollY > 50) {
                     header.classList.remove('header-transparent');
@@ -123,7 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Scroll spy
             let currentSection = '';
             for (let i = sections.length - 1; i >= 0; i--) {
                 const section = sections[i];
@@ -142,13 +135,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             }
-        }, 50); // 50ms limit
+        }, 50);
 
         window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll(); // Initial check
+        handleScroll();
     };
 
-    // 4. Modals & Lightbox
     const initModals = () => {
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
@@ -156,14 +148,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const lightboxIframe = document.getElementById('lightbox-iframe');
         const lightboxVideo = document.getElementById('lightbox-video');
         const closeBtn = document.getElementById('lightbox-close-btn');
-        
+
         const detailsModal = document.getElementById('details-modal');
         const detailsModalTag = document.getElementById('details-modal-tag');
         const detailsModalTitle = document.getElementById('details-modal-title');
         const detailsModalBody = document.getElementById('details-modal-body');
         const detailsCloseBtn = document.getElementById('details-close-btn');
 
-        // Fetch Packages Data
         fetch('data/packages.json')
             .then(res => {
                 if (!res.ok) throw new Error("HTTP error " + res.status);
@@ -174,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(err => console.error("Erro ao carregar dados dos pacotes:", err));
 
-        // Package Details
         const openDetailsModal = (packageKey) => {
             if (!detailsModal || !packageData) return;
             const details = packageData[packageKey];
@@ -209,7 +199,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target === detailsModal) closeDetailsModal();
         });
 
-        // Lightbox Images
         document.querySelectorAll('.carousel-slide, .gallery-slide').forEach(slide => {
             slide.addEventListener('click', () => {
                 if (!lightbox || !lightboxImg || !lightboxVideoContainer) return;
@@ -225,23 +214,22 @@ document.addEventListener('DOMContentLoaded', () => {
             slide.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') slide.click();
             });
-            // Make slides focusable
+
             slide.setAttribute('tabindex', '0');
         });
 
-        // Lightbox Videos
         document.querySelectorAll('.video-card').forEach(card => {
             card.addEventListener('click', () => {
                 if (!lightbox || !lightboxIframe || !lightboxVideo || !lightboxVideoContainer) return;
                 const videoSrc = card.getAttribute('data-video-src');
                 const isLocalVideo = videoSrc && (videoSrc.endsWith('.mp4') || !videoSrc.includes('//') || videoSrc.startsWith('assets/'));
-                
+
                 if (isLocalVideo) {
                     lightboxIframe.style.display = 'none';
                     lightboxIframe.src = '';
                     lightboxVideo.style.display = 'block';
                     lightboxVideo.src = videoSrc;
-                    
+
                     const handleMetadata = () => {
                         if (lightboxVideo.videoHeight > lightboxVideo.videoWidth) {
                             lightboxVideoContainer.classList.add('portrait-video');
@@ -258,14 +246,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     lightboxVideo.src = '';
                     lightboxIframe.style.display = 'block';
                     lightboxIframe.src = videoSrc;
-                    
+
                     if (videoSrc && videoSrc.includes('instagram.com')) {
                         lightboxVideoContainer.classList.add('portrait-video');
                     } else {
                         lightboxVideoContainer.classList.remove('portrait-video');
                     }
                 }
-                
+
                 if (lightboxImg) lightboxImg.style.display = 'none';
                 lightboxVideoContainer.style.display = 'block';
                 lightbox.style.display = 'flex';
@@ -309,27 +297,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // 5. Carousels
     const initCarousels = () => {
-        // Rancho Carousel
+
         const carouselTrack = document.querySelector('.carousel-track');
         const slides = Array.from(document.querySelectorAll('.carousel-slide'));
         const prevBtn = document.getElementById('carousel-prev');
         const nextBtn = document.getElementById('carousel-next');
         const indicators = Array.from(document.querySelectorAll('.carousel-indicators .indicator'));
-        
+
         if (carouselTrack && slides.length > 0) {
             let currentIndex = 0;
             let autoPlayInterval;
             const intervalTime = 4000;
-            
+
             const updateCarousel = (index) => {
                 if (index < 0) index = slides.length - 1;
                 else if (index >= slides.length) index = 0;
                 currentIndex = index;
-                
+
                 carouselTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
-                
+
                 slides.forEach((slide, i) => {
                     slide.classList.toggle('active', i === currentIndex);
                 });
@@ -337,26 +324,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     indicator.classList.toggle('active', i === currentIndex);
                 });
             };
-            
+
             const nextSlide = () => updateCarousel(currentIndex + 1);
             const prevSlide = () => updateCarousel(currentIndex - 1);
-            
+
             const startAutoPlay = () => {
                 stopAutoPlay();
                 autoPlayInterval = setInterval(nextSlide, intervalTime);
             };
             const stopAutoPlay = () => clearInterval(autoPlayInterval);
-            
+
             if (nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextSlide(); startAutoPlay(); });
             if (prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prevSlide(); startAutoPlay(); });
-            
+
             indicators.forEach((indicator, i) => {
                 indicator.addEventListener('click', (e) => {
                     e.stopPropagation();
                     updateCarousel(i);
                     startAutoPlay();
                 });
-                // Make indicators focusable
+
                 indicator.setAttribute('tabindex', '0');
                 indicator.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
@@ -365,60 +352,59 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             });
-            
+
             const carouselContainer = document.getElementById('rancho-carousel');
             if (carouselContainer) {
                 carouselContainer.addEventListener('mouseenter', stopAutoPlay);
                 carouselContainer.addEventListener('mouseleave', startAutoPlay);
-                // Also stop autoplay when focused inside for accessibility
+
                 carouselContainer.addEventListener('focusin', stopAutoPlay);
                 carouselContainer.addEventListener('focusout', startAutoPlay);
             }
-            
+
             startAutoPlay();
         }
 
-        // Gallery Carousel
         const galleryTrack = document.querySelector('.gallery-track');
         const gallerySlides = Array.from(document.querySelectorAll('.gallery-slide'));
         const galleryPrevBtn = document.getElementById('gallery-prev');
         const galleryNextBtn = document.getElementById('gallery-next');
-        
+
         if (galleryTrack && gallerySlides.length > 0) {
             let galleryIndex = 0;
             let galleryAutoPlayInterval;
-            
+
             const getVisibleItemsCount = () => {
                 const width = window.innerWidth;
                 if (width > 992) return 3;
                 if (width > 576) return 2;
                 return 1;
             };
-            
+
             const updateGallery = (index) => {
                 const maxIndex = gallerySlides.length - getVisibleItemsCount();
                 if (index < 0) index = maxIndex;
                 else if (index > maxIndex) index = 0;
-                
+
                 galleryIndex = index;
                 const slideWidth = gallerySlides[0].getBoundingClientRect().width;
                 const gap = 20;
                 const amountToMove = galleryIndex * (slideWidth + gap);
                 galleryTrack.style.transform = `translateX(-${amountToMove}px)`;
             };
-            
+
             const nextGallerySlide = () => updateGallery(galleryIndex + 1);
             const prevGallerySlide = () => updateGallery(galleryIndex - 1);
-            
+
             const startGalleryAutoPlay = () => {
                 stopGalleryAutoPlay();
                 galleryAutoPlayInterval = setInterval(nextGallerySlide, 4000);
             };
             const stopGalleryAutoPlay = () => clearInterval(galleryAutoPlayInterval);
-            
+
             if (galleryNextBtn) galleryNextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextGallerySlide(); startGalleryAutoPlay(); });
             if (galleryPrevBtn) galleryPrevBtn.addEventListener('click', (e) => { e.stopPropagation(); prevGallerySlide(); startGalleryAutoPlay(); });
-            
+
             const galleryCarouselContainer = document.getElementById('gallery-carousel');
             if (galleryCarouselContainer) {
                 galleryCarouselContainer.addEventListener('mouseenter', stopGalleryAutoPlay);
@@ -426,17 +412,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 galleryCarouselContainer.addEventListener('focusin', stopGalleryAutoPlay);
                 galleryCarouselContainer.addEventListener('focusout', startGalleryAutoPlay);
             }
-            
+
             window.addEventListener('resize', debounce(() => {
                 updateGallery(galleryIndex);
             }, 100));
-            
+
             startGalleryAutoPlay();
             updateGallery(0);
         }
     };
 
-    // 6. Contact Form Validation
     const initForm = () => {
         const contactForm = document.getElementById('contact-form');
         const formFeedback = document.getElementById('form-feedback');
@@ -444,15 +429,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (contactForm && formFeedback) {
             contactForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                
+
                 const nameEl = document.getElementById('form-name');
                 const phoneEl = document.getElementById('form-phone');
                 const messageEl = document.getElementById('form-message');
-                
+
                 const name = nameEl ? nameEl.value.trim() : '';
                 const phone = phoneEl ? phoneEl.value.trim() : '';
                 const message = messageEl ? messageEl.value.trim() : '';
-                
+
                 if (!name || !phone || !message) {
                     formFeedback.className = 'form-feedback error';
                     formFeedback.style.display = 'block';
@@ -464,7 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 formFeedback.style.display = 'block';
                 formFeedback.textContent = 'Mensagem validada! Redirecionando para o WhatsApp...';
 
-                const targetNumber = "554299162340"; 
+                const targetNumber = "554299162340";
                 const formattedMessage = `Olá, meu nome é *${name}* (${phone}).\n\n*Mensagem*:\n${message}`;
                 const whatsappUrl = `https://wa.me/${targetNumber}?text=${encodeURIComponent(formattedMessage)}`;
 
@@ -482,11 +467,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
         gsap.registerPlugin(ScrollTrigger);
 
-        // ==========================================
-        // EPIC SOBRE SECTION ANIMATIONS
-        // ==========================================
-
-        // Title Lines Stagger Reveal
         const sobreTitleLines = document.querySelectorAll('.sobre-anim-line');
         if (sobreTitleLines.length) {
             gsap.to(sobreTitleLines, {
@@ -502,7 +482,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Fade-in elements
         const sobreFades = document.querySelectorAll('.sobre-anim-fade');
         sobreFades.forEach(el => {
             gsap.to(el, {
@@ -517,7 +496,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Cards stagger reveal
         const sobreCards = document.querySelectorAll('.sobre-anim-card');
         if (sobreCards.length) {
             gsap.to(sobreCards, {
@@ -533,7 +511,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Animated Counter
         const statNumbers = document.querySelectorAll('.sobre-stat-number');
         const counterObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -542,11 +519,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     const target = parseInt(el.dataset.target);
                     const duration = 2000;
                     const start = performance.now();
-                    
+
                     const animate = (now) => {
                         const elapsed = now - start;
                         const progress = Math.min(elapsed / duration, 1);
-                        // Ease out cubic
+
                         const eased = 1 - Math.pow(1 - progress, 3);
                         el.textContent = Math.floor(target * eased);
                         if (progress < 1) {
@@ -560,17 +537,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }, { threshold: 0.5 });
-        
+
         statNumbers.forEach(num => counterObserver.observe(num));
 
-        // Magnetic Button
         const magneticElements = document.querySelectorAll('[data-magnetic]');
         magneticElements.forEach(el => {
             el.addEventListener('mousemove', (e) => {
                 const rect = el.getBoundingClientRect();
                 const x = e.clientX - rect.left - rect.width / 2;
                 const y = e.clientY - rect.top - rect.height / 2;
-                
+
                 gsap.to(el, {
                     x: x * 0.4,
                     y: y * 0.4,
@@ -590,9 +566,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // ==========================================
-    // GLOBAL FLOATING PARTICLES (snow upward)
-    // ==========================================
     const initGlobalParticles = () => {
         const container = document.getElementById('global-particles');
         if (!container) return;
@@ -607,7 +580,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const duration = Math.random() * 8 + 10;
             const opacity = Math.random() * 0.35 + 0.18;
             const drift = (Math.random() - 0.5) * 60;
-            
+
             particle.style.cssText = `
                 width: ${size}px;
                 height: ${size}px;
@@ -621,7 +594,6 @@ document.addEventListener('DOMContentLoaded', () => {
             container.appendChild(particle);
         }
 
-        // Hide particles when hero is in view using simple scroll logic (more reliable on mobile)
         const checkScroll = () => {
             if (window.scrollY < window.innerHeight * 0.4) {
                 container.style.opacity = '0';
@@ -629,13 +601,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 container.style.opacity = '1';
             }
         };
-        
+
         container.style.transition = 'opacity 0.6s ease';
         window.addEventListener('scroll', checkScroll, { passive: true });
         checkScroll();
     };
 
-    // Bootstrap app
     init();
     initGlobalParticles();
 });

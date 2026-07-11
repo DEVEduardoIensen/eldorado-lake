@@ -1,37 +1,31 @@
-/* 
-   Eldorado Lake CSS Style Sheet
-   Identity: Premium Aquatic Dark & Gold
-*/
-
 :root {
     --bg-dark: #060a13;
     --bg-dark-rgb: 6, 10, 19;
     --bg-card: rgba(13, 22, 38, 0.65);
     --bg-card-hover: rgba(20, 32, 54, 0.8);
     --bg-header: rgba(6, 10, 19, 0.85);
-    
+
     --primary-gold: #e5c158;
     --primary-gold-rgb: 229, 193, 88;
     --primary-gold-hover: #cfab44;
-    
+
     --text-light: #f3f4f6;
     --text-muted: #a1a8b9;
-    
+
     --border-gold: rgba(229, 193, 88, 0.25);
     --border-gold-hover: rgba(229, 193, 88, 0.5);
     --border-light: rgba(255, 255, 255, 0.05);
-    
+
     --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
     --backdrop-blur: blur(12px);
-    
+
     --transition-fast: 0.25s ease;
     --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    
+
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
 }
 
-/* Reset & Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -53,15 +47,11 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-
-/* Acessibilidade & Movimento */
 :focus-visible {
     outline: 2px dashed var(--primary-gold);
     outline-offset: 4px;
 }
 
-
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -81,7 +71,6 @@ body {
     background: var(--primary-gold);
 }
 
-/* Utility Layouts */
 .desktop-only { display: inline-block; }
 .mobile-only { display: none !important; }
 
@@ -102,7 +91,6 @@ body {
     margin: 0 auto;
     padding: 0 24px;
 }
-
 
 .section-padding {
     padding: 80px 0;
@@ -131,7 +119,6 @@ body {
     box-shadow: var(--glass-shadow);
 }
 
-/* Grids */
 .grid {
     display: grid;
     gap: 32px;
@@ -149,7 +136,6 @@ body {
     grid-template-columns: repeat(4, 1fr);
 }
 
-/* Section Header Styles */
 .section-header {
     margin-bottom: 60px;
     max-width: 700px;
@@ -189,7 +175,6 @@ body {
     font-size: 1.1rem;
 }
 
-/* Buttons */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -252,7 +237,6 @@ body {
     width: 100%;
 }
 
-/* Header & Navbar */
 #main-header {
     position: fixed;
     top: 0;
@@ -339,7 +323,6 @@ body {
     gap: 16px;
 }
 
-/* Mobile Menu Toggle */
 .mobile-menu-toggle {
     display: none;
     flex-direction: column;
@@ -371,7 +354,6 @@ body {
     transform: translateY(-8px) rotate(-45deg);
 }
 
-/* Hero Section */
 .hero-section {
     position: relative;
     height: 100vh;
@@ -525,7 +507,6 @@ body {
     animation: bounce 2s infinite;
 }
 
-/* Glassmorphism Cards */
 .glass-card {
     background: var(--bg-card);
     border: 1px solid var(--border-light);
@@ -543,7 +524,6 @@ body {
     box-shadow: 0 15px 40px rgba(229, 193, 88, 0.1);
 }
 
-/* Sobre Section */
 .sobre-image-wrapper {
     position: relative;
 }
@@ -608,7 +588,6 @@ body {
     font-size: 1.1rem;
 }
 
-/* Rancho Section */
 .card-icon {
     font-size: 2.5rem;
     color: var(--primary-gold);
@@ -626,7 +605,6 @@ body {
     color: var(--text-muted);
 }
 
-/* Rancho Carousel Styles */
 .rancho-carousel-wrapper {
     position: relative;
     max-width: 1000px;
@@ -713,7 +691,6 @@ body {
     color: #060a13;
 }
 
-/* Controls */
 .carousel-btn {
     position: absolute;
     top: 50%;
@@ -748,7 +725,6 @@ body {
     right: 25px;
 }
 
-/* Indicators */
 .carousel-indicators {
     position: absolute;
     bottom: 20px;
@@ -779,8 +755,6 @@ body {
     box-shadow: 0 0 10px rgba(229, 193, 88, 0.8);
 }
 
-/* Responsive adjustments */
-/* Pacotes Section */
 .pacotes-flyers {
     display: flex;
     justify-content: center;
@@ -796,8 +770,8 @@ body {
     padding: 40px 30px;
     width: 100%;
     max-width: 420px;
-    box-shadow: 
-        0 15px 35px rgba(0, 0, 0, 0.6), 
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.6),
         0 5px 15px rgba(0, 0, 0, 0.4),
         inset 0 1px 1px rgba(255, 255, 255, 0.1),
         inset 0 -1px 10px rgba(0, 0, 0, 0.5);
@@ -810,17 +784,15 @@ body {
     box-sizing: border-box;
 }
 
-/* 3D hover effects */
 .package-card-3d:hover {
     transform: translateY(-12px) scale(1.02);
     border-color: var(--primary-gold);
-    box-shadow: 
-        0 30px 60px rgba(229, 193, 88, 0.18), 
+    box-shadow:
+        0 30px 60px rgba(229, 193, 88, 0.18),
         0 15px 30px rgba(0, 0, 0, 0.7),
         inset 0 1px 2px rgba(255, 255, 255, 0.2);
 }
 
-/* Subtle glowing pulse behind the card on hover */
 .package-card-3d::before {
     content: '';
     position: absolute;
@@ -839,7 +811,6 @@ body {
     opacity: 1;
 }
 
-/* Card Badge (Popular tag or details highlight) */
 .package-badge {
     position: absolute;
     top: 18px;
@@ -877,7 +848,7 @@ body {
     align-items: center;
     justify-content: center;
     margin-bottom: 16px;
-    box-shadow: 
+    box-shadow:
         0 10px 20px rgba(0,0,0,0.3),
         inset 0 1px 1px rgba(255, 255, 255, 0.1);
     transition: transform 0.4s ease;
@@ -1009,9 +980,8 @@ body {
     margin-bottom: 20px;
 }
 
-/* Vídeos Section */
 .videos-section .container {
-    max-width: 1350px; /* Wider container for larger video cards on desktop */
+    max-width: 1350px;
 }
 
 .video-grid {
@@ -1034,7 +1004,7 @@ body {
 
 .video-thumbnail {
     position: relative;
-    aspect-ratio: 16/10; /* Taller aspect ratio for a larger image look */
+    aspect-ratio: 16/10;
     overflow: hidden;
 }
 
@@ -1087,22 +1057,21 @@ body {
 }
 
 .video-info {
-    padding: 24px; /* Increased padding */
+    padding: 24px;
 }
 
 .video-info h4 {
     font-family: var(--font-heading);
-    font-size: 1.25rem; /* Increased font-size */
+    font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 8px;
 }
 
 .video-info p {
     color: var(--text-muted);
-    font-size: 0.95rem; /* Increased font-size */
+    font-size: 0.95rem;
 }
 
-/* Contato Section */
 .contato-info {
     padding-right: 40px;
 }
@@ -1188,7 +1157,6 @@ body {
     font-weight: 500;
 }
 
-/* Contato Map */
 .contato-map-wrapper {
     @supports (backdrop-filter: blur(1px)) { backdrop-filter: var(--backdrop-blur); }
     display: flex;
@@ -1292,7 +1260,6 @@ body {
     border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
-/* Footer */
 footer {
     background-color: #03050a;
     border-top: 1px solid var(--border-light);
@@ -1390,7 +1357,6 @@ footer {
     font-size: 0.85rem;
 }
 
-/* Lightbox Modal */
 .lightbox-modal {
     display: none;
     position: fixed;
@@ -1461,7 +1427,6 @@ footer {
     aspect-ratio: auto;
 }
 
-/* Details Modal Styles */
 .details-modal-wrapper {
     width: 95%;
     max-width: 650px;
@@ -1541,7 +1506,6 @@ footer {
     margin-top: 15px;
 }
 
-/* Custom Scrollbar inside details modal */
 .details-modal-content::-webkit-scrollbar {
     width: 6px;
 }
@@ -1556,7 +1520,6 @@ footer {
     background: var(--primary-gold);
 }
 
-/* Animations Keyframes */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -1580,9 +1543,6 @@ footer {
     }
 }
 
-/* ==========================================
-   Responsive Helpers (Root Defaults)
-   ========================================== */
 .hide-on-desktop {
     display: none !important;
 }
@@ -1596,10 +1556,6 @@ footer {
     display: none !important;
 }
 
-/* Media Queries */
-/* ==========================================
-   Galeria Carousel Section
-   ========================================== */
 .galeria-section {
     background-color: #060a13;
     position: relative;
@@ -1610,7 +1566,7 @@ footer {
     position: relative;
     width: 100%;
     margin-top: 40px;
-    padding: 0 60px; /* Space for navigation arrows */
+    padding: 0 60px;
 }
 
 .galeria-carousel {
@@ -1628,7 +1584,7 @@ footer {
 
 .gallery-slide {
     position: relative;
-    flex: 0 0 calc(33.333% - 13.33px); /* 3 items visible on desktop */
+    flex: 0 0 calc(33.333% - 13.33px);
     aspect-ratio: 4 / 3;
     border-radius: 16px;
     overflow: hidden;
@@ -1694,7 +1650,6 @@ footer {
     color: #060a13;
 }
 
-/* Gallery Navigation Buttons positioning adjustment */
 .galeria-carousel-wrapper .carousel-btn {
     position: absolute;
     top: 50%;
@@ -1710,11 +1665,6 @@ footer {
     right: 0;
 }
 
-/* Responsive adjustments for Gallery */
-/* ==========================================
-   Responsive Helpers overrides
-   ========================================== */
-/* Style tweaks for partners in footer */
 .footer-social .partners-logos {
     margin-top: 30px;
     border-top: 1px solid var(--border-light);
@@ -1735,19 +1685,15 @@ footer {
     font-size: 0.75rem;
 }
 
-/* ==========================================
-   Media Queries (Grouped)
-   ========================================== */
-
 @media (max-width: 991px) {
     .section-padding {
             padding: 65px 0;
         }
-        
+
         .grid-4 {
             grid-template-columns: repeat(2, 1fr);
         }
-        
+
         .hero-section {
             height: 100vh;
             min-height: 600px;
@@ -1756,66 +1702,66 @@ footer {
             justify-content: center;
             padding: 80px 0 0 0;
         }
-    
+
         .scroll-down {
             display: none !important;
         }
-        
+
         .hero-title {
             font-size: 3rem;
         }
-    
+
         .nav-links {
             gap: 20px;
         }
-        
+
         .nav-link {
             font-size: 0.85rem;
         }
-    
+
         .floating-badge {
             right: 10px;
             bottom: 10px;
             padding: 14px 18px;
         }
-    
+
         .sobre-image-wrapper {
             align-self: start;
         }
-        
+
         .footer-container {
             grid-template-columns: repeat(2, 1fr);
         }
-        
+
         .footer-brand {
             grid-column: span 2;
             text-align: center;
         }
-    
+
         .footer-brand p {
             max-width: 600px;
             margin: 0 auto 20px auto;
         }
-    
+
         .footer-links {
             margin-left: auto;
             margin-right: 35%;
             width: fit-content;
         }
-    
+
         .video-grid {
             grid-template-columns: repeat(2, 1fr);
         }
-    
+
         .show-only-on-desktop {
             display: none !important;
         }
-    
+
         .show-only-on-tablet {
             display: block !important;
         }
     .gallery-slide {
-            flex: 0 0 calc(50% - 10px); /* 2 items visible */
+            flex: 0 0 calc(50% - 10px);
         }
         .galeria-carousel-wrapper {
             padding: 0 50px;
@@ -1843,11 +1789,11 @@ footer {
     .grid-2, .grid-3, .grid-4 {
             grid-template-columns: 1fr;
         }
-        
+
         .sobre-image-wrapper {
             margin-top: 40px;
         }
-        
+
         .floating-badge {
             left: 15px;
             right: auto;
@@ -1855,25 +1801,25 @@ footer {
             padding: 10px 16px;
             border-radius: 12px;
         }
-        
+
         .floating-badge .number {
             font-size: 1.35rem;
         }
-        
+
         .floating-badge .text {
             font-size: 0.65rem;
             margin-top: 2px;
             letter-spacing: 0.5px;
         }
-        
+
         .rancho-gallery {
             grid-template-columns: 1fr;
         }
-        
+
         .gallery-img {
             height: 280px;
         }
-        
+
         .hero-section {
             height: 100vh;
             min-height: 600px;
@@ -1882,51 +1828,51 @@ footer {
             justify-content: center;
             padding: 80px 0 0 0;
         }
-        
+
         .section-padding {
             padding: 65px 0;
         }
-    
+
         .scroll-down {
             display: none !important;
         }
-    
+
         .hero-title {
             font-size: 2.25rem;
         }
-        
+
         .hero-subtitle {
             font-size: 1.1rem;
         }
-        
+
         .contato-info {
             padding-right: 0;
             margin-bottom: 40px;
         }
-        
+
         .lightbox-close {
             top: 15px;
             right: 20px;
             font-size: 2.5rem;
         }
-        
+
         .contato-section .section-desc {
             display: none;
         }
-    
+
         .footer-logo {
             display: block;
             margin: 0 auto 24px auto;
             height: 50px;
         }
-    
+
         .partners-logos {
             text-align: center;
             margin-top: 30px;
             border-top: 1px solid var(--border-light);
             padding-top: 20px;
         }
-    
+
         .partners-logos h4 {
             font-size: 0.85rem;
             letter-spacing: 2px;
@@ -1934,14 +1880,14 @@ footer {
             color: var(--primary-gold);
             margin-bottom: 15px;
         }
-    
+
         .logos-flex {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 10px 20px;
         }
-    
+
         .partner-tag {
             font-size: 1rem;
             font-weight: 600;
@@ -1955,7 +1901,7 @@ footer {
             display: inline-block;
             min-height: auto;
         }
-    
+
         .partner-tag:hover {
             color: var(--primary-gold);
         }
@@ -1968,12 +1914,11 @@ footer {
         .show-only-on-tablet {
             display: none !important;
         }
-    
-        /* Mobile Menu Toggle & Drawer navigation enabled on mobile (<= 768px) */
+
         .mobile-menu-toggle {
             display: flex;
         }
-        
+
         .nav-links {
             display: flex;
             opacity: 0;
@@ -1981,7 +1926,7 @@ footer {
             transform: translateY(-15px);
             transition: opacity var(--transition-fast), transform var(--transition-smooth), visibility var(--transition-fast);
             pointer-events: none;
-            
+
             flex-direction: column;
             position: absolute;
             top: 100%;
@@ -1994,23 +1939,23 @@ footer {
             gap: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        
+
         .nav-links.active {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
             pointer-events: auto;
         }
-        
+
         .mobile-only-nav-btn {
             display: block;
             margin-top: 10px;
         }
-        
+
         .header-actions .btn-sm {
-            display: none; /* Hide WhatsApp button in mobile header, already in mobile drawer */
+            display: none;
         }
-    /* Fix contact section bottom empty space on mobile */
+
         .info-item:last-child {
             margin-bottom: 0 !important;
         }
@@ -2023,8 +1968,7 @@ footer {
         footer {
             padding-top: 30px !important;
         }
-        
-        /* Footer layout and spacing optimizations on mobile/tablet */
+
         .footer-container {
             grid-template-columns: 1fr !important;
             gap: 24px !important;
@@ -2076,7 +2020,7 @@ footer {
 @media (max-width: 1199px) {
     .desktop-only { display: none !important; }
     .mobile-only { display: inline-block !important; }
-    
+
     .hero-content {
         display: flex;
         flex-direction: column;
@@ -2085,32 +2029,32 @@ footer {
         width: 100%;
         margin: 30px auto 0 auto;
     }
-    
+
     .hero-title {
         font-size: 2.8rem;
         line-height: 1.15;
         margin-bottom: 30px;
     }
-    
+
     .pirate-font {
-        font-size: 6.5rem; /* Super valorizada no tablet */
+        font-size: 6.5rem;
         line-height: 1.05;
         padding: 0 15px;
     }
-    
+
     .hero-subtitle {
         font-size: 1.3rem;
         margin-bottom: 40px;
         max-width: 800px;
     }
-    
+
     .hero-buttons {
         display: flex;
         justify-content: center;
         width: 100%;
         gap: 30px;
     }
-    
+
     .hero-buttons .btn {
         padding: 16px 36px;
         font-size: 1.15rem;
@@ -2121,39 +2065,39 @@ footer {
     .hero-section {
             padding: 100px 0 40px 0;
         }
-    
+
         .section-padding {
             padding: 50px 0;
         }
-        
+
         .video-grid {
             grid-template-columns: 1fr;
         }
-        
+
         .section-header {
             margin-bottom: 40px;
         }
-        
+
         .section-title {
             font-size: 2rem;
         }
-        
+
         .glass-card, .packages-cta, .contato-map-wrapper {
             padding: 24px;
         }
-        
+
         .footer-container {
             grid-template-columns: 1fr;
             gap: 40px;
             margin-bottom: 40px;
         }
-        
+
         .footer-brand {
             grid-column: span 1;
             text-align: center;
             margin-bottom: 20px;
         }
-    
+
         .footer-brand p {
             margin: 0 auto;
             max-width: 100%;
@@ -2162,30 +2106,30 @@ footer {
             line-height: 1.6;
             color: var(--text-muted);
         }
-    
+
         .footer-links, .footer-social {
             text-align: center;
         }
-    
+
         .footer-links h4::after, .footer-social h4::after {
             left: 50%;
             transform: translateX(-50%);
         }
-    
+
         .social-icons {
             justify-content: center;
         }
     .gallery-slide {
-            flex: 0 0 100%; /* 1 item visible */
+            flex: 0 0 100%;
         }
         .galeria-carousel-wrapper {
             padding: 0 40px;
         }
     .footer-container {
-            margin-bottom: 20px !important; /* Reduced bottom space */
+            margin-bottom: 20px !important;
         }
         .footer-bottom {
-            padding-top: 20px !important; /* Reduced bottom divider space */
+            padding-top: 20px !important;
         }
 }
 
@@ -2199,7 +2143,7 @@ footer {
             justify-content: center;
             text-align: center;
         }
-        
+
         .hero-content {
             display: flex;
             flex-direction: column;
@@ -2208,50 +2152,49 @@ footer {
             padding-bottom: 0;
             margin-top: 20px;
         }
-        
+
         .scroll-down {
             display: none !important;
         }
-    
+
         .hero-title {
             font-size: 2.2rem;
             line-height: 1.15;
             margin-bottom: 20px;
         }
-        
+
         .pirate-font {
-            font-size: 4.5rem; /* Giant impact on mobile */
+            font-size: 4.5rem;
             line-height: 1.05;
             padding: 0 10px;
         }
-        
+
         .hero-subtitle {
             font-size: 1.05rem;
             margin-bottom: 30px;
         }
-        
+
         .hero-buttons {
             flex-direction: column;
             width: 100%;
             gap: 20px;
         }
-        
+
         .hero-buttons .btn {
             width: 100%;
             padding: 16px;
             font-size: 1.1rem;
         }
-        
+
         .carousel-container {
             height: 300px;
         }
-    
+
         #img-dourado-banner {
             aspect-ratio: 4 / 3;
             object-fit: cover;
         }
-    
-        /* Scaling 3D package cards on small viewports */
+
         .package-card-3d {
             padding: 30px 20px;
         }
@@ -2275,9 +2218,8 @@ footer {
         }
 }
 
-/* VALORIZAÇÃO HERO E NAVBAR PARA TABLET (iPad, etc) */
 @media (min-width: 769px) and (max-width: 1199px) {
-    /* Navbar Super Profissional e Destacada */
+
     #main-header {
         padding: 25px 0 !important;
     }
@@ -2305,8 +2247,7 @@ footer {
         height: 75px !important;
         filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6)) !important;
     }
-    
-    /* Títulos Hero Super Valorizados */
+
     .hero-content {
         margin: 60px auto 0 auto !important;
         padding: 0 20px;
@@ -2343,9 +2284,8 @@ footer {
     }
 }
 
-/* FIX: Dispositivos móveis em modo paisagem (landscape) com altura muito baixa */
 @media (max-height: 600px) and (orientation: landscape) {
-    /* Header/Navbar ajustes para não ocupar muito espaço */
+
     #main-header {
         padding: 10px 0 !important;
     }
@@ -2362,59 +2302,55 @@ footer {
         padding: 8px 16px !important;
         font-size: 0.9rem !important;
     }
-    
-    /* Hero section - permitir scroll se necessário e dar espaço em cima */
+
     .hero-section {
         min-height: 100vh !important;
         height: auto !important;
         padding-top: 80px !important;
         padding-bottom: 40px !important;
     }
-    
+
     .hero-content {
         margin: 20px auto 0 auto !important;
     }
-    
-    /* Reduzir os títulos absurdamente grandes */
+
     .hero-title {
         font-size: 2rem !important;
         margin-bottom: 15px !important;
     }
-    
+
     .pirate-font {
         font-size: 3.5rem !important;
         line-height: 1.1 !important;
         transform: scale(1) !important;
         margin-bottom: 10px !important;
     }
-    
+
     .hero-subtitle {
         font-size: 1rem !important;
         line-height: 1.4 !important;
         margin-bottom: 20px !important;
     }
-    
+
     .hero-buttons {
         gap: 15px !important;
     }
-    
+
     .hero-buttons .btn {
         padding: 12px 24px !important;
         font-size: 1rem !important;
     }
 
-    /* Ajustar botão flutuante se houver */
     .scroll-down {
         display: none !important;
     }
 }
 
-/* Enable hamburger menu on tablets and landscape mobiles (up to 1199px) */
 @media (max-width: 1199px) {
     .mobile-menu-toggle {
         display: flex !important;
     }
-    
+
     .nav-links {
         display: flex !important;
         opacity: 0;
@@ -2434,26 +2370,24 @@ footer {
         gap: 20px !important;
         box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
-    
+
     .nav-links.active {
         opacity: 1 !important;
         visibility: visible !important;
         transform: translateY(0) !important;
         pointer-events: auto !important;
     }
-    
+
     .mobile-only-nav-btn {
         display: block !important;
         margin-top: 10px;
     }
-    
+
     .header-actions .btn-sm {
-        display: none !important; /* Hide WhatsApp button in header on tablet/mobile */
+        display: none !important;
     }
 }
-/* --- EPIC SOBRE SECTION REDESIGN --- */
 
-/* Main Section */
 .sobre-epic {
     position: relative;
     background: #060a13;
@@ -2461,7 +2395,6 @@ footer {
     overflow: hidden;
 }
 
-/* Animated Glow Orbs */
 .sobre-glow-orb {
     position: absolute;
     border-radius: 50%;
@@ -2490,9 +2423,6 @@ footer {
     100% { transform: translate(30px, -40px) scale(1.15); }
 }
 
-
-
-/* Section Header */
 .sobre-header {
     position: relative;
     z-index: 2;
@@ -2522,7 +2452,6 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Mega Title */
 .sobre-mega-title {
     font-family: var(--font-heading);
     font-weight: 800;
@@ -2547,7 +2476,6 @@ footer {
     letter-spacing: -5px;
 }
 
-/* Lead Text */
 .sobre-lead {
     font-size: clamp(1.05rem, 2vw, 1.25rem);
     line-height: 1.8;
@@ -2562,7 +2490,6 @@ footer {
     font-weight: 600;
 }
 
-/* Stats Bar */
 .sobre-stats-bar {
     position: relative;
     z-index: 2;
@@ -2627,7 +2554,6 @@ footer {
     flex-shrink: 0;
 }
 
-/* Feature Cards Grid */
 .sobre-cards-grid {
     position: relative;
     z-index: 2;
@@ -2637,7 +2563,6 @@ footer {
     margin-bottom: 80px;
 }
 
-/* Individual Card */
 .sobre-card {
     position: relative;
     background: linear-gradient(145deg, rgba(13, 22, 38, 0.7), rgba(10, 16, 28, 0.9));
@@ -2670,7 +2595,6 @@ footer {
     opacity: 1;
 }
 
-/* Card Glow Effect */
 .sobre-card-glow {
     position: absolute;
     top: 50%;
@@ -2688,7 +2612,6 @@ footer {
     opacity: 1;
 }
 
-/* Card Icon */
 .sobre-card-icon {
     width: 56px;
     height: 56px;
@@ -2708,7 +2631,6 @@ footer {
     background: linear-gradient(135deg, rgba(229, 193, 88, 0.25), rgba(229, 193, 88, 0.1));
 }
 
-/* Card Title */
 .sobre-card-title {
     font-family: var(--font-heading);
     font-size: 1.3rem;
@@ -2718,7 +2640,6 @@ footer {
     letter-spacing: -0.5px;
 }
 
-/* Card Text */
 .sobre-card-text {
     font-size: 0.92rem;
     line-height: 1.7;
@@ -2730,7 +2651,6 @@ footer {
     font-weight: 600;
 }
 
-/* Card Tag */
 .sobre-card-tag {
     display: inline-flex;
     align-items: center;
@@ -2748,10 +2668,9 @@ footer {
 }
 
 .sobre-card-tag i {
-    transform: translateY(-1px); /* Slight bump to align perfectly with uppercase text */
+    transform: translateY(-1px);
 }
 
-/* Epic Quote */
 .sobre-epic-quote {
     position: relative;
     z-index: 2;
@@ -2804,11 +2723,6 @@ footer {
     letter-spacing: 2px;
 }
 
-/* ============================================
-   SOBRE SECTION RESPONSIVE
-   ============================================ */
-
-/* Tablet */
 @media (max-width: 1024px) {
     .sobre-epic {
         padding: 80px 0 65px;
@@ -2826,7 +2740,6 @@ footer {
     }
 }
 
-/* Mobile */
 @media (max-width: 768px) {
     .sobre-epic {
         padding: 80px 0 65px;
@@ -2875,7 +2788,6 @@ footer {
     }
 }
 
-/* Very small screens */
 @media (max-width: 400px) {
     .sobre-badge {
         font-size: 0.65rem;
@@ -2890,8 +2802,6 @@ footer {
     }
 }
 
-/* --- EPIC CTA SECTION REDESIGN --- */
-
 .custom-cta-epic {
     position: relative;
     margin-top: 60px;
@@ -2903,14 +2813,11 @@ footer {
     text-align: center;
 }
 
-
-/* Inner Content */
 .cta-inner {
     position: relative;
     z-index: 2;
 }
 
-/* Eyebrow */
 .cta-eyebrow {
     display: inline-flex;
     align-items: center;
@@ -2931,7 +2838,6 @@ footer {
     font-size: 0.8rem;
 }
 
-/* Title */
 .cta-epic-title {
     margin-bottom: 20px;
 }
@@ -2953,7 +2859,6 @@ footer {
     letter-spacing: -2px;
 }
 
-/* Description */
 .cta-epic-desc {
     font-size: clamp(0.95rem, 1.5vw, 1.1rem);
     line-height: 1.8;
@@ -2966,7 +2871,6 @@ footer {
     font-weight: 600;
 }
 
-/* Feature Chips */
 .cta-chips {
     display: flex;
     flex-wrap: wrap;
@@ -2996,7 +2900,6 @@ footer {
     color: var(--text-light);
 }
 
-/* CTA Button */
 .cta-button-wrap {
     display: flex;
     flex-direction: column;
@@ -3036,7 +2939,6 @@ footer {
     transform: translateX(4px);
 }
 
-/* Pulse ring */
 .cta-btn-pulse {
     position: absolute;
     inset: 0;
@@ -3050,7 +2952,6 @@ footer {
     100% { transform: scale(1.25); opacity: 0; }
 }
 
-/* Hint */
 .cta-btn-hint {
     font-size: 0.75rem;
     color: var(--text-muted);
@@ -3058,7 +2959,6 @@ footer {
     letter-spacing: 0.5px;
 }
 
-/* CTA Responsive */
 @media (max-width: 768px) {
     .custom-cta-epic {
         margin-top: 48px;
@@ -3083,9 +2983,6 @@ footer {
     }
 }
 
-/* ============================================
-   GLOBAL FLOATING PARTICLES
-   ============================================ */
 .global-particles {
     position: fixed;
     top: 0;
@@ -3097,7 +2994,6 @@ footer {
     overflow: hidden;
 }
 
-/* Ensure specific media elements stay ABOVE the particles layer */
 .rancho-carousel-wrapper,
 .video-grid,
 .galeria-carousel-wrapper,
@@ -3106,12 +3002,11 @@ footer {
     position: relative;
     z-index: 2;
 }
-/* Hide particles when hero is in full viewport */
+
 .hero-section ~ .global-particles {
     opacity: 1;
 }
 
-/* Global particle dots */
 .global-particle {
     position: absolute;
     border-radius: 50%;
@@ -3132,9 +3027,6 @@ footer {
     }
 }
 
-/* ============================================
-   UNIFIED BLACK BACKGROUNDS FOR ALL SECTIONS
-   ============================================ */
 .rancho-section,
 .pacotes-section,
 .videos-section,
@@ -3142,9 +3034,6 @@ footer {
     background-color: #060a13;
 }
 
-/* ============================================
-   SPECIFIC SECTION SPACING ADJUSTMENTS
-   ============================================ */
 @media (min-width: 769px) {
     .sobre-epic {
         padding-bottom: 30px !important;
@@ -3165,9 +3054,6 @@ footer {
     }
 }
 
-/* ============================================
-   MERCADO LIVRE BANNER (FOOTER)
-   ============================================ */
 .ml-banner-wrapper {
     position: relative;
     width: 100%;
@@ -3191,13 +3077,12 @@ footer {
     border-radius: 12px;
 }
 
-/* Speech Bubble styling */
 .ml-speech-bubble {
     position: absolute;
     top: -30px;
     left: 55%;
     transform: translateX(-50%);
-    background: #ffe600; /* Mercado Livre Yellow */
+    background: #ffe600;
     color: #03050a;
     padding: 6px 14px;
     border-radius: 14px;
@@ -3231,7 +3116,6 @@ footer {
     }
 }
 
-/* Premium Button */
 .ml-btn-container {
     width: 100%;
     max-width: 320px;
@@ -3244,7 +3128,7 @@ footer {
     justify-content: center;
     gap: 10px;
     background: linear-gradient(135deg, #FFE600 0%, #FFD100 100%);
-    color: #2D3277; /* Classic ML Blue */
+    color: #ffffff;
     font-weight: 800;
     font-family: var(--font-heading);
     font-size: 1.05rem;
@@ -3280,7 +3164,7 @@ footer {
 .ml-premium-btn:hover {
     transform: translateY(-3px) scale(1.02);
     box-shadow: 0 8px 25px rgba(255, 230, 0, 0.4);
-    color: #1a1e50;
+    color: #ffffff;
 }
 
 .ml-btn-icon {

@@ -31,7 +31,9 @@ This project is configured for seamless deployment on Vercel's Global Edge Netwo
 - **Performance**: Edge caching ensures global delivery times under 50ms.
 
 ## Development & Maintenance
-The codebase is structured for easy maintenance. Content updates (text, images, prices) can be performed directly via the repository files. AI-assisted editing is fully supported due to the semantic nature of the HTML structure.
+The codebase is structured for easy maintenance and maximum performance. Content updates (text, images, prices) can be performed directly via the repository files.
+
+Recent codebase optimization updates have removed obsolete background removal Python scripts, unused image assets, and cleaned up comments and excessive whitespaces to keep the source files clean, lightweight, and performant.
 
 ---
 *Proprietary code developed for Eldorado Lake operations.*
