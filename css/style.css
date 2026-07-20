@@ -1782,7 +1782,7 @@ footer {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 80px 0 0 0;
+            padding: 80px 0 80px 0;
         }
 
         .hero-container {
@@ -1800,16 +1800,22 @@ footer {
         }
 
         .scroll-down {
-            bottom: 25px;
+            bottom: 40px;
+        }
+
+        .hero-tagline-wrapper {
+            margin-bottom: 28px;
         }
 
         .hero-title {
-            font-size: 3rem;
+            font-size: 3.2rem;
+            margin-bottom: 28px;
         }
 
         .hero-subtitle {
-            font-size: 1.15rem;
-            max-width: 90%;
+            font-size: 1.2rem;
+            max-width: 85%;
+            margin-bottom: 40px;
         }
 
         .hero-buttons {
@@ -1931,7 +1937,7 @@ footer {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 80px 0 0 0;
+            padding: 80px 0 80px 0;
         }
 
         .section-padding {
@@ -1939,17 +1945,21 @@ footer {
         }
 
         .scroll-down {
-            bottom: 20px;
+            bottom: 35px;
+        }
+
+        .hero-tagline-wrapper {
+            margin-bottom: 22px;
         }
 
         .hero-title {
-            font-size: 2.25rem;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            margin-bottom: 22px;
         }
 
         .hero-subtitle {
-            font-size: 1.05rem;
-            margin-bottom: 30px;
+            font-size: 1.1rem;
+            margin-bottom: 32px;
         }
 
         .contato-info {
@@ -2131,6 +2141,7 @@ footer {
         display: flex;
         align-items: center;
         justify-content: center;
+        padding: 80px 0 80px 0;
     }
 
     .hero-container {
@@ -2148,15 +2159,19 @@ footer {
         margin: 0 auto;
     }
 
+    .hero-tagline-wrapper {
+        margin-bottom: 30px;
+    }
+
     .hero-title {
-        font-size: 3.2rem;
+        font-size: 3.5rem;
         line-height: 1.2;
-        margin-bottom: 24px;
+        margin-bottom: 28px;
     }
 
     .hero-subtitle {
-        font-size: 1.25rem;
-        margin-bottom: 35px;
+        font-size: 1.3rem;
+        margin-bottom: 40px;
         max-width: 700px;
     }
 
@@ -2168,21 +2183,31 @@ footer {
     }
 
     .scroll-down {
-        bottom: 25px;
+        bottom: 40px;
     }
 }
 
 @media (max-width: 576px) {
     .hero-section {
-            padding: 80px 0 40px 0;
+            padding: 70px 0 70px 0;
+        }
+
+        .hero-tagline-wrapper {
+            margin-bottom: 20px;
         }
 
         .hero-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
         }
 
         .hero-subtitle {
-            font-size: 1rem;
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+        }
+
+        .scroll-down {
+            bottom: 35px;
         }
 
         .section-padding {
@@ -2256,7 +2281,7 @@ footer {
     .hero-section {
             height: 100vh;
             min-height: 600px;
-            padding: 80px 0 40px 0;
+            padding: 60px 0 70px 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -2269,27 +2294,31 @@ footer {
             align-items: center;
             width: 100%;
             padding-bottom: 0;
-            margin-top: 20px;
+            margin-top: 0;
         }
 
         .scroll-down {
-            bottom: 15px;
+            bottom: 30px;
         }
 
         .scroll-down a {
-            font-size: 0.65rem;
-            gap: 4px;
+            font-size: 0.7rem;
+            gap: 5px;
         }
 
-        .hero-title {
-            font-size: 1.75rem;
-            line-height: 1.2;
+        .hero-tagline-wrapper {
             margin-bottom: 18px;
         }
 
+        .hero-title {
+            font-size: 2rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
         .hero-subtitle {
-            font-size: 0.95rem;
-            margin-bottom: 25px;
+            font-size: 1rem;
+            margin-bottom: 28px;
         }
 
         .hero-buttons {
@@ -2370,22 +2399,28 @@ footer {
         margin: 0 auto !important;
         padding: 0 20px;
     }
+    .hero-tagline-wrapper {
+        margin-bottom: 30px !important;
+    }
     .hero-title {
-        font-size: 3rem !important;
-        margin-bottom: 22px !important;
+        font-size: 3.5rem !important;
+        margin-bottom: 28px !important;
         text-shadow: 0 5px 15px rgba(0,0,0,0.8) !important;
     }
     .hero-subtitle {
-        font-size: 1.3rem !important;
+        font-size: 1.35rem !important;
         max-width: 85% !important;
         text-shadow: 0 4px 10px rgba(0,0,0,0.9) !important;
         color: rgba(255, 255, 255, 0.95) !important;
         line-height: 1.6 !important;
-        margin-bottom: 40px !important;
+        margin-bottom: 45px !important;
     }
     .hero-buttons .classic-btn {
         padding: 18px 40px !important;
         font-size: 1.15rem !important;
+    }
+    .scroll-down {
+        bottom: 45px !important;
     }
 }
 
