@@ -1800,7 +1800,7 @@ footer {
         }
 
         .scroll-down {
-            display: none !important;
+            bottom: 25px;
         }
 
         .hero-title {
@@ -1939,7 +1939,7 @@ footer {
         }
 
         .scroll-down {
-            display: none !important;
+            bottom: 20px;
         }
 
         .hero-title {
@@ -2168,7 +2168,7 @@ footer {
     }
 
     .scroll-down {
-        display: none !important;
+        bottom: 25px;
     }
 }
 
@@ -2273,7 +2273,12 @@ footer {
         }
 
         .scroll-down {
-            display: none !important;
+            bottom: 15px;
+        }
+
+        .scroll-down a {
+            font-size: 0.65rem;
+            gap: 4px;
         }
 
         .hero-title {
@@ -2437,7 +2442,7 @@ footer {
     }
 
     .scroll-down {
-        display: none !important;
+        bottom: 10px;
     }
 }
 
