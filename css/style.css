@@ -2160,18 +2160,18 @@ footer {
     }
 
     .hero-tagline-wrapper {
-        margin-bottom: 30px;
+        margin-bottom: 45px;
     }
 
     .hero-title {
         font-size: 3.5rem;
         line-height: 1.2;
-        margin-bottom: 28px;
+        margin-bottom: 35px;
     }
 
     .hero-subtitle {
         font-size: 1.3rem;
-        margin-bottom: 40px;
+        margin-bottom: 50px;
         max-width: 700px;
     }
 
@@ -2183,7 +2183,7 @@ footer {
     }
 
     .scroll-down {
-        bottom: 40px;
+        bottom: 70px;
     }
 }
 
@@ -2193,21 +2193,21 @@ footer {
         }
 
         .hero-tagline-wrapper {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         .hero-title {
             font-size: 2.2rem;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         .hero-subtitle {
             font-size: 1.05rem;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .scroll-down {
-            bottom: 35px;
+            bottom: 90px;
         }
 
         .section-padding {
@@ -2298,7 +2298,7 @@ footer {
         }
 
         .scroll-down {
-            bottom: 30px;
+            bottom: 100px;
         }
 
         .scroll-down a {
@@ -2307,18 +2307,18 @@ footer {
         }
 
         .hero-tagline-wrapper {
-            margin-bottom: 18px;
+            margin-bottom: 35px;
         }
 
         .hero-title {
             font-size: 2rem;
             line-height: 1.2;
-            margin-bottom: 20px;
+            margin-bottom: 35px;
         }
 
         .hero-subtitle {
             font-size: 1rem;
-            margin-bottom: 28px;
+            margin-bottom: 45px;
         }
 
         .hero-buttons {
