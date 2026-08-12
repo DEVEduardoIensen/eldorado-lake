@@ -18,3 +18,9 @@ __pycache__/
 *.suo
 *.user
 *.workspace
+
+# Raw video inputs
+assets/videos/1.MP4
+assets/videos/2.MP4
+assets/videos/3 dourados.MP4
+
