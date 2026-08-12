@@ -335,14 +335,14 @@ body {
 }
 
 #logo-img {
-    height: 100px;
+    height: 80px;
     width: auto;
     object-fit: contain;
     transition: transform var(--transition-smooth), opacity var(--transition-smooth), background-color var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth), color var(--transition-smooth);
 }
 
 .header-scrolled #logo-img {
-    height: 56px;
+    height: 42px;
 }
 
 .nav-links {
@@ -1882,7 +1882,7 @@ footer {
 
 @media (max-width: 768px) {
     #logo-img {
-        height: 68px;
+        height: 70px;
     }
     .carousel-container {
             height: 350px;
@@ -2392,7 +2392,7 @@ footer {
         box-shadow: 0 6px 20px rgba(229, 193, 88, 0.4) !important;
     }
     #logo-img {
-        height: 110px !important;
+        height: 75px !important;
         filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6)) !important;
     }
 
