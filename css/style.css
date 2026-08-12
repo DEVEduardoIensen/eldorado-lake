@@ -3338,3 +3338,11 @@ footer {
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
+
+/* Hide hero tagline with crown emoji on mobile */
+@media (max-width: 768px) {
+    .hero-tagline-wrapper,
+    .hero-tagline {
+        display: none !important;
+    }
+}
