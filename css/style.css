@@ -1884,6 +1884,9 @@ footer {
     #logo-img {
         height: 70px;
     }
+    .hero-tagline-wrapper {
+        display: none !important;
+    }
     .carousel-container {
             height: 350px;
         }

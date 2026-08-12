@@ -1,0 +1,29 @@
+# Eldorado Lake - Pesca Esportiva ao Dourado
+
+> A maior e mais exclusiva operação de pesca esportiva ao Rei do Rio (Dourado) no Lago Foz do Areia, Paraná.
+
+## Sobre a Operação
+Eldorado Lake oferece uma experiência premium de pesca esportiva no Paraná, especializada na captura do gigante Dourado no deslumbrante Lago Foz do Areia. Nossa estrutura conta com hospedagem de alto padrão (Rancho Eldorado), barcos totalmente equipados para pesca esportiva e guias especializados com vasto conhecimento da região.
+
+## Destaques e Serviços
+- **Pesca Guiada de Dourados:** Operação focada em pesca esportiva com equipamentos e barcos de alto padrão.
+- **Rancho Eldorado:** Hospedagem confortável com gastronomia regional, quartos climatizados e área de lazer à beira do lago.
+- **Pacotes Personalizados:** Opções flexíveis para grupos de pescadores, famílias e corporativo.
+- **Preservação e Sustentabilidade:** Prática de pesque e solte com conscientização e respeito aos peixes e ecossistema local.
+
+## Estrutura dos Pacotes
+- **Pacote Completo:** Hospedagem no Rancho Eldorado + Alimentação completa (café, almoço e jantar) + Barco com motorista/guia + Combustível + Iscas.
+- **Guiamento Exclusivo:** Para pescadores que desejam guias especialistas locais nas melhores estruturas de pesca do lago.
+
+## Localização e Contato
+- **Localização:** Lago Foz do Areia, Cruz Machado / Bituruna - Paraná, Brasil.
+- **Website:** https://www.eldoradolake.com.br/
+- **Reserva e WhatsApp:** +55 (42) 99162-340
+
+## Seções Principais do Site
+- [Início](https://www.eldoradolake.com.br/#home): Apresentação da operação e vídeo hero.
+- [Operação](https://www.eldoradolake.com.br/#sobre): Detalhes da pesca esportiva e preservação.
+- [Rancho](https://www.eldoradolake.com.br/#rancho): Fotos e infraestrutura do Rancho Eldorado.
+- [Pacotes](https://www.eldoradolake.com.br/#pacotes): Valores, inclusões e reservas.
+- [Vídeos](https://www.eldoradolake.com.br/#videos): Galeria de capturas e vídeos das expedições.
+- [Contato](https://www.eldoradolake.com.br/#contato): Formulário e atendimento via WhatsApp.
