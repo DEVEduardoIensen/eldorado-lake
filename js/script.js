@@ -155,10 +155,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const lightboxBarPrev = document.getElementById('lightbox-bar-prev');
         const lightboxBarNext = document.getElementById('lightbox-bar-next');
         const lightboxCounter = document.getElementById('lightbox-counter');
+        const lightboxSwipeHint = document.getElementById('lightbox-swipe-hint');
 
         let currentLightboxItems = [];
         let currentLightboxIndex = 0;
         let isLightboxCarouselActive = false;
+        let swipeHintTimer = null;
+
+        const showSwipeHint = () => {
+            if (!lightboxSwipeHint) return;
+            if (isLightboxCarouselActive && window.innerWidth <= 768) {
+                lightboxSwipeHint.classList.add('is-visible');
+                clearTimeout(swipeHintTimer);
+                swipeHintTimer = setTimeout(() => {
+                    lightboxSwipeHint.classList.remove('is-visible');
+                }, 3000);
+            } else {
+                lightboxSwipeHint.classList.remove('is-visible');
+            }
+        };
+
+        const hideSwipeHint = () => {
+            if (lightboxSwipeHint) lightboxSwipeHint.classList.remove('is-visible');
+            clearTimeout(swipeHintTimer);
+        };
 
         const detailsModal = document.getElementById('details-modal');
         const detailsModalTag = document.getElementById('details-modal-tag');
@@ -252,10 +272,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (lightboxPrevBtn) lightboxPrevBtn.style.display = 'flex';
                 if (lightboxNextBtn) lightboxNextBtn.style.display = 'flex';
                 if (lightboxBottomBar) lightboxBottomBar.style.display = 'flex';
+                showSwipeHint();
             } else {
                 if (lightboxPrevBtn) lightboxPrevBtn.style.display = 'none';
                 if (lightboxNextBtn) lightboxNextBtn.style.display = 'none';
                 if (lightboxBottomBar) lightboxBottomBar.style.display = 'none';
+                hideSwipeHint();
             }
 
             updateLightboxDisplay(currentLightboxIndex);
@@ -310,11 +332,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const handlePrevImage = (e) => {
             if (e) e.stopPropagation();
+            hideSwipeHint();
             updateLightboxDisplay(currentLightboxIndex - 1);
         };
 
         const handleNextImage = (e) => {
             if (e) e.stopPropagation();
+            hideSwipeHint();
             updateLightboxDisplay(currentLightboxIndex + 1);
         };
 
@@ -352,6 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Horizontal swipe: change photo
                     if (Math.abs(deltaX) > 35 && Math.abs(deltaX) > Math.abs(deltaY) && elapsed < 600) {
+                        hideSwipeHint();
                         if (deltaX > 0) {
                             updateLightboxDisplay(currentLightboxIndex + 1);
                         } else {
@@ -432,6 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const closeLightbox = () => {
+            hideSwipeHint();
             if (lightbox) lightbox.style.display = 'none';
             if (lightboxImg) lightboxImg.src = '';
             if (lightboxPrevBtn) lightboxPrevBtn.style.display = 'none';

@@ -1516,37 +1516,49 @@ footer {
 }
 
 /* Swipe Hint Indicator (Mobile & Tablet Horizontal Swipe Hint) */
-.swipe-hint-indicator {
+/* Lightbox Swipe Hint Indicator (Mobile Only) */
+.lightbox-swipe-hint {
     display: none;
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
     align-items: center;
     justify-content: center;
     gap: 12px;
-    margin: 24px auto 0 auto;
-    padding: 10px 24px;
-    background: rgba(13, 22, 38, 0.88);
+    padding: 9px 22px;
+    background: rgba(13, 22, 38, 0.92);
     border: 1px solid var(--border-gold);
     border-radius: 50px;
     color: var(--primary-gold);
     font-family: var(--font-heading);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
     width: fit-content;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(229, 193, 88, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    white-space: nowrap;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.85), 0 0 20px rgba(229, 193, 88, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     user-select: none;
     pointer-events: none;
+    z-index: 100003;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.lightbox-swipe-hint.is-visible {
+    opacity: 1;
 }
 
 .swipe-hand-anim {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     animation: swipeHandPulse 2s ease-in-out infinite;
 }
 
 .swipe-arrow-anim {
-    font-size: 1.05rem;
+    font-size: 1rem;
     animation: swipeArrowPulse 2s ease-in-out infinite;
 }
 
@@ -1572,8 +1584,8 @@ footer {
     }
 }
 
-@media (max-width: 992px) {
-    .swipe-hint-indicator {
+@media (max-width: 768px) {
+    .lightbox-swipe-hint {
         display: flex;
     }
 }
