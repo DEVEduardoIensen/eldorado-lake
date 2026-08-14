@@ -1410,7 +1410,6 @@ footer {
 .lightbox-bar-btn:hover, .lightbox-bar-btn:active {
     background: var(--primary-gold);
     color: #060a13;
-    transform: scale(1.15);
 }
 
 .lightbox-content-wrapper {
@@ -1431,7 +1430,6 @@ footer {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95);
     display: none;
     object-fit: contain;
-    transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .lightbox-video-container {
@@ -1857,7 +1855,6 @@ footer {
         .lightbox-content-wrapper {
             max-width: 95vw;
             max-height: 72vh;
-            margin-top: -30px;
         }
 
         .lightbox-img {

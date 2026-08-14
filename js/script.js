@@ -234,23 +234,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 pPrev.src = currentLightboxItems[prevIdx].src;
             }
 
-            lightboxImg.style.opacity = '0';
-            lightboxImg.style.transform = 'scale(0.96)';
-
-            const imgLoader = new Image();
-            imgLoader.src = currentItem.src;
-            imgLoader.onload = () => {
-                lightboxImg.src = imgLoader.src;
-                lightboxImg.alt = currentItem.alt || 'Foto Ampliada Eldorado Lake';
-                lightboxImg.style.opacity = '1';
-                lightboxImg.style.transform = 'scale(1)';
-            };
-            if (imgLoader.complete) {
-                lightboxImg.src = imgLoader.src;
-                lightboxImg.alt = currentItem.alt || 'Foto Ampliada Eldorado Lake';
-                lightboxImg.style.opacity = '1';
-                lightboxImg.style.transform = 'scale(1)';
-            }
+            lightboxImg.src = currentItem.src;
+            lightboxImg.alt = currentItem.alt || 'Foto Ampliada Eldorado Lake';
+            lightboxImg.style.opacity = '1';
         };
 
         const openLightboxGallery = (items, startIndex) => {
