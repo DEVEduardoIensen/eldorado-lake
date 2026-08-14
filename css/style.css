@@ -1158,11 +1158,6 @@ body {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-.map-recommend-badge i {
-    color: var(--primary-gold);
-    font-size: 0.85rem;
-}
-
 .map-header p {
     font-size: 0.9rem;
     color: var(--text-muted);
