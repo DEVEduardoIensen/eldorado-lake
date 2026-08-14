@@ -1371,9 +1371,9 @@ footer {
     display: none;
     align-items: center;
     gap: 12px;
-    background: rgba(13, 22, 38, 0.92);
+    background: rgba(13, 22, 38, 0.88);
     border: 1px solid var(--border-gold);
-    padding: 8px 18px;
+    padding: 6px 20px;
     border-radius: 50px;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -1393,23 +1393,7 @@ footer {
 }
 
 .lightbox-bar-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(229, 193, 88, 0.15);
-    border: 1px solid rgba(229, 193, 88, 0.4);
-    color: var(--primary-gold);
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
-}
-
-.lightbox-bar-btn:hover, .lightbox-bar-btn:active {
-    background: var(--primary-gold);
-    color: #060a13;
+    display: none !important;
 }
 
 .lightbox-content-wrapper {
@@ -1938,9 +1922,22 @@ footer {
         }
 
         .lightbox-bar-btn {
-            width: 34px;
-            height: 34px;
-            font-size: 0.85rem;
+            display: flex !important;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(229, 193, 88, 0.15);
+            border: 1px solid rgba(229, 193, 88, 0.4);
+            color: var(--primary-gold);
+            font-size: 0.9rem;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .lightbox-bar-btn:active {
+            background: var(--primary-gold);
+            color: #060a13;
         }
 
         .contato-section .section-desc {
