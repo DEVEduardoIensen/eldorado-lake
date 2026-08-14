@@ -522,18 +522,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 formFeedback.className = 'form-feedback success';
                 formFeedback.style.display = 'block';
-                formFeedback.textContent = 'Mensagem validada! Redirecionando para o WhatsApp...';
+                formFeedback.textContent = 'Redirecionando para o WhatsApp...';
 
                 const targetNumber = "554299162340";
                 const formattedMessage = `Olá, meu nome é *${name}* (${phone}).\n\n*Mensagem*:\n${message}`;
                 const whatsappUrl = `https://wa.me/${targetNumber}?text=${encodeURIComponent(formattedMessage)}`;
 
-                setTimeout(() => {
-                    window.open(whatsappUrl, '_blank');
-                    contactForm.reset();
-                    formFeedback.style.display = 'none';
-                    formFeedback.className = 'form-feedback';
-                }, 1500);
+                window.location.href = whatsappUrl;
+                contactForm.reset();
             });
         }
     };
