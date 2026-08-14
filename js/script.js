@@ -151,6 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const closeBtn = document.getElementById('lightbox-close-btn');
         const lightboxPrevBtn = document.getElementById('lightbox-prev-btn');
         const lightboxNextBtn = document.getElementById('lightbox-next-btn');
+        const lightboxBottomBar = document.getElementById('lightbox-bottom-bar');
+        const lightboxBarPrev = document.getElementById('lightbox-bar-prev');
+        const lightboxBarNext = document.getElementById('lightbox-bar-next');
         const lightboxCounter = document.getElementById('lightbox-counter');
 
         let currentLightboxItems = [];
@@ -262,11 +265,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isLightboxCarouselActive) {
                 if (lightboxPrevBtn) lightboxPrevBtn.style.display = 'flex';
                 if (lightboxNextBtn) lightboxNextBtn.style.display = 'flex';
-                if (lightboxCounter) lightboxCounter.style.display = 'block';
+                if (lightboxBottomBar) lightboxBottomBar.style.display = 'flex';
             } else {
                 if (lightboxPrevBtn) lightboxPrevBtn.style.display = 'none';
                 if (lightboxNextBtn) lightboxNextBtn.style.display = 'none';
-                if (lightboxCounter) lightboxCounter.style.display = 'none';
+                if (lightboxBottomBar) lightboxBottomBar.style.display = 'none';
             }
 
             updateLightboxDisplay(currentLightboxIndex);
@@ -319,18 +322,20 @@ document.addEventListener('DOMContentLoaded', () => {
             slide.setAttribute('tabindex', '0');
         });
 
-        if (lightboxPrevBtn) {
-            lightboxPrevBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                updateLightboxDisplay(currentLightboxIndex - 1);
-            });
-        }
-        if (lightboxNextBtn) {
-            lightboxNextBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                updateLightboxDisplay(currentLightboxIndex + 1);
-            });
-        }
+        const handlePrevImage = (e) => {
+            if (e) e.stopPropagation();
+            updateLightboxDisplay(currentLightboxIndex - 1);
+        };
+
+        const handleNextImage = (e) => {
+            if (e) e.stopPropagation();
+            updateLightboxDisplay(currentLightboxIndex + 1);
+        };
+
+        if (lightboxPrevBtn) lightboxPrevBtn.addEventListener('click', handlePrevImage);
+        if (lightboxNextBtn) lightboxNextBtn.addEventListener('click', handleNextImage);
+        if (lightboxBarPrev) lightboxBarPrev.addEventListener('click', handlePrevImage);
+        if (lightboxBarNext) lightboxBarNext.addEventListener('click', handleNextImage);
 
         if (lightboxImg) {
             lightboxImg.addEventListener('click', (e) => e.stopPropagation());
@@ -398,7 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentLightboxItems = [];
                 if (lightboxPrevBtn) lightboxPrevBtn.style.display = 'none';
                 if (lightboxNextBtn) lightboxNextBtn.style.display = 'none';
-                if (lightboxCounter) lightboxCounter.style.display = 'none';
+                if (lightboxBottomBar) lightboxBottomBar.style.display = 'none';
 
                 if (isLocalVideo) {
                     lightboxIframe.style.display = 'none';
@@ -445,7 +450,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (lightboxImg) lightboxImg.src = '';
             if (lightboxPrevBtn) lightboxPrevBtn.style.display = 'none';
             if (lightboxNextBtn) lightboxNextBtn.style.display = 'none';
-            if (lightboxCounter) lightboxCounter.style.display = 'none';
+            if (lightboxBottomBar) lightboxBottomBar.style.display = 'none';
             isLightboxCarouselActive = false;
             currentLightboxItems = [];
 
