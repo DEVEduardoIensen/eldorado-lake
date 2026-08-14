@@ -1710,7 +1710,20 @@ footer {
     cursor: pointer;
     border: 1px solid var(--border-light);
     box-shadow: var(--glass-shadow);
+    background: linear-gradient(90deg, #0d1626 0%, #172742 50%, #0d1626 100%);
+    background-size: 200% 100%;
+    animation: galleryShimmer 2s ease-in-out infinite;
     transition: transform var(--transition-smooth), opacity var(--transition-smooth), background-color var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth), color var(--transition-smooth);
+}
+
+.gallery-slide.is-loaded {
+    animation: none;
+    background: #060a13;
+}
+
+@keyframes galleryShimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
 }
 
 .gallery-slide:hover {
@@ -1724,7 +1737,12 @@ footer {
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform var(--transition-smooth);
+    opacity: 0;
+    transition: opacity 0.35s ease, transform var(--transition-smooth);
+}
+
+.gallery-img.is-loaded {
+    opacity: 1;
 }
 
 .gallery-slide:hover .gallery-img {

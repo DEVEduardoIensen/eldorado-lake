@@ -203,9 +203,10 @@ document.addEventListener('DOMContentLoaded', () => {
             slide.addEventListener('click', () => {
                 if (!lightbox || !lightboxImg || !lightboxVideoContainer) return;
                 const img = slide.querySelector('img');
-                if (img) {
-                    lightboxImg.src = img.src;
-                    lightboxImg.alt = img.alt;
+                const fullSrc = slide.getAttribute('data-full') || (img ? (img.getAttribute('data-src') || img.src) : '');
+                if (fullSrc) {
+                    lightboxImg.src = fullSrc;
+                    lightboxImg.alt = img ? img.alt : 'Foto Ampliada Eldorado Lake';
                     lightboxImg.style.display = 'block';
                     lightboxVideoContainer.style.display = 'none';
                     lightbox.style.display = 'flex';
@@ -381,12 +382,84 @@ document.addEventListener('DOMContentLoaded', () => {
                 return 1;
             };
 
+            const loadSlideImage = (slide) => {
+                if (!slide) return;
+                const img = slide.querySelector('.gallery-img');
+                if (!img) return;
+
+                if (img.hasAttribute('data-src')) {
+                    const dataSrc = img.getAttribute('data-src');
+                    img.removeAttribute('data-src');
+                    img.src = dataSrc;
+                    if (img.complete) {
+                        img.classList.add('is-loaded');
+                        slide.classList.add('is-loaded');
+                    } else {
+                        img.onload = () => {
+                            img.classList.add('is-loaded');
+                            slide.classList.add('is-loaded');
+                        };
+                    }
+                } else if (img.src && !img.classList.contains('is-loaded')) {
+                    if (img.complete) {
+                        img.classList.add('is-loaded');
+                        slide.classList.add('is-loaded');
+                    } else {
+                        img.onload = () => {
+                            img.classList.add('is-loaded');
+                            slide.classList.add('is-loaded');
+                        };
+                    }
+                }
+            };
+
+            // Preload visible slides + buffer ahead
+            const preloadBuffer = (index) => {
+                const visible = getVisibleItemsCount();
+                const bufferCount = visible + 4;
+                for (let i = 0; i < bufferCount; i++) {
+                    const targetIndex = (index + i) % gallerySlides.length;
+                    loadSlideImage(gallerySlides[targetIndex]);
+                }
+            };
+
+            // Preload remaining slides progressively during idle time
+            const preloadRemainingIdle = () => {
+                let currentIdx = 4;
+                const idleTimer = setInterval(() => {
+                    if (currentIdx >= gallerySlides.length) {
+                        clearInterval(idleTimer);
+                        return;
+                    }
+                    loadSlideImage(gallerySlides[currentIdx]);
+                    currentIdx++;
+                }, 150);
+            };
+
+            // Trigger idle preload when gallery comes near viewport
+            const gallerySection = document.getElementById('galeria');
+            if (gallerySection && 'IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            preloadRemainingIdle();
+                            observer.disconnect();
+                        }
+                    });
+                }, { rootMargin: '300px' });
+                observer.observe(gallerySection);
+            } else {
+                setTimeout(preloadRemainingIdle, 2500);
+            }
+
             const updateGallery = (index) => {
                 const maxIndex = gallerySlides.length - getVisibleItemsCount();
                 if (index < 0) index = maxIndex;
                 else if (index > maxIndex) index = 0;
 
                 galleryIndex = index;
+                preloadBuffer(galleryIndex);
+
                 const slideWidth = gallerySlides[0].getBoundingClientRect().width;
                 const gap = 20;
                 const amountToMove = galleryIndex * (slideWidth + gap);
@@ -417,6 +490,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateGallery(galleryIndex);
             }, 100));
 
+            // Initial load of first visible buffer
+            preloadBuffer(0);
             startGalleryAutoPlay();
             updateGallery(0);
         }
