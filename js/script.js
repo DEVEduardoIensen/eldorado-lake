@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
         initScrollEffects();
         initModals();
         initCarousels();
-        initForm();
         initGSAPAnimations();
     };
 
@@ -497,42 +496,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const initForm = () => {
-        const contactForm = document.getElementById('contact-form');
-        const formFeedback = document.getElementById('form-feedback');
-
-        if (contactForm && formFeedback) {
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-
-                const nameEl = document.getElementById('form-name');
-                const phoneEl = document.getElementById('form-phone');
-                const messageEl = document.getElementById('form-message');
-
-                const name = nameEl ? nameEl.value.trim() : '';
-                const phone = phoneEl ? phoneEl.value.trim() : '';
-                const message = messageEl ? messageEl.value.trim() : '';
-
-                if (!name || !phone || !message) {
-                    formFeedback.className = 'form-feedback error';
-                    formFeedback.style.display = 'block';
-                    formFeedback.textContent = 'Por favor, preencha todos os campos obrigatórios.';
-                    return;
-                }
-
-                formFeedback.className = 'form-feedback success';
-                formFeedback.style.display = 'block';
-                formFeedback.textContent = 'Redirecionando para o WhatsApp...';
-
-                const targetNumber = "554299162340";
-                const formattedMessage = `Olá, meu nome é *${name}* (${phone}).\n\n*Mensagem*:\n${message}`;
-                const whatsappUrl = `https://wa.me/${targetNumber}?text=${encodeURIComponent(formattedMessage)}`;
-
-                window.location.href = whatsappUrl;
-                contactForm.reset();
-            });
-        }
-    };
 
     const initGSAPAnimations = () => {
         if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
