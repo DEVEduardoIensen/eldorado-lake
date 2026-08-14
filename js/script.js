@@ -184,11 +184,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (detailsModalTitle) detailsModalTitle.textContent = details.title;
                 if (detailsModalBody) detailsModalBody.innerHTML = details.body;
                 detailsModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                document.documentElement.style.overflow = 'hidden';
             }
         };
 
         const closeDetailsModal = () => {
             if (detailsModal) detailsModal.style.display = 'none';
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
         };
 
         document.querySelectorAll('.btn-open-flyer, .package-card-3d').forEach(element => {
@@ -260,6 +264,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             updateLightboxDisplay(currentLightboxIndex);
             lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
         };
 
         // Rancho slide click handlers
@@ -363,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             lightbox.addEventListener('touchend', (e) => {
                 if (!isLightboxCarouselActive) return;
-                if (e.target.closest('#lightbox-bottom-bar') || e.target.closest('.lightbox-close')) return;
+                if (e.target.closest('#lightbox-bottom-bar') || e.target.closest('.lightbox-close') || e.target.closest('.lightbox-nav-btn')) return;
 
                 if (e.changedTouches.length === 1) {
                     const deltaX = lbTouchStartX - e.changedTouches[0].clientX;
@@ -444,6 +450,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (lightboxImg) lightboxImg.style.display = 'none';
                 lightboxVideoContainer.style.display = 'block';
                 lightbox.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                document.documentElement.style.overflow = 'hidden';
             });
             card.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') card.click();
@@ -470,6 +478,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 lightboxVideo.style.display = 'none';
             }
             if (lightboxVideoContainer) lightboxVideoContainer.classList.remove('portrait-video');
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
         };
 
         if (closeBtn) {
