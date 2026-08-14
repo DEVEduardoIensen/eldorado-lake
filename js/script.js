@@ -147,6 +147,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const lightboxIframe = document.getElementById('lightbox-iframe');
         const lightboxVideo = document.getElementById('lightbox-video');
         const closeBtn = document.getElementById('lightbox-close-btn');
+        const lightboxPrevBtn = document.getElementById('lightbox-prev-btn');
+        const lightboxNextBtn = document.getElementById('lightbox-next-btn');
+        const lightboxCounter = document.getElementById('lightbox-counter');
+
+        let currentLightboxItems = [];
+        let currentLightboxIndex = 0;
+        let isLightboxCarouselActive = false;
 
         const detailsModal = document.getElementById('details-modal');
         const detailsModalTag = document.getElementById('details-modal-tag');
@@ -198,24 +205,157 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target === detailsModal) closeDetailsModal();
         });
 
-        document.querySelectorAll('.carousel-slide, .gallery-slide').forEach(slide => {
+        const updateLightboxDisplay = (index) => {
+            if (!currentLightboxItems.length) return;
+            if (index < 0) index = currentLightboxItems.length - 1;
+            if (index >= currentLightboxItems.length) index = 0;
+
+            currentLightboxIndex = index;
+            const currentItem = currentLightboxItems[currentLightboxIndex];
+
+            if (lightboxCounter) {
+                lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${currentLightboxItems.length}`;
+            }
+
+            // Preload next and prev for instant sliding
+            const nextIdx = (currentLightboxIndex + 1) % currentLightboxItems.length;
+            const prevIdx = (currentLightboxIndex - 1 + currentLightboxItems.length) % currentLightboxItems.length;
+            if (currentLightboxItems[nextIdx] && currentLightboxItems[nextIdx].src) {
+                const pNext = new Image();
+                pNext.src = currentLightboxItems[nextIdx].src;
+            }
+            if (currentLightboxItems[prevIdx] && currentLightboxItems[prevIdx].src) {
+                const pPrev = new Image();
+                pPrev.src = currentLightboxItems[prevIdx].src;
+            }
+
+            lightboxImg.style.opacity = '0';
+            lightboxImg.style.transform = 'scale(0.96)';
+
+            const imgLoader = new Image();
+            imgLoader.src = currentItem.src;
+            imgLoader.onload = () => {
+                lightboxImg.src = imgLoader.src;
+                lightboxImg.alt = currentItem.alt || 'Foto Ampliada Eldorado Lake';
+                lightboxImg.style.opacity = '1';
+                lightboxImg.style.transform = 'scale(1)';
+            };
+            if (imgLoader.complete) {
+                lightboxImg.src = imgLoader.src;
+                lightboxImg.alt = currentItem.alt || 'Foto Ampliada Eldorado Lake';
+                lightboxImg.style.opacity = '1';
+                lightboxImg.style.transform = 'scale(1)';
+            }
+        };
+
+        const openLightboxGallery = (items, startIndex) => {
+            if (!lightbox || !lightboxImg || !lightboxVideoContainer) return;
+            currentLightboxItems = items;
+            currentLightboxIndex = startIndex;
+            isLightboxCarouselActive = items.length > 1;
+
+            lightboxImg.style.display = 'block';
+            lightboxVideoContainer.style.display = 'none';
+
+            if (isLightboxCarouselActive) {
+                if (lightboxPrevBtn) lightboxPrevBtn.style.display = 'flex';
+                if (lightboxNextBtn) lightboxNextBtn.style.display = 'flex';
+                if (lightboxCounter) lightboxCounter.style.display = 'block';
+            } else {
+                if (lightboxPrevBtn) lightboxPrevBtn.style.display = 'none';
+                if (lightboxNextBtn) lightboxNextBtn.style.display = 'none';
+                if (lightboxCounter) lightboxCounter.style.display = 'none';
+            }
+
+            updateLightboxDisplay(currentLightboxIndex);
+            lightbox.style.display = 'flex';
+        };
+
+        // Rancho slide click handlers
+        const ranchoSlides = Array.from(document.querySelectorAll('.carousel-slide'));
+        ranchoSlides.forEach((slide, idx) => {
             slide.addEventListener('click', () => {
-                if (!lightbox || !lightboxImg || !lightboxVideoContainer) return;
-                const img = slide.querySelector('img');
-                const fullSrc = slide.getAttribute('data-full') || (img ? (img.getAttribute('data-src') || img.src) : '');
-                if (fullSrc) {
-                    lightboxImg.src = fullSrc;
-                    lightboxImg.alt = img ? img.alt : 'Foto Ampliada Eldorado Lake';
-                    lightboxImg.style.display = 'block';
-                    lightboxVideoContainer.style.display = 'none';
-                    lightbox.style.display = 'flex';
-                }
+                const items = ranchoSlides.map((s, i) => {
+                    const img = s.querySelector('img');
+                    return {
+                        src: s.getAttribute('data-full') || (img ? (img.getAttribute('data-src') || img.src) : ''),
+                        alt: img ? img.alt : `Estrutura do Rancho ${i + 1}`
+                    };
+                });
+                openLightboxGallery(items, idx);
             });
             slide.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') slide.click();
             });
-
             slide.setAttribute('tabindex', '0');
+        });
+
+        // Galeria slide click handlers
+        const galeriaSlides = Array.from(document.querySelectorAll('.gallery-slide'));
+        galeriaSlides.forEach((slide, idx) => {
+            slide.addEventListener('click', () => {
+                const items = galeriaSlides.map((s, i) => {
+                    const img = s.querySelector('img');
+                    return {
+                        src: s.getAttribute('data-full') || (img ? (img.getAttribute('data-src') || img.src) : ''),
+                        alt: img ? img.alt : `Galeria Eldorado Lake ${i + 1}`
+                    };
+                });
+                openLightboxGallery(items, idx);
+            });
+            slide.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') slide.click();
+            });
+            slide.setAttribute('tabindex', '0');
+        });
+
+        if (lightboxPrevBtn) {
+            lightboxPrevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                updateLightboxDisplay(currentLightboxIndex - 1);
+            });
+        }
+        if (lightboxNextBtn) {
+            lightboxNextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                updateLightboxDisplay(currentLightboxIndex + 1);
+            });
+        }
+
+        // Touch swipe gestures for mobile Lightbox
+        let touchStartX = 0;
+        let touchEndX = 0;
+        if (lightbox) {
+            lightbox.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            lightbox.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const swipeDiff = touchStartX - touchEndX;
+                if (isLightboxCarouselActive && Math.abs(swipeDiff) > 45) {
+                    if (swipeDiff > 0) {
+                        // Swiped Left -> Next Image
+                        updateLightboxDisplay(currentLightboxIndex + 1);
+                    } else {
+                        // Swiped Right -> Previous Image
+                        updateLightboxDisplay(currentLightboxIndex - 1);
+                    }
+                }
+            }, { passive: true });
+        }
+
+        // Global keyboard navigation
+        window.addEventListener('keydown', (e) => {
+            if (lightbox && lightbox.style.display === 'flex') {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (isLightboxCarouselActive && (e.key === 'ArrowLeft' || e.key === 'Left')) {
+                    updateLightboxDisplay(currentLightboxIndex - 1);
+                } else if (isLightboxCarouselActive && (e.key === 'ArrowRight' || e.key === 'Right')) {
+                    updateLightboxDisplay(currentLightboxIndex + 1);
+                }
+            }
         });
 
         document.querySelectorAll('.video-card').forEach(card => {
@@ -223,6 +363,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!lightbox || !lightboxIframe || !lightboxVideo || !lightboxVideoContainer) return;
                 const videoSrc = card.getAttribute('data-video-src');
                 const isLocalVideo = videoSrc && (videoSrc.endsWith('.mp4') || !videoSrc.includes('//') || videoSrc.startsWith('assets/'));
+
+                isLightboxCarouselActive = false;
+                currentLightboxItems = [];
+                if (lightboxPrevBtn) lightboxPrevBtn.style.display = 'none';
+                if (lightboxNextBtn) lightboxNextBtn.style.display = 'none';
+                if (lightboxCounter) lightboxCounter.style.display = 'none';
 
                 if (isLocalVideo) {
                     lightboxIframe.style.display = 'none';
@@ -267,6 +413,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const closeLightbox = () => {
             if (lightbox) lightbox.style.display = 'none';
             if (lightboxImg) lightboxImg.src = '';
+            if (lightboxPrevBtn) lightboxPrevBtn.style.display = 'none';
+            if (lightboxNextBtn) lightboxNextBtn.style.display = 'none';
+            if (lightboxCounter) lightboxCounter.style.display = 'none';
+            isLightboxCarouselActive = false;
+            currentLightboxItems = [];
+
             if (lightboxIframe) {
                 lightboxIframe.src = '';
                 lightboxIframe.style.display = 'none';
