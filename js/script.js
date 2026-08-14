@@ -29,6 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     let packageData = null;
+    let ranchoMoved = false;
+    let galleryMoved = false;
 
     const init = () => {
         initSheets();
@@ -274,7 +276,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Rancho slide click handlers
         const ranchoSlides = Array.from(document.querySelectorAll('.carousel-slide'));
         ranchoSlides.forEach((slide, idx) => {
-            slide.addEventListener('click', () => {
+            slide.addEventListener('click', (e) => {
+                if (ranchoMoved) {
+                    ranchoMoved = false;
+                    return;
+                }
                 const items = ranchoSlides.map((s, i) => {
                     const img = s.querySelector('img');
                     return {
@@ -293,7 +299,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Galeria slide click handlers
         const galeriaSlides = Array.from(document.querySelectorAll('.gallery-slide'));
         galeriaSlides.forEach((slide, idx) => {
-            slide.addEventListener('click', () => {
+            slide.addEventListener('click', (e) => {
+                if (galleryMoved) {
+                    galleryMoved = false;
+                    return;
+                }
                 const items = galeriaSlides.map((s, i) => {
                     const img = s.querySelector('img');
                     return {
@@ -322,24 +332,44 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        if (lightboxImg) {
+            lightboxImg.addEventListener('click', (e) => e.stopPropagation());
+        }
+        if (lightboxVideoContainer) {
+            lightboxVideoContainer.addEventListener('click', (e) => e.stopPropagation());
+        }
+
         // Touch swipe gestures for mobile Lightbox
-        let touchStartX = 0;
-        let touchEndX = 0;
+        let lbTouchStartX = 0;
+        let lbTouchStartY = 0;
+        let lbTouchStartTime = 0;
         if (lightbox) {
             lightbox.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
+                if (e.touches.length === 1) {
+                    lbTouchStartX = e.touches[0].clientX;
+                    lbTouchStartY = e.touches[0].clientY;
+                    lbTouchStartTime = Date.now();
+                }
             }, { passive: true });
 
             lightbox.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                const swipeDiff = touchStartX - touchEndX;
-                if (isLightboxCarouselActive && Math.abs(swipeDiff) > 45) {
-                    if (swipeDiff > 0) {
-                        // Swiped Left -> Next Image
-                        updateLightboxDisplay(currentLightboxIndex + 1);
-                    } else {
-                        // Swiped Right -> Previous Image
-                        updateLightboxDisplay(currentLightboxIndex - 1);
+                if (!isLightboxCarouselActive) return;
+                if (e.changedTouches.length === 1) {
+                    const deltaX = lbTouchStartX - e.changedTouches[0].clientX;
+                    const deltaY = lbTouchStartY - e.changedTouches[0].clientY;
+                    const elapsed = Date.now() - lbTouchStartTime;
+
+                    // Horizontal swipe: change photo
+                    if (Math.abs(deltaX) > 35 && Math.abs(deltaX) > Math.abs(deltaY) && elapsed < 600) {
+                        if (deltaX > 0) {
+                            updateLightboxDisplay(currentLightboxIndex + 1);
+                        } else {
+                            updateLightboxDisplay(currentLightboxIndex - 1);
+                        }
+                    }
+                    // Vertical swipe down: dismiss
+                    else if (deltaY < -60 && Math.abs(deltaY) > Math.abs(deltaX) && elapsed < 500) {
+                        closeLightbox();
                     }
                 }
             }, { passive: true });
@@ -438,7 +468,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         if (lightbox) lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
+            if (e.target === lightbox || e.target.classList.contains('lightbox-content-wrapper') || e.target.id === 'lightbox-content-wrapper') {
+                closeLightbox();
+            }
         });
 
         document.addEventListener('keydown', (e) => {
@@ -512,6 +544,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 carouselContainer.addEventListener('focusin', stopAutoPlay);
                 carouselContainer.addEventListener('focusout', startAutoPlay);
+
+                let ranchoStartX = 0;
+                let ranchoStartY = 0;
+
+                carouselContainer.addEventListener('touchstart', (e) => {
+                    if (e.touches.length === 1) {
+                        stopAutoPlay();
+                        ranchoStartX = e.touches[0].clientX;
+                        ranchoStartY = e.touches[0].clientY;
+                        ranchoMoved = false;
+                    }
+                }, { passive: true });
+
+                carouselContainer.addEventListener('touchmove', (e) => {
+                    if (e.touches.length === 1) {
+                        const diffX = ranchoStartX - e.touches[0].clientX;
+                        const diffY = ranchoStartY - e.touches[0].clientY;
+                        if (Math.abs(diffX) > 8) {
+                            ranchoMoved = true;
+                        }
+                    }
+                }, { passive: true });
+
+                carouselContainer.addEventListener('touchend', (e) => {
+                    if (e.changedTouches.length === 1) {
+                        const diffX = ranchoStartX - e.changedTouches[0].clientX;
+                        const diffY = ranchoStartY - e.changedTouches[0].clientY;
+
+                        if (Math.abs(diffX) > 35 && Math.abs(diffX) > Math.abs(diffY)) {
+                            if (diffX > 0) {
+                                nextSlide();
+                            } else {
+                                prevSlide();
+                            }
+                        }
+                    }
+                    startAutoPlay();
+                    setTimeout(() => { ranchoMoved = false; }, 150);
+                }, { passive: true });
             }
 
             startAutoPlay();
@@ -635,6 +706,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 galleryCarouselContainer.addEventListener('mouseleave', startGalleryAutoPlay);
                 galleryCarouselContainer.addEventListener('focusin', stopGalleryAutoPlay);
                 galleryCarouselContainer.addEventListener('focusout', startGalleryAutoPlay);
+
+                let galleryStartX = 0;
+                let galleryStartY = 0;
+
+                galleryCarouselContainer.addEventListener('touchstart', (e) => {
+                    if (e.touches.length === 1) {
+                        stopGalleryAutoPlay();
+                        galleryStartX = e.touches[0].clientX;
+                        galleryStartY = e.touches[0].clientY;
+                        galleryMoved = false;
+                    }
+                }, { passive: true });
+
+                galleryCarouselContainer.addEventListener('touchmove', (e) => {
+                    if (e.touches.length === 1) {
+                        const diffX = galleryStartX - e.touches[0].clientX;
+                        const diffY = galleryStartY - e.touches[0].clientY;
+                        if (Math.abs(diffX) > 8) {
+                            galleryMoved = true;
+                        }
+                    }
+                }, { passive: true });
+
+                galleryCarouselContainer.addEventListener('touchend', (e) => {
+                    if (e.changedTouches.length === 1) {
+                        const diffX = galleryStartX - e.changedTouches[0].clientX;
+                        const diffY = galleryStartY - e.changedTouches[0].clientY;
+
+                        if (Math.abs(diffX) > 35 && Math.abs(diffX) > Math.abs(diffY)) {
+                            if (diffX > 0) {
+                                nextGallerySlide();
+                            } else {
+                                prevGallerySlide();
+                            }
+                        }
+                    }
+                    startGalleryAutoPlay();
+                    setTimeout(() => { galleryMoved = false; }, 150);
+                }, { passive: true });
             }
 
             window.addEventListener('resize', debounce(() => {
