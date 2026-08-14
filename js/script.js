@@ -155,30 +155,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const lightboxBarPrev = document.getElementById('lightbox-bar-prev');
         const lightboxBarNext = document.getElementById('lightbox-bar-next');
         const lightboxCounter = document.getElementById('lightbox-counter');
-        const lightboxSwipeHint = document.getElementById('lightbox-swipe-hint');
 
         let currentLightboxItems = [];
         let currentLightboxIndex = 0;
         let isLightboxCarouselActive = false;
-        let swipeHintTimer = null;
-
-        const showSwipeHint = () => {
-            if (!lightboxSwipeHint) return;
-            if (isLightboxCarouselActive && window.innerWidth <= 768) {
-                lightboxSwipeHint.classList.add('is-visible');
-                clearTimeout(swipeHintTimer);
-                swipeHintTimer = setTimeout(() => {
-                    lightboxSwipeHint.classList.remove('is-visible');
-                }, 3000);
-            } else {
-                lightboxSwipeHint.classList.remove('is-visible');
-            }
-        };
-
-        const hideSwipeHint = () => {
-            if (lightboxSwipeHint) lightboxSwipeHint.classList.remove('is-visible');
-            clearTimeout(swipeHintTimer);
-        };
 
         const detailsModal = document.getElementById('details-modal');
         const detailsModalTag = document.getElementById('details-modal-tag');
@@ -272,12 +252,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (lightboxPrevBtn) lightboxPrevBtn.style.display = 'flex';
                 if (lightboxNextBtn) lightboxNextBtn.style.display = 'flex';
                 if (lightboxBottomBar) lightboxBottomBar.style.display = 'flex';
-                showSwipeHint();
             } else {
                 if (lightboxPrevBtn) lightboxPrevBtn.style.display = 'none';
                 if (lightboxNextBtn) lightboxNextBtn.style.display = 'none';
                 if (lightboxBottomBar) lightboxBottomBar.style.display = 'none';
-                hideSwipeHint();
             }
 
             updateLightboxDisplay(currentLightboxIndex);
@@ -331,21 +309,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const handlePrevImage = (e) => {
-            if (e) e.stopPropagation();
-            hideSwipeHint();
+            if (e) {
+                e.stopPropagation();
+                if (e.cancelable) e.preventDefault();
+            }
             updateLightboxDisplay(currentLightboxIndex - 1);
         };
 
         const handleNextImage = (e) => {
-            if (e) e.stopPropagation();
-            hideSwipeHint();
+            if (e) {
+                e.stopPropagation();
+                if (e.cancelable) e.preventDefault();
+            }
             updateLightboxDisplay(currentLightboxIndex + 1);
         };
 
         if (lightboxPrevBtn) lightboxPrevBtn.addEventListener('click', handlePrevImage);
         if (lightboxNextBtn) lightboxNextBtn.addEventListener('click', handleNextImage);
-        if (lightboxBarPrev) lightboxBarPrev.addEventListener('click', handlePrevImage);
-        if (lightboxBarNext) lightboxBarNext.addEventListener('click', handleNextImage);
+        if (lightboxBarPrev) {
+            lightboxBarPrev.addEventListener('click', handlePrevImage);
+            lightboxBarPrev.addEventListener('touchend', (e) => e.stopPropagation(), { passive: true });
+        }
+        if (lightboxBarNext) {
+            lightboxBarNext.addEventListener('click', handleNextImage);
+            lightboxBarNext.addEventListener('touchend', (e) => e.stopPropagation(), { passive: true });
+        }
+
+        if (lightboxBottomBar) {
+            lightboxBottomBar.addEventListener('click', (e) => e.stopPropagation());
+            lightboxBottomBar.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
+            lightboxBottomBar.addEventListener('touchend', (e) => e.stopPropagation(), { passive: true });
+        }
 
         if (lightboxImg) {
             lightboxImg.addEventListener('click', (e) => e.stopPropagation());
@@ -369,14 +363,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             lightbox.addEventListener('touchend', (e) => {
                 if (!isLightboxCarouselActive) return;
+                if (e.target.closest('#lightbox-bottom-bar') || e.target.closest('.lightbox-close')) return;
+
                 if (e.changedTouches.length === 1) {
                     const deltaX = lbTouchStartX - e.changedTouches[0].clientX;
                     const deltaY = lbTouchStartY - e.changedTouches[0].clientY;
                     const elapsed = Date.now() - lbTouchStartTime;
 
                     // Horizontal swipe: change photo
-                    if (Math.abs(deltaX) > 35 && Math.abs(deltaX) > Math.abs(deltaY) && elapsed < 600) {
-                        hideSwipeHint();
+                    if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY) && elapsed < 600) {
                         if (deltaX > 0) {
                             updateLightboxDisplay(currentLightboxIndex + 1);
                         } else {
@@ -384,7 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
                     // Vertical swipe down: dismiss
-                    else if (deltaY < -60 && Math.abs(deltaY) > Math.abs(deltaX) && elapsed < 500) {
+                    else if (deltaY < -70 && Math.abs(deltaY) > Math.abs(deltaX) && elapsed < 500) {
                         closeLightbox();
                     }
                 }
@@ -457,7 +452,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const closeLightbox = () => {
-            hideSwipeHint();
             if (lightbox) lightbox.style.display = 'none';
             if (lightboxImg) lightboxImg.src = '';
             if (lightboxPrevBtn) lightboxPrevBtn.style.display = 'none';
