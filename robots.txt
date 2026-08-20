@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://deveduardoiensen.github.io/eldorado-lake/sitemap.xml
 Sitemap: https://www.eldoradolake.com.br/sitemap.xml

@@ -6,14 +6,14 @@
   <strong>Website oficial de alto padrão para a maior operação de pesca esportiva ao Dourado no Lago Foz do Areia, Paraná.</strong>
 </p>
 
-[![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-success?style=for-the-badge&logo=github&logoColor=white)](https://deveduardoiensen.github.io/eldorado-lake/)
-[![Performance](https://img.shields.io/badge/Performance-100%25%20Vanilla-e5c158?style=for-the-badge&logo=speedtest&logoColor=060a13)](https://deveduardoiensen.github.io/eldorado-lake/)
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://deveduardoiensen.github.io/eldorado-lake/)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://deveduardoiensen.github.io/eldorado-lake/)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://deveduardoiensen.github.io/eldorado-lake/)
+[![Vercel](https://img.shields.io/badge/Deploy-Vercel-success?style=for-the-badge&logo=vercel&logoColor=white)](https://www.eldoradolake.com.br/)
+[![Performance](https://img.shields.io/badge/Performance-100%25%20Vanilla-e5c158?style=for-the-badge&logo=speedtest&logoColor=060a13)](https://www.eldoradolake.com.br/)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://www.eldoradolake.com.br/)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://www.eldoradolake.com.br/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://www.eldoradolake.com.br/)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 
-[🌐 Acessar Demonstração Online](https://deveduardoiensen.github.io/eldorado-lake/) • [📱 Contato WhatsApp](https://wa.me/554299162340)
+[🌐 Acessar Website Oficial](https://www.eldoradolake.com.br/) • [📱 Contato WhatsApp](https://wa.me/554299162340)
 
 ---
 
