@@ -21,7 +21,14 @@
     <meta name="twitter:image" content="https://www.eldoradolake.com.br/assets/images/hero_bg.webp">
 
     <title>Eldorado Lake | Pesca Esportiva ao Dourado</title>
-    <link rel="icon" type="image/webp" href="assets/images/hero_bg.webp">
+    
+    <!-- Favicon & Touch Icons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/icons/favicon-48x48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
 
     <link rel="preload" as="image" href="assets/images/hero_bg.webp" type="image/webp" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,37 +42,138 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
-    <link rel="stylesheet" href="css/style.css?v=29.0">
+    <link rel="stylesheet" href="css/style.css?v=30.0">
 
     <!-- SEO Canonical & Search Engine Robots -->
     <link rel="canonical" href="https://www.eldoradolake.com.br/">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="theme-color" content="#060a13">
 
-    <!-- Schema.org JSON-LD Structured Data for Google Rich Snippets & Local SEO -->
+    <!-- Schema.org JSON-LD Structured Data for Google Rich Snippets & AI Agents -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": ["LodgingBusiness", "SportsActivityLocation"],
-      "name": "Eldorado Lake - Pesca Esportiva ao Dourado",
-      "image": "https://www.eldoradolake.com.br/assets/images/logo_header.webp",
-      "@id": "https://www.eldoradolake.com.br/",
-      "url": "https://www.eldoradolake.com.br/",
-      "telephone": "+554299162340",
-      "priceRange": "$$$",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Lago Foz do Areia",
-        "addressRegion": "PR",
-        "addressCountry": "BR"
-      },
-      "description": "A maior operação de pesca esportiva ao Dourado no Lago Foz do Areia, Paraná. Hospedagem de alto padrão no Rancho Eldorado, barcos equipados e guias especializados.",
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        "opens": "06:00",
-        "closes": "22:00"
-      }
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.eldoradolake.com.br/#organization",
+          "name": "Eldorado Lake",
+          "alternateName": ["Operação de pesca Eldorado Lake", "Rancho Eldorado"],
+          "url": "https://www.eldoradolake.com.br/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.eldoradolake.com.br/assets/images/logo_header.webp"
+          },
+          "image": "https://www.eldoradolake.com.br/assets/images/hero_bg.webp",
+          "description": "A maior e mais exclusiva operação de pesca esportiva ao Dourado no Lago Foz do Areia, Paraná.",
+          "telephone": "+5542999162340",
+          "email": "contato@eldoradolake.com.br",
+          "founder": {
+            "@type": "Person",
+            "name": "Thiago Witeck"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Faxinal do Céu",
+            "addressLocality": "Pinhão",
+            "addressRegion": "PR",
+            "postalCode": "85170-000",
+            "addressCountry": "BR"
+          },
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "telephone": "+5542999162340",
+              "contactType": "customer service",
+              "contactOption": "TollFree",
+              "areaServed": "BR",
+              "availableLanguage": ["Portuguese", "English", "Spanish"]
+            }
+          ],
+          "sameAs": [
+            "https://www.instagram.com/thiago.witeck/",
+            "https://www.youtube.com/@ThiagoWiteck",
+            "https://www.tiktok.com/@thiagowiteck",
+            "https://www.facebook.com/wwinformaticapho",
+            "https://maps.app.goo.gl/ggCzNRzaTgsAnpXD6",
+            "https://lista.mercadolivre.com.br/_CustId_82673092"
+          ]
+        },
+        {
+          "@type": ["SportsActivityLocation", "LodgingBusiness", "LocalBusiness"],
+          "@id": "https://www.eldoradolake.com.br/#place",
+          "name": "Operação de pesca Eldorado Lake",
+          "url": "https://www.eldoradolake.com.br/",
+          "image": "https://www.eldoradolake.com.br/assets/images/hero_bg.webp",
+          "telephone": "+5542999162340",
+          "priceRange": "$$$",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Faxinal do Céu",
+            "addressLocality": "Pinhão",
+            "addressRegion": "PR",
+            "postalCode": "85170-000",
+            "addressCountry": "BR"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -25.9954877,
+            "longitude": -51.6095719
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5.0",
+            "reviewCount": "8",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "06:00",
+            "closes": "22:00"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.eldoradolake.com.br/#website",
+          "url": "https://www.eldoradolake.com.br/",
+          "name": "Eldorado Lake",
+          "publisher": {
+            "@id": "https://www.eldoradolake.com.br/#organization"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://www.eldoradolake.com.br/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Qual é o peixe principal pescado na Eldorado Lake?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "O peixe principal é o Dourado (Salminus brasiliensis), conhecido como o Rei do Rio, pescado em águas calmas e límpidas do Lago Foz do Areia no Paraná."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "O que está incluso nos pacotes da Eldorado Lake?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Os pacotes incluem hospedagem climatizada no Rancho Eldorado, pensão completa com gastronomia regional, embarcação com motor potente, motor elétrico com âncora digital, guia de pesca experiente e combustível."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Como é a prática de conservação dos peixes?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A Eldorado Lake pratica estritamente o Pesque e Solte (100% Catch and Release), garantindo a preservação dos reprodutores e da biodiversidade aquática."
+              }
+            }
+          ]
+        }
+      ]
     }
     </script>
 
@@ -872,8 +980,10 @@
                     <li><a href="#sobre">A Operação</a></li>
                     <li><a href="#rancho">O Rancho</a></li>
                     <li><a href="#pacotes">Pacotes</a></li>
-                    <li><a href="#videos">Vídeos</a></li>
-                    <li><a href="#galeria">Galeria</a></li>
+                    <li><a href="/about">Sobre Nós</a></li>
+                    <li><a href="/contact">Contato</a></li>
+                    <li><a href="/privacy">Privacidade</a></li>
+                    <li><a href="/terms">Termos de Uso</a></li>
                 </ul>
             </div>
             <div class="footer-social">

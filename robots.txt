@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+# Directives for AI Agents & Search Engines
 Sitemap: https://www.eldoradolake.com.br/sitemap.xml

@@ -1,7 +1,92 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/pacotes",
+      "destination": "/#pacotes",
+      "permanent": true
+    },
+    {
+      "source": "/quem-somos",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/onde-pescamos",
+      "destination": "/#sobre",
+      "permanent": true
+    },
+    {
+      "source": "/aeroporto-e-translado",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/inicio",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/voltar-a-pagina-inicial",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/sobre",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/contato",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/privacidade",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/politica-de-privacidade",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/termos",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/termos-de-uso",
+      "destination": "/terms",
+      "permanent": true
+    }
+  ],
   "headers": [
+    {
+      "source": "/(llms.txt|llms-full.txt|agents.md)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/markdown; charset=utf-8"
+        },
+        {
+          "key": "Vary",
+          "value": "Accept, Accept-Encoding"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        }
+      ]
+    },
     {
       "source": "/assets/(.*)",
       "headers": [
@@ -33,12 +118,16 @@
       "source": "/(.*)",
       "headers": [
         {
+          "key": "Vary",
+          "value": "Accept, Accept-Encoding"
+        },
+        {
           "key": "X-Content-Type-Options",
           "value": "nosniff"
         },
         {
           "key": "X-Frame-Options",
-          "value": "DENY"
+          "value": "SAMEORIGIN"
         },
         {
           "key": "X-XSS-Protection",
