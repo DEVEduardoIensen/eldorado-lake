@@ -33,51 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let galleryMoved = false;
 
     const init = () => {
-        initSheets();
         initNavigation();
         initScrollEffects();
         initModals();
         initCarousels();
         initGSAPAnimations();
-    };
-
-    const initSheets = () => {
-        const GOOGLE_SHEETS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSsiDBa4mhgLZBQvxas6WmeD4f3Kh4QNd3IYciILeZP5wET9gGahlehf_VL4abL_lqL9W_LScUWa1F4/pub?output=csv";
-
-        if (GOOGLE_SHEETS_CSV_URL && GOOGLE_SHEETS_CSV_URL.startsWith("http")) {
-            if (typeof Papa !== 'undefined') {
-                Papa.parse(GOOGLE_SHEETS_CSV_URL, {
-                    download: true,
-                    header: false,
-                    skipEmptyLines: true,
-                    complete: function(results) {
-                        try {
-                            const premiumEl = document.getElementById('price-premium');
-                            const standardEl = document.getElementById('price-standard');
-
-                            results.data.forEach(row => {
-                                if (row.length < 2) return;
-                                const packageType = row[0].trim().toLowerCase();
-                                const price = row[1].trim();
-
-                                if (packageType.includes('premium') && premiumEl) {
-                                    premiumEl.innerText = price;
-                                } else if (packageType.includes('standard') && standardEl) {
-                                    standardEl.innerText = price;
-                                }
-                            });
-                        } catch (err) {
-                            console.error('Erro ao popular preços:', err);
-                        }
-                    },
-                    error: function(error) {
-                        console.error('Erro ao buscar preços via Papa Parse:', error);
-                    }
-                });
-            } else {
-                console.error('Papa Parse não carregado.');
-            }
-        }
     };
 
     const initNavigation = () => {
