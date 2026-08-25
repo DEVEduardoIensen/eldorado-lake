@@ -1,26 +1,54 @@
-# Windows thumbnail cache
+# Operating System Files
 Thumbs.db
 ehthumbs.db
 Desktop.ini
-
-# Folder config file
 $RECYCLE.BIN/
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
 
-# Python cache files
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# IDE files
+# IDE & Editor Files
 .vscode/
 .idea/
 *.suo
 *.user
+*.userosscache
+*.sln.docstates
 *.workspace
+*.swp
+*.swo
 
-# Raw video inputs
-assets/videos/1.MP4
-assets/videos/2.MP4
-assets/videos/3 dourados.MP4
+# Node & Package Managers
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
+# Deploy & Vercel
+.vercel
+dist/
+build/
+out/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment & Credentials
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+*.key
+
+# Temporary & Scratch Files
+scratch/
+*.tmp
+*.bak
+*.log
+temp_*.*

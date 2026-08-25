@@ -2,18 +2,18 @@
   "name": "Eldorado Lake - Pesca Esportiva",
   "short_name": "Eldorado Lake",
   "description": "A maior operação de pesca esportiva ao Dourado no Lago Foz do Areia, Paraná.",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#060a13",
   "theme_color": "#c5a059",
   "icons": [
     {
-      "src": "/assets/icons/android-chrome-192x192.png",
+      "src": "assets/icons/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/assets/icons/android-chrome-512x512.png",
+      "src": "assets/icons/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

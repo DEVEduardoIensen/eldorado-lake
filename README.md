@@ -1,10 +1,6 @@
-<div align="center">
+# Eldorado Lake — Pesca Esportiva ao Dourado
 
-# 🎣 Eldorado Lake — Pesca Esportiva ao Dourado
-
-<p align="center">
-  <strong>Website oficial de alto padrão para a maior operação de pesca esportiva ao Dourado no Lago Foz do Areia, Paraná.</strong>
-</p>
+Plataforma oficial da operação de pesca esportiva ao Dourado no Lago Foz do Areia (Represa Bento Munhoz da Rocha Netto), em Pinhão - Paraná.
 
 [![Vercel](https://img.shields.io/badge/Deploy-Vercel-success?style=for-the-badge&logo=vercel&logoColor=white)](https://www.eldoradolake.com.br/)
 [![Performance](https://img.shields.io/badge/Performance-100%25%20Vanilla-e5c158?style=for-the-badge&logo=speedtest&logoColor=060a13)](https://www.eldoradolake.com.br/)
@@ -13,127 +9,112 @@
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://www.eldoradolake.com.br/)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 
-[🌐 Acessar Website Oficial](https://www.eldoradolake.com.br/) • [📱 Contato WhatsApp](https://wa.me/554299162340)
+Website oficial: [https://www.eldoradolake.com.br/](https://www.eldoradolake.com.br/)
 
 ---
 
-</div>
+## Visão Geral
 
-## 📌 Sobre o Projeto
-
-O **Eldorado Lake** é uma plataforma institucional e de conversão desenvolvida sob medida para a operação de pesca esportiva guiada pelo especialista Thiago Witeck no imenso Lago Foz do Areia (PR).
-
-O projeto foi concebido sob uma identidade visual **Dark Luxury & Gold**, combinando estética refinada, engenharia de performance em código puro (*zero frameworks pesados*) e foco total em conversão de reservas.
+O projeto **Eldorado Lake** é uma aplicação web institucional e de conversão desenvolvida em Vanilla Web Technologies (HTML5, CSS3 e JavaScript moderno). O sistema foi projetado sob a estética *Dark Luxury & Gold*, priorizando tempo de resposta instantâneo, fidelidade visual, acessibilidade e conformidade total com as diretrizes de indexação do Google e agentes de inteligência artificial.
 
 ---
 
-## 🌟 Principais Funcionalidades & Diferenciais
+## Estrutura de Páginas
 
-### 🎬 Hero Section Dinâmica com Vídeo Responsivo
-- Reprodução de vídeo em segundo plano com fontes adaptadas automaticamente para Mobile (`assets/videos/hero_mobile.mp4`) e Desktop (`assets/videos/hero_video.mp4`).
-- Camada de sobreposição (*overlay*) e partículas douradas sutis animadas em segundo plano.
-
-### 🖼️ Carrossel & Modal Lightbox com Navegação Completa
-- **Carrossel do Rancho:** Exibição da estrutura e acomodações com paginação interativa.
-- **Galeria com 42 Fotos:** Carregamento ultra-rápido com miniaturas WebP e carregamento progressivo sob demanda (*Lookahead Buffer*).
-- **Lightbox Interativo:** Ao ampliar qualquer foto (Rancho ou Galeria), o modal funciona como carrossel com:
-  - Botões circulares em *glassmorphism* com hover dourado.
-  - Contador de fotos dinâmico (`ex: 1 / 42`).
-  - Navegação por setas do teclado (`←` e `→`) e tecla `ESC`.
-  - Suporte completo a gestos de arrastar (*Touch Swipe*) em celulares.
-  - Pré-carregamento instantâneo das imagens vizinhas em alta resolução.
-
-### 💰 Gestão Inteligente de Pacotes & Preços
-- **Integração com Google Sheets:** Os valores dos pacotes podem ser sincronizados automaticamente via planilha remota usando `PapaParse`.
-- **Modais de Detalhes dos Pacotes:** Visualizador com diferenciais, inclusões e regras de hospedagem.
-- **CTA Personalizado:** Botão para montagem de pacotes sob medida com mensagem pré-formatada para WhatsApp.
-
-### 📍 Localização & Rota
-- Mapa do Google Maps interativo embutido com rota otimizada e botão com link direto para navegação GPS.
-- Badge indicativa profissional de recomendação do Google Maps.
-
-### 🛒 Integração com Mercado Livre
-- Banner responsivo e botão direto para a Loja Oficial de equipamentos de pesca no Mercado Livre.
+* **index.html**: Página principal com hero video responsivo, apresentação da operação, galeria com carrossel dinâmico, acomodações do Rancho Eldorado, tabela de pacotes integrada e seção de contato.
+* **about.html**: Apresentação institucional da operação, histórico, embarcações e compromisso com o Pesque e Solte.
+* **contact.html**: Canais de atendimento (WhatsApp e e-mail), orientações de acesso rodoviário/aéreo e mapa interativo.
+* **privacy.html**: Política de privacidade e tratamento de dados em conformidade com a LGPD (Lei nº 13.709/2018).
+* **terms.html**: Termos de serviço, regulamento de reservas, normas de segurança náutica e política de cancelamento.
+* **404.html**: Página de erro personalizada com navegação direta para as seções principais.
 
 ---
 
-## 🛠️ Stack Tecnológica
+## Recursos e Engenharia
 
-| Camada | Tecnologia | Descrição |
-| :--- | :--- | :--- |
-| **Estrutura** | HTML5 Semântico | Hierarquia estruturada com Schema.org JSON-LD (`LodgingBusiness`, `SportsActivityLocation`) |
-| **Estilização** | CSS3 Vanilla | Mais de 3.000 linhas de CSS puro, variáveis CSS, Glassmorphism, Flexbox e Grid |
-| **Lógica** | JavaScript ES6+ Vanilla | Modular, sem jQuery ou frameworks pesados, 100% nativo |
-| **Animações** | GSAP 3.12 + ScrollTrigger | Transições suaves de entrada e efeitos de números contadores |
-| **Mídia** | WebP + MP4 | Compressão de imagens com redução de mais de 56% de dados e carregamento assíncrono |
-| **SEO & Meta** | OpenGraph, Robots, Sitemap | Otimizado para compartilhamento rico em redes sociais e indexação no Google |
+### Performance e Otimização de Recursos
+* **Carregamento não-bloqueante:** Estilos e ícones FontAwesome carregados via preload assíncrono.
+* **Mídia Otimizada:** Imagens em formato WebP com miniaturas dedicadas (`assets/images/thumbs/`) para a galeria e carregamento progressivo sob demanda.
+* **Hero Responsivo:** Vídeo adaptado automaticamente para visualização móvel (`hero_mobile.mp4`) e desktop (`hero_video.mp4`) com poster de fallback em WebP.
+* **Partículas Reativas:** Sistema de partículas adaptado dinamicamente para manter estabilidade de 60fps em dispositivos móveis e desktops.
+
+### Favicon Suite e Padrões Google
+Favicons gerados em conformidade com as especificações do Google Search e navegadores modernos:
+* `favicon.ico` (multi-size: 16x16, 32x32, 48x48)
+* `assets/icons/favicon-48x48.png` (resolução base para snippets do Google)
+* `assets/icons/favicon-32x32.png` e `favicon-16x16.png`
+* `assets/icons/apple-touch-icon.png` (180x180)
+* `assets/icons/android-chrome-192x192.png` e `android-chrome-512x512.png`
+* `site.webmanifest`
+
+### SEO e Compatibilidade com Agentes de IA
+* **Schema.org JSON-LD:** Marcações estruturadas para `Organization`, `SportsActivityLocation`, `LodgingBusiness`, `ContactPage` e `AboutPage`.
+* **Sitemap e Robots:** `sitemap.xml` e `robots.txt` configurados para indexação completa.
+* **Arquivos para LLMs:** `llms.txt`, `llms-full.txt` e `agents.md` com suporte a negociação de conteúdo via `api/markdown.js`.
 
 ---
 
-## ⚡ Otimização de Performance
-
-- **Thumbnails Dedicadas:** As 42 fotos da galeria utilizam miniaturas leves de ~35 KB na rolagem horizontal e carregam a versão em resolução máxima apenas ao abrir o Lightbox.
-- **Buffer de Carregamento Inteligente:** O navegador carrega apenas as 4 fotos visíveis no início e antecipa o carregamento das próximas conforme o carrossel avança.
-- **IntersectionObserver:** Enfileiramento em tempo ocioso para garantir transições fluidas sem travamento de thread.
-- **`decoding="async"` & `will-change`:** Renderização não bloqueante e aceleração por GPU.
-
----
-
-## 📂 Estrutura do Repositório
+## Estrutura do Repositório
 
 ```text
 eldorado-lake/
+├── 404.html                 # Página de erro 404
+├── about.html               # Página Sobre Nós
+├── contact.html             # Página de Contato e Localização
+├── index.html               # Página principal
+├── privacy.html             # Política de Privacidade (LGPD)
+├── terms.html               # Termos de Uso e Regulamento
+├── site.webmanifest         # Manifesto PWA
+├── robots.txt               # Diretrizes para crawlers
+├── sitemap.xml              # Mapa do site XML
+├── llms.txt                 # Especificação concisa para IAs
+├── llms-full.txt            # Especificação completa para IAs
+├── agents.md                # Diretrizes operacionais para agentes
+├── vercel.json              # Configurações de cache, redirecionamentos e segurança
+├── api/
+│   └── markdown.js          # Serverless function para Accept: text/markdown
 ├── assets/
+│   ├── icons/               # Favicons em múltiplas resoluções
 │   ├── images/
-│   │   ├── thumbs/          # Miniaturas otimizadas para o carrossel (WebP)
-│   │   └── *.webp           # Imagens em alta resolução (Rancho, Galeria, Logos)
-│   └── videos/
-│       ├── hero_video.mp4   # Vídeo da Hero para Desktop
-│       └── hero_mobile.mp4  # Vídeo vertical otimizado para Mobile
+│   │   ├── thumbs/          # Miniaturas da galeria
+│   │   └── *.webp           # Imagens em alta resolução
+│   └── videos/              # Vídeos da hero section
 ├── css/
-│   └── style.css            # Folha de estilos completa do projeto
-├── js/
-│   └── script.js            # Lógica, carrosséis, lightbox e integrações
+│   └── style.css            # Folha de estilos completa
 ├── data/
-│   └── packages.json        # Dados e descrições dos pacotes de pesca
-├── index.html               # Página principal da aplicação
-├── robots.txt               # Diretrizes para motores de busca
-├── sitemap.xml              # Mapa do site para indexação Google
-├── llms.txt                 # Especificação estruturada para agentes de IA
-└── README.md                # Documentação oficial
+│   └── packages.json        # Estrutura de dados dos pacotes
+└── js/
+    └── script.js            # Lógica, animações GSAP, lightbox e integrações
 ```
 
 ---
 
-## 🚀 Como Executar Localmente
+## Execução Local
 
-Como o projeto é construído em tecnologias nativas da web, não há necessidade de etapas complexas de compilação ou instalação de dependências:
+Para visualizar e testar o projeto localmente:
 
-1. **Clone o repositório:**
+1. Clone o repositório:
    ```bash
    git clone https://github.com/DEVEduardoIensen/eldorado-lake.git
    ```
 
-2. **Acesse o diretório:**
+2. Acesse a pasta do projeto:
    ```bash
    cd eldorado-lake
    ```
 
-3. **Abra no navegador:**
-   - Basta abrir o arquivo `index.html` diretamente em qualquer navegador moderno.
-   - Ou utilize a extensão **Live Server** no VS Code para desenvolvimento com recarregamento automático.
+3. Abra o arquivo `index.html` diretamente em seu navegador ou utilize uma extensão de servidor local (ex: Live Server no VS Code).
 
 ---
 
-## 📞 Contato & Créditos
+## Contato
 
-- **Operação:** Eldorado Lake — Pesca Esportiva ao Dourado
-- **Localização:** Lago Foz do Areia, Pinhão - PR, Brasil
-- **WhatsApp:** [(42) 9 9916-2340](https://wa.me/554299162340)
-- **Desenvolvimento:** [Eduardo Iensen](https://github.com/DEVEduardoIensen)
+* **Operação:** Eldorado Lake — Rancho Eldorado
+* **Localização:** Faxinal do Céu, Pinhão - PR, Brasil
+* **WhatsApp:** [+55 (42) 99916-2340](https://wa.me/554299162340)
+* **E-mail:** [thiagowiteck@hotmail.com](mailto:thiagowiteck@hotmail.com)
+* **Desenvolvedor:** [Eduardo Iensen](https://github.com/DEVEduardoIensen)
 
 ---
 
-<div align="center">
-  <sub>© 2026 Eldorado Lake. Todos os direitos reservados.</sub>
-</div>
+<sub>© 2026 Eldorado Lake. Todos os direitos reservados.</sub>

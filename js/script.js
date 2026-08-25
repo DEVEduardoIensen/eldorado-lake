@@ -887,7 +887,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const container = document.getElementById('global-particles');
         if (!container) return;
 
-        const particleCount = 90;
+        const isMobile = window.innerWidth <= 768;
+        const particleCount = isMobile ? 25 : 50;
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
             particle.className = 'global-particle';

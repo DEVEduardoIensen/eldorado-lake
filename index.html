@@ -23,12 +23,12 @@
     <title>Eldorado Lake | Pesca Esportiva ao Dourado</title>
     
     <!-- Favicon & Touch Icons -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="/assets/icons/favicon-48x48.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
 
     <link rel="preload" as="image" href="assets/images/hero_bg.webp" type="image/webp" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -67,7 +67,7 @@
           "image": "https://www.eldoradolake.com.br/assets/images/hero_bg.webp",
           "description": "A maior e mais exclusiva operação de pesca esportiva ao Dourado no Lago Foz do Areia, Paraná.",
           "telephone": "+5542999162340",
-          "email": "contato@eldoradolake.com.br",
+          "email": "thiagowiteck@hotmail.com",
           "founder": {
             "@type": "Person",
             "name": "Thiago Witeck"
@@ -177,8 +177,15 @@
     }
     </script>
 
-    <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
-    <script defer src="/_vercel/insights/script.js"></script>
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+        if (window.location.protocol.startsWith('http') && !window.location.hostname.includes('localhost')) {
+            var vs = document.createElement('script');
+            vs.defer = true;
+            vs.src = '/_vercel/insights/script.js';
+            document.head.appendChild(vs);
+        }
+    </script>
 </head>
 <body id="home">
 
@@ -980,10 +987,10 @@
                     <li><a href="#sobre">A Operação</a></li>
                     <li><a href="#rancho">O Rancho</a></li>
                     <li><a href="#pacotes">Pacotes</a></li>
-                    <li><a href="/about">Sobre Nós</a></li>
-                    <li><a href="/contact">Contato</a></li>
-                    <li><a href="/privacy">Privacidade</a></li>
-                    <li><a href="/terms">Termos de Uso</a></li>
+                    <li><a href="about.html">Sobre Nós</a></li>
+                    <li><a href="contact.html">Contato</a></li>
+                    <li><a href="privacy.html">Privacidade</a></li>
+                    <li><a href="terms.html">Termos de Uso</a></li>
                 </ul>
             </div>
             <div class="footer-social">
