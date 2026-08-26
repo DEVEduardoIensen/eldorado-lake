@@ -1,4 +1,6 @@
+# ==========================================
 # Operating System Files
+# ==========================================
 Thumbs.db
 ehthumbs.db
 Desktop.ini
@@ -7,8 +9,11 @@ $RECYCLE.BIN/
 ._*
 .Spotlight-V100
 .Trashes
+*~
 
-# IDE & Editor Files
+# ==========================================
+# IDE, Editor & Workspace Files
+# ==========================================
 .vscode/
 .idea/
 *.suo
@@ -16,28 +21,48 @@ $RECYCLE.BIN/
 *.userosscache
 *.sln.docstates
 *.workspace
+*.sublime-project
+*.sublime-workspace
 *.swp
 *.swo
+.agents/
+.system_generated/
 
+# ==========================================
 # Node & Package Managers
+# ==========================================
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+.pnpm-store/
+.npm/
 
-# Deploy & Vercel
+# ==========================================
+# Deploy, Frameworks & Build Output
+# ==========================================
 .vercel
 dist/
 build/
 out/
+.next/
+.turbo/
+.cache/
 
-# Python Cache
+# ==========================================
+# Python & Testing Cache
+# ==========================================
 __pycache__/
 *.py[cod]
 *$py.class
+.pytest_cache/
+.coverage
+htmlcov/
 
-# Environment & Credentials
+# ==========================================
+# Environment Variables & Credentials
+# ==========================================
 .env
 .env.local
 .env.development.local
@@ -45,10 +70,23 @@ __pycache__/
 .env.production.local
 *.pem
 *.key
+*.cert
+*.p12
 
-# Temporary & Scratch Files
+# ==========================================
+# Temporary, Scratch & Profile Files
+# ==========================================
 scratch/
+temp_*
+temp_chrome_profile*
 *.tmp
 *.bak
 *.log
-temp_*.*
+
+# ==========================================
+# Compressed Archives
+# ==========================================
+*.zip
+*.tar.gz
+*.rar
+*.7z

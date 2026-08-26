@@ -821,9 +821,10 @@ body {
 }
 
 .package-card-3d:hover .package-icon-container {
-    transform: scale(1.1) rotate(5deg);
+    transform: scale(1.12) translateY(-2px);
     border-color: var(--primary-gold);
     background: linear-gradient(135deg, rgba(229, 193, 88, 0.25) 0%, rgba(229, 193, 88, 0.05) 100%);
+    box-shadow: 0 12px 24px rgba(229, 193, 88, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.2);
 }
 
 .package-icon-container i {
