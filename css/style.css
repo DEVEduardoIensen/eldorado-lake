@@ -22,8 +22,8 @@
     --transition-fast: 0.25s ease;
     --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
-    --font-heading: 'Outfit', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    --font-heading: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 * {
@@ -1213,7 +1213,7 @@ footer {
     font-size: 1.15rem;
 }
 
-.footer-links h3, .footer-links h4, .footer-social h3, .footer-social h4, .footer-partners h3, .footer-partners h4 {
+.footer-links h2, .footer-links h3, .footer-links h4, .footer-social h2, .footer-social h3, .footer-social h4, .footer-partners h2, .footer-partners h3, .footer-partners h4 {
     font-family: var(--font-heading);
     font-size: 1.1rem;
     font-weight: 700;
@@ -1222,7 +1222,7 @@ footer {
     padding-bottom: 8px;
 }
 
-.footer-links h3::after, .footer-links h4::after, .footer-social h3::after, .footer-social h4::after, .footer-partners h3::after, .footer-partners h4::after {
+.footer-links h2::after, .footer-links h3::after, .footer-links h4::after, .footer-social h2::after, .footer-social h3::after, .footer-social h4::after, .footer-partners h2::after, .footer-partners h3::after, .footer-partners h4::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -3637,6 +3637,12 @@ footer {
 }
 
 .breadcrumb-separator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    min-width: 14px;
+    height: 14px;
     opacity: 0.5;
 }
 
