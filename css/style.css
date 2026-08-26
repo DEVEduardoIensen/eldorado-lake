@@ -2547,67 +2547,80 @@ footer {
     font-weight: 600;
 }
 
-.sobre-stats-bar {
+/* OPÇÃO 3 COMBINADA: MINIMALISMO TIPOGRÁFICO COM TEXTOS EDITORIAIS */
+.sobre-stats-minimal {
     position: relative;
     z-index: 2;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 0;
-    background: linear-gradient(135deg, rgba(13, 22, 38, 0.8), rgba(20, 32, 54, 0.6));
-    border: 1px solid rgba(229, 193, 88, 0.15);
-    border-radius: 24px;
-    padding: 40px 32px;
+    justify-content: space-between;
+    padding: 34px 20px;
     margin-bottom: 80px;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(229, 193, 88, 0.18);
+    border-bottom: 1px solid rgba(229, 193, 88, 0.18);
+    background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(229, 193, 88, 0.04), transparent 70%);
     opacity: 0;
     transform: translateY(30px);
 }
-.sobre-stat-item {
+.sobre-min-item {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
-    padding: 0 16px;
-}
-.sobre-stat-icon {
-    font-size: 1.5rem;
-    color: var(--primary-gold);
-    margin-bottom: 8px;
-    opacity: 0.8;
-}
-.sobre-stat-number {
-    font-family: var(--font-heading);
-    font-size: clamp(2.2rem, 4vw, 3.5rem);
-    font-weight: 800;
-    color: var(--text-light);
-    line-height: 1;
-    letter-spacing: -2px;
-}
-.sobre-stat-unit {
-    font-family: var(--font-heading);
-    font-size: clamp(1rem, 2vw, 1.5rem);
-    font-weight: 700;
-    color: var(--primary-gold);
-    line-height: 1;
-    margin-top: -4px;
-}
-.sobre-stat-label {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    letter-spacing: 0.5px;
     text-align: center;
-    margin-top: 4px;
-    text-transform: uppercase;
-    font-weight: 500;
+    gap: 6px;
+    padding: 0 16px;
+    transition: transform var(--transition-smooth);
 }
-.sobre-stat-divider {
+.sobre-min-item:hover {
+    transform: translateY(-3px);
+}
+.sobre-min-tag {
+    font-family: var(--font-heading);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--primary-gold);
+    opacity: 0.9;
+    text-transform: uppercase;
+}
+.sobre-min-value {
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 5px;
+    line-height: 1;
+    margin: 2px 0;
+}
+.sobre-min-value .sobre-stat-number {
+    font-family: var(--font-heading);
+    font-size: clamp(2.6rem, 4.2vw, 3.8rem);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1;
+    letter-spacing: -1.5px;
+    text-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+}
+.sobre-min-unit {
+    font-family: var(--font-heading);
+    font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+    font-weight: 600;
+    color: var(--primary-gold);
+    line-height: 1;
+}
+.sobre-min-desc {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    line-height: 1.35;
+    max-width: 190px;
+    letter-spacing: 0.2px;
+}
+.sobre-min-divider {
     width: 1px;
-    height: 70px;
-    background: linear-gradient(180deg, transparent, rgba(229, 193, 88, 0.3), transparent);
+    height: 65px;
+    background: linear-gradient(180deg, transparent, rgba(229, 193, 88, 0.35), transparent);
     flex-shrink: 0;
 }
 
@@ -3149,18 +3162,17 @@ footer {
     .sobre-title-highlight {
         letter-spacing: -3px;
     }
-    .sobre-stats-bar {
+    .sobre-stats-minimal {
         flex-wrap: wrap;
-        gap: 24px;
-        padding: 28px 20px;
+        gap: 24px 0;
+        padding: 24px 10px;
         margin-bottom: 48px;
-        border-radius: 18px;
     }
-    .sobre-stat-item {
-        flex: 0 0 calc(50% - 12px);
-        padding: 8px 0;
+    .sobre-min-item {
+        flex: 0 0 50%;
+        padding: 8px 6px;
     }
-    .sobre-stat-divider {
+    .sobre-min-divider {
         display: none;
     }
     .sobre-cards-grid {
@@ -3184,6 +3196,13 @@ footer {
     }
 }
 
+@media (max-width: 440px) {
+    .sobre-min-item {
+        flex: 0 0 100%;
+        padding: 10px 0;
+    }
+}
+
 @media (max-width: 400px) {
     .sobre-badge {
         font-size: 0.65rem;
@@ -3191,10 +3210,10 @@ footer {
         letter-spacing: 1.5px;
     }
     .sobre-stat-number {
-        font-size: 2rem;
+        font-size: 2.1rem;
     }
     .sobre-stat-unit {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
 }
 
