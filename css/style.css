@@ -1013,6 +1013,7 @@ body {
     padding: 24px;
 }
 
+.video-info h3,
 .video-info h4 {
     font-family: var(--font-heading);
     font-size: 1.25rem;
@@ -1061,6 +1062,7 @@ body {
     flex-shrink: 0;
 }
 
+.info-text h3,
 .info-text h4 {
     font-family: var(--font-heading);
     font-size: 1.1rem;
@@ -1085,6 +1087,7 @@ body {
     padding-top: 30px;
 }
 
+.partners-logos h3,
 .partners-logos h4 {
     font-family: var(--font-heading);
     font-size: 0.9rem;
@@ -1210,7 +1213,7 @@ footer {
     font-size: 1.15rem;
 }
 
-.footer-links h4, .footer-social h4 {
+.footer-links h3, .footer-links h4, .footer-social h3, .footer-social h4, .footer-partners h3, .footer-partners h4 {
     font-family: var(--font-heading);
     font-size: 1.1rem;
     font-weight: 700;
@@ -1219,7 +1222,7 @@ footer {
     padding-bottom: 8px;
 }
 
-.footer-links h4::after, .footer-social h4::after {
+.footer-links h3::after, .footer-links h4::after, .footer-social h3::after, .footer-social h4::after, .footer-partners h3::after, .footer-partners h4::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -1279,7 +1282,7 @@ footer {
 .footer-bottom {
     border-top: 1px solid var(--border-light);
     padding-top: 30px;
-    color: rgba(255, 255, 255, 0.2);
+    color: #9ca3af;
     font-size: 0.85rem;
 }
 
@@ -2169,7 +2172,7 @@ footer {
             text-align: center;
         }
 
-        .footer-links h4::after, .footer-social h4::after {
+        .footer-links h3::after, .footer-links h4::after, .footer-social h3::after, .footer-social h4::after, .footer-partners h3::after, .footer-partners h4::after {
             left: 50%;
             transform: translateX(-50%);
         }
@@ -3328,8 +3331,7 @@ footer {
 
 .cta-btn-hint {
     font-size: 0.75rem;
-    color: var(--text-muted);
-    opacity: 0.6;
+    color: #a0aec0;
     letter-spacing: 0.5px;
 }
 
@@ -3737,6 +3739,8 @@ footer {
     margin-bottom: 14px;
 }
 
+.trust-info-item h2,
+.trust-info-item h3,
 .trust-info-item h4 {
     font-family: var(--font-heading);
     font-size: 1.15rem;
@@ -3807,6 +3811,7 @@ footer {
     text-align: left;
 }
 
+.error-nav-links h3,
 .error-nav-links h4 {
     font-family: var(--font-heading);
     color: var(--primary-gold);
@@ -3858,4 +3863,10 @@ footer {
         text-align: center;
         justify-content: center;
     }
+}
+
+/* Accessibility Focus Visible */
+:focus-visible {
+    outline: 2px solid var(--primary-gold);
+    outline-offset: 3px;
 }

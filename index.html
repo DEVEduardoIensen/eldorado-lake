@@ -41,7 +41,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
-    <link rel="stylesheet" href="css/style.css?v=33.1">
+    <link rel="stylesheet" href="css/style.css?v=33.2">
 
     <!-- SEO Canonical & Search Engine Robots -->
     <link rel="canonical" href="https://www.eldoradolake.com.br/">
@@ -190,10 +190,10 @@
 
     <header id="main-header" class="header-transparent">
         <div class="container header-container">
-            <a href="#home" class="logo" id="header-logo-link">
-                <img src="assets/images/logo_header.webp?v=4" alt="Eldorado Lake Logo" id="logo-img">
+            <a href="#home" class="logo" id="header-logo-link" aria-label="Eldorado Lake Início">
+                <img src="assets/images/logo_header.webp?v=4" alt="Eldorado Lake Logo" id="logo-img" width="160" height="50" style="height: 50px; width: auto;">
             </a>
-            <nav id="navbar">
+            <nav id="navbar" aria-label="Navegação Principal">
                 <ul class="nav-links">
                     <li><a href="#home" class="nav-link active" id="nav-home">Início</a></li>
                     <li><a href="#sobre" class="nav-link" id="nav-sobre"> Operação</a></li>
@@ -202,14 +202,14 @@
                     <li><a href="#videos" class="nav-link" id="nav-videos">Vídeos</a></li>
                     <li><a href="#contato" class="nav-link" id="nav-contato">Contato</a></li>
 
-                    <li class="mobile-only-nav-btn"><a href="https://wa.me/554299162340" target="_blank" class="btn btn-gold btn-block btn-sm" id="btn-whatsapp-mobile-menu"><i class="fa-brands fa-whatsapp"></i> Reservar Agora</a></li>
+                    <li class="mobile-only-nav-btn"><a href="https://wa.me/554299162340" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-block btn-sm" id="btn-whatsapp-mobile-menu"><i class="fa-brands fa-whatsapp"></i> Reservar Agora</a></li>
                 </ul>
             </nav>
             <div class="header-actions">
-                <a href="https://wa.me/554299162340" target="_blank" class="classic-btn btn-gold btn-sm" id="btn-whatsapp-header">
+                <a href="https://wa.me/554299162340" target="_blank" rel="noopener noreferrer" class="classic-btn btn-gold btn-sm" id="btn-whatsapp-header">
                     <i class="fa-brands fa-whatsapp"></i> Reservar Agora
                 </a>
-                <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Toggle Menu">
+                <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir Menu">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -217,6 +217,7 @@
             </div>
         </div>
     </header>
+    <main id="main-content">
 
     <section class="hero-section" id="hero">
         <video class="hero-video" autoplay loop muted playsinline poster="assets/images/hero_bg.webp" preload="metadata">
@@ -884,7 +885,7 @@
                         </div>
                     </div>
                     <div class="video-info">
-                        <h4>Foz Do Areia</h4>
+                        <h3>Foz Do Areia</h3>
                         <p>Sinta vontade de pescar aqui.</p>
                     </div>
                 </div>
@@ -896,7 +897,7 @@
                         </div>
                     </div>
                     <div class="video-info">
-                        <h4>Records</h4>
+                        <h3>Records</h3>
                         <p>Assista à quebra do recorde de Dourado no caiaque.</p>
                     </div>
                 </div>
@@ -908,7 +909,7 @@
                         </div>
                     </div>
                     <div class="video-info">
-                        <h4>Dica do Nosso Guia</h4>
+                        <h3>Dica do Nosso Guia</h3>
                         <p>Assista ao reel com dicas de pesca direto no lago.</p>
                     </div>
                 </div>
@@ -1204,27 +1205,27 @@
                     <div class="info-item">
                         <div class="info-icon"><i class="fa-brands fa-whatsapp"></i></div>
                         <div class="info-text">
-                            <h4>WhatsApp</h4>
-                            <p><a href="https://wa.me/554299162340" target="_blank">(42) 9 9916-2340</a></p>
+                            <h3>WhatsApp</h3>
+                            <p><a href="https://wa.me/554299162340" target="_blank" rel="noopener noreferrer">(42) 9 9916-2340</a></p>
                         </div>
                     </div>
                     <div class="info-item">
                         <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
                         <div class="info-text">
-                            <h4>E-mail</h4>
+                            <h3>E-mail</h3>
                             <p><a href="mailto:thiagowiteck@hotmail.com">thiagowiteck@hotmail.com</a></p>
                         </div>
                     </div>
                     <div class="info-item">
                         <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
                         <div class="info-text">
-                            <h4>Localização</h4>
+                            <h3>Localização</h3>
                             <p>Lago Foz do Areia, Pinhão - PR, Brasil</p>
                         </div>
                     </div>
 
                     <div class="partners-logos contact-partners show-only-on-desktop">
-                        <h4>Parceiros & Destaque:</h4>
+                        <h3>Parceiros & Destaque:</h3>
                         <div class="logos-flex">
                             <span class="partner-tag">Tr Fishing</span>
                             <span class="partner-tag">Iscas Mathias</span>
@@ -1255,13 +1256,14 @@
                             title="Localização Eldorado Lake - Lago Foz do Areia">
                         </iframe>
                     </div>
-                    <a href="https://maps.app.goo.gl/ggCzNRzaTgsAnpXD6" target="_blank" class="btn btn-gold btn-block map-directions-btn" id="btn-map-directions">
+                    <a href="https://maps.app.goo.gl/ggCzNRzaTgsAnpXD6" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-block map-directions-btn" id="btn-map-directions">
                         <i class="fa-solid fa-diamond-turn-right"></i> Abrir no Google Maps
                     </a>
                 </div>
             </div>
         </div>
     </section>
+    </main>
 
     <footer>
         <div class="container footer-container">
@@ -1275,7 +1277,7 @@
                     </picture>
                 </div>
                 <div class="ml-btn-container">
-                    <a href="https://lista.mercadolivre.com.br/_CustId_82673092" target="_blank" class="ml-premium-btn">
+                    <a href="https://lista.mercadolivre.com.br/_CustId_82673092" target="_blank" rel="noopener noreferrer" class="ml-premium-btn">
                         <span class="ml-btn-icon"><i class="fa-solid fa-handshake"></i></span>
                         <span class="ml-btn-text">Ir para o Mercado Livre</span>
                     </a>
@@ -1283,7 +1285,7 @@
             </div>
 
             <div class="partners-logos footer-partners hide-on-desktop">
-                <h4>Parceiros & Destaque:</h4>
+                <h3>Parceiros & Destaque:</h3>
                 <div class="logos-flex">
                     <span class="partner-tag">Tr Fishing</span>
                     <span class="partner-tag">Iscas Mathias</span>
@@ -1292,7 +1294,7 @@
                 </div>
             </div>
             <div class="footer-links">
-                <h4>Links Rápidos</h4>
+                <h3>Links Rápidos</h3>
                 <ul>
                     <li><a href="#home">Início</a></li>
                     <li><a href="about.html">Sobre Nós</a></li>
@@ -1302,16 +1304,16 @@
                 </ul>
             </div>
             <div class="footer-social">
-                <h4>Siga-nos</h4>
+                <h3>Siga-nos</h3>
                 <div class="social-icons">
-                    <a href="https://www.instagram.com/thiago.witeck/" target="_blank" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@thiagowiteck" target="_blank" class="social-icon" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="https://www.facebook.com/wwinformaticapho" target="_blank" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://www.youtube.com/@ThiagoWiteck" target="_blank" class="social-icon" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/thiago.witeck/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@thiagowiteck" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://www.facebook.com/wwinformaticapho" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.youtube.com/@ThiagoWiteck" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
                 </div>
 
                 <div class="partners-logos footer-partners show-only-on-tablet">
-                    <h4>Parceiros & Destaque:</h4>
+                    <h3>Parceiros & Destaque:</h3>
                     <div class="logos-flex">
                         <span class="partner-tag">Tr Fishing</span>
                         <span class="partner-tag">Iscas Mathias</span>
@@ -1369,7 +1371,7 @@
 
                 </div>
                 <div class="details-footer">
-                    <a href="https://wa.me/554299162340" target="_blank" class="btn btn-gold btn-block" id="btn-whatsapp-modal-reservar">
+                    <a href="https://wa.me/554299162340" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-block" id="btn-whatsapp-modal-reservar">
                         <i class="fa-brands fa-whatsapp"></i> Reservar via WhatsApp
                     </a>
                 </div>
