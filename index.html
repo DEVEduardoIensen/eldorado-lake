@@ -30,18 +30,19 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
 
-    <link rel="preload" as="image" href="assets/images/hero_bg.webp" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/images/hero_bg_mobile.webp" type="image/webp" media="(max-width: 768px)" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/images/hero_bg.webp" type="image/webp" media="(min-width: 769px)" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
 
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
-    <link rel="stylesheet" href="css/style.css?v=33.3">
+    <link rel="stylesheet" href="css/style.css?v=33.4">
 
     <!-- SEO Canonical & Search Engine Robots -->
     <link rel="canonical" href="https://www.eldoradolake.com.br/">
@@ -220,7 +221,7 @@
     <main id="main-content">
 
     <section class="hero-section" id="hero">
-        <video class="hero-video" autoplay loop muted playsinline poster="assets/images/hero_bg.webp" preload="metadata">
+        <video class="hero-video" autoplay loop muted playsinline poster="assets/images/hero_bg.webp" preload="none">
             <source src="assets/videos/hero_mobile.mp4" type="video/mp4" media="(max-width: 768px)">
             <source src="assets/videos/hero_video.mp4" type="video/mp4">
         </video>
@@ -1387,6 +1388,6 @@
 
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script defer src="js/script.js?v=33.3"></script>
+    <script defer src="js/script.js?v=33.4"></script>
 </body>
 </html>
