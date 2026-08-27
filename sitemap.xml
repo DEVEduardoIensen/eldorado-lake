@@ -1,35 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
         <loc>https://www.eldoradolake.com.br/</loc>
-        <lastmod>2026-08-26</lastmod>
+        <lastmod>2026-08-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.00</priority>
+        <image:image>
+            <image:loc>https://www.eldoradolake.com.br/assets/images/hero_bg.webp</image:loc>
+            <image:title>Eldorado Lake - Pesca Esportiva ao Dourado no Lago Foz do Areia</image:title>
+            <image:caption>Operação de pesca esportiva de alto padrão ao Rei do Rio</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://www.eldoradolake.com.br/assets/images/logo_header.webp</image:loc>
+            <image:title>Eldorado Lake Logo</image:title>
+        </image:image>
     </url>
     <url>
         <loc>https://www.eldoradolake.com.br/about</loc>
-        <lastmod>2026-08-26</lastmod>
+        <lastmod>2026-08-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.80</priority>
+        <image:image>
+            <image:loc>https://www.eldoradolake.com.br/assets/images/hero_bg.webp</image:loc>
+            <image:title>Sobre a Eldorado Lake e Rancho Eldorado</image:title>
+        </image:image>
     </url>
     <url>
         <loc>https://www.eldoradolake.com.br/contact</loc>
-        <lastmod>2026-08-26</lastmod>
+        <lastmod>2026-08-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.80</priority>
     </url>
     <url>
         <loc>https://www.eldoradolake.com.br/privacy</loc>
-        <lastmod>2026-08-26</lastmod>
+        <lastmod>2026-08-27</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.50</priority>
     </url>
     <url>
         <loc>https://www.eldoradolake.com.br/terms</loc>
-        <lastmod>2026-08-26</lastmod>
+        <lastmod>2026-08-27</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.50</priority>
     </url>

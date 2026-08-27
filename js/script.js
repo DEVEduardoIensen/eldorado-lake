@@ -392,7 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         lightboxVideo.removeEventListener('loadedmetadata', handleMetadata);
                     };
                     lightboxVideo.addEventListener('loadedmetadata', handleMetadata);
-                    lightboxVideo.play().catch(err => console.log("Video auto-play prevented:", err));
+                    lightboxVideo.play().catch(() => {});
                 } else {
                     lightboxVideo.style.display = 'none';
                     lightboxVideo.pause();
@@ -506,9 +506,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             };
 
-            window.addEventListener('resize', () => {
+            window.addEventListener('resize', debounce(() => {
                 updateCarousel(currentIndex);
-            });
+            }, 100));
 
             const nextSlide = () => updateCarousel(currentIndex + 1);
             const prevSlide = () => updateCarousel(currentIndex - 1);
@@ -901,7 +901,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         container.style.transition = 'opacity 0.6s ease';
-        window.addEventListener('scroll', checkScroll, { passive: true });
+        window.addEventListener('scroll', throttle(checkScroll, 100), { passive: true });
         checkScroll();
     };
 

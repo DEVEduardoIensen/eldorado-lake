@@ -1,5 +1,39 @@
 User-agent: *
 Allow: /
 
-# Directives for AI Agents & Search Engines
+# Search Engine Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# AI Crawlers & LLMs
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Sitemaps and AI Documentation
 Sitemap: https://www.eldoradolake.com.br/sitemap.xml
+# LLMs specification: https://www.eldoradolake.com.br/llms.txt
+# LLMs full documentation: https://www.eldoradolake.com.br/llms-full.txt

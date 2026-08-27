@@ -2,20 +2,51 @@
   "name": "Eldorado Lake - Pesca Esportiva",
   "short_name": "Eldorado Lake",
   "description": "A maior operação de pesca esportiva ao Dourado no Lago Foz do Areia, Paraná.",
-  "start_url": "./",
+  "id": "eldorado-lake-pwa",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "any",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "categories": ["travel", "sports", "lifestyle"],
   "background_color": "#060a13",
   "theme_color": "#c5a059",
   "icons": [
     {
       "src": "assets/icons/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "assets/icons/android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Pacotes de Pesca",
+      "short_name": "Pacotes",
+      "description": "Conheça nossos pacotes exclusivos de pesca ao Dourado",
+      "url": "/#pacotes",
+      "icons": [{ "src": "assets/icons/favicon-48x48.png", "sizes": "48x48" }]
+    },
+    {
+      "name": "Rancho Eldorado",
+      "short_name": "Rancho",
+      "description": "Veja as acomodações e estrutura do Rancho Eldorado",
+      "url": "/#rancho",
+      "icons": [{ "src": "assets/icons/favicon-48x48.png", "sizes": "48x48" }]
+    },
+    {
+      "name": "Contato & Reservas",
+      "short_name": "Contato",
+      "description": "Fale com nossa equipe e consulte datas disponíveis",
+      "url": "/contact",
+      "icons": [{ "src": "assets/icons/favicon-48x48.png", "sizes": "48x48" }]
     }
   ]
 }
