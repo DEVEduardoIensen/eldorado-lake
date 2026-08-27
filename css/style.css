@@ -393,7 +393,9 @@ body {
 .hero-section {
     position: relative;
     height: 100vh;
-    min-height: 650px;
+    height: 100dvh;
+    min-height: 550px;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -505,7 +507,7 @@ body {
 
 .scroll-down {
     position: absolute;
-    bottom: 40px;
+    bottom: max(24px, calc(16px + env(safe-area-inset-bottom, 0px)));
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
@@ -1755,7 +1757,9 @@ footer {
 
         .hero-section {
             height: 100vh;
-            min-height: 600px;
+            height: 100dvh;
+            min-height: 550px;
+            min-height: 100dvh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1777,7 +1781,7 @@ footer {
         }
 
         .scroll-down {
-            bottom: 40px;
+            bottom: max(24px, calc(16px + env(safe-area-inset-bottom, 0px)));
         }
 
         .hero-title {
@@ -1870,7 +1874,9 @@ footer {
 
         .hero-section {
             height: 100vh;
-            min-height: 600px;
+            height: 100dvh;
+            min-height: 550px;
+            min-height: 100dvh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1882,7 +1888,7 @@ footer {
         }
 
         .scroll-down {
-            bottom: 35px;
+            bottom: max(24px, calc(16px + env(safe-area-inset-bottom, 0px)));
         }
 
         .hero-title {
@@ -2119,7 +2125,9 @@ footer {
 @media (max-width: 1199px) {
     .hero-section {
         height: 100vh;
-        min-height: 600px;
+        height: 100dvh;
+        min-height: 550px;
+        min-height: 100dvh;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -2161,12 +2169,15 @@ footer {
     }
 
     .scroll-down {
-        bottom: 70px;
+        bottom: max(24px, calc(16px + env(safe-area-inset-bottom, 0px)));
     }
 }
 
 @media (max-width: 576px) {
     .hero-section {
+            height: 100vh;
+            height: 100dvh;
+            min-height: 100dvh;
             padding: 70px 0 70px 0;
         }
 
@@ -2181,7 +2192,7 @@ footer {
         }
 
         .scroll-down {
-            bottom: 90px;
+            bottom: max(24px, calc(16px + env(safe-area-inset-bottom, 0px)));
         }
 
         .section-padding {
@@ -2265,7 +2276,8 @@ footer {
 @media (max-width: 480px) {
     .hero-section {
             height: 100vh;
-            min-height: 600px;
+            height: 100dvh;
+            min-height: 100dvh;
             padding: 60px 0 70px 0;
             display: flex;
             align-items: center;
@@ -2283,7 +2295,7 @@ footer {
         }
 
         .scroll-down {
-            bottom: 100px;
+            bottom: max(24px, calc(16px + env(safe-area-inset-bottom, 0px)));
         }
 
         .scroll-down a {
@@ -2393,7 +2405,7 @@ footer {
         font-size: 1.15rem !important;
     }
     .scroll-down {
-        bottom: 45px !important;
+        bottom: max(24px, calc(16px + env(safe-area-inset-bottom, 0px))) !important;
     }
 }
 
@@ -2418,6 +2430,7 @@ footer {
 
     .hero-section {
         min-height: 100vh !important;
+        min-height: 100dvh !important;
         height: auto !important;
         padding-top: 80px !important;
         padding-bottom: 40px !important;
