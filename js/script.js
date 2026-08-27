@@ -475,12 +475,28 @@ document.addEventListener('DOMContentLoaded', () => {
             let autoPlayInterval;
             const intervalTime = 4000;
 
+            const getVisibleRanchoCount = () => {
+                const width = window.innerWidth;
+                if (width > 992) return 3;
+                if (width > 600) return 2;
+                return 1;
+            };
+
             const updateCarousel = (index) => {
-                if (index < 0) index = slides.length - 1;
-                else if (index >= slides.length) index = 0;
+                const visibleCount = getVisibleRanchoCount();
+                const maxIndex = slides.length - visibleCount;
+                if (index < 0) index = maxIndex > 0 ? maxIndex : 0;
+                else if (index > maxIndex) index = 0;
                 currentIndex = index;
 
-                carouselTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+                if (visibleCount === 1) {
+                    carouselTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+                } else {
+                    const slideWidth = slides[0].getBoundingClientRect().width;
+                    const gap = 20;
+                    const amountToMove = currentIndex * (slideWidth + gap);
+                    carouselTrack.style.transform = `translateX(-${amountToMove}px)`;
+                }
 
                 slides.forEach((slide, i) => {
                     slide.classList.toggle('active', i === currentIndex);
@@ -489,6 +505,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     indicator.classList.toggle('active', i === currentIndex);
                 });
             };
+
+            window.addEventListener('resize', () => {
+                updateCarousel(currentIndex);
+            });
 
             const nextSlide = () => updateCarousel(currentIndex + 1);
             const prevSlide = () => updateCarousel(currentIndex - 1);

@@ -1,8 +1,8 @@
 :root {
     --bg-dark: #060a13;
     --bg-dark-rgb: 6, 10, 19;
-    --bg-card: rgba(13, 22, 38, 0.65);
-    --bg-card-hover: rgba(20, 32, 54, 0.8);
+    --bg-card: rgba(8, 12, 20, 0.9);
+    --bg-card-hover: rgba(12, 17, 28, 0.95);
     --bg-header: rgba(6, 10, 19, 0.85);
 
     --primary-gold: #e5c158;
@@ -570,13 +570,13 @@ body {
 
 .rancho-carousel-wrapper {
     position: relative;
-    max-width: 1000px;
+    max-width: 1160px;
     margin: 50px auto 0 auto;
     border-radius: 24px;
-    padding: 10px;
+    padding: 16px;
     background: var(--bg-card);
     @supports (backdrop-filter: blur(1px)) { backdrop-filter: var(--backdrop-blur); }
-    border: 1px solid var(--border-light);
+    border: 1px solid var(--border-gold);
     box-shadow: var(--glass-shadow);
     overflow: hidden;
 }
@@ -584,13 +584,14 @@ body {
 .carousel-container {
     position: relative;
     width: 100%;
-    height: 550px;
-    border-radius: 16px;
+    height: 480px;
+    border-radius: 20px;
     overflow: hidden;
 }
 
 .carousel-track {
     display: flex;
+    gap: 20px;
     width: 100%;
     height: 100%;
     transition: transform var(--transition-smooth);
@@ -598,10 +599,15 @@ body {
 
 .carousel-slide {
     position: relative;
-    min-width: 100%;
+    flex: 0 0 calc((100% - 40px) / 3);
+    min-width: calc((100% - 40px) / 3);
     height: 100%;
     cursor: pointer;
     overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid var(--border-gold);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
 }
 
 .carousel-img {
@@ -609,11 +615,36 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
+    border-radius: 15px;
     transition: transform var(--transition-smooth);
 }
 
 .carousel-slide:hover .carousel-img {
-    transform: scale(1.03);
+    transform: scale(1.04);
+}
+
+@media (max-width: 992px) {
+    .carousel-slide {
+        flex: 0 0 calc((100% - 20px) / 2);
+        min-width: calc((100% - 20px) / 2);
+    }
+}
+
+@media (max-width: 600px) {
+    .rancho-carousel-wrapper {
+        padding: 8px;
+    }
+    .carousel-container {
+        height: 420px;
+    }
+    .carousel-track {
+        gap: 0;
+    }
+    .carousel-slide {
+        flex: 0 0 100%;
+        min-width: 100%;
+        border-radius: 16px;
+    }
 }
 
 .carousel-overlay {
@@ -1115,10 +1146,28 @@ body {
 }
 
 .contato-map-wrapper {
+    background: linear-gradient(135deg, rgba(12, 16, 26, 0.95) 0%, rgba(6, 10, 19, 0.98) 100%);
+    border: 1px solid var(--border-gold);
+    border-radius: 24px;
+    padding: 36px 30px;
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.6),
+        0 5px 15px rgba(0, 0, 0, 0.4),
+        inset 0 1px 1px rgba(255, 255, 255, 0.08),
+        inset 0 -1px 10px rgba(0, 0, 0, 0.5);
     @supports (backdrop-filter: blur(1px)) { backdrop-filter: var(--backdrop-blur); }
     display: flex;
     flex-direction: column;
     gap: 16px;
+    transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.contato-map-wrapper:hover {
+    border-color: var(--primary-gold);
+    box-shadow:
+        0 20px 45px rgba(229, 193, 88, 0.12),
+        0 10px 25px rgba(0, 0, 0, 0.7),
+        inset 0 1px 2px rgba(255, 255, 255, 0.15);
 }
 
 .map-header {
@@ -2747,115 +2796,191 @@ footer {
     100% { transform: rotate(44deg); }
 }
 
-/* Card 2: Embarcação com Ondas Suaves (Barco de Alumínio Marine 600) */
+/* Card 2: Embarcação com Física Hidrodinâmica & Flutuação Realista no Lago */
 .card-anim-waves {
-    display: flex;
-    align-items: flex-end;
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
 }
+
+.lake-water-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    pointer-events: none;
+    overflow: hidden;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: transparent;
+}
+
 .boat-floating-wrapper {
     position: absolute;
-    bottom: 10px;
+    bottom: 6px;
     right: 12px;
-    width: 100px;
-    height: 35px;
-    z-index: 2;
-    opacity: 0.75;
-    animation: boatFloatRock 3.6s ease-in-out infinite;
-    transform-origin: 50% 85%;
+    width: 120px;
+    height: 40px;
+    z-index: 1;
+    opacity: 0.95;
+    animation: boatBuoyancyPhysics 4.2s cubic-bezier(0.42, 0.05, 0.58, 0.95) infinite;
+    transform-origin: 45% 75%;
     transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
 }
+
 .boat-svg {
     width: 100%;
     height: 100%;
-    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 8px rgba(229, 193, 88, 0.2));
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 10px rgba(56, 189, 248, 0.2));
 }
-.boat-wake-glow {
+
+/* Esteira de Espuma e Marola na Popa (Motor de Popa) */
+.boat-wake-trail {
     position: absolute;
-    bottom: 0px;
-    left: 10px;
-    width: 80px;
-    height: 4px;
-    background: radial-gradient(ellipse, rgba(56, 189, 248, 0.4), rgba(229, 193, 88, 0.2), transparent 75%);
-    border-radius: 50%;
-    filter: blur(2px);
+    bottom: 2px;
+    left: -24px;
+    width: 44px;
+    height: 18px;
     pointer-events: none;
+    z-index: 1;
 }
-.sobre-card:hover .boat-floating-wrapper {
-    opacity: 1;
-    transform: translateY(-3px) scale(1.04);
-    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 12px rgba(229, 193, 88, 0.35));
+
+.wake-foam-layer {
+    position: absolute;
+    bottom: 4px;
+    left: 4px;
+    width: 38px;
+    height: 8px;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.6) 0%, rgba(56, 189, 248, 0.4) 40%, rgba(14, 116, 144, 0.15) 75%, transparent 100%);
+    border-radius: 50%;
+    filter: blur(1.5px);
+    animation: boatWakePulse 2.8s ease-in-out infinite;
 }
-@keyframes boatFloatRock {
+
+.wake-bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 4px rgba(56, 189, 248, 0.8);
+    opacity: 0;
+    animation: wakeBubbleDrift 2.2s ease-out infinite;
+}
+
+.wb-1 { width: 4px; height: 4px; bottom: 6px; left: 22px; animation-delay: 0s; }
+.wb-2 { width: 3px; height: 3px; bottom: 8px; left: 16px; animation-delay: 0.5s; }
+.wb-3 { width: 5px; height: 5px; bottom: 4px; left: 10px; animation-delay: 1.1s; }
+.wb-4 { width: 3.5px; height: 3.5px; bottom: 7px; left: 4px; animation-delay: 1.6s; }
+
+@keyframes wakeBubbleDrift {
     0% {
-        transform: translateY(0px) translateX(0px) rotate(-2.4deg);
+        opacity: 0;
+        transform: translate(0, 0) scale(0.4);
     }
-    25% {
-        transform: translateY(-2.5px) translateX(1px) rotate(0.6deg);
-    }
-    50% {
-        transform: translateY(-4.5px) translateX(1.5px) rotate(2.6deg);
-    }
-    75% {
-        transform: translateY(-2px) translateX(0.8px) rotate(-0.5deg);
+    30% {
+        opacity: 0.9;
+        transform: translate(-6px, 1px) scale(1);
     }
     100% {
-        transform: translateY(0px) translateX(0px) rotate(-2.4deg);
+        opacity: 0;
+        transform: translate(-22px, 3px) scale(1.4);
     }
 }
+
+/* Marola de Proa */
+.boat-bow-wake {
+    position: absolute;
+    bottom: 5px;
+    right: -6px;
+    width: 22px;
+    height: 6px;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.65), rgba(56, 189, 248, 0.35), transparent 80%);
+    border-radius: 50%;
+    filter: blur(1px);
+    opacity: 0.7;
+    animation: boatBowRipple 3s ease-in-out infinite alternate;
+}
+
+@keyframes boatBowRipple {
+    0% { opacity: 0.4; transform: scaleX(0.8) translateY(1px); }
+    100% { opacity: 0.85; transform: scaleX(1.2) translateY(-1px); }
+}
+
+/* Física Realista de Flutuação da Embarcação (Pitch e Heave Sincronizados com Ondas do Lago) */
+@keyframes boatBuoyancyPhysics {
+    0% {
+        transform: translateY(0px) rotate(-1.5deg);
+    }
+    20% {
+        transform: translateY(-2.5px) rotate(1.2deg);
+    }
+    45% {
+        transform: translateY(-3.8px) rotate(2.4deg);
+    }
+    70% {
+        transform: translateY(-1.2px) rotate(-0.5deg);
+    }
+    88% {
+        transform: translateY(0.6px) rotate(-2deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(-1.5deg);
+    }
+}
+
+@keyframes boatWakePulse {
+    0%, 100% {
+        opacity: 0.55;
+        transform: scaleX(0.85) scaleY(0.9);
+    }
+    50% {
+        opacity: 0.95;
+        transform: scaleX(1.25) scaleY(1.1);
+    }
+}
+
+/* Única Camada de Ondas do Lago na Base */
 .waves-svg {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 200%;
-    height: 65px;
-    opacity: 0.7;
     pointer-events: none;
     transition: opacity 0.4s ease;
 }
-.sobre-card:hover .waves-svg {
-    opacity: 0.95;
+
+.wave-layer-single {
+    height: 38px;
+    z-index: 2;
+    opacity: 0.92;
+    animation: waveFlowSingle 6.5s linear infinite;
 }
-.wave-layer-1 {
-    animation: waveFlowBack 9s linear infinite;
-    opacity: 0.9;
-}
-.wave-layer-2 {
-    animation: waveFlowFront 6.5s linear infinite reverse;
-    opacity: 0.95;
-}
-.wave-layer-3 {
-    animation: waveFlowLine 7.5s linear infinite;
-    bottom: 4px;
-    filter: drop-shadow(0 0 6px rgba(229, 193, 88, 0.5));
-}
-.sobre-card:hover .wave-layer-3 {
-    filter: drop-shadow(0 0 12px rgba(229, 193, 88, 0.95));
-}
-@keyframes waveFlowBack {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-@keyframes waveFlowFront {
-    0% { transform: translateX(-50%); }
-    100% { transform: translateX(0); }
-}
-@keyframes waveFlowLine {
+
+@keyframes waveFlowSingle {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
 
-/* Card 3: 100% Pesque & Solte (Dourado Salminus brasiliensis Nadando na Parte Inferior do Card) */
+.sobre-card:hover .boat-floating-wrapper {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.04);
+    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.98)) drop-shadow(0 0 16px rgba(56, 189, 248, 0.5));
+}
+
+/* Card 3: 100% Pesque & Solte (Dourado Salminus brasiliensis - Apenas Cauda Articulada em 3D) */
 .card-anim-fish {
     position: absolute;
     inset: 0;
 }
 .fish-swimming-scene {
     position: absolute;
-    bottom: 6px;
-    right: 12px;
-    width: 165px;
-    height: 58px;
+    bottom: 10px;
+    right: 10px;
+    width: 180px;
+    height: 60px;
     pointer-events: none;
+    perspective: 700px;
+    perspective-origin: 50% 50%;
 }
 .swim-currents-svg {
     position: absolute;
@@ -2866,31 +2991,25 @@ footer {
 }
 .swim-stream {
     stroke-dasharray: 35 12;
-    animation: streamDashFlow 3.2s linear infinite;
+    animation: streamDashFlow 1.6s linear infinite;
 }
-.stream-1 {
-    animation-duration: 2.8s;
-}
-.stream-2 {
-    animation-duration: 3.5s;
-    animation-delay: -1s;
-}
-.stream-3 {
-    animation-duration: 4.2s;
-    animation-delay: -2s;
-}
+.stream-1 { animation-duration: 1.4s; }
+.stream-2 { animation-duration: 1.7s; animation-delay: -0.5s; }
+.stream-3 { animation-duration: 2.0s; animation-delay: -1s; }
+
 @keyframes streamDashFlow {
-    0% { stroke-dashoffset: 90; }
+    0% { stroke-dashoffset: 80; }
     100% { stroke-dashoffset: 0; }
 }
+
 .swim-bubble {
     opacity: 0;
-    animation: bubbleDrift 3.6s ease-out infinite;
+    animation: bubbleDrift 2.4s ease-out infinite;
 }
-.bubble-1 { animation-delay: 0.2s; }
-.bubble-2 { animation-delay: 1.1s; }
-.bubble-3 { animation-delay: 2.0s; }
-.bubble-4 { animation-delay: 2.8s; }
+.bubble-1 { animation-delay: 0.1s; }
+.bubble-2 { animation-delay: 0.7s; }
+.bubble-3 { animation-delay: 1.3s; }
+.bubble-4 { animation-delay: 1.9s; }
 
 @keyframes bubbleDrift {
     0% {
@@ -2902,66 +3021,69 @@ footer {
     }
     100% {
         opacity: 0;
-        transform: translate(-28px, -10px) scale(1.1);
+        transform: translate(-30px, -8px) scale(1.1);
     }
 }
+
 .dourado-fish-swimming {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.55;
-    animation: douradoSwimCruise 4.6s ease-in-out infinite;
-    transform-origin: 50% 50%;
+    opacity: 0.88;
+    transform-style: preserve-3d;
+    transform-origin: 75% 50%;
     transition: opacity 0.4s ease, transform 0.4s ease, filter 0.4s ease;
 }
+
 .dourado-fish-svg {
     width: 100%;
     height: 100%;
-    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 10px rgba(229, 193, 88, 0.4));
+    overflow: visible;
+    transform-style: preserve-3d;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.92)) drop-shadow(0 0 14px rgba(229, 193, 88, 0.45));
 }
+
+/* Corpo Firme e Estável (Sem ondulação ou movimentação do corpo) */
+.dourado-body-mesh {
+    transform-origin: 82% 50%;
+    transform-box: fill-box;
+}
+
+/* Batimento Exclusivo da Cauda no Plano Lateral 3D (Wagging Lateral Esquerda/Direita) */
 .dourado-tail-group {
-    transform-origin: 28px 28px;
-    animation: douradoTailWaggle 1.1s ease-in-out infinite alternate;
+    transform-origin: 100% 50%;
+    transform-box: fill-box;
+    transform-style: preserve-3d;
+    animation: douradoLateralTailWhip 0.44s ease-in-out infinite alternate;
 }
-@keyframes douradoSwimCruise {
+
+/* Chicotada da Cauda do Peixe no Plano Lateral 3D (Wagging Left/Right sem mexer o corpo) */
+@keyframes douradoLateralTailWhip {
     0% {
-        transform: translateY(0px) translateX(0px) rotate(-1.5deg);
-    }
-    25% {
-        transform: translateY(-2.5px) translateX(-2px) rotate(1deg);
+        transform: perspective(280px) rotateY(-38deg) scaleX(0.76) skewX(3deg);
     }
     50% {
-        transform: translateY(-4.5px) translateX(0px) rotate(2.4deg);
-    }
-    75% {
-        transform: translateY(-2px) translateX(2px) rotate(-0.5deg);
+        transform: perspective(280px) rotateY(0deg) scaleX(1) skewX(0deg);
     }
     100% {
-        transform: translateY(0px) translateX(0px) rotate(-1.5deg);
+        transform: perspective(280px) rotateY(38deg) scaleX(0.76) skewX(-3deg);
     }
 }
-@keyframes douradoTailWaggle {
-    0% {
-        transform: rotate(-5.5deg) scaleX(0.95);
-    }
-    50% {
-        transform: rotate(0deg) scaleX(1);
-    }
-    100% {
-        transform: rotate(6deg) scaleX(0.96);
-    }
-}
+
 .sobre-card:hover .dourado-fish-swimming {
-    opacity: 0.95;
-    transform: scale(1.06);
-    filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 16px rgba(229, 193, 88, 0.7));
+    opacity: 1;
+    transform: scale(1.04);
+    filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 22px rgba(229, 193, 88, 0.85));
 }
 .sobre-card:hover .dourado-tail-group {
-    animation-duration: 0.65s;
+    animation-duration: 0.24s;
 }
 .sobre-card:hover .swim-stream {
-    animation-duration: 1.8s;
+    animation-duration: 0.8s;
+}
+.sobre-card:hover .swim-stream {
+    animation-duration: 0.8s;
 }
 
 /* Card 4: Adrenalina Pura (Super Raio Cinematográfico & Pulso Elétrico) */
