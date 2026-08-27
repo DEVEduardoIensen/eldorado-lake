@@ -399,6 +399,7 @@ body {
     display: flex;
     align-items: center;
     overflow: hidden;
+    background: #030712 url('../assets/images/hero_bg.webp') center/cover no-repeat;
 }
 
 .hero-video {
@@ -2011,6 +2012,10 @@ footer {
         }
         .show-only-on-tablet {
             display: none !important;
+        }
+
+        .hero-section {
+            background-image: url('../assets/images/hero_bg_mobile.webp');
         }
 
         .mobile-menu-toggle {

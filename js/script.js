@@ -32,7 +32,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let ranchoMoved = false;
     let galleryMoved = false;
 
+    const initHeroVideoPoster = () => {
+        const heroVideo = document.querySelector('.hero-video');
+        if (heroVideo && window.innerWidth <= 768) {
+            heroVideo.poster = 'assets/images/hero_bg_mobile.webp';
+        }
+    };
+
     const init = () => {
+        initHeroVideoPoster();
         initNavigation();
         initScrollEffects();
         initModals();
