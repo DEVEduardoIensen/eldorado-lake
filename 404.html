@@ -22,6 +22,53 @@
     <link rel="stylesheet" href="css/vendor/fontawesome.min.css?v=33.8" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="css/vendor/fontawesome.min.css?v=33.8"></noscript>
     <link rel="stylesheet" href="css/style.css?v=33.8">
+    
+    <script>
+        (function() {
+            try {
+                var path = (window.location.pathname || '').toLowerCase();
+                var search = (window.location.search || '').toLowerCase();
+                var full = path + ' ' + search;
+
+                if (full.indexOf('pacote') !== -1 || full.indexOf('preco') !== -1 || full.indexOf('preço') !== -1 || full.indexOf('valor') !== -1) {
+                    window.location.replace('/#pacotes');
+                    return;
+                }
+                if (full.indexOf('quem-somos') !== -1 || full.indexOf('quemsomos') !== -1 || full.indexOf('sobre') !== -1 || full.indexOf('guia') !== -1 || full.indexOf('thiago') !== -1) {
+                    window.location.replace('/about');
+                    return;
+                }
+                if (full.indexOf('onde') !== -1 || full.indexOf('pescamos') !== -1 || full.indexOf('lago') !== -1 || full.indexOf('foz') !== -1 || full.indexOf('areia') !== -1 || full.indexOf('dourado') !== -1 || full.indexOf('rio') !== -1) {
+                    window.location.replace('/#sobre');
+                    return;
+                }
+                if (full.indexOf('aeroporto') !== -1 || full.indexOf('translado') !== -1 || full.indexOf('transporte') !== -1 || full.indexOf('chegar') !== -1 || full.indexOf('rota') !== -1 || full.indexOf('mapa') !== -1 || full.indexOf('contato') !== -1 || full.indexOf('localizacao') !== -1) {
+                    window.location.replace('/contact');
+                    return;
+                }
+                if (full.indexOf('rancho') !== -1 || full.indexOf('hospedagem') !== -1 || full.indexOf('pousada') !== -1 || full.indexOf('estrutura') !== -1 || full.indexOf('foto') !== -1 || full.indexOf('galeria') !== -1) {
+                    window.location.replace('/#rancho');
+                    return;
+                }
+                if (full.indexOf('video') !== -1 || full.indexOf('youtube') !== -1) {
+                    window.location.replace('/#videos');
+                    return;
+                }
+                if (full.indexOf('privacidade') !== -1 || full.indexOf('privacy') !== -1) {
+                    window.location.replace('/privacy');
+                    return;
+                }
+                if (full.indexOf('termo') !== -1 || full.indexOf('terms') !== -1) {
+                    window.location.replace('/terms');
+                    return;
+                }
+                // Fallback direct redirect to homepage
+                window.location.replace('/');
+            } catch (e) {
+                // Keep default 404 view if error
+            }
+        })();
+    </script>
 </head>
 <body>
     <header id="main-header" class="header-scrolled">

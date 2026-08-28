@@ -9,7 +9,52 @@
       "permanent": true
     },
     {
+      "source": "/pacote",
+      "destination": "/#pacotes",
+      "permanent": true
+    },
+    {
+      "source": "/pacotes-de-pesca",
+      "destination": "/#pacotes",
+      "permanent": true
+    },
+    {
+      "source": "/valores",
+      "destination": "/#pacotes",
+      "permanent": true
+    },
+    {
+      "source": "/precos",
+      "destination": "/#pacotes",
+      "permanent": true
+    },
+    {
       "source": "/quem-somos",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/quemsomos",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/sobre",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/sobre-nos",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/guia-de-pesca",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/thiago-witeck",
       "destination": "/about",
       "permanent": true
     },
@@ -19,8 +64,108 @@
       "permanent": true
     },
     {
+      "source": "/ondepescamos",
+      "destination": "/#sobre",
+      "permanent": true
+    },
+    {
+      "source": "/lago-foz-do-areia",
+      "destination": "/#sobre",
+      "permanent": true
+    },
+    {
+      "source": "/foz-do-areia",
+      "destination": "/#sobre",
+      "permanent": true
+    },
+    {
+      "source": "/represa-foz-do-areia",
+      "destination": "/#sobre",
+      "permanent": true
+    },
+    {
+      "source": "/rio-iguacu",
+      "destination": "/#sobre",
+      "permanent": true
+    },
+    {
       "source": "/aeroporto-e-translado",
       "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/aeroporto-translado",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/aeroporto",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/translado",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/transporte",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/como-chegar",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/localizacao",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/mapa",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/contato",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/fale-conosco",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/rancho",
+      "destination": "/#rancho",
+      "permanent": true
+    },
+    {
+      "source": "/rancho-eldorado",
+      "destination": "/#rancho",
+      "permanent": true
+    },
+    {
+      "source": "/hospedagem",
+      "destination": "/#rancho",
+      "permanent": true
+    },
+    {
+      "source": "/fotos",
+      "destination": "/#rancho",
+      "permanent": true
+    },
+    {
+      "source": "/galeria",
+      "destination": "/#rancho",
+      "permanent": true
+    },
+    {
+      "source": "/videos",
+      "destination": "/#videos",
       "permanent": true
     },
     {
@@ -39,13 +184,8 @@
       "permanent": true
     },
     {
-      "source": "/sobre",
-      "destination": "/about",
-      "permanent": true
-    },
-    {
-      "source": "/contato",
-      "destination": "/contact",
+      "source": "/pagina-inicial",
+      "destination": "/",
       "permanent": true
     },
     {
