@@ -595,11 +595,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (nextBtn) {
                 nextBtn.addEventListener('click', handleNext);
-                nextBtn.addEventListener('touchend', handleNext);
             }
             if (prevBtn) {
                 prevBtn.addEventListener('click', handlePrev);
-                prevBtn.addEventListener('touchend', handlePrev);
             }
 
             indicators.forEach((indicator, i) => {
@@ -613,7 +611,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
 
                 indicator.addEventListener('click', handleIndicator);
-                indicator.addEventListener('touchend', handleIndicator);
                 indicator.setAttribute('tabindex', '0');
                 indicator.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
