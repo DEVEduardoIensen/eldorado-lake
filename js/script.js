@@ -540,18 +540,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const updateCarousel = (index) => {
                 const visibleCount = getVisibleCount();
-                const maxIndex = slides.length - visibleCount;
-                if (index < 0) index = maxIndex > 0 ? maxIndex : 0;
-                else if (index > maxIndex) index = 0;
-                currentIndex = index;
-
-                if (visibleCount === 1) {
-                    carouselTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+                const maxIndex = Math.max(0, slides.length - visibleCount);
+                if (index < 0) {
+                    currentIndex = maxIndex;
+                } else if (index > maxIndex) {
+                    currentIndex = 0;
                 } else {
-                    const slideWidth = slides[0].getBoundingClientRect().width;
-                    const gap = 20;
-                    const amountToMove = currentIndex * (slideWidth + gap);
-                    carouselTrack.style.transform = `translateX(-${amountToMove}px)`;
+                    currentIndex = index;
+                }
+
+                if (slides[currentIndex]) {
+                    const offset = slides[currentIndex].offsetLeft;
+                    carouselTrack.style.transform = `translateX(-${offset}px)`;
                 }
 
                 slides.forEach((slide, i) => {
@@ -575,21 +575,49 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             const stopAutoPlay = () => clearInterval(autoPlayInterval);
 
-            if (nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextSlide(); startAutoPlay(); });
-            if (prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prevSlide(); startAutoPlay(); });
+            const handleNext = (e) => {
+                if (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                nextSlide();
+                startAutoPlay();
+            };
+
+            const handlePrev = (e) => {
+                if (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                prevSlide();
+                startAutoPlay();
+            };
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', handleNext);
+                nextBtn.addEventListener('touchend', handleNext);
+            }
+            if (prevBtn) {
+                prevBtn.addEventListener('click', handlePrev);
+                prevBtn.addEventListener('touchend', handlePrev);
+            }
 
             indicators.forEach((indicator, i) => {
-                indicator.addEventListener('click', (e) => {
-                    e.stopPropagation();
+                const handleIndicator = (e) => {
+                    if (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
                     updateCarousel(i);
                     startAutoPlay();
-                });
+                };
 
+                indicator.addEventListener('click', handleIndicator);
+                indicator.addEventListener('touchend', handleIndicator);
                 indicator.setAttribute('tabindex', '0');
                 indicator.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
-                        updateCarousel(i);
-                        startAutoPlay();
+                        handleIndicator(e);
                     }
                 });
             });
@@ -603,6 +631,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let startY = 0;
 
             carouselContainer.addEventListener('touchstart', (e) => {
+                if (e.target.closest('.carousel-btn') || e.target.closest('.indicator')) return;
                 if (e.touches.length === 1) {
                     stopAutoPlay();
                     startX = e.touches[0].clientX;
@@ -612,6 +641,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, { passive: true });
 
             carouselContainer.addEventListener('touchmove', (e) => {
+                if (e.target.closest('.carousel-btn') || e.target.closest('.indicator')) return;
                 if (e.touches.length === 1) {
                     const diffX = startX - e.touches[0].clientX;
                     const diffY = startY - e.touches[0].clientY;
@@ -622,6 +652,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, { passive: true });
 
             carouselContainer.addEventListener('touchend', (e) => {
+                if (e.target.closest('.carousel-btn') || e.target.closest('.indicator')) return;
                 if (e.changedTouches.length === 1) {
                     const diffX = startX - e.changedTouches[0].clientX;
                     const diffY = startY - e.changedTouches[0].clientY;
