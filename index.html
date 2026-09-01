@@ -653,14 +653,69 @@
                 </defs>
             </svg>
 
-            <div class="sobre-epic-quote sobre-anim-fade">
-                <div class="sobre-quote-marks"><i class="fa-solid fa-quote-left"></i></div>
-                <blockquote class="sobre-quote-text">
-                    "Você não pesca o Dourado — você <em>duela</em> com ele. E quando ele salta brilhando ao sol, você entende por que ele é chamado de <strong>Rei do Rio</strong>."
-                </blockquote>
-                <div class="sobre-quote-author">
-                    <span class="sobre-quote-name">— Equipe Eldorado Lake</span>
-                    <span class="sobre-quote-role">15 anos na água</span>
+            <div class="section-header text-center" style="margin-top: 60px;">
+                <span class="section-subtitle">Nossa Embarcação</span>
+                <h2 class="section-title">Estrutura Náutica de Alta Performance</h2>
+                <div class="section-divider"></div>
+                <p class="section-desc">Barco completo, estável e plataformado com motor de popa, motor elétrico e equipamentos de ponta para a melhor experiência de pesca esportiva.</p>
+            </div>
+
+            <div class="rancho-carousel-wrapper barco-carousel-wrapper">
+                <div class="carousel-container" id="barco-carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-slide active" data-index="0">
+                            <img src="assets/images/barco1.jpeg" alt="Embarcação de Pesca 1" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay">
+                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                            </div>
+                        </div>
+                        <div class="carousel-slide" data-index="1">
+                            <img src="assets/images/barco_2.webp" alt="Embarcação de Pesca 2" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay">
+                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                            </div>
+                        </div>
+                        <div class="carousel-slide" data-index="2">
+                            <img src="assets/images/barco_3.webp" alt="Embarcação de Pesca 3" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay">
+                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                            </div>
+                        </div>
+                        <div class="carousel-slide" data-index="3">
+                            <img src="assets/images/barco_4.webp" alt="Embarcação de Pesca 4" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay">
+                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                            </div>
+                        </div>
+                        <div class="carousel-slide" data-index="4">
+                            <img src="assets/images/barco_5.webp" alt="Embarcação de Pesca 5" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay">
+                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                            </div>
+                        </div>
+                        <div class="carousel-slide" data-index="5">
+                            <img src="assets/images/barco_6.webp" alt="Embarcação de Pesca 6" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay">
+                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="carousel-btn prev-btn" id="barco-carousel-prev" aria-label="Anterior">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next-btn" id="barco-carousel-next" aria-label="Próximo">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                    <div class="carousel-indicators">
+                        <span class="indicator active" data-slide="0"></span>
+                        <span class="indicator" data-slide="1"></span>
+                        <span class="indicator" data-slide="2"></span>
+                        <span class="indicator" data-slide="3"></span>
+                        <span class="indicator" data-slide="4"></span>
+                        <span class="indicator" data-slide="5"></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -762,38 +817,6 @@
 
             <div class="pacotes-flyers">
 
-                <div class="package-card-3d premium-card" data-package="premium">
-                    <div class="package-badge">Eldorado</div>
-                    <div class="package-card-header">
-                        <div class="package-icon-container">
-                            <i class="fa-solid fa-users"></i>
-                        </div>
-                        <span class="package-tier">PLANO PARA TRIO</span>
-                        <h3>Eldorado 1</h3>
-                        <div class="package-price">
-                            <span class="currency">R$</span>
-                            <span class="amount" id="price-premium">900</span>
-                            <span class="period">/ diária (trio)</span>
-                        </div>
-                    </div>
-
-                    <div class="package-divider"></div>
-
-                    <div class="package-card-body">
-                        <p class="package-intro">A experiência definitiva de pesca esportiva ao Dourado com exclusividade, conforto absoluto e atendimento no Rancho.</p>
-                        <ul class="package-feature-list">
-                            <li><i class="fa-solid fa-circle-check"></i> Guia profissional Thiago Witeck</li>
-                            <li><i class="fa-solid fa-circle-check"></i> Hospedagem aconchegante no Rancho</li>
-                            <li><i class="fa-solid fa-circle-check"></i> Embarcação completa com motor elétrico</li>
-                            <li><i class="fa-solid fa-circle-check"></i> Combustível incluso para toda a diária</li>
-                            <li><i class="fa-solid fa-circle-check"></i> Acesso livre à internet Starlink no rancho</li>
-                        </ul>
-                    </div>
-                    <div class="package-card-footer">
-                        <button class="btn btn-gold btn-block btn-open-flyer" data-package="premium" aria-label="Visualizar Detalhes do Pacote Premium">Visualizar Detalhes</button>
-                    </div>
-                </div>
-
                 <div class="package-card-3d standard-card" data-package="standard">
                     <div class="package-badge">Eldorado</div>
                     <div class="package-card-header">
@@ -801,7 +824,7 @@
                             <i class="fa-solid fa-user-group"></i>
                         </div>
                         <span class="package-tier">PLANO PARA DUPLA</span>
-                        <h3>Eldorado 2</h3>
+                        <h3>Eldorado 1</h3>
                         <div class="package-price">
                             <span class="currency">R$</span>
                             <span class="amount" id="price-standard">750</span>
@@ -823,7 +846,39 @@
                     </div>
 
                     <div class="package-card-footer">
-                        <button class="btn btn-gold btn-block btn-open-flyer" data-package="standard" aria-label="Visualizar Detalhes do Pacote Standard">Visualizar Detalhes</button>
+                        <button class="btn btn-gold btn-block btn-open-flyer" data-package="standard" aria-label="Visualizar Detalhes do Pacote Eldorado 1">Visualizar Detalhes</button>
+                    </div>
+                </div>
+
+                <div class="package-card-3d premium-card" data-package="premium">
+                    <div class="package-badge">Eldorado</div>
+                    <div class="package-card-header">
+                        <div class="package-icon-container">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <span class="package-tier">PLANO PARA TRIO</span>
+                        <h3>Eldorado 2</h3>
+                        <div class="package-price">
+                            <span class="currency">R$</span>
+                            <span class="amount" id="price-premium">900</span>
+                            <span class="period">/ diária (trio)</span>
+                        </div>
+                    </div>
+
+                    <div class="package-divider"></div>
+
+                    <div class="package-card-body">
+                        <p class="package-intro">A experiência definitiva de pesca esportiva ao Dourado com exclusividade, conforto absoluto e atendimento no Rancho.</p>
+                        <ul class="package-feature-list">
+                            <li><i class="fa-solid fa-circle-check"></i> Guia profissional Thiago Witeck</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Hospedagem aconchegante no Rancho</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Embarcação completa com motor elétrico</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Combustível incluso para toda a diária</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Acesso livre à internet Starlink no rancho</li>
+                        </ul>
+                    </div>
+                    <div class="package-card-footer">
+                        <button class="btn btn-gold btn-block btn-open-flyer" data-package="premium" aria-label="Visualizar Detalhes do Pacote Eldorado 2">Visualizar Detalhes</button>
                     </div>
                 </div>
             </div>

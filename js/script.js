@@ -237,18 +237,37 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // Rancho slide click handlers
-        const ranchoSlides = Array.from(document.querySelectorAll('.carousel-slide'));
+        const ranchoSlides = Array.from(document.querySelectorAll('#rancho-carousel .carousel-slide'));
         ranchoSlides.forEach((slide, idx) => {
             slide.addEventListener('click', (e) => {
-                if (ranchoMoved) {
-                    ranchoMoved = false;
-                    return;
-                }
+                const container = document.getElementById('rancho-carousel');
+                if (container && container.dataset.moved === 'true') return;
                 const items = ranchoSlides.map((s, i) => {
                     const img = s.querySelector('img');
                     return {
                         src: s.getAttribute('data-full') || (img ? (img.getAttribute('data-src') || img.src) : ''),
                         alt: img ? img.alt : `Estrutura do Rancho ${i + 1}`
+                    };
+                });
+                openLightboxGallery(items, idx);
+            });
+            slide.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') slide.click();
+            });
+            slide.setAttribute('tabindex', '0');
+        });
+
+        // Barco slide click handlers
+        const barcoSlides = Array.from(document.querySelectorAll('#barco-carousel .carousel-slide'));
+        barcoSlides.forEach((slide, idx) => {
+            slide.addEventListener('click', (e) => {
+                const container = document.getElementById('barco-carousel');
+                if (container && container.dataset.moved === 'true') return;
+                const items = barcoSlides.map((s, i) => {
+                    const img = s.querySelector('img');
+                    return {
+                        src: s.getAttribute('data-full') || (img ? (img.getAttribute('data-src') || img.src) : ''),
+                        alt: img ? img.alt : `Embarcação de Pesca ${i + 1}`
                     };
                 });
                 openLightboxGallery(items, idx);
@@ -472,18 +491,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const initCarousels = () => {
 
-        const carouselTrack = document.querySelector('.carousel-track');
-        const slides = Array.from(document.querySelectorAll('.carousel-slide'));
-        const prevBtn = document.getElementById('carousel-prev');
-        const nextBtn = document.getElementById('carousel-next');
-        const indicators = Array.from(document.querySelectorAll('.carousel-indicators .indicator'));
+        const setupMultiSlideCarousel = (containerId, prevBtnId, nextBtnId, intervalTime = 4000) => {
+            const carouselContainer = document.getElementById(containerId);
+            if (!carouselContainer) return;
 
-        if (carouselTrack && slides.length > 0) {
+            const carouselTrack = carouselContainer.querySelector('.carousel-track');
+            const slides = Array.from(carouselContainer.querySelectorAll('.carousel-slide'));
+            const prevBtn = document.getElementById(prevBtnId);
+            const nextBtn = document.getElementById(nextBtnId);
+            const indicators = Array.from(carouselContainer.querySelectorAll('.carousel-indicators .indicator'));
+
+            if (!carouselTrack || slides.length === 0) return;
+
+            slides.forEach((slide, i) => {
+                const img = slide.querySelector('img');
+                if (img) {
+                    img.addEventListener('error', () => {
+                        img.style.display = 'none';
+                        const overlay = slide.querySelector('.carousel-overlay');
+                        if (overlay) overlay.style.display = 'none';
+                        
+                        if (!slide.querySelector('.carousel-slide-placeholder')) {
+                            const placeholder = document.createElement('div');
+                            placeholder.className = 'carousel-slide-placeholder';
+                            const isBarco = containerId.includes('barco');
+                            const iconClass = isBarco ? 'fa-solid fa-ship' : 'fa-solid fa-house-chimney';
+                            const label = isBarco ? `Foto ${i + 1} da Embarcação` : `Foto ${i + 1} do Rancho`;
+                            placeholder.innerHTML = `
+                                <i class="${iconClass}"></i>
+                                <span>${label}</span>
+                                <small>Em breve</small>
+                            `;
+                            slide.appendChild(placeholder);
+                        }
+                    });
+                }
+            });
+
             let currentIndex = 0;
             let autoPlayInterval;
-            const intervalTime = 4000;
 
-            const getVisibleRanchoCount = () => {
+            const getVisibleCount = () => {
                 const width = window.innerWidth;
                 if (width > 992) return 3;
                 if (width > 600) return 2;
@@ -491,7 +539,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             const updateCarousel = (index) => {
-                const visibleCount = getVisibleRanchoCount();
+                const visibleCount = getVisibleCount();
                 const maxIndex = slides.length - visibleCount;
                 if (index < 0) index = maxIndex > 0 ? maxIndex : 0;
                 else if (index > maxIndex) index = 0;
@@ -546,56 +594,57 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            const carouselContainer = document.getElementById('rancho-carousel');
-            if (carouselContainer) {
-                carouselContainer.addEventListener('mouseenter', stopAutoPlay);
-                carouselContainer.addEventListener('mouseleave', startAutoPlay);
+            carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+            carouselContainer.addEventListener('mouseleave', startAutoPlay);
+            carouselContainer.addEventListener('focusin', stopAutoPlay);
+            carouselContainer.addEventListener('focusout', startAutoPlay);
 
-                carouselContainer.addEventListener('focusin', stopAutoPlay);
-                carouselContainer.addEventListener('focusout', startAutoPlay);
+            let startX = 0;
+            let startY = 0;
 
-                let ranchoStartX = 0;
-                let ranchoStartY = 0;
+            carouselContainer.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 1) {
+                    stopAutoPlay();
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                    carouselContainer.dataset.moved = 'false';
+                }
+            }, { passive: true });
 
-                carouselContainer.addEventListener('touchstart', (e) => {
-                    if (e.touches.length === 1) {
-                        stopAutoPlay();
-                        ranchoStartX = e.touches[0].clientX;
-                        ranchoStartY = e.touches[0].clientY;
-                        ranchoMoved = false;
+            carouselContainer.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1) {
+                    const diffX = startX - e.touches[0].clientX;
+                    const diffY = startY - e.touches[0].clientY;
+                    if (Math.abs(diffX) > 8) {
+                        carouselContainer.dataset.moved = 'true';
                     }
-                }, { passive: true });
+                }
+            }, { passive: true });
 
-                carouselContainer.addEventListener('touchmove', (e) => {
-                    if (e.touches.length === 1) {
-                        const diffX = ranchoStartX - e.touches[0].clientX;
-                        const diffY = ranchoStartY - e.touches[0].clientY;
-                        if (Math.abs(diffX) > 8) {
-                            ranchoMoved = true;
+            carouselContainer.addEventListener('touchend', (e) => {
+                if (e.changedTouches.length === 1) {
+                    const diffX = startX - e.changedTouches[0].clientX;
+                    const diffY = startY - e.changedTouches[0].clientY;
+
+                    if (Math.abs(diffX) > 35 && Math.abs(diffX) > Math.abs(diffY)) {
+                        if (diffX > 0) {
+                            nextSlide();
+                        } else {
+                            prevSlide();
                         }
                     }
-                }, { passive: true });
-
-                carouselContainer.addEventListener('touchend', (e) => {
-                    if (e.changedTouches.length === 1) {
-                        const diffX = ranchoStartX - e.changedTouches[0].clientX;
-                        const diffY = ranchoStartY - e.changedTouches[0].clientY;
-
-                        if (Math.abs(diffX) > 35 && Math.abs(diffX) > Math.abs(diffY)) {
-                            if (diffX > 0) {
-                                nextSlide();
-                            } else {
-                                prevSlide();
-                            }
-                        }
-                    }
-                    startAutoPlay();
-                    setTimeout(() => { ranchoMoved = false; }, 150);
-                }, { passive: true });
-            }
+                }
+                startAutoPlay();
+                setTimeout(() => {
+                    carouselContainer.dataset.moved = 'false';
+                }, 150);
+            }, { passive: true });
 
             startAutoPlay();
-        }
+        };
+
+        setupMultiSlideCarousel('rancho-carousel', 'carousel-prev', 'carousel-next', 4000);
+        setupMultiSlideCarousel('barco-carousel', 'barco-carousel-prev', 'barco-carousel-next', 4500);
 
         const galleryTrack = document.querySelector('.gallery-track');
         const gallerySlides = Array.from(document.querySelectorAll('.gallery-slide'));
