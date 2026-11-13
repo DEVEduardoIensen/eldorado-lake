@@ -32,6 +32,36 @@ document.addEventListener('DOMContentLoaded', () => {
     let ranchoMoved = false;
     let galleryMoved = false;
 
+    const FOCUSABLE_SELECTOR = [
+        'a[href]',
+        'button:not([disabled])',
+        'input:not([disabled])',
+        'select:not([disabled])',
+        'textarea:not([disabled])',
+        '[tabindex]:not([tabindex="-1"])'
+    ].join(', ');
+
+    const isReducedMotion = () =>
+        Boolean(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+    const trapFocusInContainer = (e, container) => {
+        if (!container || e.key !== 'Tab') return;
+        const focusables = Array.from(container.querySelectorAll(FOCUSABLE_SELECTOR)).filter(
+            (el) => !el.hasAttribute('hidden') && (el.offsetParent !== null || el.getClientRects().length > 0)
+        );
+        if (focusables.length === 0) return;
+
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && (document.activeElement === first || !container.contains(document.activeElement))) {
+            e.preventDefault();
+            last.focus();
+        } else if (!e.shiftKey && (document.activeElement === last || !container.contains(document.activeElement))) {
+            e.preventDefault();
+            first.focus();
+        }
+    };
+
     const initHeroVideoPoster = () => {
         const heroVideo = document.querySelector('.hero-video');
         if (heroVideo && window.innerWidth <= 768) {
@@ -49,34 +79,63 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const initNavigation = () => {
+        const header = document.getElementById('main-header');
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const navbarLinks = document.querySelector('.nav-links');
-        const navItems = document.querySelectorAll('.nav-link');
+        const navActionLinks = document.querySelectorAll('.nav-links a');
 
-        if (mobileMenuBtn && navbarLinks) {
-            mobileMenuBtn.addEventListener('click', () => {
-                navbarLinks.classList.toggle('active');
-                mobileMenuBtn.classList.toggle('open');
-            });
+        if (!mobileMenuBtn || !navbarLinks) return;
 
-            navItems.forEach(link => {
-                link.addEventListener('click', () => {
-                    navbarLinks.classList.remove('active');
-                    mobileMenuBtn.classList.remove('open');
-                });
+        const setMenuOpen = (isOpen, restoreFocus = false) => {
+            navbarLinks.classList.toggle('active', isOpen);
+            mobileMenuBtn.classList.toggle('open', isOpen);
+            mobileMenuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            mobileMenuBtn.setAttribute(
+                'aria-label',
+                isOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação'
+            );
+            if (!isOpen && restoreFocus) {
+                mobileMenuBtn.focus();
+            }
+        };
+
+        setMenuOpen(false, false);
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isOpen = !navbarLinks.classList.contains('active');
+            setMenuOpen(isOpen, false);
+        });
+
+        navActionLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                setMenuOpen(false, false);
             });
-        }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navbarLinks.classList.contains('active')) return;
+            if (header && !header.contains(e.target)) {
+                setMenuOpen(false, false);
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navbarLinks.classList.contains('active')) {
+                setMenuOpen(false, true);
+            }
+        });
     };
 
     const initScrollEffects = () => {
         const header = document.getElementById('main-header');
+        const hasHero = Boolean(document.getElementById('hero'));
         const sections = Array.from(document.querySelectorAll('section'));
         const navItems = Array.from(document.querySelectorAll('.nav-link'));
 
         const handleScroll = throttle(() => {
             const scrollY = window.scrollY;
 
-            if (header) {
+            if (header && hasHero) {
                 if (scrollY > 50) {
                     header.classList.remove('header-transparent');
                     header.classList.add('header-scrolled');
@@ -85,6 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     header.classList.add('header-transparent');
                 }
             }
+
+            if (!sections.length) return;
 
             let currentSection = '';
             for (let i = sections.length - 1; i >= 0; i--) {
@@ -116,6 +177,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const lightboxVideoContainer = document.getElementById('lightbox-video-container');
         const lightboxIframe = document.getElementById('lightbox-iframe');
         const lightboxVideo = document.getElementById('lightbox-video');
+        const lightboxConsentGate = document.getElementById('lightbox-consent-gate');
+        const lightboxConsentTitle = document.getElementById('lightbox-consent-title');
+        const lightboxConsentDesc = document.getElementById('lightbox-consent-desc');
+        const lightboxConsentAllow = document.getElementById('lightbox-consent-allow');
+        const lightboxExternalLink = document.getElementById('lightbox-external-link');
         const closeBtn = document.getElementById('lightbox-close-btn');
         const lightboxPrevBtn = document.getElementById('lightbox-prev-btn');
         const lightboxNextBtn = document.getElementById('lightbox-next-btn');
@@ -127,60 +193,106 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentLightboxItems = [];
         let currentLightboxIndex = 0;
         let isLightboxCarouselActive = false;
+        let activePendingVideo = null;
+        let lastLightboxTrigger = null;
+        let lastDetailsTrigger = null;
 
         const detailsModal = document.getElementById('details-modal');
         const detailsModalTag = document.getElementById('details-modal-tag');
         const detailsModalTitle = document.getElementById('details-modal-title');
         const detailsModalBody = document.getElementById('details-modal-body');
         const detailsCloseBtn = document.getElementById('details-close-btn');
+        const detailsWhatsappBtn = document.getElementById('btn-whatsapp-modal-reservar');
 
-        fetch('data/packages.json')
-            .then(res => {
-                if (!res.ok) throw new Error("HTTP error " + res.status);
-                return res.json();
-            })
-            .then(data => {
-                packageData = data;
-            })
-            .catch(err => console.error("Erro ao carregar dados dos pacotes:", err));
+        const unlockScrollIfSafe = () => {
+            const cookieModal = document.getElementById('cookie-modal');
+            const cookieOpen = Boolean(cookieModal && cookieModal.classList.contains('active'));
+            const lbOpen = Boolean(lightbox && lightbox.classList.contains('active'));
+            const detOpen = Boolean(detailsModal && detailsModal.classList.contains('active'));
+            if (!cookieOpen && !lbOpen && !detOpen) {
+                document.body.style.overflow = '';
+                document.documentElement.style.overflow = '';
+            }
+        };
 
-        const openDetailsModal = (packageKey) => {
+        if (detailsModal) {
+            fetch('data/packages.json')
+                .then(res => {
+                    if (!res.ok) throw new Error("HTTP error " + res.status);
+                    return res.json();
+                })
+                .then(data => {
+                    packageData = data;
+                })
+                .catch(err => console.error("Erro ao carregar dados dos pacotes:", err));
+        }
+
+        const openDetailsModal = (packageKey, triggerEl) => {
             if (!detailsModal || !packageData) return;
             const details = packageData[packageKey];
             if (details) {
+                lastDetailsTrigger = triggerEl || document.activeElement;
                 if (detailsModalTag) detailsModalTag.textContent = details.tag;
                 if (detailsModalTitle) detailsModalTitle.textContent = details.title;
                 if (detailsModalBody) detailsModalBody.innerHTML = details.body;
+                if (detailsWhatsappBtn) {
+                    const msg = `Olá! Gostaria de consultar datas e reservar o ${details.title} (${details.tag}) na Eldorado Lake.`;
+                    detailsWhatsappBtn.href = `https://wa.me/5542999162340?text=${encodeURIComponent(msg)}`;
+                }
                 detailsModal.style.display = 'flex';
+                detailsModal.classList.add('active');
+                detailsModal.setAttribute('aria-hidden', 'false');
                 document.body.style.overflow = 'hidden';
                 document.documentElement.style.overflow = 'hidden';
+
+                window.setTimeout(() => {
+                    if (detailsCloseBtn) detailsCloseBtn.focus();
+                }, 20);
             }
         };
 
         const closeDetailsModal = () => {
-            if (detailsModal) detailsModal.style.display = 'none';
-            document.body.style.overflow = '';
-            document.documentElement.style.overflow = '';
+            if (detailsModal) {
+                detailsModal.style.display = 'none';
+                detailsModal.classList.remove('active');
+                detailsModal.setAttribute('aria-hidden', 'true');
+            }
+            unlockScrollIfSafe();
+            if (lastDetailsTrigger && typeof lastDetailsTrigger.focus === 'function' && document.contains(lastDetailsTrigger)) {
+                lastDetailsTrigger.focus();
+            }
+            lastDetailsTrigger = null;
         };
 
-        document.querySelectorAll('.btn-open-flyer, .package-card-3d').forEach(element => {
-            element.addEventListener('click', (e) => {
-                const packageKey = element.getAttribute('data-package');
+        document.querySelectorAll('.btn-open-flyer').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const packageKey = btn.getAttribute('data-package');
                 if (packageKey) {
-                    openDetailsModal(packageKey);
+                    openDetailsModal(packageKey, btn);
+                }
+            });
+        });
+
+        document.querySelectorAll('.package-card-3d').forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('.btn-open-flyer') || e.target.closest('a, button')) return;
+                const packageKey = card.getAttribute('data-package');
+                if (packageKey) {
+                    const fallbackBtn = card.querySelector('.btn-open-flyer') || card;
+                    openDetailsModal(packageKey, fallbackBtn);
                 }
             });
         });
 
         if (detailsCloseBtn) {
             detailsCloseBtn.addEventListener('click', closeDetailsModal);
-            detailsCloseBtn.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') closeDetailsModal();
+        }
+        if (detailsModal) {
+            detailsModal.addEventListener('click', (e) => {
+                if (e.target === detailsModal) closeDetailsModal();
             });
         }
-        if (detailsModal) detailsModal.addEventListener('click', (e) => {
-            if (e.target === detailsModal) closeDetailsModal();
-        });
 
         const updateLightboxDisplay = (index) => {
             if (!currentLightboxItems.length) return;
@@ -211,11 +323,25 @@ document.addEventListener('DOMContentLoaded', () => {
             lightboxImg.style.opacity = '1';
         };
 
-        const openLightboxGallery = (items, startIndex) => {
+        const openLightboxGallery = (items, startIndex, triggerEl) => {
             if (!lightbox || !lightboxImg || !lightboxVideoContainer) return;
+            lastLightboxTrigger = triggerEl || document.activeElement;
+            activePendingVideo = null;
             currentLightboxItems = items;
             currentLightboxIndex = startIndex;
             isLightboxCarouselActive = items.length > 1;
+
+            if (lightboxConsentGate) lightboxConsentGate.setAttribute('hidden', '');
+            if (lightboxIframe) {
+                lightboxIframe.src = '';
+                lightboxIframe.style.display = 'none';
+            }
+            if (lightboxVideo) {
+                lightboxVideo.pause();
+                lightboxVideo.src = '';
+                lightboxVideo.style.display = 'none';
+            }
+            lightboxVideoContainer.classList.remove('portrait-video');
 
             lightboxImg.style.display = 'block';
             lightboxVideoContainer.style.display = 'none';
@@ -232,73 +358,73 @@ document.addEventListener('DOMContentLoaded', () => {
 
             updateLightboxDisplay(currentLightboxIndex);
             lightbox.style.display = 'flex';
+            lightbox.classList.add('active');
+            lightbox.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
             document.documentElement.style.overflow = 'hidden';
+
+            window.setTimeout(() => {
+                if (closeBtn) closeBtn.focus();
+            }, 20);
+        };
+
+        const bindSlideActivation = (slides, onActivate) => {
+            slides.forEach((slide, idx) => {
+                slide.addEventListener('click', () => onActivate(slide, idx));
+                slide.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        onActivate(slide, idx);
+                    }
+                });
+            });
         };
 
         // Rancho slide click handlers
         const ranchoSlides = Array.from(document.querySelectorAll('#rancho-carousel .carousel-slide'));
-        ranchoSlides.forEach((slide, idx) => {
-            slide.addEventListener('click', (e) => {
-                const container = document.getElementById('rancho-carousel');
-                if (container && container.dataset.moved === 'true') return;
-                const items = ranchoSlides.map((s, i) => {
-                    const img = s.querySelector('img');
-                    return {
-                        src: s.getAttribute('data-full') || (img ? (img.getAttribute('data-src') || img.src) : ''),
-                        alt: img ? img.alt : `Estrutura do Rancho ${i + 1}`
-                    };
-                });
-                openLightboxGallery(items, idx);
+        bindSlideActivation(ranchoSlides, (slide, idx) => {
+            const container = document.getElementById('rancho-carousel');
+            if (container && container.dataset.moved === 'true') return;
+            const items = ranchoSlides.map((s, i) => {
+                const img = s.querySelector('img');
+                return {
+                    src: s.getAttribute('data-full') || (img ? (img.getAttribute('data-src') || img.src) : ''),
+                    alt: img ? img.alt : `Estrutura do Rancho ${i + 1}`
+                };
             });
-            slide.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') slide.click();
-            });
-            slide.setAttribute('tabindex', '0');
+            openLightboxGallery(items, idx, slide);
         });
 
         // Barco slide click handlers
         const barcoSlides = Array.from(document.querySelectorAll('#barco-carousel .carousel-slide'));
-        barcoSlides.forEach((slide, idx) => {
-            slide.addEventListener('click', (e) => {
-                const container = document.getElementById('barco-carousel');
-                if (container && container.dataset.moved === 'true') return;
-                const items = barcoSlides.map((s, i) => {
-                    const img = s.querySelector('img');
-                    return {
-                        src: s.getAttribute('data-full') || (img ? (img.getAttribute('data-src') || img.src) : ''),
-                        alt: img ? img.alt : `Embarcação de Pesca ${i + 1}`
-                    };
-                });
-                openLightboxGallery(items, idx);
+        bindSlideActivation(barcoSlides, (slide, idx) => {
+            const container = document.getElementById('barco-carousel');
+            if (container && container.dataset.moved === 'true') return;
+            const items = barcoSlides.map((s, i) => {
+                const img = s.querySelector('img');
+                return {
+                    src: s.getAttribute('data-full') || (img ? (img.getAttribute('data-src') || img.src) : ''),
+                    alt: img ? img.alt : `Embarcação de Pesca ${i + 1}`
+                };
             });
-            slide.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') slide.click();
-            });
-            slide.setAttribute('tabindex', '0');
+            openLightboxGallery(items, idx, slide);
         });
 
         // Galeria slide click handlers
         const galeriaSlides = Array.from(document.querySelectorAll('.gallery-slide'));
-        galeriaSlides.forEach((slide, idx) => {
-            slide.addEventListener('click', (e) => {
-                if (galleryMoved) {
-                    galleryMoved = false;
-                    return;
-                }
-                const items = galeriaSlides.map((s, i) => {
-                    const img = s.querySelector('img');
-                    return {
-                        src: s.getAttribute('data-full') || (img ? (img.getAttribute('data-src') || img.src) : ''),
-                        alt: img ? img.alt : `Galeria Eldorado Lake ${i + 1}`
-                    };
-                });
-                openLightboxGallery(items, idx);
+        bindSlideActivation(galeriaSlides, (slide, idx) => {
+            if (galleryMoved) {
+                galleryMoved = false;
+                return;
+            }
+            const items = galeriaSlides.map((s, i) => {
+                const img = s.querySelector('img');
+                return {
+                    src: s.getAttribute('data-full') || (img ? (img.getAttribute('data-src') || img.src) : ''),
+                    alt: img ? img.alt : `Galeria Eldorado Lake ${i + 1}`
+                };
             });
-            slide.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') slide.click();
-            });
-            slide.setAttribute('tabindex', '0');
+            openLightboxGallery(items, idx, slide);
         });
 
         const handlePrevImage = (e) => {
@@ -379,81 +505,164 @@ document.addEventListener('DOMContentLoaded', () => {
             }, { passive: true });
         }
 
-        // Global keyboard navigation
-        window.addEventListener('keydown', (e) => {
-            if (lightbox && lightbox.style.display === 'flex') {
-                if (e.key === 'Escape') {
-                    closeLightbox();
-                } else if (isLightboxCarouselActive && (e.key === 'ArrowLeft' || e.key === 'Left')) {
-                    updateLightboxDisplay(currentLightboxIndex - 1);
-                } else if (isLightboxCarouselActive && (e.key === 'ArrowRight' || e.key === 'Right')) {
-                    updateLightboxDisplay(currentLightboxIndex + 1);
-                }
+        const showVideoConsentGate = (videoData) => {
+            if (!lightboxVideoContainer || !lightboxIframe || !lightboxVideo) return;
+            lightboxVideo.style.display = 'none';
+            lightboxVideo.pause();
+            lightboxVideo.src = '';
+            lightboxIframe.src = '';
+            lightboxIframe.style.display = 'none';
+            lightboxVideoContainer.classList.remove('portrait-video');
+
+            if (lightboxConsentTitle) {
+                lightboxConsentTitle.textContent = `Conteúdo do ${videoData.provider} bloqueado por privacidade`;
             }
-        });
+            if (lightboxConsentDesc) {
+                lightboxConsentDesc.textContent = `Para assistir "${videoData.title}" aqui, autorize mídias externas (${videoData.provider} pode registrar seu IP e usar cookies próprios).`;
+            }
+            if (lightboxExternalLink) {
+                lightboxExternalLink.href = videoData.externalUrl || videoData.videoSrc;
+                lightboxExternalLink.textContent = `Abrir no ${videoData.provider}`;
+            }
+            if (lightboxConsentGate) {
+                lightboxConsentGate.removeAttribute('hidden');
+            }
+            window.setTimeout(() => {
+                if (lightboxConsentAllow) lightboxConsentAllow.focus();
+                else if (closeBtn) closeBtn.focus();
+            }, 20);
+        };
 
-        document.querySelectorAll('.video-card').forEach(card => {
-            card.addEventListener('click', () => {
-                if (!lightbox || !lightboxIframe || !lightboxVideo || !lightboxVideoContainer) return;
-                const videoSrc = card.getAttribute('data-video-src');
-                const isLocalVideo = videoSrc && (videoSrc.endsWith('.mp4') || !videoSrc.includes('//') || videoSrc.startsWith('assets/'));
+        const renderVideoEmbed = (videoData) => {
+            if (!lightboxVideoContainer || !lightboxIframe || !lightboxVideo || !videoData) return;
+            if (lightboxConsentGate) lightboxConsentGate.setAttribute('hidden', '');
+            lightboxVideo.style.display = 'none';
+            lightboxVideo.pause();
+            lightboxVideo.src = '';
+            lightboxIframe.style.display = 'block';
+            lightboxIframe.title = `Reprodutor ${videoData.provider}: ${videoData.title}`;
+            lightboxIframe.src = videoData.videoSrc;
 
-                isLightboxCarouselActive = false;
-                currentLightboxItems = [];
-                if (lightboxPrevBtn) lightboxPrevBtn.style.display = 'none';
-                if (lightboxNextBtn) lightboxNextBtn.style.display = 'none';
-                if (lightboxBottomBar) lightboxBottomBar.style.display = 'none';
+            if (videoData.videoSrc && videoData.videoSrc.includes('instagram.com')) {
+                lightboxVideoContainer.classList.add('portrait-video');
+            } else {
+                lightboxVideoContainer.classList.remove('portrait-video');
+            }
+        };
 
-                if (isLocalVideo) {
-                    lightboxIframe.style.display = 'none';
-                    lightboxIframe.src = '';
-                    lightboxVideo.style.display = 'block';
-                    lightboxVideo.src = videoSrc;
+        const openVideoCard = (card) => {
+            if (!lightbox || !lightboxIframe || !lightboxVideo || !lightboxVideoContainer) return;
+            lastLightboxTrigger = card;
+            const videoSrc = card.getAttribute('data-video-src') || '';
+            const externalUrl = card.getAttribute('data-external-url') || videoSrc;
+            const provider = card.getAttribute('data-provider') || 'Site Externo';
+            const titleEl = card.querySelector('.video-info h3');
+            const title = titleEl ? titleEl.textContent.trim() : 'Vídeo Eldorado Lake';
+            const isLocalVideo = Boolean(
+                videoSrc && (videoSrc.endsWith('.mp4') || !videoSrc.includes('//') || videoSrc.startsWith('assets/'))
+            );
 
-                    const handleMetadata = () => {
-                        if (lightboxVideo.videoHeight > lightboxVideo.videoWidth) {
-                            lightboxVideoContainer.classList.add('portrait-video');
-                        } else {
-                            lightboxVideoContainer.classList.remove('portrait-video');
-                        }
-                        lightboxVideo.removeEventListener('loadedmetadata', handleMetadata);
-                    };
-                    lightboxVideo.addEventListener('loadedmetadata', handleMetadata);
-                    lightboxVideo.play().catch(() => {});
-                } else {
-                    lightboxVideo.style.display = 'none';
-                    lightboxVideo.pause();
-                    lightboxVideo.src = '';
-                    lightboxIframe.style.display = 'block';
-                    lightboxIframe.src = videoSrc;
+            isLightboxCarouselActive = false;
+            currentLightboxItems = [];
+            if (lightboxPrevBtn) lightboxPrevBtn.style.display = 'none';
+            if (lightboxNextBtn) lightboxNextBtn.style.display = 'none';
+            if (lightboxBottomBar) lightboxBottomBar.style.display = 'none';
 
-                    if (videoSrc && videoSrc.includes('instagram.com')) {
+            if (lightboxImg) lightboxImg.style.display = 'none';
+            lightboxVideoContainer.style.display = 'block';
+            lightbox.style.display = 'flex';
+            lightbox.classList.add('active');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
+
+            if (isLocalVideo) {
+                activePendingVideo = null;
+                if (lightboxConsentGate) lightboxConsentGate.setAttribute('hidden', '');
+                lightboxIframe.style.display = 'none';
+                lightboxIframe.src = '';
+                lightboxVideo.style.display = 'block';
+                lightboxVideo.src = videoSrc;
+
+                const handleMetadata = () => {
+                    if (lightboxVideo.videoHeight > lightboxVideo.videoWidth) {
                         lightboxVideoContainer.classList.add('portrait-video');
                     } else {
                         lightboxVideoContainer.classList.remove('portrait-video');
                     }
-                }
+                    lightboxVideo.removeEventListener('loadedmetadata', handleMetadata);
+                };
+                lightboxVideo.addEventListener('loadedmetadata', handleMetadata);
+                lightboxVideo.play().catch(() => {});
+                window.setTimeout(() => {
+                    if (closeBtn) closeBtn.focus();
+                }, 20);
+                return;
+            }
 
-                if (lightboxImg) lightboxImg.style.display = 'none';
-                lightboxVideoContainer.style.display = 'block';
-                lightbox.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-                document.documentElement.style.overflow = 'hidden';
-            });
+            activePendingVideo = { videoSrc, externalUrl, provider, title };
+            const hasMediaConsent = Boolean(
+                window.EldoradoConsent && typeof window.EldoradoConsent.hasConsent === 'function'
+                    ? window.EldoradoConsent.hasConsent('externalMedia')
+                    : false
+            );
+
+            if (hasMediaConsent) {
+                renderVideoEmbed(activePendingVideo);
+                window.setTimeout(() => {
+                    if (closeBtn) closeBtn.focus();
+                }, 20);
+            } else {
+                showVideoConsentGate(activePendingVideo);
+            }
+        };
+
+        document.querySelectorAll('.video-card').forEach(card => {
+            card.addEventListener('click', () => openVideoCard(card));
             card.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') card.click();
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openVideoCard(card);
+                }
             });
-            card.setAttribute('tabindex', '0');
+        });
+
+        if (lightboxConsentAllow) {
+            lightboxConsentAllow.addEventListener('click', () => {
+                if (window.EldoradoConsent && typeof window.EldoradoConsent.grantCategory === 'function') {
+                    window.EldoradoConsent.grantCategory('externalMedia');
+                }
+                if (activePendingVideo) {
+                    renderVideoEmbed(activePendingVideo);
+                    if (closeBtn) closeBtn.focus();
+                }
+            });
+        }
+
+        window.addEventListener('eldorado:consent-changed', (e) => {
+            if (!lightbox || !lightbox.classList.contains('active') || !activePendingVideo) return;
+            const allowed = Boolean(e && e.detail && e.detail.state && e.detail.state.externalMedia);
+            if (allowed) {
+                renderVideoEmbed(activePendingVideo);
+            } else {
+                showVideoConsentGate(activePendingVideo);
+            }
         });
 
         const closeLightbox = () => {
-            if (lightbox) lightbox.style.display = 'none';
+            if (lightbox) {
+                lightbox.style.display = 'none';
+                lightbox.classList.remove('active');
+                lightbox.setAttribute('aria-hidden', 'true');
+            }
             if (lightboxImg) lightboxImg.src = '';
             if (lightboxPrevBtn) lightboxPrevBtn.style.display = 'none';
             if (lightboxNextBtn) lightboxNextBtn.style.display = 'none';
             if (lightboxBottomBar) lightboxBottomBar.style.display = 'none';
+            if (lightboxConsentGate) lightboxConsentGate.setAttribute('hidden', '');
             isLightboxCarouselActive = false;
             currentLightboxItems = [];
+            activePendingVideo = null;
 
             if (lightboxIframe) {
                 lightboxIframe.src = '';
@@ -465,26 +674,51 @@ document.addEventListener('DOMContentLoaded', () => {
                 lightboxVideo.style.display = 'none';
             }
             if (lightboxVideoContainer) lightboxVideoContainer.classList.remove('portrait-video');
-            document.body.style.overflow = '';
-            document.documentElement.style.overflow = '';
+            unlockScrollIfSafe();
+            if (lastLightboxTrigger && typeof lastLightboxTrigger.focus === 'function' && document.contains(lastLightboxTrigger)) {
+                lastLightboxTrigger.focus();
+            }
+            lastLightboxTrigger = null;
         };
 
         if (closeBtn) {
             closeBtn.addEventListener('click', closeLightbox);
-            closeBtn.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') closeLightbox();
+        }
+        if (lightbox) {
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox || e.target.classList.contains('lightbox-content-wrapper') || e.target.id === 'lightbox-content-wrapper') {
+                    closeLightbox();
+                }
             });
         }
-        if (lightbox) lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox || e.target.classList.contains('lightbox-content-wrapper') || e.target.id === 'lightbox-content-wrapper') {
-                closeLightbox();
-            }
-        });
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                if (lightbox && lightbox.style.display === 'flex') closeLightbox();
-                if (detailsModal && detailsModal.style.display === 'flex') closeDetailsModal();
+            const cookieModal = document.getElementById('cookie-modal');
+            if (cookieModal && cookieModal.classList.contains('active')) {
+                return;
+            }
+
+            if (lightbox && lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    e.preventDefault();
+                    closeLightbox();
+                } else if (isLightboxCarouselActive && (e.key === 'ArrowLeft' || e.key === 'Left')) {
+                    updateLightboxDisplay(currentLightboxIndex - 1);
+                } else if (isLightboxCarouselActive && (e.key === 'ArrowRight' || e.key === 'Right')) {
+                    updateLightboxDisplay(currentLightboxIndex + 1);
+                } else {
+                    trapFocusInContainer(e, lightbox);
+                }
+                return;
+            }
+
+            if (detailsModal && detailsModal.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    e.preventDefault();
+                    closeDetailsModal();
+                } else {
+                    trapFocusInContainer(e, detailsModal);
+                }
             }
         });
     };
@@ -558,7 +792,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     slide.classList.toggle('active', i === currentIndex);
                 });
                 indicators.forEach((indicator, i) => {
-                    indicator.classList.toggle('active', i === currentIndex);
+                    const isActive = i === currentIndex;
+                    indicator.classList.toggle('active', isActive);
+                    indicator.setAttribute('aria-current', isActive ? 'true' : 'false');
                 });
             };
 
@@ -571,6 +807,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const startAutoPlay = () => {
                 stopAutoPlay();
+                if (isReducedMotion()) return;
                 autoPlayInterval = setInterval(nextSlide, intervalTime);
             };
             const stopAutoPlay = () => clearInterval(autoPlayInterval);
@@ -611,12 +848,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
 
                 indicator.addEventListener('click', handleIndicator);
-                indicator.setAttribute('tabindex', '0');
-                indicator.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        handleIndicator(e);
-                    }
-                });
+                if (indicator.tagName !== 'BUTTON') {
+                    indicator.setAttribute('tabindex', '0');
+                    indicator.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            handleIndicator(e);
+                        }
+                    });
+                }
             });
 
             carouselContainer.addEventListener('mouseenter', stopAutoPlay);
@@ -779,6 +1019,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const startGalleryAutoPlay = () => {
                 stopGalleryAutoPlay();
+                if (isReducedMotion()) return;
                 galleryAutoPlayInterval = setInterval(nextGallerySlide, 4000);
             };
             const stopGalleryAutoPlay = () => clearInterval(galleryAutoPlayInterval);
@@ -846,7 +1087,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     const initGSAPAnimations = () => {
-        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+        const reduced = isReducedMotion();
+        const statNumbers = document.querySelectorAll('.sobre-stat-number');
+
+        if (reduced || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+            document.querySelectorAll('.sobre-anim-line, .sobre-anim-fade, .sobre-anim-card').forEach(el => {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+            });
+            statNumbers.forEach(el => {
+                const target = parseInt(el.dataset.target, 10);
+                if (!Number.isNaN(target)) {
+                    el.textContent = target;
+                }
+            });
+            return;
+        }
         gsap.registerPlugin(ScrollTrigger);
 
         const sobreTitleLines = document.querySelectorAll('.sobre-anim-line');
@@ -893,12 +1149,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        const statNumbers = document.querySelectorAll('.sobre-stat-number');
         const counterObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const el = entry.target;
-                    const target = parseInt(el.dataset.target);
+                    const target = parseInt(el.dataset.target, 10);
                     const duration = 2000;
                     const start = performance.now();
 
@@ -949,6 +1204,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const initGlobalParticles = () => {
+        if (isReducedMotion()) return;
         const container = document.getElementById('global-particles');
         if (!container) return;
 

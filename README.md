@@ -57,6 +57,7 @@ O projeto **Eldorado Lake** é uma aplicação web institucional e de conversão
 | [`contact.html`](contact.html) | Hub de contato direto via WhatsApp comercial e e-mail, mapa de localização no Lago Foz do Areia e orientações detalhadas de logística (aérea e rodoviária). |
 | [`privacy.html`](privacy.html) | Política de privacidade estruturada e transparente em total conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018). |
 | [`terms.html`](terms.html) | Termos de uso da plataforma, regulamento de contratação de pacotes, políticas de reserva/cancelamento e normas de segurança náutica. |
+| [`refund.html`](refund.html) | Política de cancelamento, direito de arrependimento (art. 49 do CDC), reagendamento climático e devoluções/reembolsos. |
 | [`404.html`](404.html) | Página de erro personalizada com navegação direta para recuperação rápida da jornada do usuário. |
 
 ---
@@ -115,6 +116,7 @@ eldorado-lake/
 ├── contact.html                 # Página de Contato e Localização
 ├── index.html                   # Landing page principal
 ├── privacy.html                 # Política de Privacidade (LGPD)
+├── refund.html                  # Política de Cancelamento e Reembolso (CDC)
 ├── terms.html                   # Termos de Uso e Regulamento
 ├── site.webmanifest             # Manifesto Web App (PWA)
 ├── robots.txt                   # Diretrizes para indexadores e robôs de busca
@@ -138,6 +140,7 @@ eldorado-lake/
 ├── data/
 │   └── packages.json            # Estrutura JSON com detalhes de cada pacote
 └── js/
+    ├── consent.js               # Controle de consentimento LGPD e bloqueio de scripts/mídias
     └── script.js                # Lógica interativa, animações GSAP e carrosséis
 ```
 
@@ -184,9 +187,9 @@ O arquivo `vercel.json` inclui cabeçalhos de segurança de nível bancário e p
 
 ## 🎣 Contato & Operação
 
-- **Operação:** Eldorado Lake — Rancho Eldorado
+- **Operação:** Eldorado Lake — Rancho Eldorado (CNPJ 17.227.623/0001-04)
 - **Localização:** Faxinal do Céu, Pinhão - PR, Brasil
-- **WhatsApp Oficial:** [+55 (42) 99916-2340](https://wa.me/554299162340)
+- **WhatsApp Oficial:** [+55 (42) 99916-2340](https://wa.me/5542999162340)
 - **E-mail Comercial:** [thiagowiteck@hotmail.com](mailto:thiagowiteck@hotmail.com)
 - **Engenharia & Desenvolvimento:** [Eduardo Iensen](https://github.com/DEVEduardoIensen)
 

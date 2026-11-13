@@ -30,10 +30,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
-    <link rel="preload" href="css/vendor/fontawesome.min.css?v=34.0" as="style">
-    <link rel="stylesheet" href="css/vendor/fontawesome.min.css?v=34.0" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="css/vendor/fontawesome.min.css?v=34.0"></noscript>
-    <link rel="stylesheet" href="css/style.css?v=34.0">
+    <link rel="preload" href="css/vendor/fontawesome.min.css?v=35.0" as="style">
+    <link rel="stylesheet" href="css/vendor/fontawesome.min.css?v=35.0" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="css/vendor/fontawesome.min.css?v=35.0"></noscript>
+    <link rel="stylesheet" href="css/style.css?v=35.2">
 
     <script type="application/ld+json">
     {
@@ -42,6 +42,7 @@
       "mainEntity": {
         "@type": ["Organization", "SportsActivityLocation"],
         "name": "Eldorado Lake - Pesca Esportiva ao Dourado",
+        "taxID": "17.227.623/0001-04",
         "url": "https://www.eldoradolake.com.br/",
         "logo": "https://www.eldoradolake.com.br/assets/images/logo_header.webp",
         "telephone": "+5542999162340",
@@ -64,6 +65,7 @@
 </head>
 
 <body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
     <header id="main-header" class="header-scrolled">
         <div class="container header-container">
             <a href="index.html" class="logo" id="header-logo-link" aria-label="Eldorado Lake Início">
@@ -77,25 +79,35 @@
                     <li><a href="index.html#pacotes" class="nav-link">Pacotes</a></li>
                     <li><a href="about.html" class="nav-link active">Sobre</a></li>
                     <li><a href="contact.html" class="nav-link">Contato</a></li>
+                    <li class="mobile-only-nav-btn">
+                        <a href="https://wa.me/5542999162340" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-block btn-sm" id="btn-whatsapp-mobile-menu">
+                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <div class="header-actions">
-                <a href="https://wa.me/554299162340" target="_blank" rel="noopener noreferrer" class="classic-btn btn-gold btn-sm"
+                <a href="https://wa.me/5542999162340" target="_blank" rel="noopener noreferrer" class="classic-btn btn-gold btn-sm"
                     id="btn-whatsapp-header">
-                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp
                 </a>
+                <button type="button" class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="navbar">
+                    <span class="bar" aria-hidden="true"></span>
+                    <span class="bar" aria-hidden="true"></span>
+                    <span class="bar" aria-hidden="true"></span>
+                </button>
             </div>
         </div>
     </header>
 
-    <main class="subpage-main">
+    <main id="main-content" class="subpage-main">
         <div class="container">
             <div class="subpage-hero">
                 <h1 class="subpage-title">Sobre a <span class="text-gradient-gold">Eldorado Lake</span></h1>
                 <p class="subpage-lead">Operação de pesca esportiva ao Dourado no Lago Foz do Areia, Paraná.</p>
                 <div class="breadcrumb-nav">
                     <a href="index.html">Início</a>
-                    <span class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></span>
+                    <span class="breadcrumb-separator" aria-hidden="true"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></span>
                     <span>Sobre Nós</span>
                 </div>
             </div>
@@ -103,7 +115,7 @@
             <div class="trust-card">
                 <article class="trust-article">
                     <h2>A Operação de Pesca</h2>
-                    <p>A <strong>Eldorado Lake</strong> é uma operação voltada à pesca esportiva do Dourado no
+                    <p>A <strong>Eldorado Lake</strong> (CNPJ <strong>17.227.623/0001-04</strong>) é uma operação voltada à pesca esportiva do Dourado no
                         reservatório de <strong>Foz do Areia</strong> (Represa Bento Munhoz da Rocha Netto), localizado
                         entre os municípios de Pinhão, Cruz Machado e Bituruna, no estado do Paraná.</p>
 
@@ -160,33 +172,38 @@
     <footer>
         <div class="container footer-container">
             <div class="footer-links">
-                <h3>Links Rápidos</h3>
+                <h2>Links Rápidos</h2>
                 <ul>
                     <li><a href="index.html">Início</a></li>
                     <li><a href="about.html">Sobre Nós</a></li>
                     <li><a href="contact.html">Contato</a></li>
                     <li><a href="privacy.html">Privacidade</a></li>
                     <li><a href="terms.html">Termos de Uso</a></li>
+                    <li><a href="refund.html">Cancelamento e Reembolso</a></li>
+                    <li><button type="button" class="footer-link-btn" data-open-cookie-preferences>Preferências de Cookies</button></li>
                 </ul>
             </div>
             <div class="footer-social">
-                <h3>Siga-nos</h3>
+                <h2>Siga-nos</h2>
                 <div class="social-icons">
                     <a href="https://www.instagram.com/thiago.witeck/" target="_blank" rel="noopener noreferrer" class="social-icon"
-                        aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        aria-label="Instagram de Thiago Witeck / Eldorado Lake"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
                     <a href="https://www.tiktok.com/@thiagowiteck" target="_blank" rel="noopener noreferrer" class="social-icon"
-                        aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                        aria-label="TikTok de Thiago Witeck / Eldorado Lake"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
                     <a href="https://www.facebook.com/wwinformaticapho" target="_blank" rel="noopener noreferrer" class="social-icon"
-                        aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        aria-label="Facebook vinculado no rodapé"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
                     <a href="https://www.youtube.com/@ThiagoWiteck" target="_blank" rel="noopener noreferrer" class="social-icon"
-                        aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        aria-label="Canal do YouTube Thiago Witeck"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom text-center">
-            <p>&copy; 2026 Eldorado Lake. Todos os direitos reservados.</p>
+            <p>&copy; 2026 Eldorado Lake • CNPJ 17.227.623/0001-04 • Faxinal do Céu, Pinhão - PR. Todos os direitos reservados.</p>
         </div>
     </footer>
+
+    <script src="js/consent.js?v=35.1" defer></script>
+    <script src="js/script.js?v=35.0" defer></script>
 </body>
 
 </html>

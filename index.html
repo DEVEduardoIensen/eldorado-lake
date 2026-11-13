@@ -35,11 +35,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
-    <link rel="preload" href="css/vendor/fontawesome.min.css?v=34.0" as="style">
-    <link rel="stylesheet" href="css/vendor/fontawesome.min.css?v=34.0" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="css/vendor/fontawesome.min.css?v=34.0"></noscript>
+    <link rel="preload" href="css/vendor/fontawesome.min.css?v=35.0" as="style">
+    <link rel="stylesheet" href="css/vendor/fontawesome.min.css?v=35.0" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="css/vendor/fontawesome.min.css?v=35.0"></noscript>
 
-    <link rel="stylesheet" href="css/style.css?v=34.0">
+    <link rel="stylesheet" href="css/style.css?v=35.2">
 
     <!-- SEO Canonical & Search Engine Robots -->
     <link rel="canonical" href="https://www.eldoradolake.com.br/">
@@ -55,6 +55,7 @@
           "@type": "Organization",
           "@id": "https://www.eldoradolake.com.br/#organization",
           "name": "Eldorado Lake",
+          "taxID": "17.227.623/0001-04",
           "alternateName": ["Operação de pesca Eldorado Lake", "Rancho Eldorado"],
           "url": "https://www.eldoradolake.com.br/",
           "logo": {
@@ -82,9 +83,8 @@
               "@type": "ContactPoint",
               "telephone": "+5542999162340",
               "contactType": "customer service",
-              "contactOption": "TollFree",
               "areaServed": "BR",
-              "availableLanguage": ["Portuguese", "English", "Spanish"]
+              "availableLanguage": ["Portuguese"]
             }
           ],
           "sameAs": [
@@ -100,6 +100,7 @@
           "@type": ["SportsActivityLocation", "LodgingBusiness", "LocalBusiness"],
           "@id": "https://www.eldoradolake.com.br/#place",
           "name": "Operação de pesca Eldorado Lake",
+          "taxID": "17.227.623/0001-04",
           "url": "https://www.eldoradolake.com.br/",
           "image": "https://www.eldoradolake.com.br/assets/images/hero_bg.webp",
           "telephone": "+5542999162340",
@@ -116,13 +117,6 @@
             "@type": "GeoCoordinates",
             "latitude": -25.9954877,
             "longitude": -51.6095719
-          },
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "5.0",
-            "reviewCount": "8",
-            "bestRating": "5",
-            "worstRating": "1"
           },
           "openingHoursSpecification": {
             "@type": "OpeningHoursSpecification",
@@ -157,7 +151,7 @@
               "name": "O que está incluso nos pacotes da Eldorado Lake?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Os pacotes incluem hospedagem climatizada no Rancho Eldorado, pensão completa com gastronomia regional, embarcação com motor potente, motor elétrico com âncora digital, guia de pesca experiente e combustível."
+                "text": "Os pacotes incluem diária de pesca embarcada no Lago Foz do Areia com o guia Thiago Witeck, embarcação plataformada com motor elétrico e combustível incluso, hospedagem no Rancho Eldorado com internet Starlink e estrutura de cozinha local. Opções personalizadas com cardápio ou All Inclusive são contratadas sob demanda."
               }
             },
             {
@@ -174,17 +168,9 @@
     }
     </script>
 
-    <script>
-        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-        if (window.location.protocol.startsWith('http') && !window.location.hostname.includes('localhost')) {
-            var vs = document.createElement('script');
-            vs.defer = true;
-            vs.src = '/_vercel/insights/script.js';
-            document.head.appendChild(vs);
-        }
-    </script>
 </head>
 <body id="home">
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
 
     <header id="main-header" class="header-transparent">
         <div class="container header-container">
@@ -194,23 +180,23 @@
             <nav id="navbar" aria-label="Navegação Principal">
                 <ul class="nav-links">
                     <li><a href="#home" class="nav-link active" id="nav-home">Início</a></li>
-                    <li><a href="#sobre" class="nav-link" id="nav-sobre"> Operação</a></li>
-                    <li><a href="#rancho" class="nav-link" id="nav-rancho"> Rancho</a></li>
+                    <li><a href="#sobre" class="nav-link" id="nav-sobre">Operação</a></li>
+                    <li><a href="#rancho" class="nav-link" id="nav-rancho">Rancho</a></li>
                     <li><a href="#pacotes" class="nav-link" id="nav-pacotes">Pacotes</a></li>
                     <li><a href="#videos" class="nav-link" id="nav-videos">Vídeos</a></li>
                     <li><a href="#contato" class="nav-link" id="nav-contato">Contato</a></li>
 
-                    <li class="mobile-only-nav-btn"><a href="https://wa.me/554299162340" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-block btn-sm" id="btn-whatsapp-mobile-menu"><i class="fa-brands fa-whatsapp"></i> Reservar Agora</a></li>
+                    <li class="mobile-only-nav-btn"><a href="https://wa.me/5542999162340" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-block btn-sm" id="btn-whatsapp-mobile-menu"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Reservar Agora</a></li>
                 </ul>
             </nav>
             <div class="header-actions">
-                <a href="https://wa.me/554299162340" target="_blank" rel="noopener noreferrer" class="classic-btn btn-gold btn-sm" id="btn-whatsapp-header">
-                    <i class="fa-brands fa-whatsapp"></i> Reservar Agora
+                <a href="https://wa.me/5542999162340" target="_blank" rel="noopener noreferrer" class="classic-btn btn-gold btn-sm" id="btn-whatsapp-header">
+                    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Reservar Agora
                 </a>
-                <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir Menu">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+                <button type="button" class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="navbar">
+                    <span class="bar" aria-hidden="true"></span>
+                    <span class="bar" aria-hidden="true"></span>
+                    <span class="bar" aria-hidden="true"></span>
                 </button>
             </div>
         </div>
@@ -218,11 +204,11 @@
     <main id="main-content">
 
     <section class="hero-section" id="hero">
-        <video class="hero-video" autoplay loop muted playsinline poster="assets/images/hero_bg.webp" preload="none">
+        <video class="hero-video" autoplay loop muted playsinline poster="assets/images/hero_bg.webp" preload="none" aria-hidden="true" tabindex="-1">
             <source src="assets/videos/hero_mobile.mp4" type="video/mp4" media="(max-width: 768px)">
             <source src="assets/videos/hero_video.mp4" type="video/mp4">
         </video>
-        <div class="hero-overlay"></div>
+        <div class="hero-overlay" aria-hidden="true"></div>
         <div class="container hero-container">
             <div class="hero-content">
                 <h1 class="hero-title" id="main-title">Pescaria de Alto Padrão ao <span class="text-gradient-gold">Rei do Rio</span></h1>
@@ -236,7 +222,7 @@
         <div class="scroll-down">
             <a href="#sobre" id="scroll-down-link">
                 <span>Rolar</span>
-                <i class="fa-solid fa-chevron-down"></i>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
             </a>
         </div>
     </section>
@@ -244,8 +230,8 @@
     <div class="global-particles" id="global-particles" aria-hidden="true"></div>
 
     <section class="sobre-epic" id="sobre">
-        <div class="sobre-glow-orb sobre-glow-orb-1"></div>
-        <div class="sobre-glow-orb sobre-glow-orb-2"></div>
+        <div class="sobre-glow-orb sobre-glow-orb-1" aria-hidden="true"></div>
+        <div class="sobre-glow-orb sobre-glow-orb-2" aria-hidden="true"></div>
 
         <div class="container">
 
@@ -578,7 +564,7 @@
             </div>
 
             <!-- Gradientes para reuso nos cards -->
-            <svg width="0" height="0" style="position: absolute;">
+            <svg width="0" height="0" style="position: absolute;" aria-hidden="true" focusable="false">
                 <defs>
                     <linearGradient id="goldNeedleGrad" x1="0" y1="0" x2="1" y2="0">
                         <stop offset="0%" stop-color="#cfab44"/>
@@ -663,93 +649,93 @@
             <div class="rancho-carousel-wrapper barco-carousel-wrapper">
                 <div class="carousel-container" id="barco-carousel">
                     <div class="carousel-track">
-                        <div class="carousel-slide active" data-index="0">
-                            <img src="assets/images/barco_1.webp" alt="Embarcação de Pesca 1" class="carousel-img" loading="lazy">
-                            <div class="carousel-overlay">
-                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                        <div class="carousel-slide active" data-index="0" role="button" tabindex="0" aria-label="Ampliar foto 1 de 11: Motor de popa Mercury na beira do lago">
+                            <img src="assets/images/barco_1.webp" alt="Motor de popa Mercury instalado na popa do barco de pesca na beira do Lago Foz do Areia" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay" aria-hidden="true">
+                                <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                             </div>
                         </div>
-                        <div class="carousel-slide" data-index="1">
-                            <img src="assets/images/barco_2.webp" alt="Embarcação de Pesca 2" class="carousel-img" loading="lazy">
-                            <div class="carousel-overlay">
-                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                        <div class="carousel-slide" data-index="1" role="button" tabindex="0" aria-label="Ampliar foto 2 de 11: Embarcação ancorada na margem gramada">
+                            <img src="assets/images/barco_2.webp" alt="Embarcação plataformada com motor elétrico ancorada na margem gramada do Lago Foz do Areia" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay" aria-hidden="true">
+                                <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                             </div>
                         </div>
-                        <div class="carousel-slide" data-index="2">
-                            <img src="assets/images/barco_3.webp" alt="Embarcação de Pesca 3" class="carousel-img" loading="lazy">
-                            <div class="carousel-overlay">
-                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                        <div class="carousel-slide" data-index="2" role="button" tabindex="0" aria-label="Ampliar foto 3 de 11: Barco atracado na margem do lago">
+                            <img src="assets/images/barco_3.webp" alt="Barco de alumínio atracado na margem do Lago Foz do Areia sob céu azul" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay" aria-hidden="true">
+                                <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                             </div>
                         </div>
-                        <div class="carousel-slide" data-index="3">
-                            <img src="assets/images/barco_4.webp" alt="Embarcação de Pesca 4" class="carousel-img" loading="lazy">
-                            <div class="carousel-overlay">
-                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                        <div class="carousel-slide" data-index="3" role="button" tabindex="0" aria-label="Ampliar foto 4 de 11: Visão lateral da embarcação equipada">
+                            <img src="assets/images/barco_4.webp" alt="Visão lateral do barco de pesca plataformado com motor elétrico na proa e motor Mercury na popa" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay" aria-hidden="true">
+                                <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                             </div>
                         </div>
-                        <div class="carousel-slide" data-index="4">
-                            <img src="assets/images/barco_5.webp" alt="Embarcação de Pesca 5" class="carousel-img" loading="lazy">
-                            <div class="carousel-overlay">
-                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                        <div class="carousel-slide" data-index="4" role="button" tabindex="0" aria-label="Ampliar foto 5 de 11: Detalhe do convés em EVA antiderrapante">
+                            <img src="assets/images/barco_5.webp" alt="Detalhe interno do convés plataformado com piso em EVA cinza antiderrapante" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay" aria-hidden="true">
+                                <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                             </div>
                         </div>
-                        <div class="carousel-slide" data-index="5">
-                            <img src="assets/images/barco_6.webp" alt="Embarcação de Pesca 6" class="carousel-img" loading="lazy">
-                            <div class="carousel-overlay">
-                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                        <div class="carousel-slide" data-index="5" role="button" tabindex="0" aria-label="Ampliar foto 6 de 11: Embarcação sobre carreta durante abastecimento">
+                            <img src="assets/images/barco_6.webp" alt="Embarcação completa sobre carreta durante abastecimento" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay" aria-hidden="true">
+                                <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                             </div>
                         </div>
-                        <div class="carousel-slide" data-index="6">
-                            <img src="assets/images/barco_7.webp" alt="Embarcação de Pesca 7" class="carousel-img" loading="lazy">
-                            <div class="carousel-overlay">
-                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                        <div class="carousel-slide" data-index="6" role="button" tabindex="0" aria-label="Ampliar foto 7 de 11: Vista frontal da proa com motor elétrico">
+                            <img src="assets/images/barco_7.webp" alt="Vista frontal do barco de pesca com proa em alumínio, motor elétrico na lateral e plataforma em EVA" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay" aria-hidden="true">
+                                <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                             </div>
                         </div>
-                        <div class="carousel-slide" data-index="7">
-                            <img src="assets/images/barco_8.webp" alt="Embarcação de Pesca 8" class="carousel-img" loading="lazy">
-                            <div class="carousel-overlay">
-                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                        <div class="carousel-slide" data-index="7" role="button" tabindex="0" aria-label="Ampliar foto 8 de 11: Embarcação equipada no lago em dia nublado">
+                            <img src="assets/images/barco_8.webp" alt="Embarcação na água do Lago Foz do Areia equipada para pesca esportiva em dia nublado" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay" aria-hidden="true">
+                                <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                             </div>
                         </div>
-                        <div class="carousel-slide" data-index="8">
-                            <img src="assets/images/barco_9.webp" alt="Embarcação de Pesca 9" class="carousel-img" loading="lazy">
-                            <div class="carousel-overlay">
-                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                        <div class="carousel-slide" data-index="8" role="button" tabindex="0" aria-label="Ampliar foto 9 de 11: Navegação vista da popa com motor Mercury">
+                            <img src="assets/images/barco_9.webp" alt="Embarcação em navegação no Lago Foz do Areia vista da popa com motor Mercury em funcionamento" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay" aria-hidden="true">
+                                <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                             </div>
                         </div>
-                        <div class="carousel-slide" data-index="9">
-                            <img src="assets/images/barco_10.webp" alt="Embarcação de Pesca 10" class="carousel-img" loading="lazy">
-                            <div class="carousel-overlay">
-                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                        <div class="carousel-slide" data-index="9" role="button" tabindex="0" aria-label="Ampliar foto 10 de 11: Barco estacionado no gramado com vista para o lago">
+                            <img src="assets/images/barco_10.webp" alt="Barco plataformado estacionado no gramado do rancho com vista para o Lago Foz do Areia" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay" aria-hidden="true">
+                                <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                             </div>
                         </div>
-                        <div class="carousel-slide" data-index="10">
-                            <img src="assets/images/barco_11.webp" alt="Embarcação de Pesca 11" class="carousel-img" loading="lazy">
-                            <div class="carousel-overlay">
-                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                        <div class="carousel-slide" data-index="10" role="button" tabindex="0" aria-label="Ampliar foto 11 de 11: Motor de popa navegando ao entardecer">
+                            <img src="assets/images/barco_11.webp" alt="Motor de popa Mercury em navegação no Lago Foz do Areia ao entardecer" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay" aria-hidden="true">
+                                <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                             </div>
                         </div>
                     </div>
 
-                    <button class="carousel-btn prev-btn" id="barco-carousel-prev" aria-label="Anterior">
-                        <i class="fa-solid fa-chevron-left"></i>
+                    <button type="button" class="carousel-btn prev-btn" id="barco-carousel-prev" aria-label="Foto anterior da embarcação">
+                        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
                     </button>
-                    <button class="carousel-btn next-btn" id="barco-carousel-next" aria-label="Próximo">
-                        <i class="fa-solid fa-chevron-right"></i>
+                    <button type="button" class="carousel-btn next-btn" id="barco-carousel-next" aria-label="Próxima foto da embarcação">
+                        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
                     </button>
 
-                    <div class="carousel-indicators">
-                        <span class="indicator active" data-slide="0"></span>
-                        <span class="indicator" data-slide="1"></span>
-                        <span class="indicator" data-slide="2"></span>
-                        <span class="indicator" data-slide="3"></span>
-                        <span class="indicator" data-slide="4"></span>
-                        <span class="indicator" data-slide="5"></span>
-                        <span class="indicator" data-slide="6"></span>
-                        <span class="indicator" data-slide="7"></span>
-                        <span class="indicator" data-slide="8"></span>
-                        <span class="indicator" data-slide="9"></span>
-                        <span class="indicator" data-slide="10"></span>
+                    <div class="carousel-indicators" role="group" aria-label="Indicadores de fotos da embarcação">
+                        <button type="button" class="indicator active" data-slide="0" aria-label="Foto 1 de 11 da embarcação"></button>
+                        <button type="button" class="indicator" data-slide="1" aria-label="Foto 2 de 11 da embarcação"></button>
+                        <button type="button" class="indicator" data-slide="2" aria-label="Foto 3 de 11 da embarcação"></button>
+                        <button type="button" class="indicator" data-slide="3" aria-label="Foto 4 de 11 da embarcação"></button>
+                        <button type="button" class="indicator" data-slide="4" aria-label="Foto 5 de 11 da embarcação"></button>
+                        <button type="button" class="indicator" data-slide="5" aria-label="Foto 6 de 11 da embarcação"></button>
+                        <button type="button" class="indicator" data-slide="6" aria-label="Foto 7 de 11 da embarcação"></button>
+                        <button type="button" class="indicator" data-slide="7" aria-label="Foto 8 de 11 da embarcação"></button>
+                        <button type="button" class="indicator" data-slide="8" aria-label="Foto 9 de 11 da embarcação"></button>
+                        <button type="button" class="indicator" data-slide="9" aria-label="Foto 10 de 11 da embarcação"></button>
+                        <button type="button" class="indicator" data-slide="10" aria-label="Foto 11 de 11 da embarcação"></button>
                     </div>
                 </div>
             </div>
@@ -769,72 +755,72 @@
                 <div class="carousel-container" id="rancho-carousel">
                     <div class="carousel-track">
 
-                        <div class="carousel-slide active" data-index="0">
-                            <img src="assets/images/rancho_1.webp" alt="Estrutura do Rancho 1" class="carousel-img" loading="lazy">
-                            <div class="carousel-overlay">
-                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                        <div class="carousel-slide active" data-index="0" role="button" tabindex="0" aria-label="Ampliar foto 1 de 8 do rancho: Varanda de madeira com vista para o lago">
+                            <img src="assets/images/rancho_1.webp" alt="Varanda coberta com deck de madeira e vista para o Lago Foz do Areia no Rancho Eldorado" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay" aria-hidden="true">
+                                <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                             </div>
                         </div>
-                        <div class="carousel-slide" data-index="1">
-                            <img src="assets/images/rancho_2.webp" alt="Estrutura do Rancho 2" class="carousel-img" loading="lazy">
-                            <div class="carousel-overlay">
-                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                        <div class="carousel-slide" data-index="1" role="button" tabindex="0" aria-label="Ampliar foto 2 de 8 do rancho: Varanda panorâmica externa">
+                            <img src="assets/images/rancho_2.webp" alt="Varanda externa com piso cerâmico, banco de madeira e vista panorâmica do lago" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay" aria-hidden="true">
+                                <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                             </div>
                         </div>
-                        <div class="carousel-slide" data-index="2">
-                            <img src="assets/images/rancho_3.webp" alt="Estrutura do Rancho 3" class="carousel-img" loading="lazy">
-                            <div class="carousel-overlay">
-                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                        <div class="carousel-slide" data-index="2" role="button" tabindex="0" aria-label="Ampliar foto 3 de 8 do rancho: Dormitório com camas">
+                            <img src="assets/images/rancho_3.webp" alt="Dormitório do Rancho Eldorado equipado com cama de casal e cama de solteiro" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay" aria-hidden="true">
+                                <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                             </div>
                         </div>
-                        <div class="carousel-slide" data-index="3">
-                            <img src="assets/images/rancho_4.webp" alt="Estrutura do Rancho 4" class="carousel-img" loading="lazy">
-                            <div class="carousel-overlay">
-                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                        <div class="carousel-slide" data-index="3" role="button" tabindex="0" aria-label="Ampliar foto 4 de 8 do rancho: Sala interna com sofá e mesa">
+                            <img src="assets/images/rancho_4.webp" alt="Sala de convivência interna do Rancho Eldorado com sofá e mesa de jantar" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay" aria-hidden="true">
+                                <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                             </div>
                         </div>
-                        <div class="carousel-slide" data-index="4">
-                            <img src="assets/images/rancho_5.webp" alt="Estrutura do Rancho 5" class="carousel-img" loading="lazy">
-                            <div class="carousel-overlay">
-                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                        <div class="carousel-slide" data-index="4" role="button" tabindex="0" aria-label="Ampliar foto 5 de 8 do rancho: Área gourmet com churrasqueira">
+                            <img src="assets/images/rancho_5.webp" alt="Área gourmet coberta com churrasqueira de tijolos à vista e mesas de apoio" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay" aria-hidden="true">
+                                <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                             </div>
                         </div>
-                        <div class="carousel-slide" data-index="5">
-                            <img src="assets/images/rancho_6.webp" alt="Estrutura do Rancho 6" class="carousel-img" loading="lazy">
-                            <div class="carousel-overlay">
-                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                        <div class="carousel-slide" data-index="5" role="button" tabindex="0" aria-label="Ampliar foto 6 de 8 do rancho: Quarto com cama de casal e cômoda">
+                            <img src="assets/images/rancho_6.webp" alt="Quarto do Rancho Eldorado com cama de casal, cômoda e ventilador portátil" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay" aria-hidden="true">
+                                <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                             </div>
                         </div>
-                        <div class="carousel-slide" data-index="6">
-                            <img src="assets/images/rancho_7.webp" alt="Estrutura do Rancho 7" class="carousel-img" loading="lazy">
-                            <div class="carousel-overlay">
-                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                        <div class="carousel-slide" data-index="6" role="button" tabindex="0" aria-label="Ampliar foto 7 de 8 do rancho: Dormitório com forro de madeira">
+                            <img src="assets/images/rancho_7.webp" alt="Dormitório do Rancho Eldorado com cama de casal e forro de madeira" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay" aria-hidden="true">
+                                <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                             </div>
                         </div>
-                        <div class="carousel-slide" data-index="7">
-                            <img src="assets/images/rancho_8.webp" alt="Estrutura do Rancho 8" class="carousel-img" loading="lazy">
-                            <div class="carousel-overlay">
-                                <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                        <div class="carousel-slide" data-index="7" role="button" tabindex="0" aria-label="Ampliar foto 8 de 8 do rancho: Bancada gourmet voltada para o lago">
+                            <img src="assets/images/rancho_8.webp" alt="Bancada da churrasqueira na área gourmet com vista para o lago e jardim" class="carousel-img" loading="lazy">
+                            <div class="carousel-overlay" aria-hidden="true">
+                                <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                             </div>
                         </div>
                     </div>
 
-                    <button class="carousel-btn prev-btn" id="carousel-prev" aria-label="Anterior">
-                        <i class="fa-solid fa-chevron-left"></i>
+                    <button type="button" class="carousel-btn prev-btn" id="carousel-prev" aria-label="Foto anterior do rancho">
+                        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
                     </button>
-                    <button class="carousel-btn next-btn" id="carousel-next" aria-label="Próximo">
-                        <i class="fa-solid fa-chevron-right"></i>
+                    <button type="button" class="carousel-btn next-btn" id="carousel-next" aria-label="Próxima foto do rancho">
+                        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
                     </button>
 
-                    <div class="carousel-indicators">
-                        <span class="indicator active" data-slide="0"></span>
-                        <span class="indicator" data-slide="1"></span>
-                        <span class="indicator" data-slide="2"></span>
-                        <span class="indicator" data-slide="3"></span>
-                        <span class="indicator" data-slide="4"></span>
-                        <span class="indicator" data-slide="5"></span>
-                        <span class="indicator" data-slide="6"></span>
-                        <span class="indicator" data-slide="7"></span>
+                    <div class="carousel-indicators" role="group" aria-label="Indicadores de fotos do rancho">
+                        <button type="button" class="indicator active" data-slide="0" aria-label="Foto 1 de 8 do rancho"></button>
+                        <button type="button" class="indicator" data-slide="1" aria-label="Foto 2 de 8 do rancho"></button>
+                        <button type="button" class="indicator" data-slide="2" aria-label="Foto 3 de 8 do rancho"></button>
+                        <button type="button" class="indicator" data-slide="3" aria-label="Foto 4 de 8 do rancho"></button>
+                        <button type="button" class="indicator" data-slide="4" aria-label="Foto 5 de 8 do rancho"></button>
+                        <button type="button" class="indicator" data-slide="5" aria-label="Foto 6 de 8 do rancho"></button>
+                        <button type="button" class="indicator" data-slide="6" aria-label="Foto 7 de 8 do rancho"></button>
+                        <button type="button" class="indicator" data-slide="7" aria-label="Foto 8 de 8 do rancho"></button>
                     </div>
                 </div>
             </div>
@@ -855,8 +841,8 @@
                 <div class="package-card-3d standard-card" data-package="standard">
                     <div class="package-badge">Eldorado</div>
                     <div class="package-card-header">
-                        <div class="package-icon-container">
-                            <i class="fa-solid fa-user-group"></i>
+                        <div class="package-icon-container" aria-hidden="true">
+                            <i class="fa-solid fa-user-group" aria-hidden="true"></i>
                         </div>
                         <span class="package-tier">PLANO PARA DUPLA</span>
                         <h3>Eldorado 1</h3>
@@ -872,24 +858,24 @@
                     <div class="package-card-body">
                         <p class="package-intro">Focado 100% na esportividade e no custo-benefício. Ideal para duplas que buscam fisgar o gigante Dourado.</p>
                         <ul class="package-feature-list">
-                            <li><i class="fa-solid fa-circle-check"></i> Guia profissional Thiago Witeck</li>
-                            <li><i class="fa-solid fa-circle-check"></i> Hospedagem aconchegante no Rancho</li>
-                            <li><i class="fa-solid fa-circle-check"></i> Embarcação completa com motor elétrico</li>
-                            <li><i class="fa-solid fa-circle-check"></i> Combustível incluso para toda a diária</li>
-                            <li><i class="fa-solid fa-circle-check"></i> Acesso livre à internet Starlink no rancho</li>
+                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Guia profissional Thiago Witeck</li>
+                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Hospedagem aconchegante no Rancho</li>
+                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Embarcação completa com motor elétrico</li>
+                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Combustível incluso para toda a diária</li>
+                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Acesso livre à internet Starlink no rancho</li>
                         </ul>
                     </div>
 
                     <div class="package-card-footer">
-                        <button class="btn btn-gold btn-block btn-open-flyer" data-package="standard" aria-label="Visualizar Detalhes do Pacote Eldorado 1">Visualizar Detalhes</button>
+                        <button type="button" class="btn btn-gold btn-block btn-open-flyer" data-package="standard" aria-label="Visualizar Detalhes do Pacote Eldorado 1">Visualizar Detalhes</button>
                     </div>
                 </div>
 
                 <div class="package-card-3d premium-card" data-package="premium">
                     <div class="package-badge">Eldorado</div>
                     <div class="package-card-header">
-                        <div class="package-icon-container">
-                            <i class="fa-solid fa-users"></i>
+                        <div class="package-icon-container" aria-hidden="true">
+                            <i class="fa-solid fa-users" aria-hidden="true"></i>
                         </div>
                         <span class="package-tier">PLANO PARA TRIO</span>
                         <h3>Eldorado 2</h3>
@@ -905,21 +891,21 @@
                     <div class="package-card-body">
                         <p class="package-intro">A experiência definitiva de pesca esportiva ao Dourado com exclusividade, conforto absoluto e atendimento no Rancho.</p>
                         <ul class="package-feature-list">
-                            <li><i class="fa-solid fa-circle-check"></i> Guia profissional Thiago Witeck</li>
-                            <li><i class="fa-solid fa-circle-check"></i> Hospedagem aconchegante no Rancho</li>
-                            <li><i class="fa-solid fa-circle-check"></i> Embarcação completa com motor elétrico</li>
-                            <li><i class="fa-solid fa-circle-check"></i> Combustível incluso para toda a diária</li>
-                            <li><i class="fa-solid fa-circle-check"></i> Acesso livre à internet Starlink no rancho</li>
+                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Guia profissional Thiago Witeck</li>
+                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Hospedagem aconchegante no Rancho</li>
+                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Embarcação completa com motor elétrico</li>
+                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Combustível incluso para toda a diária</li>
+                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Acesso livre à internet Starlink no rancho</li>
                         </ul>
                     </div>
                     <div class="package-card-footer">
-                        <button class="btn btn-gold btn-block btn-open-flyer" data-package="premium" aria-label="Visualizar Detalhes do Pacote Eldorado 2">Visualizar Detalhes</button>
+                        <button type="button" class="btn btn-gold btn-block btn-open-flyer" data-package="premium" aria-label="Visualizar Detalhes do Pacote Eldorado 2">Visualizar Detalhes</button>
                     </div>
                 </div>
             </div>
 
             <div class="custom-cta-epic">
-                <div class="cta-glow-accent"></div>
+                <div class="cta-glow-accent" aria-hidden="true"></div>
 
                 <div class="cta-inner">
                     <span class="cta-eyebrow">EXPERIÊNCIA SOB MEDIDA</span>
@@ -933,31 +919,31 @@
 
                     <div class="cta-chips">
                         <div class="cta-chip">
-                            <i class="fa-solid fa-users"></i>
+                            <i class="fa-solid fa-users" aria-hidden="true"></i>
                             <span>Grupos de qualquer tamanho</span>
                         </div>
                         <div class="cta-chip">
-                            <i class="fa-solid fa-calendar-check"></i>
+                            <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
                             <span>Datas flexíveis</span>
                         </div>
                         <div class="cta-chip">
-                            <i class="fa-solid fa-utensils"></i>
+                            <i class="fa-solid fa-utensils" aria-hidden="true"></i>
                             <span>Cardápio personalizado</span>
                         </div>
                         <div class="cta-chip">
-                            <i class="fa-solid fa-gem"></i>
+                            <i class="fa-solid fa-gem" aria-hidden="true"></i>
                             <span>Opção All Inclusive</span>
                         </div>
                     </div>
 
                     <div class="cta-button-wrap">
-                        <a href="https://wa.me/554299162340?text=Ol%C3%A1%21%20Gostaria%20de%20montar%20um%20pacote%20personalizado%20para%20a%20Eldorado%20Lake." target="_blank" class="cta-epic-btn" id="btn-custom-package">
-                            <span class="cta-btn-pulse"></span>
-                            <i class="fa-brands fa-whatsapp"></i>
+                        <a href="https://wa.me/5542999162340?text=Ol%C3%A1%21%20Gostaria%20de%20montar%20um%20pacote%20personalizado%20para%20a%20Eldorado%20Lake." target="_blank" rel="noopener noreferrer" class="cta-epic-btn" id="btn-custom-package">
+                            <span class="cta-btn-pulse" aria-hidden="true"></span>
+                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
                             <span class="cta-btn-label">Montar Meu Pacote</span>
-                            <i class="fa-solid fa-arrow-right cta-btn-arrow"></i>
+                            <i class="fa-solid fa-arrow-right cta-btn-arrow" aria-hidden="true"></i>
                         </a>
-                        <span class="cta-btn-hint">Resposta em até 2 horas</span>
+                        <span class="cta-btn-hint">Atendimento direto via WhatsApp</span>
                     </div>
                 </div>
             </div>
@@ -974,11 +960,11 @@
             </div>
 
             <div class="grid grid-3 video-grid">
-                <div class="video-card" data-video-src="https://www.youtube.com/embed/7jUrlrhd-Vs?autoplay=1">
+                <div class="video-card" data-video-src="https://www.youtube-nocookie.com/embed/7jUrlrhd-Vs?autoplay=1" data-external-url="https://www.youtube.com/watch?v=7jUrlrhd-Vs" data-provider="YouTube" role="button" tabindex="0" aria-label="Reproduzir vídeo Foz Do Areia no YouTube">
                     <div class="video-thumbnail">
-                        <img src="assets/images/maxresdefault.webp" alt="Vídeo 1 - Pescaria de Gigantes" loading="lazy">
-                        <div class="play-btn-wrapper">
-                            <span class="play-btn"><i class="fa-solid fa-play"></i></span>
+                        <img src="assets/images/maxresdefault.webp" alt="Vista aérea da usina e reservatório de Foz do Areia para vídeo da operação" loading="lazy">
+                        <div class="play-btn-wrapper" aria-hidden="true">
+                            <span class="play-btn"><i class="fa-solid fa-play" aria-hidden="true"></i></span>
                         </div>
                     </div>
                     <div class="video-info">
@@ -986,11 +972,11 @@
                         <p>Sinta vontade de pescar aqui.</p>
                     </div>
                 </div>
-                <div class="video-card" data-video-src="https://www.youtube.com/embed/uNDwjFska1c?si=7lSSvmUsGnE0pqXj&autoplay=1">
+                <div class="video-card" data-video-src="https://www.youtube-nocookie.com/embed/uNDwjFska1c?autoplay=1" data-external-url="https://www.youtube.com/watch?v=uNDwjFska1c" data-provider="YouTube" role="button" tabindex="0" aria-label="Reproduzir vídeo Records no YouTube">
                     <div class="video-thumbnail">
-                        <img src="assets/images/foto_record.webp" alt="Vídeo 2 - Records" loading="lazy">
-                        <div class="play-btn-wrapper">
-                            <span class="play-btn"><i class="fa-solid fa-play"></i></span>
+                        <img src="assets/images/foto_record.webp" alt="Thiago Witeck segurando Dourado de 73 cm do recorde brasileiro e paranaense em caiaque" loading="lazy">
+                        <div class="play-btn-wrapper" aria-hidden="true">
+                            <span class="play-btn"><i class="fa-solid fa-play" aria-hidden="true"></i></span>
                         </div>
                     </div>
                     <div class="video-info">
@@ -998,11 +984,11 @@
                         <p>Assista à quebra do recorde de Dourado no caiaque.</p>
                     </div>
                 </div>
-                <div class="video-card" data-video-src="https://www.instagram.com/reel/DY0aSa3gnIe/embed/">
+                <div class="video-card" data-video-src="https://www.instagram.com/reel/DY0aSa3gnIe/embed/" data-external-url="https://www.instagram.com/reel/DY0aSa3gnIe/" data-provider="Instagram" role="button" tabindex="0" aria-label="Reproduzir reel Dica do Nosso Guia no Instagram">
                     <div class="video-thumbnail">
-                        <img src="assets/images/dica.webp" alt="Vídeo 3 - Dicas e Técnicas" loading="lazy">
-                        <div class="play-btn-wrapper">
-                            <span class="play-btn"><i class="fa-solid fa-play"></i></span>
+                        <img src="assets/images/dica.webp" alt="Thiago Witeck exibindo isca artificial durante gravação de dica do guia no barco" loading="lazy">
+                        <div class="play-btn-wrapper" aria-hidden="true">
+                            <span class="play-btn"><i class="fa-solid fa-play" aria-hidden="true"></i></span>
                         </div>
                     </div>
                     <div class="video-info">
@@ -1026,272 +1012,272 @@
             <div class="galeria-carousel-wrapper">
                 <div class="galeria-carousel" id="gallery-carousel">
                     <div class="gallery-track">
-                    <div class="gallery-slide is-loaded" data-index="0" data-full="assets/images/gallery_1.webp">
-                        <img src="assets/images/thumbs/gallery_1.webp" alt="Galeria Eldorado Lake 1" class="gallery-img is-loaded" decoding="async" loading="eager">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide is-loaded" data-index="0" data-full="assets/images/gallery_1.webp" role="button" tabindex="0" aria-label="Ampliar foto 1 de 43 da galeria">
+                        <img src="assets/images/thumbs/gallery_1.webp" alt="Thiago Witeck e parceiros em estande da feira Fishing Show Brazil" class="gallery-img is-loaded" decoding="async" loading="eager">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide is-loaded" data-index="1" data-full="assets/images/gallery_2.webp">
-                        <img src="assets/images/thumbs/gallery_2.webp" alt="Galeria Eldorado Lake 2" class="gallery-img is-loaded" decoding="async" loading="eager">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide is-loaded" data-index="1" data-full="assets/images/gallery_2.webp" role="button" tabindex="0" aria-label="Ampliar foto 2 de 43 da galeria">
+                        <img src="assets/images/thumbs/gallery_2.webp" alt="Pescador esportivo no barco segurando grande Dourado no Lago Foz do Areia" class="gallery-img is-loaded" decoding="async" loading="eager">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide is-loaded" data-index="2" data-full="assets/images/gallery_3.webp">
-                        <img src="assets/images/thumbs/gallery_3.webp" alt="Galeria Eldorado Lake 3" class="gallery-img is-loaded" decoding="async" loading="eager">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide is-loaded" data-index="2" data-full="assets/images/gallery_3.webp" role="button" tabindex="0" aria-label="Ampliar foto 3 de 43 da galeria">
+                        <img src="assets/images/thumbs/gallery_3.webp" alt="Thiago Witeck posando na feira Fishing Show Brazil próximo ao estande da Maruri" class="gallery-img is-loaded" decoding="async" loading="eager">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide is-loaded" data-index="3" data-full="assets/images/gallery_4.webp">
-                        <img src="assets/images/thumbs/gallery_4.webp" alt="Galeria Eldorado Lake 4" class="gallery-img is-loaded" decoding="async" loading="eager">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide is-loaded" data-index="3" data-full="assets/images/gallery_4.webp" role="button" tabindex="0" aria-label="Ampliar foto 4 de 43 da galeria">
+                        <img src="assets/images/thumbs/gallery_4.webp" alt="Cortes de carne preparados em churrasqueira na beira do Lago Foz do Areia" class="gallery-img is-loaded" decoding="async" loading="eager">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="4" data-full="assets/images/gallery_5.webp">
-                        <img data-src="assets/images/thumbs/gallery_5.webp" alt="Galeria Eldorado Lake 5" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="4" data-full="assets/images/gallery_5.webp" role="button" tabindex="0" aria-label="Ampliar foto 5 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_5.webp" alt="Bastidores de entrevista em vídeo com Thiago Witeck sobre a operação Eldorado Lake" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="5" data-full="assets/images/gallery_6.webp">
-                        <img data-src="assets/images/thumbs/gallery_6.webp" alt="Galeria Eldorado Lake 6" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="5" data-full="assets/images/gallery_6.webp" role="button" tabindex="0" aria-label="Ampliar foto 6 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_6.webp" alt="Thiago Witeck com apresentador de pesca esportiva na feira Fishing Show Brazil" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="6" data-full="assets/images/gallery_7.webp">
-                        <img data-src="assets/images/thumbs/gallery_7.webp" alt="Galeria Eldorado Lake 7" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="6" data-full="assets/images/gallery_7.webp" role="button" tabindex="0" aria-label="Ampliar foto 7 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_7.webp" alt="Churrasco preparado na pedra à beira do Lago Foz do Areia com sal de parrilla" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="7" data-full="assets/images/gallery_8.webp">
-                        <img data-src="assets/images/thumbs/gallery_8.webp" alt="Galeria Eldorado Lake 8" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="7" data-full="assets/images/gallery_8.webp" role="button" tabindex="0" aria-label="Ampliar foto 8 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_8.webp" alt="Três Dourados capturados no barco sobre plataforma em piso cinza durante pescaria" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="8" data-full="assets/images/gallery_9.webp">
-                        <img data-src="assets/images/thumbs/gallery_9.webp" alt="Galeria Eldorado Lake 9" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="8" data-full="assets/images/gallery_9.webp" role="button" tabindex="0" aria-label="Ampliar foto 9 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_9.webp" alt="Thiago Witeck segurando grande Dourado ao entardecer no Lago Foz do Areia" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="9" data-full="assets/images/gallery_10.webp">
-                        <img data-src="assets/images/thumbs/gallery_10.webp" alt="Galeria Eldorado Lake 10" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="9" data-full="assets/images/gallery_10.webp" role="button" tabindex="0" aria-label="Ampliar foto 10 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_10.webp" alt="Thiago Witeck exibindo Piapara capturada nas margens rochosas do lago" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="10" data-full="assets/images/gallery_11.webp">
-                        <img data-src="assets/images/thumbs/gallery_11.webp" alt="Galeria Eldorado Lake 11" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="10" data-full="assets/images/gallery_11.webp" role="button" tabindex="0" aria-label="Ampliar foto 11 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_11.webp" alt="Participação de Thiago Witeck e convidado em episódio de podcast sobre pesca esportiva" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="11" data-full="assets/images/gallery_12.webp">
-                        <img data-src="assets/images/thumbs/gallery_12.webp" alt="Galeria Eldorado Lake 12" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="11" data-full="assets/images/gallery_12.webp" role="button" tabindex="0" aria-label="Ampliar foto 12 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_12.webp" alt="Arte comemorativa do recorde brasileiro e paranaense BGFA de Dourado 73 cm em caiaque por Thiago Witeck" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="12" data-full="assets/images/gallery_13.webp">
-                        <img data-src="assets/images/thumbs/gallery_13.webp" alt="Galeria Eldorado Lake 13" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="12" data-full="assets/images/gallery_13.webp" role="button" tabindex="0" aria-label="Ampliar foto 13 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_13.webp" alt="Thiago Witeck e visitantes posando com vara de pesca na feira Fishing Show Brazil" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="13" data-full="assets/images/gallery_14.webp">
-                        <img data-src="assets/images/thumbs/gallery_14.webp" alt="Galeria Eldorado Lake 14" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="13" data-full="assets/images/gallery_14.webp" role="button" tabindex="0" aria-label="Ampliar foto 14 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_14.webp" alt="Thiago Witeck no estande da Monster 3X na feira Fishing Show Brazil" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="14" data-full="assets/images/gallery_15.webp">
-                        <img data-src="assets/images/thumbs/gallery_15.webp" alt="Galeria Eldorado Lake 15" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="14" data-full="assets/images/gallery_15.webp" role="button" tabindex="0" aria-label="Ampliar foto 15 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_15.webp" alt="Thiago Witeck e equipe do Pod Pesk na feira Fishing Show Brazil" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="15" data-full="assets/images/gallery_16.webp">
-                        <img data-src="assets/images/thumbs/gallery_16.webp" alt="Galeria Eldorado Lake 16" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="15" data-full="assets/images/gallery_16.webp" role="button" tabindex="0" aria-label="Ampliar foto 16 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_16.webp" alt="Pescador e guia Thiago Witeck exibindo grande Dourado no barco junto a galhadas" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="16" data-full="assets/images/gallery_17.webp">
-                        <img data-src="assets/images/thumbs/gallery_17.webp" alt="Galeria Eldorado Lake 17" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="16" data-full="assets/images/gallery_17.webp" role="button" tabindex="0" aria-label="Ampliar foto 17 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_17.webp" alt="Thiago Witeck e expositor no estande da Lucky Iscas Artificiais na feira Fishing Show Brazil" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="17" data-full="assets/images/gallery_18.webp">
-                        <img data-src="assets/images/thumbs/gallery_18.webp" alt="Galeria Eldorado Lake 18" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="17" data-full="assets/images/gallery_18.webp" role="button" tabindex="0" aria-label="Ampliar foto 18 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_18.webp" alt="Dois pescadores no barco segurando grande Dourado capturado no Lago Foz do Areia" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="18" data-full="assets/images/gallery_19.webp">
-                        <img data-src="assets/images/thumbs/gallery_19.webp" alt="Galeria Eldorado Lake 19" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="18" data-full="assets/images/gallery_19.webp" role="button" tabindex="0" aria-label="Ampliar foto 19 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_19.webp" alt="Pescador ajoelhado na margem exibindo grande Dourado segurado com alicate de contenção" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="19" data-full="assets/images/gallery_20.webp">
-                        <img data-src="assets/images/thumbs/gallery_20.webp" alt="Galeria Eldorado Lake 20" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="19" data-full="assets/images/gallery_20.webp" role="button" tabindex="0" aria-label="Ampliar foto 20 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_20.webp" alt="Thiago Witeck e representantes de marcas náuticas e de pesca na feira Fishing Show Brazil" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="20" data-full="assets/images/gallery_21.webp">
-                        <img data-src="assets/images/thumbs/gallery_21.webp" alt="Galeria Eldorado Lake 21" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="20" data-full="assets/images/gallery_21.webp" role="button" tabindex="0" aria-label="Ampliar foto 21 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_21.webp" alt="Thiago Witeck ao lado da equipe Família Nakamura na feira Fishing Show Brazil" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="21" data-full="assets/images/gallery_22.webp">
-                        <img data-src="assets/images/thumbs/gallery_22.webp" alt="Galeria Eldorado Lake 22" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="21" data-full="assets/images/gallery_22.webp" role="button" tabindex="0" aria-label="Ampliar foto 22 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_22.webp" alt="Thiago Witeck concedendo entrevista em estúdio de podcast" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="22" data-full="assets/images/gallery_23.webp">
-                        <img data-src="assets/images/thumbs/gallery_23.webp" alt="Galeria Eldorado Lake 23" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="22" data-full="assets/images/gallery_23.webp" role="button" tabindex="0" aria-label="Ampliar foto 23 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_23.webp" alt="Pescador no barco exibindo grande Piapara capturada no Lago Foz do Areia" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="23" data-full="assets/images/gallery_25.webp">
-                        <img data-src="assets/images/thumbs/gallery_25.webp" alt="Galeria Eldorado Lake 25" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="23" data-full="assets/images/gallery_25.webp" role="button" tabindex="0" aria-label="Ampliar foto 24 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_25.webp" alt="Thiago Witeck e equipe em estúdio de gravação de podcast de pesca esportiva" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="24" data-full="assets/images/gallery_26.webp">
-                        <img data-src="assets/images/thumbs/gallery_26.webp" alt="Galeria Eldorado Lake 26" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="24" data-full="assets/images/gallery_26.webp" role="button" tabindex="0" aria-label="Ampliar foto 25 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_26.webp" alt="Thiago Witeck com expositores na feira Fishing Show Brazil" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="25" data-full="assets/images/gallery_27.webp">
-                        <img data-src="assets/images/thumbs/gallery_27.webp" alt="Galeria Eldorado Lake 27" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="25" data-full="assets/images/gallery_27.webp" role="button" tabindex="0" aria-label="Ampliar foto 26 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_27.webp" alt="Thiago Witeck e expositores exibindo iscas artificiais na feira Fishing Show Brazil" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="26" data-full="assets/images/gallery_28.webp">
-                        <img data-src="assets/images/thumbs/gallery_28.webp" alt="Galeria Eldorado Lake 28" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="26" data-full="assets/images/gallery_28.webp" role="button" tabindex="0" aria-label="Ampliar foto 27 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_28.webp" alt="Dois pescadores na margem pedregosa do lago segurando grande Dourado" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="27" data-full="assets/images/gallery_29.webp">
-                        <img data-src="assets/images/thumbs/gallery_29.webp" alt="Galeria Eldorado Lake 29" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="27" data-full="assets/images/gallery_29.webp" role="button" tabindex="0" aria-label="Ampliar foto 28 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_29.webp" alt="Medição oficial de Dourado em régua BGFA sobre o convés do barco" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="28" data-full="assets/images/gallery_30.webp">
-                        <img data-src="assets/images/thumbs/gallery_30.webp" alt="Galeria Eldorado Lake 30" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="28" data-full="assets/images/gallery_30.webp" role="button" tabindex="0" aria-label="Ampliar foto 29 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_30.webp" alt="Registro detalhado de Dourado medindo acima de 80 cm sobre régua BGFA" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="29" data-full="assets/images/gallery_31.webp">
-                        <img data-src="assets/images/thumbs/gallery_31.webp" alt="Galeria Eldorado Lake 31" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="29" data-full="assets/images/gallery_31.webp" role="button" tabindex="0" aria-label="Ampliar foto 30 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_31.webp" alt="Certificado oficial BGFA de Recorde Paranaense de Dourado 73 cm concedido a Thiago Witeck" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="30" data-full="assets/images/gallery_32.webp">
-                        <img data-src="assets/images/thumbs/gallery_32.webp" alt="Galeria Eldorado Lake 32" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="30" data-full="assets/images/gallery_32.webp" role="button" tabindex="0" aria-label="Ampliar foto 31 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_32.webp" alt="Pescador dentro d'água na margem do lago exibindo Dourado recém-capturado" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="31" data-full="assets/images/gallery_33.webp">
-                        <img data-src="assets/images/thumbs/gallery_33.webp" alt="Galeria Eldorado Lake 33" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="31" data-full="assets/images/gallery_33.webp" role="button" tabindex="0" aria-label="Ampliar foto 32 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_33.webp" alt="Jovem pescador sorrindo no barco enquanto segura grande Dourado com isca artificial" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="32" data-full="assets/images/gallery_34.webp">
-                        <img data-src="assets/images/thumbs/gallery_34.webp" alt="Galeria Eldorado Lake 34" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="32" data-full="assets/images/gallery_34.webp" role="button" tabindex="0" aria-label="Ampliar foto 33 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_34.webp" alt="Selfie de Thiago Witeck com visitante em estande da feira Fishing Show Brazil" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="33" data-full="assets/images/gallery_35.webp">
-                        <img data-src="assets/images/thumbs/gallery_35.webp" alt="Galeria Eldorado Lake 35" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="33" data-full="assets/images/gallery_35.webp" role="button" tabindex="0" aria-label="Ampliar foto 34 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_35.webp" alt="Ficha técnica do Recorde Brasileiro BGFA de Dourado 73 cm obtido em 21 de junho de 2023 no Lago Foz do Areia" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="34" data-full="assets/images/gallery_36.webp">
-                        <img data-src="assets/images/thumbs/gallery_36.webp" alt="Galeria Eldorado Lake 36" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="34" data-full="assets/images/gallery_36.webp" role="button" tabindex="0" aria-label="Ampliar foto 35 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_36.webp" alt="Dois pescadores no barco exibindo captura dupla de Dourados no Lago Foz do Areia" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="35" data-full="assets/images/gallery_37.webp">
-                        <img data-src="assets/images/thumbs/gallery_37.webp" alt="Galeria Eldorado Lake 37" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="35" data-full="assets/images/gallery_37.webp" role="button" tabindex="0" aria-label="Ampliar foto 36 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_37.webp" alt="Thiago Witeck com pescador expositor na feira Fishing Show Brazil" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="36" data-full="assets/images/gallery_38.webp">
-                        <img data-src="assets/images/thumbs/gallery_38.webp" alt="Galeria Eldorado Lake 38" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="36" data-full="assets/images/gallery_38.webp" role="button" tabindex="0" aria-label="Ampliar foto 37 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_38.webp" alt="Thiago Witeck e acompanhantes durante visita à feira Fishing Show Brazil" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="37" data-full="assets/images/gallery_39.webp">
-                        <img data-src="assets/images/thumbs/gallery_39.webp" alt="Galeria Eldorado Lake 39" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="37" data-full="assets/images/gallery_39.webp" role="button" tabindex="0" aria-label="Ampliar foto 38 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_39.webp" alt="Pescador sorrindo no barco segurando grande Dourado com o Lago Foz do Areia ao fundo" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="38" data-full="assets/images/gallery_40.webp">
-                        <img data-src="assets/images/thumbs/gallery_40.webp" alt="Galeria Eldorado Lake 40" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="38" data-full="assets/images/gallery_40.webp" role="button" tabindex="0" aria-label="Ampliar foto 39 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_40.webp" alt="Certificado oficial BGFA de Recorde Brasileiro de Dourado 73 cm concedido a Thiago Witeck" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="39" data-full="assets/images/gallery_41.webp">
-                        <img data-src="assets/images/thumbs/gallery_41.webp" alt="Galeria Eldorado Lake 41" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="39" data-full="assets/images/gallery_41.webp" role="button" tabindex="0" aria-label="Ampliar foto 40 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_41.webp" alt="Selfie de Thiago Witeck com amigos em frente a estande na feira Fishing Show Brazil" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="40" data-full="assets/images/gallery_42.webp">
-                        <img data-src="assets/images/thumbs/gallery_42.webp" alt="Galeria Eldorado Lake 42" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="40" data-full="assets/images/gallery_42.webp" role="button" tabindex="0" aria-label="Ampliar foto 41 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_42.webp" alt="Selfie de Thiago Witeck com visitante no estande da LMS Fishing na feira Fishing Show Brazil" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="41" data-full="assets/images/gallery_43.webp">
-                        <img data-src="assets/images/thumbs/gallery_43.webp" alt="Galeria Eldorado Lake 43" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="41" data-full="assets/images/gallery_43.webp" role="button" tabindex="0" aria-label="Ampliar foto 42 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_43.webp" alt="Pescador sentado no barco segurando grande Piapara no Lago Foz do Areia" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <div class="gallery-slide" data-index="42" data-full="assets/images/gallery_44.webp">
-                        <img data-src="assets/images/thumbs/gallery_44.webp" alt="Galeria Eldorado Lake 44" class="gallery-img lazy-gallery" decoding="async">
-                        <div class="gallery-overlay">
-                            <span>Ampliar <i class="fa-solid fa-expand"></i></span>
+                    <div class="gallery-slide" data-index="42" data-full="assets/images/gallery_44.webp" role="button" tabindex="0" aria-label="Ampliar foto 43 de 43 da galeria">
+                        <img data-src="assets/images/thumbs/gallery_44.webp" alt="Lavagem do convés em EVA da embarcação com motor Mercury em frente ao rancho" class="gallery-img lazy-gallery" decoding="async">
+                        <div class="gallery-overlay" aria-hidden="true">
+                            <span>Ampliar <i class="fa-solid fa-expand" aria-hidden="true"></i></span>
                         </div>
                     </div>
                     </div>
                 </div>
 
-                <button class="carousel-btn prev-btn" id="gallery-prev" aria-label="Anterior">
-                    <i class="fa-solid fa-chevron-left"></i>
+                <button type="button" class="carousel-btn prev-btn" id="gallery-prev" aria-label="Fotos anteriores da galeria">
+                    <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
                 </button>
-                <button class="carousel-btn next-btn" id="gallery-next" aria-label="Próximo">
-                    <i class="fa-solid fa-chevron-right"></i>
+                <button type="button" class="carousel-btn next-btn" id="gallery-next" aria-label="Próximas fotos da galeria">
+                    <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
@@ -1312,29 +1298,32 @@
                     <p>Estamos prontos para organizar a melhor experiência de pesca para você. Entre em contato conosco pelos canais abaixo:</p>
 
                     <div class="info-item">
-                        <div class="info-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                        <div class="info-icon" aria-hidden="true"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></div>
                         <div class="info-text">
-                            <h3>WhatsApp</h3>
-                            <p><a href="https://wa.me/554299162340" target="_blank" rel="noopener noreferrer">(42) 9 9916-2340</a></p>
+                            <h4>WhatsApp</h4>
+                            <p><a href="https://wa.me/5542999162340" target="_blank" rel="noopener noreferrer">(42) 9 9916-2340</a></p>
                         </div>
                     </div>
                     <div class="info-item">
-                        <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+                        <div class="info-icon" aria-hidden="true"><i class="fa-solid fa-envelope" aria-hidden="true"></i></div>
                         <div class="info-text">
-                            <h3>E-mail</h3>
+                            <h4>E-mail</h4>
                             <p><a href="mailto:thiagowiteck@hotmail.com">thiagowiteck@hotmail.com</a></p>
                         </div>
                     </div>
                     <div class="info-item">
-                        <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div class="info-icon" aria-hidden="true"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></div>
                         <div class="info-text">
-                            <h3>Localização</h3>
-                            <p>Lago Foz do Areia, Pinhão - PR, Brasil</p>
+                            <h4>Localização</h4>
+                            <p>Lago Foz do Areia, Pinhão - PR, Brasil • CNPJ 17.227.623/0001-04</p>
                         </div>
                     </div>
+                    <p class="lgpd-contact-note">
+                        Ao entrar em contato por WhatsApp ou e-mail, seus dados serão tratados para atendimento e orçamento, conforme a <a href="privacy.html">Política de Privacidade (LGPD)</a>.
+                    </p>
 
                     <div class="partners-logos contact-partners show-only-on-desktop">
-                        <h3>Parceiros & Destaque:</h3>
+                        <h4>Parceiros & Destaque:</h4>
                         <div class="logos-flex">
                             <span class="partner-tag">Tr Fishing</span>
                             <span class="partner-tag">Iscas Mathias</span>
@@ -1349,24 +1338,33 @@
                     <div class="map-header">
                         <div class="map-header-top">
                             <h3>Nossa Localização</h3>
-                            <span class="map-recommend-badge">Recomendado Google Maps</span>
+                            <span class="map-recommend-badge">Localização no Google Maps</span>
                         </div>
                         <p>Explore a região do Lago Foz do Areia e trace sua rota até nosso rancho.</p>
                     </div>
-                    <div class="map-container">
+                    <div class="map-container consent-map-box">
+                        <div class="consent-map-placeholder">
+                            <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                            <h4>Mapa Interativo Bloqueado por Privacidade</h4>
+                            <p>O carregamento do mapa conecta-se aos servidores do Google Maps e pode utilizar cookies de terceiros.</p>
+                            <div class="consent-map-actions">
+                                <button type="button" class="classic-btn btn-gold btn-sm" data-consent-grant="externalMedia">Carregar Mapa do Google</button>
+                            </div>
+                        </div>
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6331.031754015601!2d-51.6095719!3d-25.9954877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e5eddf2daea4e7%3A0xe43be12724bd0de4!2sOpera%C3%A7%C3%A3o%20de%20pesca%20ElDorado%20Lake!5e0!3m2!1spt-BR!2sbr!4v1720000000000"
+                            data-consent-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6331.031754015601!2d-51.6095719!3d-25.9954877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e5eddf2daea4e7%3A0xe43be12724bd0de4!2sOpera%C3%A7%C3%A3o%20de%20pesca%20ElDorado%20Lake!5e0!3m2!1spt-BR!2sbr!4v1720000000000"
                             width="100%"
                             height="100%"
                             style="border:0; border-radius: 12px;"
                             allowfullscreen=""
                             loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"
-                            title="Localização Eldorado Lake - Lago Foz do Areia">
+                            title="Localização Eldorado Lake - Lago Foz do Areia"
+                            hidden>
                         </iframe>
                     </div>
                     <a href="https://maps.app.goo.gl/ggCzNRzaTgsAnpXD6" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-block map-directions-btn" id="btn-map-directions">
-                        <i class="fa-solid fa-diamond-turn-right"></i> Abrir no Google Maps
+                        <i class="fa-solid fa-diamond-turn-right" aria-hidden="true"></i> Abrir no Google Maps
                     </a>
                 </div>
             </div>
@@ -1382,19 +1380,19 @@
                         <span>Eu tenho uma loja aqui!</span>
                     </div>
                     <picture>
-                        <img src="assets/images/ml_cart.webp" alt="Loja Oficial Eldorado Lake" class="ml-banner-img" loading="lazy">
+                        <img src="assets/images/ml_cart.webp" alt="Ilustração promocional da loja oficial Eldorado Lake no Mercado Livre" class="ml-banner-img" loading="lazy">
                     </picture>
                 </div>
                 <div class="ml-btn-container">
                     <a href="https://lista.mercadolivre.com.br/_CustId_82673092" target="_blank" rel="noopener noreferrer" class="ml-premium-btn">
-                        <span class="ml-btn-icon"><i class="fa-solid fa-handshake"></i></span>
+                        <span class="ml-btn-icon" aria-hidden="true"><i class="fa-solid fa-handshake" aria-hidden="true"></i></span>
                         <span class="ml-btn-text">Ir para o Mercado Livre</span>
                     </a>
                 </div>
             </div>
 
             <div class="partners-logos footer-partners hide-on-desktop">
-                <h3>Parceiros & Destaque:</h3>
+                <h2>Parceiros & Destaque:</h2>
                 <div class="logos-flex">
                     <span class="partner-tag">Tr Fishing</span>
                     <span class="partner-tag">Iscas Mathias</span>
@@ -1403,26 +1401,28 @@
                 </div>
             </div>
             <div class="footer-links">
-                <h3>Links Rápidos</h3>
+                <h2>Links Rápidos</h2>
                 <ul>
                     <li><a href="#home">Início</a></li>
                     <li><a href="about.html">Sobre Nós</a></li>
                     <li><a href="contact.html">Contato</a></li>
                     <li><a href="privacy.html">Privacidade</a></li>
                     <li><a href="terms.html">Termos de Uso</a></li>
+                    <li><a href="refund.html">Cancelamento e Reembolso</a></li>
+                    <li><button type="button" class="footer-link-btn" data-open-cookie-preferences>Preferências de Cookies</button></li>
                 </ul>
             </div>
             <div class="footer-social">
-                <h3>Siga-nos</h3>
+                <h2>Siga-nos</h2>
                 <div class="social-icons">
-                    <a href="https://www.instagram.com/thiago.witeck/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@thiagowiteck" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="https://www.facebook.com/wwinformaticapho" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://www.youtube.com/@ThiagoWiteck" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/thiago.witeck/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram de Thiago Witeck / Eldorado Lake"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://www.tiktok.com/@thiagowiteck" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="TikTok de Thiago Witeck / Eldorado Lake"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+                    <a href="https://www.facebook.com/wwinformaticapho" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook vinculado no rodapé"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+                    <a href="https://www.youtube.com/@ThiagoWiteck" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Canal do YouTube Thiago Witeck"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
                 </div>
 
                 <div class="partners-logos footer-partners show-only-on-tablet">
-                    <h3>Parceiros & Destaque:</h3>
+                    <h2>Parceiros & Destaque:</h2>
                     <div class="logos-flex">
                         <span class="partner-tag">Tr Fishing</span>
                         <span class="partner-tag">Iscas Mathias</span>
@@ -1433,63 +1433,76 @@
             </div>
         </div>
         <div class="footer-bottom text-center">
-            <p>&copy; 2026 Eldorado Lake. Todos os direitos reservados.</p>
+            <p>&copy; 2026 Eldorado Lake • CNPJ 17.227.623/0001-04 • Faxinal do Céu, Pinhão - PR. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <div id="lightbox" class="lightbox-modal">
-        <button class="lightbox-close" id="lightbox-close-btn" aria-label="Fechar Lightbox">&times;</button>
+    <div id="lightbox" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="Visualizador de mídia ampliada" aria-hidden="true">
+        <button type="button" class="lightbox-close" id="lightbox-close-btn" aria-label="Fechar visualizador">&times;</button>
         
-        <button class="lightbox-nav-btn lightbox-prev" id="lightbox-prev-btn" aria-label="Imagem Anterior" tabindex="0">
-            <i class="fa-solid fa-chevron-left"></i>
+        <button type="button" class="lightbox-nav-btn lightbox-prev" id="lightbox-prev-btn" aria-label="Imagem anterior">
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
         </button>
 
         <div class="lightbox-content-wrapper" id="lightbox-content-wrapper">
             <img class="lightbox-img" id="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Imagem ampliada da galeria Eldorado Lake">
             <div class="lightbox-video-container" id="lightbox-video-container">
-                <iframe id="lightbox-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div class="lightbox-consent-gate" id="lightbox-consent-gate" hidden>
+                    <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                    <h2 id="lightbox-consent-title">Mídia Externa Bloqueada por Privacidade</h2>
+                    <p id="lightbox-consent-desc">Este vídeo é hospedado por terceiros e pode tratar endereço IP ou utilizar cookies externos ao ser reproduzido aqui.</p>
+                    <div class="lightbox-consent-actions">
+                        <button type="button" class="classic-btn btn-gold btn-sm" id="lightbox-consent-allow">Autorizar e assistir aqui</button>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="classic-btn btn-outline btn-sm" id="lightbox-external-link">Abrir no site externo</a>
+                    </div>
+                </div>
+                <iframe id="lightbox-iframe" src="" title="Reprodutor de vídeo externo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <video id="lightbox-video" controls playsinline style="display: none; width: 100%; height: 100%; border: none; outline: none; background: #000; object-fit: contain;"></video>
             </div>
         </div>
 
-        <button class="lightbox-nav-btn lightbox-next" id="lightbox-next-btn" aria-label="Próxima Imagem" tabindex="0">
-            <i class="fa-solid fa-chevron-right"></i>
+        <button type="button" class="lightbox-nav-btn lightbox-next" id="lightbox-next-btn" aria-label="Próxima imagem">
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
         </button>
 
         <div class="lightbox-bottom-bar" id="lightbox-bottom-bar">
-            <button class="lightbox-bar-btn" id="lightbox-bar-prev" aria-label="Foto Anterior">
-                <i class="fa-solid fa-chevron-left"></i>
+            <button type="button" class="lightbox-bar-btn" id="lightbox-bar-prev" aria-label="Foto anterior">
+                <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
             </button>
-            <span class="lightbox-counter" id="lightbox-counter">1 / 42</span>
-            <button class="lightbox-bar-btn" id="lightbox-bar-next" aria-label="Próxima Foto">
-                <i class="fa-solid fa-chevron-right"></i>
+            <span class="lightbox-counter" id="lightbox-counter">1 / 43</span>
+            <button type="button" class="lightbox-bar-btn" id="lightbox-bar-next" aria-label="Próxima foto">
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
             </button>
         </div>
     </div>
 
-    <div id="details-modal" class="lightbox-modal">
-        <span class="lightbox-close" id="details-close-btn" role="button" aria-label="Fechar Detalhes" tabindex="0">&times;</span>
+    <div id="details-modal" class="lightbox-modal" role="dialog" aria-modal="true" aria-labelledby="details-modal-title" aria-hidden="true">
+        <button type="button" class="lightbox-close" id="details-close-btn" aria-label="Fechar detalhes do pacote">&times;</button>
         <div class="details-modal-wrapper">
             <div class="details-modal-content glass-card">
                 <div class="details-header">
                     <span class="details-tag" id="details-modal-tag">Pacote Premium</span>
-                    <h3 class="details-title" id="details-modal-title">Pacote Eldorado Premium</h3>
+                    <h2 class="details-title" id="details-modal-title">Pacote Eldorado</h2>
                     <div class="section-divider" style="margin: 15px 0 25px 0; background: linear-gradient(90deg, var(--primary-gold), transparent);"></div>
                 </div>
                 <div class="details-body" id="details-modal-body">
 
                 </div>
                 <div class="details-footer">
-                    <a href="https://wa.me/554299162340" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-block" id="btn-whatsapp-modal-reservar">
-                        <i class="fa-brands fa-whatsapp"></i> Reservar via WhatsApp
+                    <a href="https://wa.me/5542999162340" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-block" id="btn-whatsapp-modal-reservar">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Reservar via WhatsApp
                     </a>
+                    <p class="details-legal-note">
+                        Ao solicitar reserva, aplicam-se os <a href="terms.html">Termos de Uso</a>, a <a href="privacy.html">Política de Privacidade</a> e a <a href="refund.html">Política de Reembolso (CDC)</a>.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 
-    <script defer src="js/vendor/gsap.min.js?v=34.0"></script>
-    <script defer src="js/vendor/ScrollTrigger.min.js?v=34.0"></script>
-    <script defer src="js/script.js?v=34.0"></script>
+    <script defer src="js/consent.js?v=35.1"></script>
+    <script defer src="js/vendor/gsap.min.js?v=35.0"></script>
+    <script defer src="js/vendor/ScrollTrigger.min.js?v=35.0"></script>
+    <script defer src="js/script.js?v=35.0"></script>
 </body>
 </html>

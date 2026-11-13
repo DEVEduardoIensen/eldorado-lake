@@ -207,6 +207,26 @@
       "source": "/termos-de-uso",
       "destination": "/terms",
       "permanent": true
+    },
+    {
+      "source": "/reembolso",
+      "destination": "/refund",
+      "permanent": true
+    },
+    {
+      "source": "/cancelamento",
+      "destination": "/refund",
+      "permanent": true
+    },
+    {
+      "source": "/politica-de-reembolso",
+      "destination": "/refund",
+      "permanent": true
+    },
+    {
+      "source": "/devolucao",
+      "destination": "/refund",
+      "permanent": true
     }
   ],
   "headers": [
